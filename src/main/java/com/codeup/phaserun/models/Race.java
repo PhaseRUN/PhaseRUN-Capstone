@@ -1,4 +1,4 @@
-package com.codeup.phaserun;
+package com.codeup.phaserun.models;
 
 import jakarta.persistence.*;
 
