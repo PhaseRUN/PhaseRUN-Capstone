@@ -1,4 +1,4 @@
-package com.codeup.phaserun;
+package com.codeup.phaserun.models;
 
 import jakarta.persistence.*;
 
@@ -13,17 +13,17 @@ public class Race {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false, length = 128)
-    private String race_id;
+    private String raceId;
     @Column(nullable = false, length = 300)
-    private String race_name;
+    private String raceName;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
     @Column(nullable = false, columnDefinition = "DECIMAL(6, 2)")
-    private double cost_in_dollars;
+    private double CostInDollars;
     @Column(nullable = false, length = 30)
-    private String distance_in_km;
+    private String distanceInKm;
     @Column(nullable = false, columnDefinition = "DATE")
-    private Date race_start;
+    private Date raceStart;
     @Column(nullable = false, length = 2)
     private String state;
     @Column(nullable = false)
@@ -35,42 +35,42 @@ public class Race {
     private String url;
 
     @Column(nullable = false, length = 256)
-    private String logo_url;
+    private String logoUrl;
 
     @ManyToMany(mappedBy = "races")
     private List<User> users;
 
-    public Race(int id, String race_id, String race_name, String description, double cost_in_dollars, String distance_in_km, Date race_start, String state, int zipcode, String city, List<User> users) {
+    public Race(int id, String raceId, String raceName, String description, double CostInDollars, String distanceInKm, Date raceStart, String state, int zipcode, String city, List<User> users) {
         this.id = id;
-        this.race_id = race_id;
-        this.race_name = race_name;
+        this.raceId = raceId;
+        this.raceName = raceName;
         this.description = description;
-        this.cost_in_dollars = cost_in_dollars;
-        this.distance_in_km = distance_in_km;
-        this.race_start = race_start;
+        this.CostInDollars = CostInDollars;
+        this.distanceInKm = distanceInKm;
+        this.raceStart = raceStart;
         this.state = state;
         this.zipcode = zipcode;
         this.city = city;
         this.users = users;
     }
 
-    public Race(String race_id, String race_name, String description, double cost_in_dollars, String distance_in_km, Date race_start, String state, int zipcode, String city, List<User> users) {
-        this.race_id = race_id;
-        this.race_name = race_name;
+    public Race(String raceId, String raceName, String description, double CostInDollars, String distanceInKm, Date raceStart, String state, int zipcode, String city, List<User> users) {
+        this.raceId = raceId;
+        this.raceName = raceName;
         this.description = description;
-        this.cost_in_dollars = cost_in_dollars;
-        this.distance_in_km = distance_in_km;
-        this.race_start = race_start;
+        this.CostInDollars = CostInDollars;
+        this.distanceInKm = distanceInKm;
+        this.raceStart = raceStart;
         this.state = state;
         this.zipcode = zipcode;
         this.city = city;
         this.users = users;
     }
 
-    public Race(String race_id, String race_name, String description, String state, int zipcode, String city)
+    public Race(String raceId, String raceName, String description, String state, int zipcode, String city)
     {
-        this.race_id = race_id;
-        this.race_name = race_name;
+        this.raceId = raceId;
+        this.raceName = raceName;
         this.description = description;
         this.state = state;
         this.zipcode = zipcode;
@@ -88,20 +88,20 @@ public class Race {
         this.id = id;
     }
 
-    public String getRace_id() {
-        return race_id;
+    public String getRaceId() {
+        return raceId;
     }
 
-    public void setRace_id(String race_id) {
-        this.race_id = race_id;
+    public void setRaceId(String raceId) {
+        this.raceId = raceId;
     }
 
-    public String getRace_name() {
-        return race_name;
+    public String getRaceName() {
+        return raceName;
     }
 
-    public void setRace_name(String race_name) {
-        this.race_name = race_name;
+    public void setRaceName(String raceName) {
+        this.raceName = raceName;
     }
 
     public String getDescription() {
@@ -112,28 +112,28 @@ public class Race {
         this.description = description;
     }
 
-    public double getCost_in_dollars() {
-        return cost_in_dollars;
+    public double getCostinDollars() {
+        return CostInDollars;
     }
 
-    public void setCost_in_dollars(double cost_in_dollars) {
-        this.cost_in_dollars = cost_in_dollars;
+    public void setCostInDollars(double CostInDollars) {
+        this.CostInDollars = CostInDollars;
     }
 
-    public String getDistance_in_km() {
-        return distance_in_km;
+    public String getDistanceInKm() {
+        return distanceInKm;
     }
 
-    public void setDistance_in_km(String distance_in_km) {
-        this.distance_in_km = distance_in_km;
+    public void setDistanceInKm(String distanceInKm) {
+        this.distanceInKm = distanceInKm;
     }
 
-    public Date getRace_start() {
-        return race_start;
+    public Date getRaceStart() {
+        return raceStart;
     }
 
-    public void setRace_start(Date race_start) {
-        this.race_start = race_start;
+    public void setRaceStart(Date raceStart) {
+        this.raceStart = raceStart;
     }
 
     public String getState() {
@@ -177,10 +177,10 @@ public class Race {
     }
 
     public String getLogoUrl() {
-        return logo_url;
+        return logoUrl;
     }
 
-    public void setLogoUrl(String logo_url) {
-        this.logo_url = logo_url;
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 }
