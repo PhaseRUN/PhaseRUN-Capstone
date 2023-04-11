@@ -9,6 +9,14 @@ import java.util.List;
 @Table(name="users")
 public class User {
 
+    public enum RunningExpEnum {
+        NONE, BEGINNER, RECREATIONAL, INTERMEDIATE, EXPERT
+    }
+
+    public enum FitnessLvlEnum {
+        NONE, BEGINNER, INTERMEDIATE, EXPERT, ELITE
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,14 +26,14 @@ public class User {
     private String email;
     @Column(nullable = false, length = 128)
     private String password;
-    @Column(nullable = false, columnDefinition = "ENUM(none, beginner, recreational, intermediate, expert)")
-    private String running_exp;
-    @Column(nullable = false, columnDefinition = "ENUM(none, beginner, intermediate, expert, elite)")
-    private String fitness_lvl;
+    @Enumerated(EnumType.ORDINAL)
+    private RunningExpEnum runningExp;
+    @Enumerated(EnumType.ORDINAL)
+    private FitnessLvlEnum fitnessLvl;
     @Column(nullable = false, columnDefinition = "SMALLINT")
     private int zipcode;
     @Column(nullable = false, columnDefinition = "DATE")
-    private Date birth_date;
+    private Date birthDate;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -35,26 +43,26 @@ public class User {
     )
     private List<Race> races;
 
-    public User(int id, String username, String email, String password, String running_exp, String fitness_lvl, int zipcode, Date birth_date, List<Race> races) {
+    public User(int id, String username, String email, String password, RunningExpEnum runningExp, FitnessLvlEnum fitnessLvl, int zipcode, Date birthDate, List<Race> races) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.running_exp = running_exp;
-        this.fitness_lvl = fitness_lvl;
+        this.runningExp = runningExp;
+        this.fitnessLvl = fitnessLvl;
         this.zipcode = zipcode;
-        this.birth_date = birth_date;
+        this.birthDate = birthDate;
         this.races = races;
     }
 
-    public User(String username, String email, String password, String running_exp, String fitness_lvl, int zipcode, Date birth_date, List<Race> races) {
+    public User(String username, String email, String password, RunningExpEnum runningExp, FitnessLvlEnum fitnessLvl, int zipcode, Date birthDate, List<Race> races) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.running_exp = running_exp;
-        this.fitness_lvl = fitness_lvl;
+        this.runningExp = runningExp;
+        this.fitnessLvl = fitnessLvl;
         this.zipcode = zipcode;
-        this.birth_date = birth_date;
+        this.birthDate = birthDate;
         this.races = races;
     }
 
@@ -93,20 +101,20 @@ public class User {
         this.password = password;
     }
 
-    public String getRunning_exp() {
-        return running_exp;
+    public RunningExpEnum getRunningExp() {
+        return runningExp;
     }
 
-    public void setRunning_exp(String running_exp) {
-        this.running_exp = running_exp;
+    public void setRunningExp(RunningExpEnum runningExp) {
+        this.runningExp = runningExp;
     }
 
-    public String getFitness_lvl() {
-        return fitness_lvl;
+    public FitnessLvlEnum getFitnessLvl() {
+        return fitnessLvl;
     }
 
-    public void setFitness_lvl(String fitness_lvl) {
-        this.fitness_lvl = fitness_lvl;
+    public void setFitnessLvl(FitnessLvlEnum fitnessLvl) {
+        this.fitnessLvl = fitnessLvl;
     }
 
     public int getZipcode() {
@@ -117,12 +125,12 @@ public class User {
         this.zipcode = zipcode;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public List<Race> getRaces() {
