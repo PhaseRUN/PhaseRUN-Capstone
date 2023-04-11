@@ -3,10 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Fitness Profile</title>
+    <link rel="stylesheet" th:href="@{/css/fitnessProfile.css}">
+
 </head>
 <body>
 <!--<nav th:replace="partials :: navbar"></nav>-->
-<h1>Fitness Profile</h1>
+<header>Fitness Profile</header>
+<div class="page-wrapper">
+    <div class="row" id="fitness-form">
+        <form>
+            <label for="date-of-birth">DOB:</label>
+            <input type="date" id="date-of-birth" name="date-of-birth" placeholder="mm/dd/yyyy">
+            <br>
+            <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
+            <input type="number" pattern="[0-9]" id="fit-zipcode" name="zipcode" value="" placeholder="Zip Code">
+            <br>
+            <label for="running-exp">Race Experience:</label>
+            <select name="running-exp" id="running-exp">
+                <option value="none" selected>select</option>
+                <option value="25">None</option>
+                <option value="20">Beginner</option>
+                <option value="15">Recreational</option>
+                <option value="10">Intermediate</option>
+                <option value="5">Expert</option>
+            </select>
+            <br>
+            <label for="activity-level">Activity Level:</label>
+            <select name="activity-level" id="activity-level">
+                <option value="none" selected>select</option>
+                <option value="25">None</option>
+                <option value="20">Beginner</option>
+                <option value="15">Intermediate</option>
+                <option value="10">Expert</option>
+                <option value="5">Elite</option>
+            </select>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

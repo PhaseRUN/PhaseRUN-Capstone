@@ -31,6 +31,12 @@ public class Race {
     @Column(nullable = false, length = 128)
     private String city;
 
+    @Column(nullable = false, length = 256)
+    private String url;
+
+    @Column(nullable = false, length = 256)
+    private String logoUrl;
+
     @ManyToMany(mappedBy = "races")
     private List<User> users;
 
@@ -59,6 +65,16 @@ public class Race {
         this.zipcode = zipcode;
         this.city = city;
         this.users = users;
+    }
+
+    public Race(String raceId, String raceName, String description, String state, int zipcode, String city)
+    {
+        this.raceId = raceId;
+        this.raceName = raceName;
+        this.description = description;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.city = city;
     }
 
     public Race() {
@@ -150,5 +166,21 @@ public class Race {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 }
