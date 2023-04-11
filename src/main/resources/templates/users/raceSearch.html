@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="partials/head :: head">
     <title>Race Search</title>
     <link rel="stylesheet" th:href="@{/css/raceSearchModal.css}">
 </head>
 <body>
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
+
 
 <h1>Race Search</h1>
 <div class="race-form">
@@ -76,7 +79,11 @@
 </div>
 </div>
 
+
+<nav th:replace="partials/footer :: footer"></nav>
+
 <script type="text/javascript" th:src="@{/js/raceSearchModal.js}">
 </script>
+
 </body>
 </html>

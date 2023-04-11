@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="partials/head :: head">
     <title>Fitness Profile</title>
     <link rel="stylesheet" th:href="@{/css/fitnessProfile.css}">
 
 </head>
 <body>
-<!--<nav th:replace="partials :: navbar"></nav>-->
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+<h1>Fitness Profile</h1>
+
 <header>Fitness Profile</header>
 <div class="page-wrapper">
     <div class="row" id="fitness-form">
@@ -43,5 +45,7 @@
     </div>
 </div>
 
+
+<nav th:replace="partials/footer :: footer"></nav>
 </body>
 </html>
