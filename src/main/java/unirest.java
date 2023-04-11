@@ -1,4 +1,4 @@
-import com.codeup.phaserun.Race;
+import com.codeup.phaserun.models.Race;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
@@ -56,10 +56,10 @@ public class unirest
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
 
             // SETTING THE RACE ID FROM THE API
-            race.setRace_id(Integer.toString(jsonObject.getInt("race_id")));
+            race.setRaceId(Integer.toString(jsonObject.getInt("race_id")));
 
             // SETTING THE RACE NAME FROM THE API
-            race.setRace_name(jsonObject.getString("name"));
+            race.setRaceName(jsonObject.getString("name"));
 
             // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API
             // SETTING IT IF IS AVAILABLE
