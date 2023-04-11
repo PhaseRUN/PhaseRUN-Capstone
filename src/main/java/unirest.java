@@ -1,3 +1,4 @@
+import com.codeup.phaserun.Race;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
@@ -59,7 +60,23 @@ public class unirest
 //        System.out.println(myObj.getJSONObject("race").getInt("race_id"));
         JSONArray results = myObj.getJSONArray("races");
 
-        System.out.println(results);
+//        System.out.println(results.getJSONObject(0).getJSONObject("race").getInt("race_id")); //.getJSONObject("race").getInt("race_id")
+
+        List<Race> races = new ArrayList<>();
+
+        Race race = new Race();
+
+        for(int i = 0; i < results.length(); i++)
+        {
+
+            JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
+            race.setRace_id(Integer.toString(jsonObject.getInt("race_id")));
+            race.setRace_name(jsonObject.getString("name"));
+            race.setDescription(jsonObject.getString("description"));
+            race.setState(jsonObject.getJSONObject("address").getString("state"));
+
+//            System.out.println(results.getJSONObject(i).getJSONObject("race").getInt("race_id"));
+        }
 
 //        List<JSONObject> races = new ArrayList<>();
 
