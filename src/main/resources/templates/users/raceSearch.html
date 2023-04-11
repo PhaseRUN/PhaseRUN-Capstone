@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
+    <title>Race Search</title>
+    <link rel="stylesheet" th:href="@{/css/raceSearchModal.css}">
+</head>
+<body>
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
+
+
+<h1>Race Search</h1>
+<div class="race-form">
+    <form>
+        <label for="race-distance-min">Race Distance Min:</label>
+        <select name="race-distance-min" id="race-distance-min">
+            <option value="5k" selected>5k</option>
+            <option value="10k">10k</option>
+            <option value="half">13.1 Half-Marathon</option>
+            <option value="full">26.2 Marathon</option>
+        </select>
+        <br>
+        <label for="race-distance-max">Race Distance Max:</label>
+        <select name="race-distance-max" id="race-distance-max">
+            <option value="5k" selected>5k</option>
+            <option value="10k">10k</option>
+            <option value="half">13.1 Half-Marathon</option>
+            <option value="full">26.2 Marathon</option>
+        </select>
+        <br>
+        <label for="search-radius">Search Radius:</label>
+        <select name="search-radius" id="search-radius">
+            <option value="5" selected>5 Miles</option>
+            <option value="10">10 Miles</option>
+            <option value="15">15 Miles</option>
+            <option value="25">25 Miles</option>
+            <option value="50">50 Miles</option>
+            <option value="100">100 miles</option>
+            <option value="any">Unlimited</option>
+        </select>
+        <label class="flex-0 margin-lr-10">from</label>
+        <label class="sr-only" for="zipcodeRadius">Zip Code</label>
+        <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code">
+        <br>
+        <label for="cost">Race Cost:</label>
+        <select name="cost" id="cost">
+            <option value="25" selected>Under $25</option>
+            <option value="50">Under $50</option>
+            <option value="75">Under $75</option>
+            <option value="100">Under $100</option>
+            <option value="any">Any amount</option>
+        </select><br>
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<h1>Results</h1>
+<div id="results">
+
+
+<div class="card">
+    <img src="" alt="race image" class="card-img-top">
+    <div class="card-body">
+        <!-- Trigger/Open The Modal -->
+        <a class="raceCard">RACE CARD GOES HERE</a>
+
+        <!-- The Modal  -->
+        <div class="myModal" data-datatype="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p class="card-text">(race details) On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<nav th:replace="partials/footer :: footer"></nav>
+
+<script type="text/javascript" th:src="@{/js/raceSearchModal.js}">
+</script>
+
+</body>
+</html>
