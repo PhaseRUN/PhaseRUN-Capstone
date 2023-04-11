@@ -48,10 +48,10 @@ public class unirest
 
         List<Race> races = new ArrayList<>();
 
-        Race race = new Race();
 
         for(int i = 0; i < results.length(); i++)
         {
+            Race race = new Race();
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
 
@@ -103,6 +103,15 @@ public class unirest
                 race.setLogoUrl(jsonObject.getString("logo_url"));
             }
 
+            races.add(race);
+
+        }
+
+        for(int i = 0; i < races.size(); i++)
+        {
+            System.out.println();
+            System.out.println(races.get(i));
+            System.out.println();
         }
 
 //        List<JSONObject> races = new ArrayList<>();
