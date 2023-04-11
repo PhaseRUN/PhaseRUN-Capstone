@@ -3,11 +3,17 @@
 
 <head th:replace="partials/head :: head">
     <title>Home</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Welcome to the Home Page</h1>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4" align="center"><a th:href="@{/register}">Register</a></h1>
+        <p class="lead" align="center">Go for a Run.</p>
+    </div>
+</div>
 
 <nav th:replace="partials/footer :: footer"></nav>
 </body>
