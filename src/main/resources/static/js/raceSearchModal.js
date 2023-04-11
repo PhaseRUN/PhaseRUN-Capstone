@@ -1,10 +1,8 @@
-// Get the modal
+
 let modal = document.getElementsByClassName("myModal")[0];
 
-// Get all elements with class name "raceCard"
 let raceCard = document.getElementsByClassName("raceCard");
 
-// Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close");
 
 // Loop through the HTMLCollection and attach a click event listener to each element
