@@ -1,6 +1,9 @@
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -25,9 +28,9 @@ public class unirest
 
     public static void main(String[] args) throws Exception
     {
-//        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/races?format=json&max_distance=5&distance_units=K")
-//                .header("api_key", apiKey)
-//                .asJson();
+        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/races?format=json&max_distance=5&distance_units=K")
+                .header("api_key", apiKey)
+                .asJson();
 ////        System.out.println(httpResponse.getHeaders().get("Content-Type"));
 //        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 //        JsonParser jp = new JsonParser();
@@ -36,8 +39,8 @@ public class unirest
 ////        System.out.println(httpResponse[1]);
 //        System.out.println(prettyJsonString);  //84148 126294,
 
-        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/race/126294?format=json")
-                .asJson();
+//        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/race/126294?format=json")
+//                .asJson();
 //        System.out.println(httpResponse.getHeaders().get("Content-Type"));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
@@ -49,12 +52,17 @@ public class unirest
 
         JSONObject myObj = httpResponse.getBody().getObject();
 
-        System.out.println(myObj);
+//        System.out.println(myObj);
 
 //        String msg = myObj.getString("race");
 
-        System.out.println(myObj.getJSONObject("race").getJSONObject("address").getString("street"));
-//        JSONArray results = myObj.getJSONArray("race");
+//        System.out.println(myObj.getJSONObject("race").getInt("race_id"));
+        JSONArray results = myObj.getJSONArray("races");
+
+        System.out.println(results);
+
+//        List<JSONObject> races = new ArrayList<>();
+
     }
 
 
