@@ -1,20 +1,24 @@
 // Get the modal
-const modal = document.getElementById("myModal");
+let modal = document.getElementsByClassName("myModal")[0];
 
-// Get the button that opens the modal
-const btn = document.getElementById("myBtn");
+// Get all elements with class name "raceCard"
+let raceCard = document.getElementsByClassName("raceCard");
 
 // Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
+let span = document.getElementsByClassName("close");
 
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
+// Loop through the HTMLCollection and attach a click event listener to each element
+for (let i = 0; i < raceCard.length; i++) {
+    raceCard[i].addEventListener("click", function() {
+        modal.style.display = "block";
+    });
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
+for (let i = 0; i < span.length; i++) {
+    span[i].addEventListener("click", function() {
+        modal.style.display = "none";
+    });
 }
 
 // When the user clicks anywhere outside of the modal, close it

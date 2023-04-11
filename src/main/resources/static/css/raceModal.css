@@ -1,7 +1,18 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
+.race-form {
+    border: 3px solid #000000;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #d5d5d5;
+}
+
 /* The Modal (background) */
-.modal {
+[data-datatype="modal"] {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -15,18 +26,30 @@ body {font-family: Arial, Helvetica, sans-serif;}
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+.card {
+    display: flex;
+    border: thick solid;
+    border-radius: 20px 50px;
+    height: 8em;
+    width: 90%;
+    padding: 18px;
+    background: #40d6d6;
+}
+
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #ffffff;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 10px;
+    border: 2px solid #000;
+    height: auto;
+    border-radius: 10px;
     width: 80%;
 }
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: #414141;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -38,3 +61,4 @@ body {font-family: Arial, Helvetica, sans-serif;}
     text-decoration: none;
     cursor: pointer;
 }
+

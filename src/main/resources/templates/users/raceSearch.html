@@ -3,10 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Race Search</title>
+    <link rel="stylesheet" th:href="@{/css/raceModal.css}">
 </head>
 <body>
-<!--<nav th:replace="partials :: navbar"></nav>-->
-<h1>Race Search</h1>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
+<h1>Race Search</h1>
+<div class="race-form">
+    <form>
+        <label for="race-distance-min">Race distance min:</label>
+        <input type="text" id="race-distance-min" name="race-distance-min"><br>
+
+        <label for="race-distance-max">Race distance max:</label>
+        <input type="text" id="race-distance-max" name="race-distance-max"><br>
+
+        <label for="search-radius">Search radius:</label>
+        <input type="text" id="search-radius" name="search-radius"><br>
+
+        <label for="cost">Cost:</label>
+        <input type="text" id="cost" name="cost"><br>
+
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<h1>Results</h1>
+<div id="results">
+
+
+<div class="card">
+    <img src="" alt="race image" class="card-img-top">
+    <div class="card-body">
+        <!-- Trigger/Open The Modal -->
+        <a class="raceCard">RACE CARD GOES HERE</a>
+
+        <!-- The Modal  -->
+        <div class="myModal" data-datatype="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p class="card-text">(race details) On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!--&lt;!&ndash; Trigger/Open The Modal &ndash;&gt;-->
+<!--<a class="raceCard">RACE CARD GOES HERE</a>-->
+
+<!--&lt;!&ndash; The Modal  &ndash;&gt;-->
+<!--<div class="myModal" data-datatype="modal">-->
+
+<!--    &lt;!&ndash; Modal content &ndash;&gt;-->
+<!--    <div class="modal-content">-->
+<!--        <span class="close">&times;</span>-->
+<!--        <p>race card details</p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<script type="text/javascript" th:src="@{/js/raceModal.js}">
+</script>
 </body>
 </html>
