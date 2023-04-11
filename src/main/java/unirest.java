@@ -1,4 +1,4 @@
-import com.codeup.phaserun.Race;
+import com.codeup.phaserun.models.Race;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
@@ -48,18 +48,18 @@ public class unirest
 
         List<Race> races = new ArrayList<>();
 
-        Race race = new Race();
 
         for(int i = 0; i < results.length(); i++)
         {
+            Race race = new Race();
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
 
             // SETTING THE RACE ID FROM THE API
-            race.setRace_id(Integer.toString(jsonObject.getInt("race_id")));
+            race.setRaceId(Integer.toString(jsonObject.getInt("race_id")));
 
             // SETTING THE RACE NAME FROM THE API
-            race.setRace_name(jsonObject.getString("name"));
+            race.setRaceName(jsonObject.getString("name"));
 
             // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API
             // SETTING IT IF IS AVAILABLE
@@ -103,6 +103,15 @@ public class unirest
                 race.setLogoUrl(jsonObject.getString("logo_url"));
             }
 
+            races.add(race);
+
+        }
+
+        for(int i = 0; i < races.size(); i++)
+        {
+            System.out.println();
+            System.out.println(races.get(i));
+            System.out.println();
         }
 
 //        List<JSONObject> races = new ArrayList<>();

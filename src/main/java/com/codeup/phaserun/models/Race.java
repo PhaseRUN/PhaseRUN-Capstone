@@ -183,4 +183,22 @@ public class Race {
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Race{" +
+                "raceId='" + raceId + '\'' +
+                ", raceName='" + raceName + '\'' +
+                ", description='" + description + '\'' +
+                ", CostInDollars=" + CostInDollars +
+                ", distanceInKm='" + distanceInKm + '\'' +
+                ", raceStart=" + raceStart +
+                ", state='" + state + '\'' +
+                ", zipcode=" + zipcode +
+                ", city='" + city + '\'' +
+                ", url='" + url + '\'' +
+                ", logoUrl='" + logoUrl + '\'' +
+                ", users=" + users +
+                '}';
+    }
 }
