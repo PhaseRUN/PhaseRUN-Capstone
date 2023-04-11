@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/head :: head">
     <title>FAQ</title>
 </head>
 <body>
 
-<!--<nav th:replace="partials :: navbar"></nav>-->
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1>FAQ</h1>
 
+<nav th:replace="partials/footer :: footer"></nav>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile Page</title>
+<head th:replace="partials/head :: head">
+    <title>Profile</title>
 </head>
 <body>
-<!--<nav th:replace="partials :: navbar"></nav>-->
+<nav th:replace="partials/navbar :: navbar"></nav>
 <h1>Profile</h1>
 
+<nav th:replace="partials/footer :: footer"></nav>
 </body>
 </html>
