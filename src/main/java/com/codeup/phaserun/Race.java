@@ -34,6 +34,9 @@ public class Race {
     @Column(nullable = false, length = 256)
     private String url;
 
+    @Column(nullable = false, length = 256)
+    private String logo_url;
+
     @ManyToMany(mappedBy = "races")
     private List<User> users;
 
@@ -171,5 +174,13 @@ public class Race {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getLogoUrl() {
+        return logo_url;
+    }
+
+    public void setLogoUrl(String logo_url) {
+        this.logo_url = logo_url;
     }
 }

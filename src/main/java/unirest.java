@@ -32,35 +32,19 @@ public class unirest
         HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/races?format=json&max_distance=5&distance_units=K")
                 .header("api_key", apiKey)
                 .asJson();
-////        System.out.println(httpResponse.getHeaders().get("Content-Type"));
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        JsonParser jp = new JsonParser();
-//        JsonElement je = jp.parse(httpResponse.getBody().toString());
-//        String prettyJsonString = gson.toJson(je);
-////        System.out.println(httpResponse[1]);
-//        System.out.println(prettyJsonString);  //84148 126294,
 
-//        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/race/126294?format=json")
+//        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/race/124241?format=json")
 //                .asJson();
-//        System.out.println(httpResponse.getHeaders().get("Content-Type"));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(httpResponse.getBody().toString());
         String prettyJsonString = gson.toJson(je);
-//        System.out.println(httpResponse[1]);
         System.out.println(prettyJsonString);
 
 
         JSONObject myObj = httpResponse.getBody().getObject();
 
-//        System.out.println(myObj);
-
-//        String msg = myObj.getString("race");
-
-//        System.out.println(myObj.getJSONObject("race").getInt("race_id"));
         JSONArray results = myObj.getJSONArray("races");
-
-//        System.out.println(results.getJSONObject(0).getJSONObject("race").getInt("race_id")); //.getJSONObject("race").getInt("race_id")
 
         List<Race> races = new ArrayList<>();
 
@@ -68,14 +52,57 @@ public class unirest
 
         for(int i = 0; i < results.length(); i++)
         {
-
+            // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
+
+            // SETTING THE RACE ID FROM THE API
             race.setRace_id(Integer.toString(jsonObject.getInt("race_id")));
+
+            // SETTING THE RACE NAME FROM THE API
             race.setRace_name(jsonObject.getString("name"));
-            race.setDescription(jsonObject.getString("description"));
+
+            // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API
+            // SETTING IT IF IS AVAILABLE
+            if(jsonObject.isNull("description"))
+            {
+                race.setDescription("Description not provided");
+            }
+            else
+            {
+                race.setDescription(jsonObject.getString("description"));
+            }
+
+            // SETTING THE STATE (IN THE UNITED STATES) FROM THE API
             race.setState(jsonObject.getJSONObject("address").getString("state"));
 
-//            System.out.println(results.getJSONObject(i).getJSONObject("race").getInt("race_id"));
+            // CHECKING IF A ZIPCODE WAS PROVIDED IN THE API
+            // SETTING IT IF IT WAS PROVIDED
+            if(jsonObject.getJSONObject("address").isNull("zipcode"))
+            {
+                race.setZipcode(0000);
+            }
+            else
+            {
+                race.setZipcode(Integer.parseInt(jsonObject.getJSONObject("address").getString("zipcode")));
+            }
+
+            // SETTING THE CITY (IN THE UNITED STATES) FROM THE API
+            race.setCity(jsonObject.getJSONObject("address").getString("city"));
+
+            // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
+            race.setUrl(jsonObject.getString("url"));
+
+            // CHECKING IF THERE IS A LOGO URL
+            // SETTING IT FROM API IF IT DOES EXIST
+            if(jsonObject.isNull("logo_url"))
+            {
+                race.setLogoUrl("logo not provided");
+            }
+            else
+            {
+                race.setLogoUrl(jsonObject.getString("logo_url"));
+            }
+
         }
 
 //        List<JSONObject> races = new ArrayList<>();
