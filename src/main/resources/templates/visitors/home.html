@@ -3,11 +3,39 @@
 
 <head th:replace="partials/head :: head">
     <title>Home</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Welcome to the Home Page</h1>
+    <div class="jumbotron jumbotron-fluid jumbotron-background">
+        <div class="container">
+            <h1 class="display-4 register-link lead" align="center"><a th:href="@{/register}">Register</a></h1>
+            <p class="lead" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
+        </div>
+    </div>
+<div class="container text-center home-runner">
+    <div class="row align-items-start">
+        <div class="col col-sm-12 col-md-5">
+            <img class="start-img" src="/images/pexels-boom.jpg" alt="boom">
+        </div>
+        <div class="col col-sm-12 col-md-7">
+            <p class="home-runner-text">
+                Signing up for a race can be intimidating.
+            </p>
+            <ul class="home-runner-list">
+                <li class="home-runner-quest">What distance should I run?</li>
+                <li class="home-runner-quest">How do I train?</li>
+                <li class="home-runner-quest">Where is the nearest race?</li>
+                <li class="home-runner-quest">When is it?</li>
+                <li class="home-runner-quest">What do I need to do to succeed?</li>
+            </ul>
+            <p class="home-runner-text">
+                PhaseRUN is here to help you answer these questions and more.
+            </p>
+        </div>
+    </div>
+</div>
 
 <nav th:replace="partials/footer :: footer"></nav>
 </body>
