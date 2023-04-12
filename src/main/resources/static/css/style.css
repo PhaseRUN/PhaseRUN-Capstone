@@ -1,21 +1,3 @@
-/*Footer Icons*/
-
-.fab{
-    position: absolute;
-    height: 10px;
-    margin-top: -6px;
-    width: 10px;
-    right: -1px;
-    z-index: 100;
-}
-
-/* Navbar */
-
-.navbar {
-    background-color: #000000;
-    font-family: 'Roboto Black', sans-serif;
-    font-size: 1em;
-}
 
 /*Jumbotron*/
 
@@ -25,6 +7,7 @@
     display: block;
     text-align: center;
     margin-top: 20px; /* Add margin to separate it from the previous element */
+    color: cornflowerblue;
 
 }
 
@@ -65,11 +48,11 @@
 }
 
 .lead{
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Roboto Bold", sans-serif;
     z-index: 100;
 }
 
-/* Home Page */
+/* Home Page Body*/
 
 .home-runner{
     padding-top: 12em;
@@ -78,16 +61,25 @@
 }
 
 .home-runner-text{
-
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 1em;
 }
 
 .home-runner-list{
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 18px;
     text-align: left;
 }
 
-.start-img{
-    width: 400px;
-    height: 300px;
+.home-runner-quest{
+    list-style-type: circle;
+    margin: 6px;
+}
 
+.start-img{
+    width: 300px;
+    height: auto;
 }
 
