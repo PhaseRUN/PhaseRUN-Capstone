@@ -1,4 +1,4 @@
-import com.codeup.phaserun.Race;
+import com.codeup.phaserun.models.Race;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
@@ -31,6 +31,7 @@ public class unirest
     {
         HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/races?format=json&max_distance=5&distance_units=K")
                 .header("api_key", apiKey)
+                .queryString("results_per_page", "5")
                 .asJson();
 
 //        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/race/124241?format=json")
@@ -48,18 +49,18 @@ public class unirest
 
         List<Race> races = new ArrayList<>();
 
-        Race race = new Race();
 
         for(int i = 0; i < results.length(); i++)
         {
+            Race race = new Race();
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
 
             // SETTING THE RACE ID FROM THE API
-            race.setRace_id(Integer.toString(jsonObject.getInt("race_id")));
+            race.setRaceId(Integer.toString(jsonObject.getInt("race_id")));
 
             // SETTING THE RACE NAME FROM THE API
-            race.setRace_name(jsonObject.getString("name"));
+            race.setRaceName(jsonObject.getString("name"));
 
             // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API
             // SETTING IT IF IS AVAILABLE
@@ -103,7 +104,42 @@ public class unirest
                 race.setLogoUrl(jsonObject.getString("logo_url"));
             }
 
+            races.add(race);
+
         }
+
+        for(int i = 0; i < races.size(); i++)
+        {
+            System.out.println();
+            System.out.println(races.get(i));
+            System.out.println();
+        }
+
+        for(int i = 0; i < races.size(); i++)
+        {
+            Race individualRace = races.get(i);
+           String raceId = races.get(i).getRaceId();
+            HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
+                .asJson();
+
+            JSONObject raceObj = raceSpecificResponse.getBody().getObject();
+
+            //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
+            raceObj.getJSONObject("race");
+
+
+            Gson raceGson = new GsonBuilder().setPrettyPrinting().create();
+            JsonParser raceJp = new JsonParser();
+            JsonElement raceJe = raceJp.parse(raceSpecificResponse.getBody().toString());
+            String racePrettyJsonString = gson.toJson(raceJe);
+
+            System.out.println();
+            System.out.println(racePrettyJsonString);
+//            System.out.println(raceObj.getJSONObject("race"));
+            System.out.println();
+
+        }
+
 
 //        List<JSONObject> races = new ArrayList<>();
 
