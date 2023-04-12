@@ -8,12 +8,21 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4" align="center"><a th:href="@{/register}">Register</a></h1>
-        <p class="lead" align="center">Go for a Run.</p>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4" align="center"><a th:href="@{/register}">Register</a></h1>
+            <p class="lead" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
+        </div>
     </div>
-</div>
+    <div class="home-runner">
+        <p>Signing up for a race can be intimidating.</p>
+        <ul>
+            <li>What distance should I run?</li>
+            <li>How do I train?</li>
+            <li>Where is the nearest race?</li>
+            <li>When is it?</li>
+        </ul>
+    </div>
 
 <nav th:replace="partials/footer :: footer"></nav>
 </body>

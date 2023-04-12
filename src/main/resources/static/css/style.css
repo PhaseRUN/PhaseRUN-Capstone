@@ -17,3 +17,21 @@
     text-align: center;
     margin-bottom: 20px; /* Add margin to separate it from the next element */
 }
+
+.jumbotron {
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    animation: slide-in 1s forwards;
+    background-image: url(../../static/images/runner.jpg);
+    background-size: cover;
+    background-position: center;
+
+
+}
+
+@keyframes slide-in {
+    100% {
+        left: 0;
+    }
+}
