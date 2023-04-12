@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="partials/head :: head">
     <title>Edit</title>
 </head>
-<body>
 
+<body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1>Edit Profile</h1>
 
+<div class="page-wrapper">
+    <div class="row" id="edit-form">
+        <form th:action="@{/profile}" th:method="post">
+            <label for="profile-photo">Profile Picture:</label>
+            <input type="image" id="profile-photo" name="profile-photo">
+            <button type="submit">Update Profile image</button>
+            <br>
+            <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
+            <input type="number" pattern="[0-9]" id="fit-zipcode" name="zipcode" value="" placeholder="Zip Code">
+            <br>
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+</div>
 <nav th:replace="partials/footer :: footer"></nav>
 </body>
 </html>
