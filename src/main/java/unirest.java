@@ -2,8 +2,12 @@ import com.codeup.phaserun.models.Race;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.SimpleFormatter;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -90,6 +94,13 @@ public class unirest
             // SETTING THE CITY (IN THE UNITED STATES) FROM THE API
             race.setCity(jsonObject.getJSONObject("address").getString("city"));
 
+            // SETTING THE DATE FROM THE API
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+            SimpleDateFormat print = new SimpleDateFormat("MM/dd/yyyy");
+            Date formattedDate = formatter.parse(jsonObject.getString("next_date"));
+            System.out.println(print.format(formattedDate)); // turning a Date to a formatted String
+            race.setRaceStart(formattedDate);
+
             // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
             race.setUrl(jsonObject.getString("url"));
 
@@ -114,7 +125,7 @@ public class unirest
             System.out.println(races.get(i));
             System.out.println();
         }
-
+//
         for(int i = 0; i < races.size(); i++)
         {
             Race individualRace = races.get(i);
@@ -125,9 +136,17 @@ public class unirest
             JSONObject raceObj = raceSpecificResponse.getBody().getObject();
 
             //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
-            raceObj.getJSONObject("race");
+            individualRace.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
 
+            // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
+            JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
+            double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
+            double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
+            double finalRaceCost = raceFee + processingFee;
 
+            individualRace.setCostInDollars(finalRaceCost);
+
+            // PRETTIFYING THE JAVA JSON RESPONSE
             Gson raceGson = new GsonBuilder().setPrettyPrinting().create();
             JsonParser raceJp = new JsonParser();
             JsonElement raceJe = raceJp.parse(raceSpecificResponse.getBody().toString());
@@ -136,6 +155,7 @@ public class unirest
             System.out.println();
             System.out.println(racePrettyJsonString);
 //            System.out.println(raceObj.getJSONObject("race"));
+            System.out.println(individualRace);
             System.out.println();
 
         }
