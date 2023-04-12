@@ -8,21 +8,30 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid jumbotron-background">
         <div class="container">
-            <h1 class="display-4" align="center"><a th:href="@{/register}">Register</a></h1>
+            <h1 class="display-4 register-link lead" align="center"><a th:href="@{/register}">Register</a></h1>
             <p class="lead" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
         </div>
     </div>
-    <div class="home-runner">
-        <p>Signing up for a race can be intimidating.</p>
-        <ul>
-            <li>What distance should I run?</li>
-            <li>How do I train?</li>
-            <li>Where is the nearest race?</li>
-            <li>When is it?</li>
-        </ul>
+<div class="container text-center home-runner">
+    <div class="row align-items-start">
+        <div class="col">
+            <img class="start-img" src="/images/pexels-boom.jpg" alt="boom">
+        </div>
+        <div class="col">
+            <p class="home-runner-text">
+                Signing up for a race can be intimidating.
+            </p>
+            <ul class="home-runner-list">
+                <li>What distance should I run?</li>
+                <li>How do I train?</li>
+                <li>Where is the nearest race?</li>
+                <li>When is it?</li>
+            </ul>
+        </div>
     </div>
+</div>
 
 <nav th:replace="partials/footer :: footer"></nav>
 </body>

@@ -3,30 +3,38 @@
 .fab{
     position: absolute;
     height: 10px;
-    bottom: 12px;
+    margin-top: -6px;
     width: 10px;
-    right: 1px;
+    right: -1px;
     z-index: 100;
 }
 
+/* Navbar */
+
+.navbar {
+    background-color: #000000;
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 1em;
+}
 
 /*Jumbotron*/
+
 .register-link {
+    font-family: "Roboto Bold", sans-serif;
     font-size: 2em; /* Increase the font size */
     display: block;
     text-align: center;
-    margin-bottom: 20px; /* Add margin to separate it from the next element */
+    margin-top: 20px; /* Add margin to separate it from the previous element */
+
 }
 
 .jumbotron {
     position: absolute;
     left: -100%;
     width: 100%;
+    padding-top: 4em;
     animation: slide-in 1s forwards;
-    background-image: url(../../static/images/runner.jpg);
-    background-size: cover;
-    background-position: center;
-
+    margin-bottom: 20px; /* Add margin to separate it from the next element */
 
 }
 
@@ -35,3 +43,51 @@
         left: 0;
     }
 }
+
+/*.jumbotron-background{*/
+/*    background-image: url(static/images/runner.jpg);*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    position: absolute;*/
+/*}*/
+
+.jumbotron-background::after{
+    content: "";
+    background-color: rgba(0, 0, 0, .1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.lead{
+    font-family: "Roboto Light", sans-serif;
+    z-index: 100;
+}
+
+/* Home Page */
+
+.home-runner{
+    padding-top: 12em;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}
+
+.home-runner-text{
+
+}
+
+.home-runner-list{
+    text-align: left;
+}
+
+.start-img{
+    width: 400px;
+    height: 300px;
+
+}
+
