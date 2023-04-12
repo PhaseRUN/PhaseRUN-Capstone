@@ -65,6 +65,15 @@ public class User {
         this.birthDate = birthDate;
         this.races = races;
     }
+    public User(String username, String email, String password, RunningExpEnum runningExp, FitnessLvlEnum fitnessLvl, int zipcode, Date birthDate) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.runningExp = runningExp;
+        this.fitnessLvl = fitnessLvl;
+        this.zipcode = zipcode;
+        this.birthDate = birthDate;
+    }
 
     public User() {
     }
