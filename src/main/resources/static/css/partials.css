@@ -8,6 +8,17 @@
     right: -1px;
     z-index: 100;
 }
+.footer{
+    background-color: #000000;
+    color: cornflowerblue;
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
 
 /* Navbar */
 
@@ -40,4 +51,32 @@
     height: 50px;
     width: auto;
     margin-right: 10px;
+}
+
+/* All Pages - Top Text/Media */
+
+.under-nav{
+    padding-top: 4em;
+}
+
+/* General Text */
+
+.general-text{
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Body */
+body{
+    padding: 1em;
+}
+
+/* Forms */
+
+label{
+    padding: 1em;
+}
+input{
+    padding: 1em;
 }

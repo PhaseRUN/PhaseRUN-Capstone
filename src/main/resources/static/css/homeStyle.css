@@ -15,7 +15,6 @@
     position: absolute;
     left: -100%;
     width: 100%;
-    padding-top: 4em;
     animation: slide-in 1s forwards;
     margin-bottom: 20px; /* Add margin to separate it from the next element */
 
@@ -67,12 +66,6 @@
     margin-top: 1em;
 }
 
-.home-runner-list{
-    font-family: 'Roboto Light', sans-serif;
-    font-size: 18px;
-    text-align: left;
-}
-
 .home-runner-quest{
     list-style-type: circle;
     margin: 6px;
@@ -82,4 +75,3 @@
     width: 300px;
     height: auto;
 }
-

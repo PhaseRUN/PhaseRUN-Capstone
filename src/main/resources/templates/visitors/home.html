@@ -3,17 +3,22 @@
 
 <head th:replace="partials/head :: head">
     <title>Home</title>
-    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/homeStyle.css">
 </head>
 <body>
+
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-    <div class="jumbotron jumbotron-fluid jumbotron-background">
+<!--Jumbotron-->
+    <div class="jumbotron jumbotron-fluid jumbotron-background under-nav">
         <div class="container">
             <h1 class="display-4 register-link lead" align="center"><a th:href="@{/register}">Register</a></h1>
             <p class="lead" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
         </div>
     </div>
+
+<!--Home Body-->
+
 <div class="container text-center home-runner">
     <div class="row align-items-start">
         <div class="col col-sm-12 col-md-5">
@@ -23,7 +28,7 @@
             <p class="home-runner-text">
                 Signing up for a race can be intimidating.
             </p>
-            <ul class="home-runner-list">
+            <ul class="general-text">
                 <li class="home-runner-quest">What distance should I run?</li>
                 <li class="home-runner-quest">How do I train?</li>
                 <li class="home-runner-quest">Where is the nearest race?</li>
