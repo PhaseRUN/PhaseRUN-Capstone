@@ -31,6 +31,7 @@ public class unirest
     {
         HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/races?format=json&max_distance=5&distance_units=K")
                 .header("api_key", apiKey)
+                .queryString("results_per_page", "5")
                 .asJson();
 
 //        HttpResponse<JsonNode> httpResponse = Unirest.get("https://runsignup.com/rest/race/124241?format=json")
@@ -113,6 +114,32 @@ public class unirest
             System.out.println(races.get(i));
             System.out.println();
         }
+
+        for(int i = 0; i < races.size(); i++)
+        {
+            Race individualRace = races.get(i);
+           String raceId = races.get(i).getRaceId();
+            HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
+                .asJson();
+
+            JSONObject raceObj = raceSpecificResponse.getBody().getObject();
+
+            //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
+            raceObj.getJSONObject("race");
+
+
+            Gson raceGson = new GsonBuilder().setPrettyPrinting().create();
+            JsonParser raceJp = new JsonParser();
+            JsonElement raceJe = raceJp.parse(raceSpecificResponse.getBody().toString());
+            String racePrettyJsonString = gson.toJson(raceJe);
+
+            System.out.println();
+            System.out.println(racePrettyJsonString);
+//            System.out.println(raceObj.getJSONObject("race"));
+            System.out.println();
+
+        }
+
 
 //        List<JSONObject> races = new ArrayList<>();
 
