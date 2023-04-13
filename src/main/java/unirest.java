@@ -350,6 +350,43 @@ public class unirest
 //        System.out.println(printDate.format(raceStartDate));
 
 
+        /*
+            CHECKING THE INT EQUIVALENT OF THE STRING DISTANCE
+
+
+            STRING "5K" WILL BE EQUAL TO THE DOUBLE "5.0"
+            STRING "10K" WILL BE EQUAL TO THE DOUBLE "10.0"
+            STRING "HALF-MARATHON" WILL BE EQUAL TO THE DOUBLE "21.1"
+            STRING "MARATHON" WILL BE EQUAL TO THE DOUBLE "42.2"
+
+         */
+
+        double distanceInKm = 0;
+
+        switch(raceDistance.toUpperCase())
+        {
+            case "5K" ->
+            {
+                distanceInKm = 5.0;
+            }
+            case "10K" ->
+            {
+                distanceInKm = 10.0;
+            }
+            case "HALF" ->
+            {
+                distanceInKm = 21.1;
+            }
+            case "FULL" ->
+            {
+                distanceInKm = 42.2;
+            }
+        }
+
+        System.out.println(distanceInKm);
+
+
+
     }
 
 
