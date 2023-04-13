@@ -27,7 +27,7 @@ public class RaceSearchController {
 //                                                  @RequestParam (name = "zipcodeRadius") String zipcode) throws UnirestException {
 //
 //
-//        List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, minD, maxD);
+//        List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
 //
 //    }
 
