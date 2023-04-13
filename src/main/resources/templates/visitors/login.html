@@ -16,7 +16,7 @@
   </div>
   <div class="container">
     <div class="row row-cols-lg-2">
-      <form class="general-text" th:action="@{/login}" method="post">
+      <form class="sub-title-text" th:action="@{/login}" method="post">
        <div class="col-lg-6">
         <label for="username">Username</label>
         <input id="username" name="username" type="text" />
@@ -26,9 +26,10 @@
       </div>
       </form>
       <div class="col-lg-6">
-          <img src="/images/pexels-ketut-subiyanto-5038885.jpg" class="side-image"/>
+          <img src="/images/pexels-ketut-subiyanto-5038885.jpg" class="side-image" alt="bench"/>
       </div>
   </div>
+</div>
 <nav th:replace="partials/footer :: footer"></nav>
 </body>
 </html>
