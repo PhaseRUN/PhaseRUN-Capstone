@@ -18,7 +18,6 @@
     bottom: 0;
     width: 100%;
     text-align: center;
-
 }
 
 /* Navbar */
@@ -50,29 +49,43 @@
 
 .logo{
     height: 50px;
-    width: auto;
+    width: 75PX;
     margin-right: 10px;
 }
 
-/* All Pages - Top Text/Media */
+/* All Pages - Top Container */
 
 .under-nav{
     padding-top: 4em;
 }
 
-/* General Text */
+/* Text Settings*/
 
 .sub-title-text{
     font-family: 'Roboto Bold', sans-serif;
     font-size: 22px;
     text-align: center;
     margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .general-text{
     font-family: 'Roboto Light', sans-serif;
     font-size: 20px;
     text-align: center;
+}
+
+.centered-text{
+    align-content: center;
+    text-align: left;
+}
+
+.title-text{
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* Body */
@@ -89,9 +102,4 @@ label{
 
 input{
     padding: 1em;
-}
-
-.centered-text{
-    align-content: center;
-    text-align: left;
 }
