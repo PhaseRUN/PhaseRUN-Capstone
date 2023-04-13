@@ -34,18 +34,18 @@ public class unirest
 //                .header("api_key", apiKey)
 //                .queryString("results_per_page", "5")
 //                .asJson();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonParser jp = new JsonParser();
-        JsonElement je = jp.parse(httpResponse.getBody().toString());
-        String prettyJsonString = gson.toJson(je);
-        System.out.println(prettyJsonString);
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        JsonParser jp = new JsonParser();
+//        JsonElement je = jp.parse(httpResponse.getBody().toString());
+//        String prettyJsonString = gson.toJson(je);
+//        System.out.println(prettyJsonString);
 
 
-        JSONObject myObj = httpResponse.getBody().getObject();
+//        JSONObject myObj = httpResponse.getBody().getObject();
 
-        JSONArray results = myObj.getJSONArray("races");
-
-        List<Race> races = new ArrayList<>();
+//        JSONArray results = myObj.getJSONArray("races");
+//
+//        List<Race> races = new ArrayList<>();
 
 
 //        for(int i = 0; i < results.length(); i++)
@@ -361,34 +361,31 @@ public class unirest
 
          */
 
-        double distanceInKm = 0;
-
-        switch(raceDistance.toUpperCase())
-        {
-            case "5K" ->
-            {
-                distanceInKm = 5.0;
-            }
-            case "10K" ->
-            {
-                distanceInKm = 10.0;
-            }
-            case "HALF" ->
-            {
-                distanceInKm = 21.1;
-            }
-            case "FULL" ->
-            {
-                distanceInKm = 42.2;
-            }
-        }
-
-        System.out.println(distanceInKm);
-
-
-
+//        double distanceInKm = 0;
+//
+//        switch(raceDistance.toUpperCase())
+//        {
+//            case "5K" ->
+//            {
+//                distanceInKm = 5.0;
+//            }
+//            case "10K" ->
+//            {
+//                distanceInKm = 10.0;
+//            }
+//            case "HALF" ->
+//            {
+//                distanceInKm = 21.1;
+//            }
+//            case "FULL" ->
+//            {
+//                distanceInKm = 42.2;
+//            }
+//        }
+//
+//        System.out.println(distanceInKm);
+//
+//
+//
     }
-
-
-
 }

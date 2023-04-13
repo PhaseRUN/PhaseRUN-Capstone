@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FitnessProfileController {
 
-    @GetMapping("/fitnessprofile")
+    @GetMapping("/fitnessProfile")
     public String returnFitnessProfilePage() {
         return "users/fitnessProfile";
     }

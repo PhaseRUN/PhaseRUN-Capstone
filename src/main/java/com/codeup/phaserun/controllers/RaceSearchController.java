@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,7 @@ public class RaceSearchController {
     @PostMapping("/raceSearch")
     public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
                                                   @RequestParam (name = "search-radius") String searchR,
-                                                  @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException {
+                                                  @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
         model.addAttribute("races", races);
         return "users/raceSearch";

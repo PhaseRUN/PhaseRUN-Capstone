@@ -25,14 +25,14 @@ public class RaceAPI {
     private static String apiKey;
 
     private final User.RunningExpEnum runningExpEnum;
-    private final User.FitnessLvlEnum fitnessLvlEnum;
+    private final User.ActivityLvlEnum activityLvlEnum;
 
-    public RaceAPI(User.RunningExpEnum runningExpEnum, User.FitnessLvlEnum fitnessLvlEnum) {
+    public RaceAPI(User.RunningExpEnum runningExpEnum, User.ActivityLvlEnum activityLvlEnum) {
         this.runningExpEnum = runningExpEnum;
-        this.fitnessLvlEnum = fitnessLvlEnum;
+        this.activityLvlEnum = activityLvlEnum;
     }
     //Gets the Races information from the races API
-    public static List<Race> getRacesFromAPI(String radius, String zipcode, String distance) throws UnirestException {
+    public static List<Race> getRacesFromAPI(String radius, String zipcode, String distance) throws UnirestException, ParseException {
 
         //This function will calculate the start date based on the user's fitness score
         Date startDate = getStartDateCalculation(distance);
@@ -65,7 +65,7 @@ public class RaceAPI {
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
-    public static List<Race> setRaceInformationFromAPI(HttpResponse<JsonNode> response){
+    public static List<Race> setRaceInformationFromAPI(HttpResponse<JsonNode> response) throws ParseException {
         List<Race> races = new ArrayList<>();
 
         //converts from a response to an object
@@ -137,10 +137,11 @@ public class RaceAPI {
             races.add(race);
 
         }
+        return races;
     }
 
     //Gets a single race from the API and returns it
-    public static List<Race> getRaceFromAPI(List<Race> races){
+    public static List<Race> getRaceFromAPI(List<Race> races) throws UnirestException {
 
         for(int i = 0; i < races.size(); i++)
         {
@@ -171,6 +172,7 @@ public class RaceAPI {
             System.out.println();
 
         }
+        return races;
     }
 
     //Displays a response in JSON format to the console
@@ -200,12 +202,12 @@ public class RaceAPI {
             throw new RuntimeException(e);
         }
 
-        User user = new User("test","test@test.com","tester", User.RunningExpEnum.RECREATIONAL, User.FitnessLvlEnum.INTERMEDIATE,78223,formattedDate);
+        User user = new User("test","test@test.com","tester", User.RunningExpEnum.RECREATIONAL, User.ActivityLvlEnum.INTERMEDIATE,78223,formattedDate);
 
-        User.FitnessLvlEnum fitnessLevel = user.getFitnessLvl();
+        User.ActivityLvlEnum activityLvl = user.getActivityLvl();
         User.RunningExpEnum runningExp = user.getRunningExp();
 
-        switch (fitnessLevel) {
+        switch (activityLvl) {
             case NONE : fitnessScore+=25; break;
             case BEGINNER : fitnessScore+=20; break;
             case INTERMEDIATE : fitnessScore+=15; break;
