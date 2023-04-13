@@ -37,15 +37,17 @@ public class RaceAPI {
         //This function will calculate the start date based on the user's fitness score
         Date startDate = getStartDateCalculation(distance);
 
+        //Convert distance from String to double
+        double doubleDistance = convertDistanceToDouble(distance);
+
         //API call gets races information with given filters
-        //TODO: un-hardcode min and max distance
         Unirest.setTimeouts(0, 0);
         HttpResponse<JsonNode> response = Unirest.get("https://runsignup.com/rest/races?format=json&event_type=running_race&distance_units=K")
                 .header("api_key", apiKey)
                 .queryString("results_per_page", "5")
                 .queryString("start_date", startDate)
-                .queryString("min_distance", 5)
-                .queryString("max_distance", 5)
+                .queryString("min_distance", doubleDistance)
+                .queryString("max_distance", doubleDistance)
                 .queryString("radius", radius)
                 .queryString("zipcode", zipcode)
                 .asJson();
@@ -412,6 +414,34 @@ public class RaceAPI {
         }
 
         return raceStartDate;
+    }
+
+    //Converts the string distance to a numeric equivalent
+    public static double convertDistanceToDouble(String raceDistance){
+
+        double distanceInKm = 0;
+
+        switch(raceDistance.toUpperCase())
+        {
+            case "5K" ->
+            {
+                distanceInKm = 5.0;
+            }
+            case "10K" ->
+            {
+                distanceInKm = 10.0;
+            }
+            case "HALF" ->
+            {
+                distanceInKm = 21.1;
+            }
+            case "FULL" ->
+            {
+                distanceInKm = 42.2;
+            }
+        }
+
+        return distanceInKm;
     }
 
     //For testing purposes
