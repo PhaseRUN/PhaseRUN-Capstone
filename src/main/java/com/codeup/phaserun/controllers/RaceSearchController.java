@@ -21,15 +21,14 @@ public class RaceSearchController {
         return "users/raceSearch";
     }
 
-    @PostMapping("/racesearch")
-    public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance-min") String minD,
-                                                  @RequestParam (name = "race-distance-max") String maxD,
-                                                  @RequestParam (name = "search-radius") String searchR,
-                                                  @RequestParam (name = "zipcodeRadius") String zipcode) throws UnirestException {
-
-
-        List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, minD, maxD);
-
-    }
+//    @PostMapping("/racesearch")
+//    public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
+//                                                  @RequestParam (name = "search-radius") String searchR,
+//                                                  @RequestParam (name = "zipcodeRadius") String zipcode) throws UnirestException {
+//
+//
+//        List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, minD, maxD);
+//
+//    }
 
 }
