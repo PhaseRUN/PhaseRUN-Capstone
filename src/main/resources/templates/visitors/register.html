@@ -11,8 +11,8 @@
 
 <h1 class="under-nav heading title-text">Register</h1>
 
-<div class="container" align="center">
-<form class="row gx-3 gy-2 align-items-center form-input general-text" th:action="@{/register}" method="POST" th:Object="${user}" id="fitness-form">
+<div class="container">
+<form class="row form-input general-text" th:action="@{/register}" method="POST" th:Object="${user}" id="fitness-form">
     <div class="row row-cols-lg-2">
         <div class="col-lg-6">
             <div class="padding">
@@ -35,13 +35,13 @@
             </div>
             <div class="padding">
                 <label for="running-exp">Running Experience:</label>
-        <select id="running-exp" th:field="*{runningExp}">
-            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
-                    th:value="${runningExp}"
-                    th:text="${runningExp}"
-                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
-            </option>
-        </select>
+                 <select id="running-exp" th:field="*{runningExp}">
+                    <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
+                            th:value="${runningExp}"
+                            th:text="${runningExp}"
+                            th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
+                    </option>
+                </select>
             </div>
             <div class="padding">
                 <label for="activity-level">Activity Level:</label>
@@ -54,11 +54,11 @@
                   </select>
             </div>
             <div class="padding">
-                 <label class="fit-zipcode visually-hidden" for="fit-zipcode">Zip Code</label>
-        <input type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="Zip Code" th:field="*{zipcode}" />
+                 <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
+                <input type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="Zip Code" th:field="*{zipcode}" />
             </div>
             <div class="padding">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
         </div>
         <div class="col-lg-6">
