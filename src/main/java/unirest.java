@@ -191,163 +191,163 @@ public class unirest
          */
 
 
-        SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
-
-        Calendar today = new GregorianCalendar();
-        today.setTime(new Date());
-        Date raceStartDate = null;
-
-        Date todayDate = today.getTime();
-
-        String raceDistance = "10k";
-        int fitnessScore = 40;
-
-        System.out.println(printDate.format(todayDate));
-
-        switch (raceDistance.toUpperCase()) {
-            // CHECKING FOR A 5K RACE
-            case "5K" ->
-            {
-                if (fitnessScore >= 65 && fitnessScore <= 81)
-                {
-                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 8-10 weeks to train");
-                }
-                else if (fitnessScore >= 50 && fitnessScore <= 64)
-                {
-                    today.add(Calendar.DATE, (7 * 6)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 6 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 6-8 weeks to train");
-                }
-                else if (fitnessScore >= 35 && fitnessScore <= 49)
-                {
-                    today.add(Calendar.DATE, (7 * 4)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 4 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 4-6 weeks to train");
-                }
-                else if (fitnessScore >= 20 && fitnessScore <= 34)
-                {
-                    today.add(Calendar.DATE, (7 * 3)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 3 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 3-6 weeks to train");
-                }
-                else if (fitnessScore >= 14 && fitnessScore <= 19)
-                {
-                    today.add(Calendar.DATE, (7 * 2)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 2 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 2-4 weeks to train");
-                }
-            }
-
-            // CHECKING FOR A 10K RACE
-            case "10K" ->
-            {
-                if (fitnessScore >= 65 && fitnessScore <= 81)
-                {
-                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 12-14 weeks to train");
-                }
-                else if (fitnessScore >= 50 && fitnessScore <= 64)
-                {
-                    today.add(Calendar.DATE, (7 * 10)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 10 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 10-12 weeks to train");
-                }
-                else if (fitnessScore >= 35 && fitnessScore <= 49)
-                {
-                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 8-10 weeks to train");
-                }
-                else if (fitnessScore >= 20 && fitnessScore <= 34)
-                {
-                    today.add(Calendar.DATE, (7 * 6)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 6 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 6-8 weeks to train");
-                }
-                else if (fitnessScore >= 14 && fitnessScore <= 19)
-                {
-                    today.add(Calendar.DATE, (7 * 4)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 4 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 4-6 weeks to train");
-                }
-
-            }
-
-            // CHECKING FOR A HALF MARATHON
-            case "HALF-MARATHON" ->
-            {
-                if (fitnessScore >= 65 && fitnessScore <= 81)
-                {
-                    today.add(Calendar.DATE, (7 * 16)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 16 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 16-18 weeks to train");
-                }
-                else if (fitnessScore >= 50 && fitnessScore <= 64)
-                {
-                    today.add(Calendar.DATE, (7 * 14)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 14 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 14-16 weeks to train");
-                }
-                else if (fitnessScore >= 35 && fitnessScore <= 49)
-                {
-                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 12-14 weeks to train");
-                }
-                else if (fitnessScore >= 20 && fitnessScore <= 34)
-                {
-                    today.add(Calendar.DATE, (7 * 10)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 10 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 10-12 weeks to train");
-                }
-                else if (fitnessScore >= 14 && fitnessScore <= 19) {
-
-                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 8-10 weeks to train");
-                }
-            }
-
-            // CHECKING FOR A MARATHON
-            case "MARATHON" ->
-            {
-                if (fitnessScore >= 65 && fitnessScore <= 81)
-                {
-                    today.add(Calendar.DATE, (7 * 20)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 20 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 20-22 weeks to train");
-                }
-                else if (fitnessScore >= 50 && fitnessScore <= 64)
-                {
-                    today.add(Calendar.DATE, (7 * 18)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 18 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 18-20 weeks to train");
-                }
-                else if (fitnessScore >= 35 && fitnessScore <= 49)
-                {
-                    today.add(Calendar.DATE, (7 * 16)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 16 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 16-18 weeks to train");
-                }
-                else if (fitnessScore >= 20 && fitnessScore <= 34)
-                {
-                    today.add(Calendar.DATE, (7 * 14)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 14 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 14-16 weeks to train");
-                }
-                else if (fitnessScore >= 14 && fitnessScore <= 19)
-                {
-                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
-                    raceStartDate = today.getTime();
-                    System.out.println("You need 12-14 weeks to train");
-                }
-            }
-        }
-        
-        System.out.println(printDate.format(raceStartDate));
+//        SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
+//
+//        Calendar today = new GregorianCalendar();
+//        today.setTime(new Date());
+//        Date raceStartDate = null;
+//
+//        Date todayDate = today.getTime();
+//
+//        String raceDistance = "10k";
+//        int fitnessScore = 40;
+//
+//        System.out.println(printDate.format(todayDate));
+//
+//        switch (raceDistance.toUpperCase()) {
+//            // CHECKING FOR A 5K RACE
+//            case "5K" ->
+//            {
+//                if (fitnessScore >= 65 && fitnessScore <= 81)
+//                {
+//                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 8-10 weeks to train");
+//                }
+//                else if (fitnessScore >= 50 && fitnessScore <= 64)
+//                {
+//                    today.add(Calendar.DATE, (7 * 6)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 6 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 6-8 weeks to train");
+//                }
+//                else if (fitnessScore >= 35 && fitnessScore <= 49)
+//                {
+//                    today.add(Calendar.DATE, (7 * 4)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 4 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 4-6 weeks to train");
+//                }
+//                else if (fitnessScore >= 20 && fitnessScore <= 34)
+//                {
+//                    today.add(Calendar.DATE, (7 * 3)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 3 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 3-6 weeks to train");
+//                }
+//                else if (fitnessScore >= 14 && fitnessScore <= 19)
+//                {
+//                    today.add(Calendar.DATE, (7 * 2)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 2 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 2-4 weeks to train");
+//                }
+//            }
+//
+//            // CHECKING FOR A 10K RACE
+//            case "10K" ->
+//            {
+//                if (fitnessScore >= 65 && fitnessScore <= 81)
+//                {
+//                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 12-14 weeks to train");
+//                }
+//                else if (fitnessScore >= 50 && fitnessScore <= 64)
+//                {
+//                    today.add(Calendar.DATE, (7 * 10)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 10 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 10-12 weeks to train");
+//                }
+//                else if (fitnessScore >= 35 && fitnessScore <= 49)
+//                {
+//                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 8-10 weeks to train");
+//                }
+//                else if (fitnessScore >= 20 && fitnessScore <= 34)
+//                {
+//                    today.add(Calendar.DATE, (7 * 6)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 6 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 6-8 weeks to train");
+//                }
+//                else if (fitnessScore >= 14 && fitnessScore <= 19)
+//                {
+//                    today.add(Calendar.DATE, (7 * 4)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 4 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 4-6 weeks to train");
+//                }
+//
+//            }
+//
+//            // CHECKING FOR A HALF MARATHON
+//            case "HALF-MARATHON" ->
+//            {
+//                if (fitnessScore >= 65 && fitnessScore <= 81)
+//                {
+//                    today.add(Calendar.DATE, (7 * 16)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 16 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 16-18 weeks to train");
+//                }
+//                else if (fitnessScore >= 50 && fitnessScore <= 64)
+//                {
+//                    today.add(Calendar.DATE, (7 * 14)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 14 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 14-16 weeks to train");
+//                }
+//                else if (fitnessScore >= 35 && fitnessScore <= 49)
+//                {
+//                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 12-14 weeks to train");
+//                }
+//                else if (fitnessScore >= 20 && fitnessScore <= 34)
+//                {
+//                    today.add(Calendar.DATE, (7 * 10)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 10 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 10-12 weeks to train");
+//                }
+//                else if (fitnessScore >= 14 && fitnessScore <= 19) {
+//
+//                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 8-10 weeks to train");
+//                }
+//            }
+//
+//            // CHECKING FOR A MARATHON
+//            case "MARATHON" ->
+//            {
+//                if (fitnessScore >= 65 && fitnessScore <= 81)
+//                {
+//                    today.add(Calendar.DATE, (7 * 20)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 20 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 20-22 weeks to train");
+//                }
+//                else if (fitnessScore >= 50 && fitnessScore <= 64)
+//                {
+//                    today.add(Calendar.DATE, (7 * 18)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 18 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 18-20 weeks to train");
+//                }
+//                else if (fitnessScore >= 35 && fitnessScore <= 49)
+//                {
+//                    today.add(Calendar.DATE, (7 * 16)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 16 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 16-18 weeks to train");
+//                }
+//                else if (fitnessScore >= 20 && fitnessScore <= 34)
+//                {
+//                    today.add(Calendar.DATE, (7 * 14)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 14 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 14-16 weeks to train");
+//                }
+//                else if (fitnessScore >= 14 && fitnessScore <= 19)
+//                {
+//                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+//                    raceStartDate = today.getTime();
+//                    System.out.println("You need 12-14 weeks to train");
+//                }
+//            }
+//        }
+//
+//        System.out.println(printDate.format(raceStartDate));
 
 
     }

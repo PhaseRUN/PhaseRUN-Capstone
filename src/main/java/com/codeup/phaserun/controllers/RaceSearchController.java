@@ -5,6 +5,7 @@ import com.codeup.phaserun.models.RaceAPI;
 import com.codeup.phaserun.models.User;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,20 +16,18 @@ import java.util.List;
 @Controller
 public class RaceSearchController {
 
-    @GetMapping("/racesearch")
-
+    @GetMapping("/raceSearch")
     public String returnRaceSearchPage() {
         return "users/raceSearch";
     }
 
-//    @PostMapping("/racesearch")
-//    public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
-//                                                  @RequestParam (name = "search-radius") String searchR,
-//                                                  @RequestParam (name = "zipcodeRadius") String zipcode) throws UnirestException {
-//
-//
-//        List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
-//
-//    }
+    @PostMapping("/raceSearch")
+    public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
+                                                  @RequestParam (name = "search-radius") String searchR,
+                                                  @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException {
+        List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
+        model.addAttribute("races", races);
+        return "users/raceSearch";
+    }
 
 }
