@@ -72,6 +72,7 @@
 .general-text{
     font-family: 'Roboto Light', sans-serif;
     font-size: 20px;
+    text-align: center;
 }
 
 /* Body */
@@ -85,13 +86,12 @@ body{
 label{
     padding: 1em;
 }
+
 input{
     padding: 1em;
 }
 
-
 .centered-text{
-
+    align-content: center;
     text-align: left;
-
 }
