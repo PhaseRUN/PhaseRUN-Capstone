@@ -30,7 +30,7 @@ public class User {
     private RunningExpEnum runningExp;
     @Enumerated(EnumType.ORDINAL)
     private ActivityLvlEnum activityLvl;
-    @Column(nullable = false, columnDefinition = "SMALLINT")
+    @Column(nullable = false, columnDefinition = "MEDIUMINT")
     private int zipcode;
     @Column(nullable = false)
     private String birthDate;
