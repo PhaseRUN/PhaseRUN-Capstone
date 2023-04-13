@@ -12,43 +12,41 @@
 <h1>Register</h1>
 
 <div id="fitness-form">
-    <form th:action="@{/register}" method="POST">
+    <form th:action="@{/register}" th:method="POST" th:object="${user}">
         <label for="username">Username</label>
-        <input id="username"  />
+        <input id="username" th:field="*{username}" name="username" />
         <br>
         <label for="email">Email</label>
-        <input id="email" />
+        <input id="email" th:field="*{email}"/>
         <br>
         <label for="password">Password</label>
-        <input id="password" type="password"  />
+        <input id="password" type="password" th:field="*{password}" />
         <br>
         <label for="date-of-birth">DOB:</label>
-        <input type="date" id="date-of-birth" name="date-of-birth" placeholder="mm/dd/yyyy">
+        <input type="date" id="date-of-birth" th:field="*{birthDate}" placeholder="mm/dd/yyyy">
         <br>
         <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
-        <input type="number" pattern="[0-9]" id="fit-zipcode" name="zipcode" value="" placeholder="Zip Code">
+        <input type="number" pattern="[0-9]" id="fit-zipcode" th:field="*{zipcode}" value="" placeholder="Zip Code">
         <br>
-        <label for="running-exp">Race Experience:</label>
-        <select name="running-exp" id="running-exp">
-            <option value="none" selected>select</option>
-            <option value="25">None</option>
-            <option value="20">Beginner</option>
-            <option value="15">Recreational</option>
-            <option value="10">Intermediate</option>
-            <option value="5">Expert</option>
+        <label for="running-exp">Running Experience:</label>
+        <select id="running-exp" th:field="*{runningExp}">
+            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
+                    th:value="${runningExp}"
+                    th:text="${runningExp}"
+                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
+            </option>
         </select>
         <br>
         <label for="activity-level">Activity Level:</label>
-        <select name="activity-level" id="activity-level">
-            <option value="none" selected>select</option>
-            <option value="25">None</option>
-            <option value="20">Beginner</option>
-            <option value="15">Intermediate</option>
-            <option value="10">Expert</option>
-            <option value="5">Elite</option>
+        <select id="activity-level" th:field="*{activityLvl}">
+            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
+                    th:value="${activityLvl}"
+                    th:text="${activityLvl}"
+                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
+            </option>
         </select>
         <br>
-        <button type="submit">Submit</button>
+        <input type="submit" />
     </form>
 </div>
 

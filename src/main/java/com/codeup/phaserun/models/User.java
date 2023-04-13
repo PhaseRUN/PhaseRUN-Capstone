@@ -13,7 +13,7 @@ public class User {
         NONE, BEGINNER, RECREATIONAL, INTERMEDIATE, EXPERT
     }
 
-    public enum FitnessLvlEnum {
+    public enum ActivityLvlEnum {
         NONE, BEGINNER, INTERMEDIATE, EXPERT, ELITE
     }
 
@@ -29,11 +29,13 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private RunningExpEnum runningExp;
     @Enumerated(EnumType.ORDINAL)
-    private FitnessLvlEnum fitnessLvl;
+    private ActivityLvlEnum activityLvl;
     @Column(nullable = false, columnDefinition = "SMALLINT")
     private int zipcode;
-    @Column(nullable = false, columnDefinition = "DATE")
-    private Date birthDate;
+    @Column(nullable = false)
+    private String birthDate;
+    @Column(nullable = false, columnDefinition = "SMALLINT")
+    private int fitnessLvl;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -43,27 +45,39 @@ public class User {
     )
     private List<Race> races;
 
-    public User(int id, String username, String email, String password, RunningExpEnum runningExp, FitnessLvlEnum fitnessLvl, int zipcode, Date birthDate, List<Race> races) {
+    public User(int id, String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, String birthDate, int fitnessLvl, List<Race> races) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.runningExp = runningExp;
-        this.fitnessLvl = fitnessLvl;
+        this.activityLvl = activityLvl;
         this.zipcode = zipcode;
         this.birthDate = birthDate;
+        this.fitnessLvl = fitnessLvl;
         this.races = races;
     }
 
-    public User(String username, String email, String password, RunningExpEnum runningExp, FitnessLvlEnum fitnessLvl, int zipcode, Date birthDate, List<Race> races) {
+    public User(String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, String birthDate, int fitnessLvl, List<Race> races) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.runningExp = runningExp;
-        this.fitnessLvl = fitnessLvl;
+        this.activityLvl = activityLvl;
         this.zipcode = zipcode;
         this.birthDate = birthDate;
+        this.fitnessLvl = fitnessLvl;
         this.races = races;
+    }
+
+    public User(String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, String birthDate) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.runningExp = runningExp;
+        this.activityLvl = activityLvl;
+        this.zipcode = zipcode;
+        this.birthDate = birthDate;
     }
 
     public User() {
@@ -109,12 +123,12 @@ public class User {
         this.runningExp = runningExp;
     }
 
-    public FitnessLvlEnum getFitnessLvl() {
-        return fitnessLvl;
+    public ActivityLvlEnum getActivityLvl() {
+        return activityLvl;
     }
 
-    public void setFitnessLvl(FitnessLvlEnum fitnessLvl) {
-        this.fitnessLvl = fitnessLvl;
+    public void setActivityLvl(ActivityLvlEnum activityLvl) {
+        this.activityLvl = activityLvl;
     }
 
     public int getZipcode() {
@@ -125,12 +139,20 @@ public class User {
         this.zipcode = zipcode;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public int getFitnessLvl() {
+        return fitnessLvl;
+    }
+
+    public void setFitnessLvl(int fitnessLvl) {
+        this.fitnessLvl = fitnessLvl;
     }
 
     public List<Race> getRaces() {
@@ -139,5 +161,20 @@ public class User {
 
     public void setRaces(List<Race> races) {
         this.races = races;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", runningExp=" + runningExp +
+                ", activityLvl=" + activityLvl +
+                ", zipcode=" + zipcode +
+                ", birthDate='" + birthDate + '\'' +
+                ", fitnessLvl=" + fitnessLvl +
+                ", races=" + races +
+                '}';
     }
 }
