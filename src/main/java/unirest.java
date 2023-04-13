@@ -205,7 +205,7 @@ public class unirest
 
         Date todayDate = today.getTime();
 
-        String raceDistance = "Half-Marathon";
+        String raceDistance = "full";
         int fitnessScore = 40;
 
         System.out.println(printDate.format(todayDate));
@@ -283,7 +283,7 @@ public class unirest
             }
 
             // CHECKING FOR A HALF MARATHON
-            case "HALF-MARATHON" ->
+            case "HALF" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -318,7 +318,7 @@ public class unirest
             }
 
             // CHECKING FOR A MARATHON
-            case "MARATHON" ->
+            case "FULL" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -379,11 +379,11 @@ public class unirest
             {
                 distanceInKm = 10.0;
             }
-            case "HALF-MARATHON" ->
+            case "HALF" ->
             {
                 distanceInKm = 21.1;
             }
-            case "MARATHON" ->
+            case "FULL" ->
             {
                 distanceInKm = 42.2;
             }
