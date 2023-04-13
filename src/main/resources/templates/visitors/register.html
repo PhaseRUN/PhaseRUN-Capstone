@@ -35,32 +35,29 @@
         <input type="number" pattern="[0-9]" id="fit-zipcode" name="zipcode" value="" placeholder="Zip Code" />
     </div>
     <div class="col-sm-3">
-        <label class="visually-hidden" for="running-exp">Race Experience</label>
-        <select name="running-exp" class="form-select" id="running-exp">
-            <option value="none" selected>Race Experience</option>
-            <option value="25">None</option>
-            <option value="20">Beginner</option>
-            <option value="15">Recreational</option>
-            <option value="10">Intermediate</option>
-            <option value="5">Expert</option>
+        <label for="running-exp">Running Experience:</label>
+        <select id="running-exp" th:field="*{runningExp}">
+            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
+                    th:value="${runningExp}"
+                    th:text="${runningExp}"
+                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
+            </option>
         </select>
     </div>
     <div class="col-sm-3">
-        <label class="visually-hidden" for="activity-level">Activity Level:</label>
-        <select name="activity-level" class="form-select" id="activity-level">
-            <option value="none" selected>Activity Level</option>
-            <option value="25">None</option>
-            <option value="20">Beginner</option>
-            <option value="15">Intermediate</option>
-            <option value="10">Expert</option>
-            <option value="5">Elite</option>
+        <label for="activity-level">Activity Level:</label>
+        <select id="activity-level" th:field="*{activityLvl}">
+            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
+                    th:value="${activityLvl}"
+                    th:text="${activityLvl}"
+                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
+            </option>
         </select>
     </div>
     <div class="col-auto">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
-
 
 <nav th:replace="partials/footer :: footer"></nav>
 </body>
