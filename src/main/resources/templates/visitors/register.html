@@ -12,47 +12,50 @@
 <h1 class="under-nav heading title-text">Register</h1>
 
 <div class="container" align="center">
+<form class="row gx-3 gy-2 align-items-center form-input general-text" th:action="@{/register}" method="POST" th:Object="${user}" id="fitness-form">
     <div class="row row-cols-lg-2">
         <div class="col-lg-6">
             <div class="padding">
                 <label class="visually-hidden" for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username" />
+                <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}"/>
             </div>
             <div class="padding">
                 <label class="visually-hidden" for="email">Email</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="email" placeholder="Email">
-                </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}">
+            </div>
+            </div>
+            <div class="padding">
+                <label class="visually-hidden" for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}"/>
             </div>
             <div class="padding">
                 <label class="visually-hidden" for="date-of-birth">DOB:</label>
-                <input class="form-control" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy" />
+                <input class="form-control" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy" th:field="*{birthDate}" />
             </div>
             <div class="padding">
-                <label class="visually-hidden" for="running-exp">Race Experience</label>
-                <select name="running-exp" class="form-select" id="running-exp">
-                    <option value="none" selected>Race Experience</option>
-                    <option value="25">None</option>
-                    <option value="20">Beginner</option>
-                    <option value="15">Recreational</option>
-                    <option value="10">Intermediate</option>
-                    <option value="5">Expert</option>
-                </select>
+                <label for="running-exp">Running Experience:</label>
+        <select id="running-exp" th:field="*{runningExp}">
+            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
+                    th:value="${runningExp}"
+                    th:text="${runningExp}"
+                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
+            </option>
+        </select>
             </div>
             <div class="padding">
-                <label class="visually-hidden" for="activity-level">Activity Level:</label>
-                <select name="activity-level" class="form-select" id="activity-level">
-                    <option value="none" selected>Activity Level</option>
-                    <option value="25">None</option>
-                    <option value="20">Beginner</option>
-                    <option value="15">Intermediate</option>
-                    <option value="10">Expert</option>
-                    <option value="5">Elite</option>
-                </select>
+                <label for="activity-level">Activity Level:</label>
+                  <select id="activity-level" th:field="*{activityLvl}">
+                      <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
+                              th:value="${activityLvl}"
+                              th:text="${activityLvl}"
+                              th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
+                      </option>
+                  </select>
             </div>
             <div class="padding">
-                <label class="fit-zipcode visually-hidden" for="fit-zipcode">Zip Code</label>
-                <input type="number" pattern="[0-9]" id="fit-zipcode" name="zipcode" value="" placeholder="Zip Code" />
+                 <label class="fit-zipcode visually-hidden" for="fit-zipcode">Zip Code</label>
+        <input type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="Zip Code" th:field="*{zipcode}" />
             </div>
             <div class="padding">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -64,6 +67,7 @@
             </div>
         </div>
     </div>
+    </form>
 </div>
 
 <nav th:replace="partials/footer :: footer"></nav>
