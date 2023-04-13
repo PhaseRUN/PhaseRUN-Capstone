@@ -40,11 +40,11 @@
 <h1>Results</h1>
 
 <div id="results">
-    <div th:each="races : ${Race}" class="card">
+    <div th:each="Race : ${races}" class="card">
         <img src="" alt="race image" class="card-img-top">
         <div class="card-body">
             <!-- Trigger/Open The Modal -->
-            <a class="raceCard" th:text="${races.raceName}">RACE CARD GOES HERE</a>
+            <a class="raceCard" th:text="${Race.raceName}">RACE CARD GOES HERE</a>
 
             <!-- The Modal  -->
             <div class="myModal" data-datatype="modal">
@@ -52,7 +52,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p class="card-text" th:text="${races.description}"></p>
+                    <p class="card-text" th:text="${Race.description}"></p>
                 </div>
             </div>
         </div>
