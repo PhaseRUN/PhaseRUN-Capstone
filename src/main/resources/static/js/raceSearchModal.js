@@ -1,27 +1,31 @@
+// Get all the race cards
+const raceCards = document.querySelectorAll('.card');
 
-let modal = document.getElementsByClassName("myModal")[0];
+// Loop through each race card
+raceCards.forEach(raceCard => {
+    // Get the modal element for the current race card
+    const modal = raceCard.querySelector('.myModal');
 
-let raceCard = document.getElementsByClassName("raceCard");
+    // Get the close button for the current race card modal
+    const closeButton = modal.querySelector('.close');
 
-let span = document.getElementsByClassName("close");
-
-// Loop through the HTMLCollection and attach a click event listener to each element
-for (let i = 0; i < raceCard.length; i++) {
-    raceCard[i].addEventListener("click", function() {
-        modal.style.display = "block";
+    // Add a click event listener to the race card
+    raceCard.addEventListener('click', () => {
+        // Show the modal when the race card is clicked
+        modal.style.display = 'block';
     });
-}
 
-// When the user clicks on <span> (x), close the modal
-for (let i = 0; i < span.length; i++) {
-    span[i].addEventListener("click", function() {
-        modal.style.display = "none";
+    // Add a click event listener to the close button
+    closeButton.addEventListener('click', () => {
+        // Hide the modal when the close button is clicked
+        modal.style.display = 'none';
     });
-}
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
+    // Add a click event listener to the modal itself
+    modal.addEventListener('click', event => {
+        // Hide the modal when the user clicks outside of it
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});

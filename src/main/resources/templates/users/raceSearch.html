@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head">
     <title>Race Search</title>
     <link rel="stylesheet" th:href="@{/css/raceSearchModal.css}">
@@ -10,8 +10,8 @@
 
 <h1 class="under-nav sub-title-text">Race Search</h1>
 <div class="race-form">
-    <form th:action="@{/racesearch}" th:method="POST" th:object="${Race}">
-        <label for="race-distance" th:field="*{distanceInKm}">Race Distance:</label>
+    <form th:action="@{/racesearch}" th:method="POST" th:Object="${race}">
+        <label for="race-distance">Race Distance:</label>
         <select name="race-distance" id="race-distance">
             <option value="5k" selected>5k</option>
             <option value="10k">10k</option>
@@ -30,7 +30,7 @@
             <option value="any">Unlimited</option>
         </select>
         <label class="flex-0 margin-lr-10">from</label>
-        <label class="sr-only" for="zipcodeRadius" th:field="*{zipcode}">Zip Code</label>
+        <label class="sr-only" for="zipcodeRadius">Zip Code</label>
         <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code">
         <br>
         <button type="submit">Search</button>
@@ -38,14 +38,13 @@
 </div>
 
 <h1>Results</h1>
+
 <div id="results">
-
-
-    <div class="card">
+    <div th:each="races : ${Race}" class="card">
         <img src="" alt="race image" class="card-img-top">
         <div class="card-body">
             <!-- Trigger/Open The Modal -->
-            <a class="raceCard">RACE CARD GOES HERE</a>
+            <a class="raceCard" th:text="${races.raceName}">RACE CARD GOES HERE</a>
 
             <!-- The Modal  -->
             <div class="myModal" data-datatype="modal">
@@ -53,7 +52,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p class="card-text">(race details) On the other hand"</p>
+                    <p class="card-text" th:text="${races.description}"></p>
                 </div>
             </div>
         </div>
@@ -62,7 +61,6 @@
 
 
 <nav th:replace="partials/footer :: footer"></nav>
-
 
 <script type="text/javascript" th:src="@{/js/raceSearchModal.js}">
 </script>
