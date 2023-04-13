@@ -26,16 +26,6 @@
     }
 }
 
-/*.jumbotron-background{*/
-/*    background-image: url(static/images/runner.jpg);*/
-/*    background-size: cover;*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: center;*/
-/*    height: 100%;*/
-/*    width: 100%;*/
-/*    position: absolute;*/
-/*}*/
-
 .jumbotron-background::after{
     content: "";
     background-color: rgba(0, 0, 0, .1);
@@ -49,29 +39,16 @@
 .lead{
     font-family: "Roboto Bold", sans-serif;
     z-index: 100;
+    color: cornflowerblue;
 }
 
-/* Home Page Body*/
-
-.home-runner{
-    padding-top: 12em;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1em;
+.under-jumbo{
+    margin-top: 8em;
 }
 
-.home-runner-text{
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 1em;
-}
-
-.home-runner-quest{
-    list-style-type: circle;
-    margin: 6px;
-}
-
-.start-img{
-    width: 300px;
+.img-set{
+    width: 500px;
     height: auto;
+    padding: 1em;
 }
+
