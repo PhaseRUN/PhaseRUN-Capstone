@@ -9,25 +9,32 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Register</h1>
+<h1 class="under-nav heading">Register</h1>
 
-<div id="fitness-form">
-    <form th:action="@{/register}" th:method="POST" th:object="${user}">
-        <label for="username">Username</label>
-        <input id="username" th:field="*{username}" name="username" />
-        <br>
-        <label for="email">Email</label>
-        <input id="email" th:field="*{email}"/>
-        <br>
-        <label for="password">Password</label>
-        <input id="password" type="password" th:field="*{password}" />
-        <br>
-        <label for="date-of-birth">DOB:</label>
-        <input type="date" id="date-of-birth" th:field="*{birthDate}" placeholder="mm/dd/yyyy">
-        <br>
-        <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
-        <input type="number" pattern="[0-9]" id="fit-zipcode" th:field="*{zipcode}" value="" placeholder="Zip Code">
-        <br>
+<form class="row gx-3 gy-2 align-items-center form-input general-text" th:action="@{/register}" method="POST" id="fitness-form">
+    <div class="col-sm-3">
+        <label class="visually-hidden" for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username" />
+    </div>
+    <div class="col-sm-3">
+        <label class="visually-hidden" for="email">Email</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="email" placeholder="Email">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <label class="visually-hidden" for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" />
+    </div>
+    <div class="col-sm-3">
+        <label class="visually-hidden" for="date-of-birth">DOB:</label>
+        <input class="form-control" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy" />
+    </div>
+    <div class="col-sm-3">
+        <label class="fit-zipcode visually-hidden" for="fit-zipcode">Zip Code</label>
+        <input type="number" pattern="[0-9]" id="fit-zipcode" name="zipcode" value="" placeholder="Zip Code" />
+    </div>
+    <div class="col-sm-3">
         <label for="running-exp">Running Experience:</label>
         <select id="running-exp" th:field="*{runningExp}">
             <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
@@ -36,7 +43,8 @@
                     th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
             </option>
         </select>
-        <br>
+    </div>
+    <div class="col-sm-3">
         <label for="activity-level">Activity Level:</label>
         <select id="activity-level" th:field="*{activityLvl}">
             <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
@@ -45,10 +53,11 @@
                     th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
             </option>
         </select>
-        <br>
-        <input type="submit" />
-    </form>
-</div>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
 
 <nav th:replace="partials/footer :: footer"></nav>
 </body>

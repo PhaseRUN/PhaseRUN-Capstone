@@ -1,33 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{/home}">PhaseRUN</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<head th:replace="partials/head :: head">
+    <title>PhaseRUN</title>
+</head>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-light fixed-top">
+    <a class="navbar-brand" th:href="@{/home}"><img class="logo" src="/images/prLogo.png" alt="boom"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/login}">Login <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/register}">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/about}">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/faq}">FAQ</a>
-            </li>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <!-- Nav Items -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/login}">Login <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/fitnessprofile}">Fitness Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/raceinfo}">Race Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/racesearch}">Race Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/userlanding}">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/faq}">FAQ</a>
+                </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <label>
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            </label>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<!--        <form class="d-flex my-2 my-lg-0" align="right" role="search">-->
+<!--            &lt;!&ndash; search form &ndash;&gt;-->
+<!--            <label>-->
+<!--                <input class="form-control me-2" type="search" placeholder="Looking for a run?">-->
+<!--            </label>-->
+<!--            <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--        </form>-->
     </div>
 </nav>
+
 
 </html>
