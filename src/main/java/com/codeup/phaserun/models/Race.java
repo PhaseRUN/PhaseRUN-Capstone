@@ -37,8 +37,12 @@ public class Race {
     @Column(nullable = false, length = 256)
     private String logoUrl;
 
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "comment")
+    private List<Comment> comments;
+
     @ManyToMany(mappedBy = "races")
     private List<User> users;
+
 
     public Race(int id, String raceId, String raceName, String description, double CostInDollars, String distanceInKm, Date raceStart, String state, int zipcode, String city, List<User> users) {
         this.id = id;
