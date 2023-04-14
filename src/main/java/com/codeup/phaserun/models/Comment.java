@@ -1,9 +1,6 @@
 package com.codeup.phaserun.models;
 
-
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name="comments")
@@ -22,7 +19,6 @@ public class Comment {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Race race;
-
 
     //contractors
     public Comment() {
@@ -58,4 +54,5 @@ public class Comment {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
 }

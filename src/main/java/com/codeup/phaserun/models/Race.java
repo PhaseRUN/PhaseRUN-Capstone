@@ -14,16 +14,14 @@ public class Race {
     @Column(nullable = false, length = 128)
     private String raceId;
 
-    @ManyToMany(mappedBy = "races")
-    private List<User> users;
-
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "comment")
     private List<Comment> comments;
 
+    @ManyToMany(mappedBy = "races")
+    private List<User> users;
 
     public Race() {
     }
-
 
 
     public Race(String raceId, List<User> users, List<Comment> comments) {

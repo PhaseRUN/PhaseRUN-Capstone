@@ -6,16 +6,16 @@ public class RaceInfo {
 
     private String description;
 
-    private String address;
-
     private String date;
 
     private String logoUrl;
 
-    public RaceInfo(String name, String description, String address, String date, String logoUrl) {
+    public RaceInfo() {
+    }
+
+    public RaceInfo(String name, String description, String date, String logoUrl) {
         this.name = name;
         this.description = description;
-        this.address = address;
         this.date = date;
         this.logoUrl = logoUrl;
     }
@@ -36,14 +36,6 @@ public class RaceInfo {
         this.description = description;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getDate() {
         return date;
     }
@@ -56,7 +48,8 @@ public class RaceInfo {
         return logoUrl;
     }
 
-    public void setLogo_url(String logoUrl) {
+    public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
     }
 }
+
