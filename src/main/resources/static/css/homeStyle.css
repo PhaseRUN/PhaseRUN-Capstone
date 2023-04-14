@@ -16,7 +16,6 @@
     width: 100%;
     animation: slide-in 1s forwards;
     margin-bottom: 20px; /* Add margin to separate it from the next element */
-
 }
 
 @keyframes slide-in {
@@ -42,7 +41,7 @@
 }
 
 .under-jumbo{
-    margin-top: 8em;
+    margin-top: 12em;
 }
 
 .img-set{
