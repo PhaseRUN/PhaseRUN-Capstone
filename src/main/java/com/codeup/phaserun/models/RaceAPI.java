@@ -23,7 +23,6 @@ import java.util.*;
 public class RaceAPI {
     @Value("${apiKey}")
     private static String apiKey;
-
     private final User.RunningExpEnum runningExpEnum;
     private final User.ActivityLvlEnum activityLvlEnum;
 
@@ -32,7 +31,7 @@ public class RaceAPI {
         this.activityLvlEnum = activityLvlEnum;
     }
     //Gets the Races information from the races API
-    public static List<Race> getRacesFromAPI(String radius, String zipcode, String distance) throws UnirestException, ParseException {
+    public static List<RaceInfo> getRacesFromAPI(String radius, String zipcode, String distance) throws UnirestException, ParseException {
 
         //This function will calculate the start date based on the user's fitness score
         Date startDate = getStartDateCalculation(distance);
