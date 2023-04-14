@@ -27,7 +27,7 @@ public class RegisterController {
     @GetMapping("/register")
     public String returnRegisterPage(Model model) {
         model.addAttribute("user", new User());
-        return "visitors/register";
+        return "/main/resources/static/deprecated/register.html";
     }
 
     @PostMapping("/register")
