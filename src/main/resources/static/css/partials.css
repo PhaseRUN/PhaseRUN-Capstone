@@ -69,7 +69,7 @@
 /* All Pages - Top Container */
 
 .under-nav{
-    padding-top: 4em;
+    padding-top: 5em;
 }
 
 /* Text Settings*/
@@ -98,6 +98,7 @@
     text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
+    padding-top: 1em;
 }
 
 /* Body */
