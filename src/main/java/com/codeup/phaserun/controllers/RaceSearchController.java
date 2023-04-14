@@ -17,18 +17,19 @@ import java.util.List;
 @Controller
 public class RaceSearchController {
 
-    @GetMapping("/raceSearch")
+    @GetMapping("/race/search")
     public String returnRaceSearchPage() {
         return "users/raceSearch";
     }
 
-    @PostMapping("/raceSearch")
+    @PostMapping("/race/search")
     public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
                                                   @RequestParam (name = "search-radius") String searchR,
                                                   @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
+        System.out.printf("%s %s %s"distance, searchR, zipcode);
         List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
         System.out.println("i am here");
-        System.out.println(races);
+        System.out.println(races.get(0));
         model.addAttribute("races", races);
         return "users/raceSearch";
     }
