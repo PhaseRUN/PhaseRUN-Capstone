@@ -34,6 +34,10 @@
     height: 100%;
 }
 
+.jumbo-lower{
+    bottom: 0;
+}
+
 .lead{
     font-family: "Roboto Bold", sans-serif;
     z-index: 100;
@@ -47,5 +51,5 @@
 .img-set{
     width: 500px;
     height: auto;
-    padding: 1em;
+    padding: 1em 2em;
 }
