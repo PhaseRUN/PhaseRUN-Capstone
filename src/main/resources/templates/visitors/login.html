@@ -18,18 +18,25 @@
     <div class="row row-cols-lg-2">
       <form class="sub-title-text" th:action="@{/login}" method="post">
        <div class="col-lg-6">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <input type="submit" value="Submit" />
-      </div>
+           <div>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" />
+           </div>
+            <div>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" />
+            </div>
+            <div  class="padding">
+            <input type="submit" value="Log In" />
+            </div>
+        </div>
       </form>
       <div class="col-lg-6">
-          <img src="/images/pexels-ketut-subiyanto-5038885.jpg" class="side-image" alt="bench"/>
+          <img src="/images/pexels-bench.jpg" class="side-image" alt="bench"/>
       </div>
   </div>
 </div>
-<nav th:replace="partials/footer :: footer"></nav>
+
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>
