@@ -27,6 +27,7 @@ public class RaceSearchController {
                                                   @RequestParam (name = "search-radius") String searchR,
                                                   @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
+        System.out.println(races);
         model.addAttribute("races", races);
         return "users/raceSearch";
     }
