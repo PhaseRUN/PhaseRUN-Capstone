@@ -8,7 +8,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String returnControllerPage() {
-        return "/main/resources/static/deprecated/profile.html";
+        return "/users/profile";
     }
 
 

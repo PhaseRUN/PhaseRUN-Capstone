@@ -5,9 +5,9 @@
     font-size: 2em; /* Increase the font size */
     display: block;
     text-align: center;
-    margin-top: 20px; /* Add margin to separate it from the previous element */
+    margin-top: 10px; /* Add margin to separate it from the previous element */
     color: cornflowerblue;
-
+    z-index: 100;
 }
 
 .jumbotron {
@@ -34,16 +34,6 @@
     height: 100%;
 }
 
-.jumbo-lower{
-    bottom: 0;
-}
-
-.lead{
-    font-family: "Roboto Bold", sans-serif;
-    z-index: 100;
-    color: cornflowerblue;
-}
-
 .img-set{
     width: 500px;
     height: auto;
@@ -51,5 +41,9 @@
 }
 
 .under-jumbo{
-    padding-top: 8em;
+    padding-top: 12em;
+}
+
+.container{
+    padding-top: 2em;
 }

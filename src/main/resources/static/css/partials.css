@@ -65,11 +65,10 @@
     margin-right: 3em;
 }
 
-
 /* All Pages - Top Container */
 
 .under-nav{
-    padding-top: 5em;
+    padding-top: 8em;
 }
 
 /* Text Settings*/
@@ -98,6 +97,7 @@
     text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
+    padding-top: 1em;
 }
 
 /* Body */
@@ -115,10 +115,3 @@ label{
 input{
     padding: 1em;
 }
-
-.page-wrapper{
-    height: 100vh;
-    width: 100%;
-    background-image: url("static/images/Background.jpg");
-}
-
