@@ -44,12 +44,12 @@
     color: cornflowerblue;
 }
 
-.under-jumbo{
-    margin-top: 12em;
-}
-
 .img-set{
     width: 500px;
     height: auto;
     padding: 1em 2em;
+}
+
+.under-jumbo{
+    padding-top: 8em;
 }
