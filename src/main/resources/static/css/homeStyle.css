@@ -5,7 +5,7 @@
     font-size: 2em; /* Increase the font size */
     display: block;
     text-align: center;
-    margin-top: 20px; /* Add margin to separate it from the previous element */
+    margin-top: 10px; /* Add margin to separate it from the previous element */
     color: cornflowerblue;
 
 }
@@ -16,6 +16,7 @@
     width: 100%;
     animation: slide-in 1s forwards;
     margin-bottom: 20px; /* Add margin to separate it from the next element */
+
 }
 
 @keyframes slide-in {
@@ -34,10 +35,6 @@
     height: 100%;
 }
 
-.jumbo-lower{
-    bottom: 0;
-}
-
 .lead{
     font-family: "Roboto Bold", sans-serif;
     z-index: 100;
@@ -51,5 +48,9 @@
 }
 
 .under-jumbo{
-    padding-top: 8em;
+    padding-top: 12em;
+}
+
+.container{
+    padding-top: 2em;
 }
