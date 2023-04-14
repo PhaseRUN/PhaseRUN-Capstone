@@ -56,16 +56,18 @@ public class RaceAPI {
         displayHTTPResponse(response);
 
         //Sets the information acquired from the Races API call
-        List<Race> races = setRaceInformationFromAPI(response);
+        List<Race> races = setRacesInfoFromAPI(response);
 
         //Sets the individual race information into our race objects
-        races = getRaceFromAPI(races);
+        for (Race race : races) {
+            setRaceInfoFromAPI(race);
+        }
 
         return races;
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
-    public static List<Race> setRaceInformationFromAPI(HttpResponse<JsonNode> response) throws ParseException {
+    public static List<Race> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
         List<Race> races = new ArrayList<>();
 
         //converts from a response to an object
@@ -140,39 +142,33 @@ public class RaceAPI {
         return races;
     }
 
-    //Gets a single race from the API and returns it
-    public static List<Race> getRaceFromAPI(List<Race> races) throws UnirestException {
+    //sets a single race from the API and returns it
+    public static void setRaceInfoFromAPI(Race race) throws UnirestException {
 
-        for(int i = 0; i < races.size(); i++)
-        {
-            Race individualRace = races.get(i);
-            String raceId = races.get(i).getRaceId();
-            HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
-                    .asJson();
+        String raceId = race.getRaceId();
+        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
+                .asJson();
 
-            JSONObject raceObj = raceSpecificResponse.getBody().getObject();
+        JSONObject raceObj = raceSpecificResponse.getBody().getObject();
 
-            //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
-            individualRace.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
+        //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
+        race.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
 
-            // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
-            JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
-            double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
-            double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
-            double finalRaceCost = raceFee + processingFee;
+        // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
+        JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
+        double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
+        double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
+        double finalRaceCost = raceFee + processingFee;
 
-            individualRace.setCostInDollars(finalRaceCost);
+        race.setCostInDollars(finalRaceCost);
 
-            //displays race api result to console
-            displayHTTPResponse(raceSpecificResponse);
-            System.out.println();
+        //displays race api result to console
+        displayHTTPResponse(raceSpecificResponse);
+        System.out.println();
 
-            //displays object to console
-            System.out.println(individualRace);
-            System.out.println();
-
-        }
-        return races;
+        //displays object to console
+        System.out.println(race);
+        System.out.println();
     }
 
     //Displays a response in JSON format to the console
