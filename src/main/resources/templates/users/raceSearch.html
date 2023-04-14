@@ -10,7 +10,7 @@
 
 <h1 class="under-nav title-text">Race Search</h1>
 <div class="race-form">
-    <form th:action="@{/racesearch}" th:method="POST" th:Object="${race}">
+    <form th:action="@{/raceSearch}" th:method="POST" th:Object="${races}">
         <label for="race-distance">Race Distance:</label>
         <select name="race-distance" id="race-distance">
             <option value="5k" selected>5k</option>
