@@ -8,17 +8,18 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1 class="under-nav sub-title-text">Edit Profile</h1>
+<h1 class="under-nav title-text">Edit Profile</h1>
 
 <div class="page-wrapper">
     <div class="row" id="edit-form">
-        <form th:action="@{/profile}" th:method="post">
-            <label for="profile-photo">Profile Picture:</label>
-            <input type="image" id="profile-photo" name="profile-photo">
-            <button type="submit">Update Profile image</button>
-            <br>
+        <form th:action="@{/profile/edit}" th:method="post" th:object="${user}">
+<!--            <label for="profile-photo">Profile Picture:</label>-->
+<!--            <input type="image" id="profile-photo" name="profile-photo">-->
+<!--            <button type="submit">Update Profile image</button>-->
+<!--            <br>-->
             <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
-            <input type="number" pattern="[0-9]" id="fit-zipcode" name="zipcode" value="" placeholder="Zip Code">
+            <input type="hidden" th:field="*{id}">
+            <input type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="Zip Code" th:field="*{zipcode}" />
             <br>
             <button type="submit">Update Profile</button>
         </form>

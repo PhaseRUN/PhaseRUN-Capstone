@@ -33,9 +33,7 @@ public class User {
     @Column(nullable = false, columnDefinition = "MEDIUMINT")
     private int zipcode;
     @Column(nullable = false)
-    private String birthDate;
-    @Column(nullable = false, columnDefinition = "SMALLINT")
-    private int fitnessLvl;
+    private Date birthDate;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -45,7 +43,7 @@ public class User {
     )
     private List<Race> races;
 
-    public User(int id, String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, String birthDate, int fitnessLvl, List<Race> races) {
+    public User(int id, String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, Date birthDate, List<Race> races) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -54,11 +52,10 @@ public class User {
         this.activityLvl = activityLvl;
         this.zipcode = zipcode;
         this.birthDate = birthDate;
-        this.fitnessLvl = fitnessLvl;
         this.races = races;
     }
 
-    public User(String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, String birthDate, int fitnessLvl, List<Race> races) {
+    public User(String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, Date birthDate, List<Race> races) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -66,11 +63,9 @@ public class User {
         this.activityLvl = activityLvl;
         this.zipcode = zipcode;
         this.birthDate = birthDate;
-        this.fitnessLvl = fitnessLvl;
         this.races = races;
     }
-
-    public User(String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, String birthDate) {
+    public User(String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, Date birthDate) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -139,21 +134,14 @@ public class User {
         this.zipcode = zipcode;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
-    public int getFitnessLvl() {
-        return fitnessLvl;
-    }
-
-    public void setFitnessLvl(int fitnessLvl) {
-        this.fitnessLvl = fitnessLvl;
-    }
 
     public List<Race> getRaces() {
         return races;
@@ -173,7 +161,6 @@ public class User {
                 ", activityLvl=" + activityLvl +
                 ", zipcode=" + zipcode +
                 ", birthDate='" + birthDate + '\'' +
-                ", fitnessLvl=" + fitnessLvl +
                 ", races=" + races +
                 '}';
     }
