@@ -29,7 +29,10 @@ public class RaceSearchController {
                                                   @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         System.out.printf("%s %s %s \n",distance, searchR, zipcode);
         List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
-        System.out.println(races.get(0).getName());
+        for ( RaceInfo race : races) {
+            System.out.println(race.getDescription());
+            System.out.println();
+        }
         System.out.println("Search Controller Post");
         model.addAttribute("races", races);
         return "users/raceSearch";

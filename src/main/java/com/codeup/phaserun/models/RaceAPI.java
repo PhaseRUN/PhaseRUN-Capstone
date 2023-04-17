@@ -38,9 +38,8 @@ public class RaceAPI {
         Date startDate = getStartDateCalculation(distance);
 
         //Formats the date needed for the API
-        Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String strDate = dateFormat.format(date);
+        String strDate = dateFormat.format(startDate);
 
         //Convert distance from String to double
         double doubleDistance = convertDistanceToDouble(distance);
