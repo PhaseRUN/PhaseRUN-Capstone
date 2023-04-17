@@ -91,13 +91,10 @@ public class RaceAPI {
             //Convert to calendar and add 2 weeks to start date
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(startDate);
-            System.out.println(calendar.getTime() + "before math");
             calendar.add(Calendar.DATE, 14);
-            System.out.println(calendar.getTime() + "after math");
 
             //Convert back to date
             Date greenDate = calendar.getTime();
-            System.out.println(greenDate);
 
             raceInfo.setGreenStartDate(greenDate);
 
@@ -337,7 +334,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A HALF MARATHON
-            case "HALF-MARATHON" ->
+            case "HALF" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -372,7 +369,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A MARATHON
-            case "MARATHON" ->
+            case "FULL" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
