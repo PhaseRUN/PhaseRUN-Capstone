@@ -337,7 +337,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A HALF MARATHON
-            case "HALF-MARATHON" ->
+            case "HALF" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -372,7 +372,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A MARATHON
-            case "MARATHON" ->
+            case "FULL" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
