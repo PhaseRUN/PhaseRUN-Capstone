@@ -450,24 +450,5 @@ public class unirest
         {
             System.out.println("Green");
         }
-
-        RaceInfo.redYellowGreen(compareDate, d1, d2);
-
-
-        System.out.println("The date 1 is: " + formatter.format(d1));
-        System.out.println("The date 2 is: " + formatter.format(d2));
-
-        if(d1.compareTo(d2) > 0)
-        {
-            System.out.println("Date 1 occurs after Date 2");
-        }
-        else if(d1.compareTo(d2) < 0)
-        {
-            System.out.println("Date 1 occurs before Date 2");
-        }
-        else if(d1.compareTo(d2) == 0)
-        {
-            System.out.println("Both dates are equal");
-        }
     }
 }
