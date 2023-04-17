@@ -2,6 +2,7 @@ package com.codeup.phaserun.controllers;
 
 import com.codeup.phaserun.models.Race;
 import com.codeup.phaserun.models.RaceAPI;
+import com.codeup.phaserun.models.RaceInfo;
 import com.codeup.phaserun.models.User;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.stereotype.Controller;
@@ -27,8 +28,9 @@ public class RaceSearchController {
                                                   @RequestParam (name = "search-radius") String searchR,
                                                   @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         System.out.printf("%s %s %s \n",distance, searchR, zipcode);
-        List<Race> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
-//        System.out.println(races.get(0));
+        List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
+        System.out.println(races.get(0).getName());
+        System.out.println("Search Controller Post");
         model.addAttribute("races", races);
         return "users/raceSearch";
     }

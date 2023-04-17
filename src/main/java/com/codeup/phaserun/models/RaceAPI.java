@@ -24,7 +24,6 @@ import java.util.*;
 public class RaceAPI {
     @Value("${apiKey}")
     private static String apiKey;
-
     private final User.RunningExpEnum runningExpEnum;
     private final User.ActivityLvlEnum activityLvlEnum;
 
@@ -33,17 +32,15 @@ public class RaceAPI {
         this.activityLvlEnum = activityLvlEnum;
     }
     //Gets the Races information from the races API
-    public static List<Race> getRacesFromAPI(String radius, String zipcode, String distance) throws ParseException {
+    public static List<RaceInfo> getRacesFromAPI(String radius, String zipcode, String distance) throws ParseException {
 
         //This function will calculate the start date based on the user's fitness score
         Date startDate = getStartDateCalculation(distance);
-        System.out.println(startDate + " this is start date calculation");
 
-        //TODO: fix the date to work correctly for the API
+        //Formats the date needed for the API
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(date);
-        System.out.println(strDate);
 
         //Convert distance from String to double
         double doubleDistance = convertDistanceToDouble(distance);
@@ -69,25 +66,14 @@ public class RaceAPI {
 //        displayHTTPResponse(response);
 
         //Sets the information acquired from the Races API call
-        List<Race> races = setRacesInfoFromAPI(response);
-        System.out.println(races.get(0));
-        System.out.println("After API call");
-
-        //Sets the individual race information into our race objects
-        for (Race race : races) {
-            try {
-                setRaceInfoFromAPI(race);
-            } catch (UnirestException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        List<RaceInfo> races = setRacesInfoFromAPI(response);
 
         return races;
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
-    public static List<Race> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
-        List<Race> races = new ArrayList<>();
+    public static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
+        List<RaceInfo> races = new ArrayList<>();
 
         //converts from a response to an object
         JSONObject myObj = response.getBody().getObject();
@@ -96,91 +82,70 @@ public class RaceAPI {
 
         for(int i = 0; i < results.length(); i++)
         {
-            Race race = new Race();
+            RaceInfo raceInfo = new RaceInfo();
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
 
             // SETTING THE RACE ID FROM THE API
-            race.setRaceId(Integer.toString(jsonObject.getInt("race_id")));
+            raceInfo.setRaceId(jsonObject.getInt("race_id"));
 
             // SETTING THE RACE NAME FROM THE API
-            race.setRaceName(jsonObject.getString("name"));
+            raceInfo.setName(jsonObject.getString("name"));
 
             // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API
             // SETTING IT IF IS AVAILABLE
             if(jsonObject.isNull("description"))
             {
-                race.setDescription("Description not provided");
+                raceInfo.setDescription("Description not provided");
             }
             else
             {
-                race.setDescription(jsonObject.getString("description"));
+                raceInfo.setDescription(jsonObject.getString("description"));
             }
-
-            // SETTING THE STATE (IN THE UNITED STATES) FROM THE API
-            race.setState(jsonObject.getJSONObject("address").getString("state"));
-
-            // CHECKING IF A ZIPCODE WAS PROVIDED IN THE API
-            // SETTING IT IF IT WAS PROVIDED
-            if(jsonObject.getJSONObject("address").isNull("zipcode"))
-            {
-                race.setZipcode(0000);
-            }
-            else
-            {
-                race.setZipcode(Integer.parseInt(jsonObject.getJSONObject("address").getString("zipcode")));
-            }
-
-            // SETTING THE CITY (IN THE UNITED STATES) FROM THE API
-            race.setCity(jsonObject.getJSONObject("address").getString("city"));
 
             // SETTING THE DATE FROM THE API
-            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-            SimpleDateFormat print = new SimpleDateFormat("MM/dd/yyyy");
-            Date formattedDate = formatter.parse(jsonObject.getString("next_date"));
-//            System.out.println(print.format(formattedDate)); // turning a Date to a formatted String
-            race.setRaceStart(formattedDate);
+            raceInfo.setDate(jsonObject.getString("next_date"));
 
             // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
-            race.setUrl(jsonObject.getString("url"));
+            raceInfo.setRaceURL(jsonObject.getString("url"));
 
             // CHECKING IF THERE IS A LOGO URL
             // SETTING IT FROM API IF IT DOES EXIST
             if(jsonObject.isNull("logo_url"))
             {
-                race.setLogoUrl("logo not provided");
+                raceInfo.setLogoUrl("logo not provided");
             }
             else
             {
-                race.setLogoUrl(jsonObject.getString("logo_url"));
+                raceInfo.setLogoUrl(jsonObject.getString("logo_url"));
             }
 
-            races.add(race);
+            races.add(raceInfo);
 
         }
         return races;
     }
 
     //sets a single race from the API and returns it
-    public static void setRaceInfoFromAPI(Race race) throws UnirestException {
-
-        String raceId = race.getRaceId();
-        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
-                .asJson();
-
-        JSONObject raceObj = raceSpecificResponse.getBody().getObject();
-
-        //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
-        race.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
-
-        // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
-        JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
-        double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
-        double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
-        double finalRaceCost = raceFee + processingFee;
-
-        race.setCostInDollars(finalRaceCost);
-
+//    public static void setRaceInfoFromAPI(Race race) throws UnirestException {
+//
+//        String raceId = race.getRaceId();
+//        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
+//                .asJson();
+//
+//        JSONObject raceObj = raceSpecificResponse.getBody().getObject();
+//
+//        //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
+//        race.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
+//
+//        // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
+//        JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
+//        double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
+//        double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
+//        double finalRaceCost = raceFee + processingFee;
+//
+//        race.setCostInDollars(finalRaceCost);
+//
 //        //displays race api result to console
 //        displayHTTPResponse(raceSpecificResponse);
 //        System.out.println();
@@ -188,7 +153,7 @@ public class RaceAPI {
 //        //displays object to console
 //        System.out.println(race);
 //        System.out.println();
-    }
+//    }
 
     //Displays a response in JSON format to the console
     public static void displayHTTPResponse(HttpResponse<JsonNode> response){
