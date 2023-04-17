@@ -7,6 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Controller
 public class RegisterController {
@@ -24,8 +31,16 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String createNewUser(@ModelAttribute User user) {
-        System.out.println(user.toString());
+    public String createNewUser(@ModelAttribute User user, @RequestParam(name = "date-of-birth") String birth) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date langDate = null;
+        try {
+            langDate = sdf.parse(birth);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        java.sql.Date sqlDate = new java.sql.Date(langDate.getTime());
+        user.setBirthDate(sqlDate);
         userDao.save(user);
         return "redirect:/login";
     }
