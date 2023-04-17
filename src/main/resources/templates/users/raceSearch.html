@@ -27,7 +27,7 @@
             <option value="25">25 Miles</option>
             <option value="50">50 Miles</option>
             <option value="100">100 miles</option>
-            <option value="any">Unlimited</option>
+            <option value="500">500 miles</option>
         </select>
         <label class="flex-0 margin-lr-10">from</label>
         <label class="sr-only" for="zipcodeRadius">Zip Code</label>
@@ -39,21 +39,21 @@
 
 <h1>Results</h1>
 
-<div id="results">
-    <div th:each="Race : ${races}" class="race-cards">
-        <img th:src="${Race.logoUrl}" alt="race-image" class="logo-img">
-        <div class="card-info">
-            <!-- Trigger/Open The Modal -->
-            <a class="raceCard" th:text="${Race.name}"></a>
+<div th:each="Race : ${races}" class="race-cards">
+    <img th:src="${Race.logoUrl}" alt="race-image" class="logo-img">
+    <div class="card-info">
+        <!-- Trigger/Open The Modal -->
+        <a class="raceCard" th:text="${Race.name}"></a>
 
-            <!-- The Modal  -->
-            <div class="myModal" data-datatype="modal">
+        <!-- The Modal  -->
+        <div class="myModal">
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p class="card-description" th:text="${Race.description}"></p>
-                </div>
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p class="card-description" th:text="${Race.description}"></p>
+                <button class="bookmark-btn" style="display:none">Bookmark</button>
+                <a th:href="${Race.raceURL}" target="_blank" class="signup-btn" style="display:none">Sign-up</a>
             </div>
         </div>
     </div>
