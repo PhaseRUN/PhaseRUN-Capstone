@@ -62,11 +62,3 @@ raceCards.forEach(raceCard => {
 });
 
 
-// Add a click event listener to the modal itself
-// modal.addEventListener('click', () => {
-//     // Hide the modal when the user clicks outside
-//     modal.style.display = 'none';
-//
-// });
-
-
