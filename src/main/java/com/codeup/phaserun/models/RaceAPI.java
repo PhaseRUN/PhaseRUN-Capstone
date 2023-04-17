@@ -71,7 +71,7 @@ public class RaceAPI {
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
-    public static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
+    private static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
         List<RaceInfo> races = new ArrayList<>();
 
         //converts from a response to an object
@@ -155,7 +155,7 @@ public class RaceAPI {
 //    }
 
     //Displays a response in JSON format to the console
-    public static void displayHTTPResponse(HttpResponse<JsonNode> response){
+    private static void displayHTTPResponse(HttpResponse<JsonNode> response){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(response.getBody().toString());
@@ -165,7 +165,7 @@ public class RaceAPI {
 
     //Calculates the fitness score based on the user's activity level, running experience, and age
     //Return the fitness score
-    public static int fitnessValueCalculation(){
+    private static int fitnessValueCalculation(){
         int fitnessScore = 0;
 
         /* Need the below statement to switch out with the hardcoded user once security is implemented
@@ -237,7 +237,7 @@ public class RaceAPI {
     }
 
     //Calculates the start date based on how much the user needs to train
-    public static Date getStartDateCalculation(String distance){
+    private static Date getStartDateCalculation(String distance){
         SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
 
         Calendar today = new GregorianCalendar();
@@ -393,7 +393,7 @@ public class RaceAPI {
     }
 
     //Converts the string distance to a numeric equivalent
-    public static double convertDistanceToDouble(String raceDistance){
+    private static double convertDistanceToDouble(String raceDistance){
 
         double distanceInKm = 0;
 
