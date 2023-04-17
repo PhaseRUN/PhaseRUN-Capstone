@@ -88,5 +88,26 @@ public class RaceInfo {
     public void setRaceDate(Date raceDate) {
         this.raceDate = raceDate;
     }
+
+    public static String redYellowGreen(Date compareDate, Date yellowBeginDate, Date yellowEndDate)
+    {
+        if(compareDate.compareTo(yellowBeginDate) > 0 && compareDate.compareTo(yellowEndDate) < 0)//if the date we're comparing is in between the two dates
+        {
+            System.out.println("Yellow");
+            return "Yellow";
+        }
+        else if(compareDate.compareTo(yellowBeginDate) < 0)//if the date we're comparing is before the yellow range start date
+        {
+            System.out.println("Red");
+            return "Red";
+        }
+        else if(compareDate.compareTo(yellowEndDate) > 0)//if the date we're comparing is after the yellow range end date
+        {
+            System.out.println("Green");
+            return "Green";
+        }
+
+        return "probably didnt work ";
+    }
 }
 
