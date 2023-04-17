@@ -24,7 +24,7 @@ public class EditController {
     public String returnEditPage(@PathVariable int id, Model model) {
         User userFromDb = userDao.findById(id);
         model.addAttribute("user", userFromDb);
-            return "/main/resources/static/deprecated/edit.html";
+            return "/main/resources/static/users/edit.html";
 
     }
 

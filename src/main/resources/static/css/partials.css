@@ -8,16 +8,18 @@
     right: -1px;
     z-index: 100;
 }
-.footer{
-    background-color: #000000;
-    color: cornflowerblue;
-    font-family: 'Roboto Black', sans-serif;
-    font-size: 1em;
+.footer-position{
     position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
     left: 0;
+    margin-bottom: -1em;
+}
+.footer-style{
+    opacity: .2;
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 1em;
 }
 
 /* Navbar */
@@ -45,7 +47,7 @@
 }
 
 .nav-group{
-    font-family: 'Roboto Black', sans-serif;
+    font-family: Cardo, serif;
     font-size: 1em;
     padding-top: 12px;
 
@@ -68,13 +70,13 @@
 /* All Pages - Top Container */
 
 .under-nav{
-    padding-top: 8em;
+    padding-top: 6em;
 }
 
 /* Text Settings*/
 
 .sub-title-text{
-    font-family: 'Roboto Bold', sans-serif;
+    font-family: Cardo, serif;
     font-size: 22px;
     text-align: center;
     margin-top: 1em;
@@ -82,7 +84,7 @@
 }
 
 .general-text{
-    font-family: 'Roboto Light', sans-serif;
+    font-family: Cardo, serif;
     font-size: 20px;
 }
 
@@ -92,7 +94,7 @@
 }
 
 .title-text{
-    font-family: 'Roboto Bold', sans-serif;
+    font-family: Cardo, serif;
     font-size: 30px;
     text-align: center;
     margin-top: 1em;

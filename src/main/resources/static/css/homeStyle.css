@@ -1,13 +1,13 @@
 /*Jumbotron*/
 
 .register-link {
-    font-family: "Roboto Bold", sans-serif;
+    font-family: Cardo, serif;
     font-size: 2em; /* Increase the font size */
     display: block;
     text-align: center;
     margin-top: 10px; /* Add margin to separate it from the previous element */
     color: cornflowerblue;
-    z-index: 100;
+    z-index: 1;
 }
 
 .jumbotron {
@@ -32,6 +32,8 @@
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: -1;
+
 }
 
 .img-set{
