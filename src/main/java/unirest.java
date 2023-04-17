@@ -1,4 +1,5 @@
 import com.codeup.phaserun.models.Race;
+import com.codeup.phaserun.models.RaceInfo;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
@@ -16,6 +17,7 @@ import com.google.gson.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.thymeleaf.processor.comment.ICommentProcessor;
 
 public class unirest
 {
@@ -430,22 +432,26 @@ public class unirest
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date d1 = formatter.parse("07/11/2023");
         Date d2 = formatter.parse("07/31/2023");
+        Date compareDate = formatter.parse("08/01/2023");
 
         System.out.println("The date 1 is: " + formatter.format(d1));
         System.out.println("The date 2 is: " + formatter.format(d2));
+        System.out.println("The date to compare is: " + formatter.format(compareDate));
 
-        if(d1.compareTo(d2) > 0)
+        if(compareDate.compareTo(d1) > 0 && compareDate.compareTo(d2) < 0)//if the date we're comparing is in between the two dates
         {
-            System.out.println("Date 1 occurs after Date 2");
+            System.out.println("Yellow");
         }
-        else if(d1.compareTo(d2) < 0)
+        else if(compareDate.compareTo(d1) < 0)//if the date we're comparing is before the first (earliest) date
         {
-            System.out.println("Date 1 occurs before Date 2");
+            System.out.println("Red");
         }
-        else if(d1.compareTo(d2) == 0)
+        else if(compareDate.compareTo(d2) > 0)//if the date we're comparing is after the second (latest) date (2 weeks after first date)
         {
-            System.out.println("Both dates are equal");
+            System.out.println("Green");
         }
+
+        RaceInfo.redYellowGreen(compareDate, d1, d2);
 
     }
 }

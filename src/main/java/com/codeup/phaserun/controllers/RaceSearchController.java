@@ -36,6 +36,7 @@ public class RaceSearchController {
             System.out.println(race.getRaceDate() + "this is the race date");
             System.out.println(race.getGreenStartDate() + "This is the green date");
             //TODO: store in object or return what the date color should be
+            System.out.println(RaceInfo.redYellowGreen(race.getRaceDate(), race.getYellowStartDate(), race.getGreenStartDate())); // RETURNS A STRING OF RED, YELLOW, OR GREEN
         }
         System.out.println("Search Controller Post");
         model.addAttribute("races", races);
