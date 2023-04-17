@@ -8,17 +8,18 @@
     right: -1px;
     z-index: 100;
 }
-.footer{
-    background-color: #000000;
-    color: cornflowerblue;
-    font-family: 'Roboto Black', sans-serif;
-    font-size: 1em;
+.footer-position{
     position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
     left: 0;
     margin-bottom: -1em;
+}
+.footer-style{
+    opacity: .2;
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 1em;
 }
 
 /* Navbar */
