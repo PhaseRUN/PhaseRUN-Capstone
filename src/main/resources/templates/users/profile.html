@@ -11,7 +11,7 @@
 <div class="under-nav">
 <h1 class="title-text justify-content-center align-items-center" align="center">Profile</h1>
 </div>
-<div class="container d-flex justify-content-center align-items-center">
+<div class="container d-flex justify-content-center align-items-center" th:object="${user}">
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -19,8 +19,12 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body text-center sub-title-text">
-                    <h2 class="card-title">USERNAME HERE</h2>
-                    <h3 class="card-title">LOCATION HERE</h3>
+                    <h2 class="card-title">
+                        <span th:text="${user.getUsername()}"></span>
+                    </h2>
+                    <h3 class="card-title">
+                        <span th:text="${user.getZipcode()}"></span>
+                    </h3>
                     <br>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
@@ -65,10 +69,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/profile}" th:method="post">
+                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
                     <div class="form-group">
                         <label for="fit-zipcode">Zip Code</label>
-                        <input type="number" pattern="[0-9]" class="form-control" id="fit-zipcode" name="zip-code">
+                        <input type="number" pattern="[0-9]" class="form-control" id="fit-zipcode" name="zip-code" th:field="*{zipcode}">
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
