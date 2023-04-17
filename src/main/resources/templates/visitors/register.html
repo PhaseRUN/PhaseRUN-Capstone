@@ -9,7 +9,9 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1 class="under-nav heading title-text">Register</h1>
+<div class="under-nav">
+    <h1 class="heading title-text">Register</h1>
+</div>
 
 <div class="container">
 <form class="row form-input general-text" th:action="@{/register}" method="POST" th:Object="${user}" id="fitness-form">
