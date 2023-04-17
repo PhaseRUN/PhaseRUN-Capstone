@@ -390,26 +390,62 @@ public class unirest
 
 
 
-        // GETTING THE SEPARATE EVENTS FROM A SINGLE RACE FROM THE API
-        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get("https://runsignup.com/rest/race/84148?format=json")
-                .asJson();
+//        // GETTING THE SEPARATE EVENTS FROM A SINGLE RACE FROM THE API
+//        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get("https://runsignup.com/rest/race/84148?format=json")
+//                .asJson();
+//
+//        JSONObject raceObj = raceSpecificResponse.getBody().getObject().getJSONObject("race");
+//
+//
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        JsonParser jp = new JsonParser();
+//        JsonElement je = jp.parse(raceSpecificResponse.getBody().toString());
+//        String prettyJsonString = gson.toJson(je);
+//        System.out.println(prettyJsonString);
 
-        JSONObject raceObj = raceSpecificResponse.getBody().getObject().getJSONObject("race");
-
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonParser jp = new JsonParser();
-        JsonElement je = jp.parse(raceSpecificResponse.getBody().toString());
-        String prettyJsonString = gson.toJson(je);
-        System.out.println(prettyJsonString);
-
-        JSONArray raceEvents = raceObj.getJSONArray("events");
-
-
-//        for(int i = 0; i< raceEvents; i++)
+//        JSONArray raceEvents = raceObj.getJSONArray("events");
+//
+//
+//        double totalFee = 0;
+//
+//
+//        for(int i = 0; i < raceEvents.length(); i++)
 //        {
-//            System.out.println(.getJSONObject());
+//            System.out.println();
+//            System.out.println(raceEvents.getJSONObject(i).getString("distance"));
+//
+//            JSONObject getToPrice = raceEvents.getJSONObject(i).getJSONArray("registration_periods").getJSONObject(0);
+//            double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
+//            double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
+//            double finalRaceCost = raceFee + processingFee;
+//            System.out.println("$" + finalRaceCost);
+//
+////            System.out.println("Race fee: " + raceEvents.getJSONObject(i).getJSONArray("registration_periods").getJSONObject(0).getString("race_fee"));
+////            System.out.println("Processing fee: " + raceEvents.getJSONObject(i).getJSONArray("registration_periods").getJSONObject(0).getString("processing_fee"));
+//            System.out.println();
 //        }
+
+        //////////// GREEN YELLOW RED CALCULATION /////////////////
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date d1 = formatter.parse("07/11/2023");
+        Date d2 = formatter.parse("07/31/2023");
+
+        System.out.println("The date 1 is: " + formatter.format(d1));
+        System.out.println("The date 2 is: " + formatter.format(d2));
+
+        if(d1.compareTo(d2) > 0)
+        {
+            System.out.println("Date 1 occurs after Date 2");
+        }
+        else if(d1.compareTo(d2) < 0)
+        {
+            System.out.println("Date 1 occurs before Date 2");
+        }
+        else if(d1.compareTo(d2) == 0)
+        {
+            System.out.println("Both dates are equal");
+        }
 
     }
 }

@@ -14,6 +14,7 @@ public class RaceInfo {
 
     private String raceURL;
 
+
     private Date yellowDate;
 
     private Date greenDate;
@@ -22,6 +23,7 @@ public class RaceInfo {
 
     public RaceInfo() {
     }
+
 
     public String getName() {
         return name;

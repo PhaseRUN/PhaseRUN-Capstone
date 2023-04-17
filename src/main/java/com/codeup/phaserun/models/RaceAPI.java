@@ -290,7 +290,7 @@ public class RaceAPI {
                 {
                     today.add(Calendar.DATE, (7 * 3)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 3 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
                     raceStartDate = today.getTime();
-                    System.out.println("You need 3-6 weeks to train");
+                    System.out.println("You need 3-5 weeks to train");
                 }
                 else if (fitnessScore >= 14 && fitnessScore <= 19)
                 {
