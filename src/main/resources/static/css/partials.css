@@ -17,45 +17,58 @@
     bottom: 0;
     width: 100%;
     text-align: center;
+    left: 0;
 }
 
 /* Navbar */
 
+.form-group {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.form-control {
+    width: auto;
+    display: inline-block;
+}
+
 .navbar {
     background-color: #000000;
-    font-family: 'Roboto Black', sans-serif;
-    font-size: 1em;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
 }
 
-.navbar-nav{
-    display: flex;
-    flex-grow: 1;
-    justify-content: right;
-}
 .navbar-toggler{
     border: black 2px;
     background-color: cornflowerblue;
-
 }
-.navbar-brand{
+
+.nav-group{
     font-family: 'Roboto Black', sans-serif;
-    font-size: 1.5em;
-    color: cornflowerblue;
+    font-size: 1em;
+    padding-top: 12px;
+
 }
 
 .logo{
-    height: 50px;
-    width: 75PX;
+    height: 75px;
+    width: 100PX;
     margin-right: 10px;
+}
+
+.btn-primary{
+    background-color: cornflowerblue;
+    border: none;
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 1em;
+    margin-right: 3em;
 }
 
 /* All Pages - Top Container */
 
 .under-nav{
-    padding-top: 4em;
+    padding-top: 8em;
 }
 
 /* Text Settings*/
@@ -84,6 +97,7 @@
     text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
+    padding-top: 1em;
 }
 
 /* Body */
