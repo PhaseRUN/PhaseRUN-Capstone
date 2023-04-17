@@ -10,14 +10,20 @@ public class RaceInfo {
 
     private String logoUrl;
 
+    private int raceId;
+
+    private String raceURL;
+
     public RaceInfo() {
     }
 
-    public RaceInfo(String name, String description, String date, String logoUrl) {
+    public RaceInfo(String name, String description, String date, String logoUrl, int raceId, String raceURL) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.logoUrl = logoUrl;
+        this.raceId = raceId;
+        this.raceURL = raceURL;
     }
 
     public String getName() {
@@ -50,6 +56,22 @@ public class RaceInfo {
 
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
+    }
+
+    public int getRaceId() {
+        return raceId;
+    }
+
+    public void setRaceId(int raceId) {
+        this.raceId = raceId;
+    }
+
+    public String getRaceURL() {
+        return raceURL;
+    }
+
+    public void setRaceURL(String raceURL) {
+        this.raceURL = raceURL;
     }
 }
 
