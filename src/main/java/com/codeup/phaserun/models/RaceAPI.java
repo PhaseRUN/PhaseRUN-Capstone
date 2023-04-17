@@ -65,13 +65,13 @@ public class RaceAPI {
 //        displayHTTPResponse(response);
 
         //Sets the information acquired from the Races API call
-        List<RaceInfo> races = setRacesInfoFromAPI(response);
+        List<RaceInfo> races = setRacesInfoFromAPI(response, startDate);
 
         return races;
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
-    private static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
+    private static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response, Date startDate) throws ParseException {
         List<RaceInfo> races = new ArrayList<>();
 
         //converts from a response to an object
@@ -84,6 +84,22 @@ public class RaceAPI {
             RaceInfo raceInfo = new RaceInfo();
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
+
+            //Set Yellow Start date
+            raceInfo.setYellowStartDate(startDate);
+
+            //Convert to calendar and add 2 weeks to start date
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+            System.out.println(calendar.getTime() + "before math");
+            calendar.add(Calendar.DATE, 14);
+            System.out.println(calendar.getTime() + "after math");
+
+            //Convert back to date
+            Date greenDate = calendar.getTime();
+            System.out.println(greenDate);
+
+            raceInfo.setGreenStartDate(greenDate);
 
             // SETTING THE RACE ID FROM THE API
             raceInfo.setRaceId(jsonObject.getInt("race_id"));
@@ -103,7 +119,9 @@ public class RaceAPI {
             }
 
             // SETTING THE DATE FROM THE API
-            raceInfo.setDate(jsonObject.getString("next_date"));
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+            Date formattedDate = formatter.parse(jsonObject.getString("next_date"));
+            raceInfo.setRaceDate(formattedDate);
 
             // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
             raceInfo.setRaceURL(jsonObject.getString("url"));
