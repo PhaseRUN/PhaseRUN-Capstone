@@ -11,8 +11,9 @@ public class Race {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(nullable = false, length = 128)
-    private String raceId;
+    private int raceId;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "comment")
     private List<Comment> comments;
@@ -24,7 +25,7 @@ public class Race {
     }
 
 
-    public Race(String raceId, List<User> users, List<Comment> comments) {
+    public Race(int raceId, List<User> users, List<Comment> comments) {
         this.raceId = raceId;
         this.users = users;
         this.comments = comments;
@@ -38,11 +39,11 @@ public class Race {
         this.id = id;
     }
 
-    public String getRaceId() {
+    public int getRaceId() {
         return raceId;
     }
 
-    public void setRaceId(String raceId) {
+    public void setRaceId(int raceId) {
         this.raceId = raceId;
     }
 
