@@ -387,5 +387,29 @@ public class unirest
 //
 //
 //
+
+
+
+        // GETTING THE SEPARATE EVENTS FROM A SINGLE RACE FROM THE API
+        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get("https://runsignup.com/rest/race/84148?format=json")
+                .asJson();
+
+        JSONObject raceObj = raceSpecificResponse.getBody().getObject().getJSONObject("race");
+
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement je = jp.parse(raceSpecificResponse.getBody().toString());
+        String prettyJsonString = gson.toJson(je);
+        System.out.println(prettyJsonString);
+
+        JSONArray raceEvents = raceObj.getJSONArray("events");
+
+
+//        for(int i = 0; i< raceEvents; i++)
+//        {
+//            System.out.println(.getJSONObject());
+//        }
+
     }
 }

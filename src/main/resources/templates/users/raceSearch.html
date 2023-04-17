@@ -10,7 +10,7 @@
 
 <h1 class="under-nav title-text">Race Search</h1>
 <div class="race-form">
-    <form th:action="@{/raceSearch}" th:method="POST" th:Object="${races}">
+    <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
         <label for="race-distance">Race Distance:</label>
         <select name="race-distance" id="race-distance">
             <option value="5k" selected>5k</option>
@@ -40,11 +40,11 @@
 <h1>Results</h1>
 
 <div id="results">
-    <div th:each="Race : ${races}" class="card">
-        <img src="" alt="race image" class="card-img-top">
-        <div class="card-body">
+    <div th:each="Race : ${races}" class="race-cards">
+        <img th:src="${Race.logoUrl}" alt="race-image" class="logo-img">
+        <div class="card-info">
             <!-- Trigger/Open The Modal -->
-            <a class="raceCard" th:text="${Race.raceName}">RACE CARD GOES HERE</a>
+            <a class="raceCard" th:text="${Race.name}"></a>
 
             <!-- The Modal  -->
             <div class="myModal" data-datatype="modal">
@@ -52,15 +52,14 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p class="card-text" th:text="${Race.description}"></p>
+                    <p class="card-description" th:text="${Race.description}"></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<nav th:replace="partials/footer :: footer"></nav>
+<footer  th:replace="partials/footer :: footer"></footer>
 
 <script type="text/javascript" th:src="@{/js/raceSearchModal.js}">
 </script>

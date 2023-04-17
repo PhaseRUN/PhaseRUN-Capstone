@@ -28,4 +28,5 @@ raceCards.forEach(raceCard => {
             modal.style.display = 'none';
         }
     });
+
 });

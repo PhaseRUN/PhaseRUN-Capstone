@@ -9,7 +9,7 @@ public class FitnessProfileController {
 
     @GetMapping("/fitnessProfile")
     public String returnFitnessProfilePage() {
-        return "users/fitnessProfile";
+        return "/main/resources/static/deprecated/fitnessProfile.html";
     }
 
 
