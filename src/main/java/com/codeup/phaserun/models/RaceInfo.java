@@ -8,36 +8,40 @@ public class RaceInfo {
 
     private String description;
 
-    private String date;
-
     private String logoUrl;
 
     private int raceId;
 
     private String raceURL;
 
-    private Date startDate;
+    private Date yellowDate;
+
+    private Date greenDate;
+
+    private Date raceDate;
 
     public RaceInfo() {
     }
 
-    public RaceInfo(String name, String description, String date, String logoUrl, int raceId, String raceURL) {
-        this.name = name;
-        this.description = description;
-        this.date = date;
-        this.logoUrl = logoUrl;
-        this.raceId = raceId;
-        this.raceURL = raceURL;
-    }
+//    public RaceInfo(String name, String description, String date, String logoUrl, int raceId, String raceURL, Date startDate) {
+//        this.name = name;
+//        this.description = description;
+//        this.date = date;
+//        this.logoUrl = logoUrl;
+//        this.raceId = raceId;
+//        this.raceURL = raceURL;
+//        this.startDate = startDate;
+//    }
 
-    public RaceInfo(String name, String description, String date, String logoUrl, int raceId, String raceURL, Date startDate) {
+    public RaceInfo(String name, String description, String logoUrl, int raceId, String raceURL, Date yellowDate, Date greenDate, Date raceDate) {
         this.name = name;
         this.description = description;
-        this.date = date;
         this.logoUrl = logoUrl;
         this.raceId = raceId;
         this.raceURL = raceURL;
-        this.startDate = startDate;
+        this.yellowDate = yellowDate;
+        this.greenDate = greenDate;
+        this.raceDate = raceDate;
     }
 
     public String getName() {
@@ -54,14 +58,6 @@ public class RaceInfo {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getLogoUrl() {
@@ -88,12 +84,29 @@ public class RaceInfo {
         this.raceURL = raceURL;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getYellowStartDate() {
+        return yellowDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setYellowStartDate(Date startDate) {
+        this.yellowDate = startDate;
+    }
+
+    public Date getGreenStartDate() {
+        return greenDate;
+    }
+
+    public void setGreenStartDate(Date startDate) {
+        this.greenDate = startDate;
+    }
+
+    public Date getRaceDate() {
+        return raceDate;
+    }
+
+    public void setRaceDate(Date raceDate) {
+        this.raceDate = raceDate;
+
     }
 }
 
