@@ -41,6 +41,7 @@ public class User {
             joinColumns = {@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name = "race_id")}
     )
+
     private List<Race> races;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "comment")
