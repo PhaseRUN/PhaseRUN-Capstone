@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="partials/head :: head">
+<head>
     <meta charset="UTF-8">
     <title>Comment Test</title>
 </head>
 <body>
-<form th:action="@{/posts/create}" th:method="post" th:object="${comment}">
+<form th:action="@{/comments}" th:method="post" th:object="${comment}">
   <div class="form-group">
     <label for="description">Description</label>
     <textarea id="description" class="form-control" type="text" th:field="*{comment}"></textarea>
