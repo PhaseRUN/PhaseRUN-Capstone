@@ -9,15 +9,16 @@
     z-index: 100;
 }
 .footer-position{
+    opacity: .75;
     position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
     left: 0;
+    right: 0;
     margin-bottom: -1em;
 }
 .footer-style{
-    opacity: .2;
     font-family: 'Roboto Black', sans-serif;
     font-size: 1em;
 }
@@ -39,6 +40,7 @@
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
+    box-shadow: whitesmoke;
 }
 
 .navbar-toggler{
@@ -103,7 +105,11 @@
 }
 
 /* Body */
+
 body{
+    background-image: url("/images/background-unsplash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     padding: 1em 1em 10em;
     margin-bottom: 8em;
 }
