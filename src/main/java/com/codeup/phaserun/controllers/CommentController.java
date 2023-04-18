@@ -59,6 +59,11 @@ public class CommentController {
 
 //        comment.setComment(comment.getComment());
         comment.setUser(userDao.findById(1)); // id is found from the logged in user's session
+        userDao.findById(1).getRaces();
+        /// for loop getRaces
+        ///if exist, that means bookmark exist
+
+        raceDao.findRaceByRaceId(1).getUsers().get(0).getId();
         comment.setRace(raceDao.findRaceByRaceId(1234)); // race id should be found from the race itself (maybe hidden input?)
 
         User updateUser = userDao.findById(1);
