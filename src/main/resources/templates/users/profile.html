@@ -84,6 +84,10 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
+                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="delete" th:object="${user}">
+                    <input type="hidden" id="delete-profile" name="delete-profile">
+                    <button type="submit" class="btn btn-primary">Delete Profile</button>
+                </form>
             </div>
         </div>
     </div>
