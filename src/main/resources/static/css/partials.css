@@ -106,6 +106,10 @@
 body{
     padding: 1em 1em 10em;
     margin-bottom: 8em;
+    background-image: url("/images/background-unsplash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
 }
 
 /* Forms */
