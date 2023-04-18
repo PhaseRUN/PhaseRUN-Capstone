@@ -34,7 +34,7 @@ public class CommentController {
     @GetMapping("/comments")
     public String commentPageGet(Model model)
     {
-        model.addAttribute("comment", new Comment());
+        model.addAttribute("comment", commentDao.findById(1));
         return "users/test";
     }
 
@@ -43,6 +43,7 @@ public class CommentController {
     {
         //// THIS IS JUST FOR TESTING PURPOSES /////
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+//        Comment addedComment = new Comment();
         Date testDate = null;
         try
         {
@@ -61,14 +62,17 @@ public class CommentController {
         comment.setRace(raceDao.findRaceByRaceId(1234)); // race id should be found from the race itself (maybe hidden input?)
 
         User updateUser = userDao.findById(1);
-        updateUser.setRaces(new ArrayList<>(List.of(testRace)));
+        updateUser.setRaces(new ArrayList<>(List.of(raceDao.findRaceByRaceId(1234))));
+//        updateUser.setComments(new ArrayList<>(List.of(comment)));
 
         Race updateRace = raceDao.findRaceByRaceId(1234);
-        updateRace.setComments(new ArrayList<>(List.of(comment)));
-        updateRace.setUsers(new ArrayList<>(List.of(testUser)));
+//        updateRace.setComments(new ArrayList<>(List.of(comment)));
+        updateRace.setUsers(new ArrayList<>(List.of(userDao.findById(1))));
 
-        System.out.println(comment.getComment().getClass());
+//        System.out.println(comment.getComment());
 
+
+//        System.out.println(comment);
 
         userDao.save(updateUser);
         raceDao.save(updateRace);
