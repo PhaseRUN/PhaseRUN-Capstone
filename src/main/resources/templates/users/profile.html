@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav th:replace="~{partials/navbar :: navbar}"></nav>
-<div class="container d-flex justify-content-center align-items-center under-nav">
+<div class="container d-flex justify-content-center align-items-center under-nav opacity-90">
     <div class="card">
         <div class="row gx-1">
             <div class="col-sm-12 col-lg-4">
@@ -28,59 +28,20 @@
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h1 class="sub-title-text">Race Bookmarks</h1>
+                    <h1 class="title-text">Bookmarks</h1>
                     <div class="row">
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center">
                             <div class="card race-card" style="width: 18rem;">
+                                <div class="img-set race-border">
                                 <img src="..." class="card-img-top" alt="...">
+                                </div>
                                 <div class="card-body">
-                                    <h5 class="card-title sub-title-text">Card title</h5>
+                                    <h5 class="card-title sub-title-text">Race Title</h5>
                                     <p class="card-text general-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                 </div>
-                                <ul class="list-group list-group-flush general-text">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                </ul>
                                 <div class="card-body general-text">
-                                    <a href="#" class="card-link">Info</a>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentFitnessModal">Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center">
-                            <div class="card race-card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title sub-title-text">Card title</h5>
-                                    <p class="card-text general-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <ul class="list-group list-group-flush general-text">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                </ul>
-                                <div class="card-body general-text">
-                                    <a href="#" class="card-link">Card link</a>
-                                    <a href="#" class="card-link">Another link</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center">
-                            <div class="card race-card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title sub-title-text">Card title</h5>
-                                    <p class="card-text general-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <ul class="list-group list-group-flush general-text">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                </ul>
-                                <div class="card-body general-text">
-                                    <a href="#" class="card-link">Card link</a>
-                                    <a href="#" class="card-link">Another link</a>
+                                    <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#infoModal">Info</button>
+                                    <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
                                 </div>
                             </div>
                         </div>
@@ -93,14 +54,11 @@
 
 <!-- Profile Edit Modal -->
 
-<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+<div class="modal fade opacity-100" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="form">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
@@ -123,19 +81,37 @@
     </div>
 </div>
 
+
 <!-- Fitness Edit Modal-->
 
-<div class="modal fade" id="editFitnessModal" tabindex="-1" role="dialog" aria-labelledby="editFitnessModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade opacity-100" id="editFitnessModal" tabindex="-1" role="dialog" aria-labelledby="editFitnessModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="form">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editFitnessModalLabel">Edit Profile</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/profile}" method="post">-->
+                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
+                    <div class="padding">
+                        <label for="running-exp">Running Experience:</label>
+                        <select id="running-exp" th:field="*{runningExp}">
+                            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
+                                    th:value="${runningExp}"
+                                    th:text="${runningExp}"
+                                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="padding">
+                        <label for="activity-level">Activity Level:</label>
+                        <select id="activity-level" th:field="*{activityLvl}">
+                            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
+                                    th:value="${activityLvl}"
+                                    th:text="${activityLvl}"
+                                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
+                            </option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>
@@ -143,22 +119,45 @@
     </div>
 </div>
 
+
 <!-- Comment Modal -->
 
-<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade opacity-100" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="form">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="commentModalLabel">Edit Profile</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <span class="close">&times;</span>
+            <div class="comment-section">
+                <div class="comment">
+                    <p>Comment 1</p>
+                </div>
+                <div class="comment">
+                    <p>Comment 2</p>
+                </div>
+                <div class="comment">
+                    <p>Comment 3</p>
+                </div>
+                <!-- add more comments here -->
             </div>
-            <div class="modal-body">
-                <form th:action="@{/profile}" method="post">-->
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </form>
-            </div>
+            <textarea id="commentBox" placeholder="Add Comment" class="comment-box"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-tertiary btn-close" data-dismiss="modal">Close</button>
+            <button id="submitCommentBtn">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Info Modal -->
+
+<div class="modal fade opacity-100" id="infoModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <h1 class="modal-title" id="infoModalLabel">Info Here</h1>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-tertiary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
         </div>
     </div>
 </div>
@@ -174,7 +173,10 @@
             $('#editFitnessModal').modal('show');
         });
         $('#commentModal').click(function (){
-            $('#editFitnessModal').modal('show');
+            $('#commentModal').modal('show');
+        });
+        $('#infoModal').click(function (){
+            $('#infoModal').modal('show');
         });
     });
 
