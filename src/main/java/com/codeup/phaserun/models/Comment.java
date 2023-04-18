@@ -39,6 +39,12 @@ public class Comment {
         this.user = user;
     }
 
+    public Comment(String comment, User user, Race race) {
+        this.comment = comment;
+        this.user = user;
+        this.race = race;
+    }
+
     public int getId() {
         return id;
     }
