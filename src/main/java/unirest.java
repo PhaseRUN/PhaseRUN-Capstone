@@ -1,5 +1,9 @@
 import com.codeup.phaserun.models.Race;
 import com.codeup.phaserun.models.RaceInfo;
+import com.codeup.phaserun.models.User;
+import com.codeup.phaserun.repositories.CommentRespository;
+import com.codeup.phaserun.repositories.RaceRepository;
+import com.codeup.phaserun.repositories.UserRepository;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
@@ -29,6 +33,19 @@ public class unirest
 //    //Get Response
 //    InputStream is = connection.getInputStream();
 //    System.out.println(connection.getContentType());
+
+
+    private static UserRepository userDao;
+    private static RaceRepository raceDao;
+    private static CommentRespository commentDao;
+
+
+    public unirest(UserRepository userDao, RaceRepository raceDao, CommentRespository commentDao)
+    {
+        unirest.userDao = userDao;
+        unirest.raceDao = raceDao;
+        unirest.commentDao = commentDao;
+    }
 
     public static void main(String[] args) throws Exception
     {
@@ -451,7 +468,11 @@ public class unirest
             System.out.println("Green");
         }
 
+
         RaceInfo.redYellowGreen(compareDate, d1, d2);
 
+
+
     }
+
 }
