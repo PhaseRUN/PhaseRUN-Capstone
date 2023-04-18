@@ -101,9 +101,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/profile}" method="post">-->
+
+
+                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
+                    <div class="form-group">
+                        <label for="activity-level">Activity Level:</label>
+                        <select id="activity-level" th:field="*{activityLvl}">
+                            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
+                                    th:value="${activityLvl}"
+                                    th:text="${activityLvl}"
+                                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum)}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="running-exp">Running Experience:</label>
+                        <select id="running-exp" th:field="*{runningExp}">
+                            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
+                                    th:value="${runningExp}"
+                                    th:text="${runningExp}"
+                                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum)}">
+                            </option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
+
+
             </div>
         </div>
     </div>

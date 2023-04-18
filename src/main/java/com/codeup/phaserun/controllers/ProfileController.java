@@ -29,7 +29,15 @@ public class ProfileController {
     public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model) {
         System.out.println(userUpdates);
         User userToUpdate = userDao.findById(userUpdates.getId());
-        userToUpdate.setZipcode(userUpdates.getZipcode());
+        if (userUpdates.getZipcode() != 0) {
+            userToUpdate.setZipcode(userUpdates.getZipcode());
+        }
+        if (userUpdates.getRunningExp() != null) {
+            userToUpdate.setRunningExp(userUpdates.getRunningExp());
+        }
+        if (userUpdates.getActivityLvl() != null) {
+            userToUpdate.setActivityLvl(userUpdates.getActivityLvl());
+        }
         System.out.println(userToUpdate);
         userDao.save(userToUpdate);
         User userFromDb = userDao.findById(id);
@@ -37,5 +45,16 @@ public class ProfileController {
         return "users/profile";
     }
 
+//    @PostMapping("/profile/{id}/edit")
+//    public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model) {
+//        System.out.println(userUpdates);
+//        User userToUpdate = userDao.findById(userUpdates.getId());
+//        userToUpdate.setZipcode(userUpdates.getZipcode());
+//        System.out.println(userToUpdate);
+//        userDao.save(userToUpdate);
+//        User userFromDb = userDao.findById(id);
+//        model.addAttribute("user", userFromDb);
+//        return "users/profile";
+//    }
 
 }
