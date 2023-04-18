@@ -8,16 +8,13 @@
 </head>
 <body>
 <nav th:replace="~{partials/navbar :: navbar}"></nav>
-<div class="under-nav">
-<h1 class="title-text justify-content-center align-items-center" align="center">Profile</h1>
-</div>
-<div class="container d-flex justify-content-center align-items-center" th:object="${user}">
+<div class="container d-flex justify-content-center align-items-center under-nav">
     <div class="card">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="/images/profile-female.jpg" alt="prof-1" class="card-img-top img-fluid mx-auto d-block profile-pic">
+        <div class="row gx-1">
+            <div class="col-sm-12 col-lg-4">
+                <img src="/images/profile-female.jpg" alt="prof-1" class="card-img-top profile-pic">
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-12 col-lg-8 gx-1">
                 <div class="card-body text-center sub-title-text">
                     <h2 class="card-title">
                         <span th:text="${user.getUsername()}"></span>
@@ -25,15 +22,75 @@
                     <h3 class="card-title">
                         <span th:text="${user.getZipcode()}"></span>
                     </h3>
-                    <br>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
+                    <div class="general-text d-flex align-content-center justify-content-center">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
+                    </div>
+                </div>
+                <div class="card-body text-center">
+                    <h1 class="sub-title-text">Race Bookmarks</h1>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center">
+                            <div class="card race-card" style="width: 18rem;">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title sub-title-text">Card title</h5>
+                                    <p class="card-text general-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                                <ul class="list-group list-group-flush general-text">
+                                    <li class="list-group-item">An item</li>
+                                    <li class="list-group-item">A second item</li>
+                                    <li class="list-group-item">A third item</li>
+                                </ul>
+                                <div class="card-body general-text">
+                                    <a href="#" class="card-link">Card link</a>
+                                    <a href="#" class="card-link">Another link</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center">
+                            <div class="card race-card" style="width: 18rem;">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title sub-title-text">Card title</h5>
+                                    <p class="card-text general-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                                <ul class="list-group list-group-flush general-text">
+                                    <li class="list-group-item">An item</li>
+                                    <li class="list-group-item">A second item</li>
+                                    <li class="list-group-item">A third item</li>
+                                </ul>
+                                <div class="card-body general-text">
+                                    <a href="#" class="card-link">Card link</a>
+                                    <a href="#" class="card-link">Another link</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center">
+                            <div class="card race-card" style="width: 18rem;">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title sub-title-text">Card title</h5>
+                                    <p class="card-text general-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                                <ul class="list-group list-group-flush general-text">
+                                    <li class="list-group-item">An item</li>
+                                    <li class="list-group-item">A second item</li>
+                                    <li class="list-group-item">A third item</li>
+                                </ul>
+                                <div class="card-body general-text">
+                                    <a href="#" class="card-link">Card link</a>
+                                    <a href="#" class="card-link">Another link</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Profile Edit Modal-->
+<!-- Profile Edit Modal -->
 
 <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="form">

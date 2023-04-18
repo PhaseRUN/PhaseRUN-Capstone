@@ -16,6 +16,8 @@ import java.util.List;
 @Controller
 public class RaceSearchController {
 
+
+
     @GetMapping("/race/search")
     public String returnRaceSearchPage() {
         return "users/raceSearch";

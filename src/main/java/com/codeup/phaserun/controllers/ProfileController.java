@@ -30,6 +30,14 @@ public class ProfileController {
         return "users/profile";
     }
 
+    @GetMapping("/profile")
+    public String returnProfilePage(Model model) {
+        User userFromDb = userDao.findById(1);
+        model.addAttribute("user", userFromDb);
+        return "users/profile";
+    }
+
+
     @GetMapping("/profile/{id}/edit")
     public String returnEditPage(@PathVariable int id, Model model) {
         User userFromDb = userDao.findById(id);
