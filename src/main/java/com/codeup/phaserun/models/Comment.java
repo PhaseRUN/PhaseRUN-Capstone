@@ -9,10 +9,10 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String comment;
+    private String body;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
@@ -24,41 +24,41 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String comment) {
-        this.comment = comment;
+    public Comment(String body) {
+        this.body = body;
     }
 
-    public Comment(int id, String comment) {
+    public Comment(long id, String body) {
         this.id = id;
-        this.comment = comment;
+        this.body = body;
     }
 
-    public Comment(int id, String comment, User user) {
+    public Comment(long id, String body, User user) {
         this.id = id;
-        this.comment = comment;
+        this.body = body;
         this.user = user;
     }
 
-    public Comment(String comment, User user, Race race) {
-        this.comment = comment;
+    public Comment(String body, User user, Race race) {
+        this.body = body;
         this.user = user;
         this.race = race;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getComment() {
-        return comment;
+    public String getBody() {
+        return body;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public User getUser() {
@@ -79,9 +79,9 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" +
+        return "Body{" +
                 "id=" + id +
-                ", comment='" + comment + '\'' +
+                ", body='" + body + '\'' +
                 ", user=" + user +
                 ", race=" + race +
                 '}';

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RaceRepository extends JpaRepository<Race, Long> {
-    Race findById(int id);
+    Race findById(long id);
     Race findRaceByRaceId(int id);
 }
