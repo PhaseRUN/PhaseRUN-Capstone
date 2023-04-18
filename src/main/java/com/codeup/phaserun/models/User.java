@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class User {
-
     public enum RunningExpEnum {
         NONE, BEGINNER, RECREATIONAL, INTERMEDIATE, EXPERT
     }
@@ -79,6 +78,16 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+        this.runningExp = runningExp;
+        this.activityLvl = activityLvl;
+        this.zipcode = zipcode;
+        this.birthDate = birthDate;
+    }
     public User() {
     }
 
