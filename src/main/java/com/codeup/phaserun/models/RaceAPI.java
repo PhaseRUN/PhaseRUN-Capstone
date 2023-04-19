@@ -61,6 +61,7 @@ public class RaceAPI {
             throw new RuntimeException(e);
         }
 
+
         //Displays the api result to the console
 //        displayHTTPResponse(response);
 
@@ -421,7 +422,8 @@ public class RaceAPI {
     }
 
     //For testing purposes
-    public static void main(String[] args) {
-        System.out.println(fitnessValueCalculation());
+    public static void main(String[] args) throws ParseException {
+//        System.out.println(fitnessValueCalculation());
+//        System.out.println(getRacesFromAPI("100","78240","10K").get(0).getDescription());
     }
 }
