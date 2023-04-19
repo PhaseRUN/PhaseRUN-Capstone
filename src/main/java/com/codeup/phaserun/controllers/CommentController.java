@@ -34,48 +34,36 @@ public class CommentController {
     @GetMapping("/comments")
     public String commentPageGet(Model model)
     {
-        model.addAttribute("comment", commentDao.findById(1));
+        model.addAttribute("comment", commentDao.findCommentById(1));
         return "users/test";
     }
 
     @PostMapping("/comments")
     public String commentPagePost(@ModelAttribute Comment comment)
     {
-        //// THIS IS JUST FOR TESTING PURPOSES /////
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-//        Comment addedComment = new Comment();
-        Date testDate = null;
-        try
-        {
-            testDate = formatter.parse("03/30/1990");
-        }
-        catch (ParseException e)
-        {
-            throw new RuntimeException(e);
-        }
+        System.out.println(comment.getBody());
 
-        User testUser = new User("test", "test@email.com", "test123", User.RunningExpEnum.RECREATIONAL, User.ActivityLvlEnum.BEGINNER, 78258, testDate, new ArrayList<>());
-        Race testRace = new Race(1234, new ArrayList<>(), new ArrayList<>());
-
-//        comment.setComment(comment.getComment());
         comment.setUser(userDao.findById(1)); // id is found from the logged in user's session
-        comment.setRace(raceDao.findRaceByRaceId(1234)); // race id should be found from the race itself (maybe hidden input?)
+        comment.setRace(raceDao.findRaceByRaceId(1)); // race id should be found from the race itself (maybe hidden input?)
+//
+        System.out.println(comment.getUser().getId() + "This is the user id");
+        System.out.println(comment.getRace().getRaceId() + " This is the race id");
 
-        User updateUser = userDao.findById(1);
-        updateUser.setRaces(new ArrayList<>(List.of(raceDao.findRaceByRaceId(1234))));
+//        User updateUser = userDao.findById(1);
+//        updateUser.setRaces(new ArrayList<>(List.of(raceDao.findRaceByRaceId(1234))));
 //        updateUser.setComments(new ArrayList<>(List.of(comment)));
 
-        Race updateRace = raceDao.findRaceByRaceId(1234);
+//        Race updateRace = raceDao.findRaceByRaceId(1234);
 //        updateRace.setComments(new ArrayList<>(List.of(comment)));
-        updateRace.setUsers(new ArrayList<>(List.of(userDao.findById(1))));
+//        updateRace.setUsers(new ArrayList<>(List.of(userDao.findById(1))));
 
 //        System.out.println(comment.getComment());
 
 
 //        System.out.println(comment);
 
-        userDao.save(updateUser);
-        raceDao.save(updateRace);
+//        userDao.save(updateUser);
+//        raceDao.save(updateRace);
         commentDao.save(comment);
 
         ////// DONE TESTING //////
