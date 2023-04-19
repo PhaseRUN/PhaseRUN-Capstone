@@ -143,6 +143,22 @@ public class RaceAPI {
         return races;
     }
 
+    public static HttpResponse<JsonNode> getRaceInfoFromAPI(){
+        //API call gets races information with given filters
+        Unirest.setTimeouts(0, 0);
+        HttpResponse<JsonNode> response = null;
+        String raceId = "12494";
+        try {
+            response = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json&event", raceId))
+                    .header("api_key", apiKey)
+                    .asJson();
+        } catch (UnirestException e) {
+            throw new RuntimeException(e);
+        }
+
+        return response;
+    }
+
     //sets a single race from the API and returns it
 //    public static void setRaceInfoFromAPI(Race race) throws UnirestException {
 //
@@ -440,6 +456,6 @@ public class RaceAPI {
 
     //For testing purposes
     public static void main(String[] args) {
-        System.out.println(fitnessValueCalculation());
+        displayHTTPResponse(getRaceInfoFromAPI());
     }
 }
