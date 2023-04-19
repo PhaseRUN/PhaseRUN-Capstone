@@ -1,6 +1,7 @@
 package com.codeup.phaserun.controllers;
 
 import com.codeup.phaserun.models.User;
+import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProfileController {
 
     private final UserRepository userDao;
-    public ProfileController(UserRepository userDao) {
+    private final RaceRepository raceDao;
+    public ProfileController(UserRepository userDao, RaceRepository raceDao) {
         this.userDao = userDao;
+        this.raceDao = raceDao;
     }
 
     @GetMapping("/profile")

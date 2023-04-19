@@ -42,20 +42,21 @@ public class CommentController {
     public String commentPagePost(@ModelAttribute Comment comment)
     {
         //// THIS IS JUST FOR TESTING PURPOSES /////
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+//        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
 //        Comment addedComment = new Comment();
-        Date testDate = null;
-        try
-        {
-            testDate = formatter.parse("03/30/1990");
-        }
-        catch (ParseException e)
-        {
-            throw new RuntimeException(e);
-        }
+//        Date testDate = null;
+//        try
+//        {
+//            testDate = formatter.parse("03/30/1990");
+//        }
+//        catch (ParseException e)
+//        {
+//            throw new RuntimeException(e);
+//        }
 
-        User testUser = new User("test", "test@email.com", "test123", User.RunningExpEnum.RECREATIONAL, User.ActivityLvlEnum.BEGINNER, 78258, testDate, new ArrayList<>());
-        Race testRace = new Race(1234, new ArrayList<>(), new ArrayList<>());
+//        User testUser = new User("test", "test@email.com", "test123", User.RunningExpEnum.RECREATIONAL, User.ActivityLvlEnum.BEGINNER, 78258, testDate, new ArrayList<>());
+//        Race testRace = new Race(1234, new ArrayList<>(), new ArrayList<>());
+
 
 //        comment.setComment(comment.getComment());
         comment.setUser(userDao.findById(1)); // id is found from the logged in user's session
