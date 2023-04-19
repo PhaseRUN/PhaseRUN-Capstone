@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/head :: head">
     <title>Race Search</title>
     <link rel="stylesheet" th:href="@{/css/raceSearchModal.css}">
@@ -7,12 +7,13 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
+
 <div class="under-nav">
     <h1 class="title-text">Race Search</h1>
 </div>
 <div class="container">
     <div class="row">
-        <form action="/race/search" method="post">
+        <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
             <div class="col-md-3">
                 <label for="race-distance">Race Distance:</label>
                 <select name="race-distance" id="race-distance" class="form-control">
@@ -31,11 +32,12 @@
                 <option value="25">25 Miles</option>
                 <option value="50">50 Miles</option>
                 <option value="100">100 miles</option>
-                <option value="any">Unlimited</option>
+                <option value="500">500 miles</option>
             </select>
         </div>
         <div class="col-md-3">
-            <label for="zipcodeRadius">Zip Code:</label>
+            <label class="flex-0 margin-lr-10">from</label>
+            <label class="sr-only" for="zipcodeRadius">Zip Code</label>
             <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code" class="form-control">
         </div>
         <div class="col-md-2">
@@ -47,27 +49,31 @@
 
 
 
+
 <h1>Results</h1>
-<!--<div id="results">-->
-<!--    <div class="card">-->
-<!--        <img src="" alt="race image" class="card-img-top">-->
-<!--        <div class="card-body">-->
-<!--            &lt;!&ndash; Trigger/Open The Modal &ndash;&gt;-->
-<!--            <a class="raceCard">RACE CARD GOES HERE</a>-->
 
-<!--            &lt;!&ndash; The Modal  &ndash;&gt;-->
-<!--            <div class="myModal" data-datatype="modal">-->
+<div th:each="Race : ${races}" class="race-cards">
+    <img th:src="${Race.logoUrl}" alt="race-image" class="logo-img">
+    <div class="card-info">
+        <!-- Trigger/Open The Modal -->
+        <a class="raceCard" th:text="${Race.name}"></a>
 
-<!--                &lt;!&ndash; Modal content &ndash;&gt;-->
-<!--                <div class="modal-content">-->
-<!--                    <span class="close">&times;</span>-->
-<!--                    <p class="card-text">(race details) On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+        <!-- The Modal  -->
+        <div class="myModal">
 
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p class="card-description" th:text="${Race.description}"></p>
+                <form th:method="post" th:action="@{/bookmark}">
+                    <input type="hidden" name="raceId" th:value="${Race.raceId}">
+                    <button class="bookmark-btn" style="display:none" type="submit">Bookmark this race!</button>
+                </form>
+                <a th:href="${Race.raceURL}" target="_blank" class="signup-btn" style="display:none">Sign-up</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <footer  th:replace="partials/footer :: footer"></footer>
 
