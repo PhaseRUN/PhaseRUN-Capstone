@@ -1,6 +1,5 @@
 package com.codeup.phaserun.controllers;
 
-import com.codeup.phaserun.models.Race;
 import com.codeup.phaserun.models.User;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
@@ -8,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ProfileController {
@@ -21,21 +18,6 @@ public class ProfileController {
         this.raceDao = raceDao;
     }
 
-    @GetMapping("/profile/{id}")
-    public String showProfile(@PathVariable Long id, Model model) {
-        Optional<User> user = userDao.findById(id);
-        List<Race> bookmarkedRaces = raceDao.findAllBookmarkedByUser(id);
-        model.addAttribute("user", user);
-        model.addAttribute("bookmarkedRaces", bookmarkedRaces);
-        return "users/profile";
-    }
-
-    @GetMapping("/profile")
-    public String returnProfilePage(Model model) {
-        User userFromDb = userDao.findById(1);
-        model.addAttribute("user", userFromDb);
-        return "users/profile";
-    }
 
 
     @GetMapping("/profile/{id}/edit")
