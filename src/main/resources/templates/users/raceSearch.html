@@ -8,34 +8,46 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1 class="under-nav title-text">Race Search</h1>
-<div class="race-form">
-    <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
-        <label for="race-distance">Race Distance:</label>
-        <select name="race-distance" id="race-distance">
-            <option value="5k" selected>5k</option>
-            <option value="10k">10k</option>
-            <option value="half">13.1 Half-Marathon</option>
-            <option value="full">26.2 Marathon</option>
-        </select>
-        <br>
-        <label for="search-radius">Search Radius:</label>
-        <select name="search-radius" id="search-radius">
-            <option value="5" selected>5 Miles</option>
-            <option value="10">10 Miles</option>
-            <option value="15">15 Miles</option>
-            <option value="25">25 Miles</option>
-            <option value="50">50 Miles</option>
-            <option value="100">100 miles</option>
-            <option value="500">500 miles</option>
-        </select>
-        <label class="flex-0 margin-lr-10">from</label>
-        <label class="sr-only" for="zipcodeRadius">Zip Code</label>
-        <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code">
-        <br>
-        <button type="submit">Search</button>
-    </form>
+<div class="under-nav">
+    <h1 class="title-text">Race Search</h1>
 </div>
+<div class="container">
+    <div class="row">
+        <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
+            <div class="col-md-3">
+                <label for="race-distance">Race Distance:</label>
+                <select name="race-distance" id="race-distance" class="form-control">
+                    <option value="5k" selected>5k</option>
+                    <option value="10k">10k</option>
+                    <option value="half">13.1 Half-Marathon</option>
+                    <option value="full">26.2 Marathon</option>
+                </select>
+             </div>
+        <div class="col-md-2">
+            <label for="search-radius">Search Radius:</label>
+            <select name="search-radius" id="search-radius" class="form-control">
+                <option value="5" selected>5 Miles</option>
+                <option value="10">10 Miles</option>
+                <option value="15">15 Miles</option>
+                <option value="25">25 Miles</option>
+                <option value="50">50 Miles</option>
+                <option value="100">100 miles</option>
+                <option value="500">500 miles</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="flex-0 margin-lr-10">from</label>
+            <label class="sr-only" for="zipcodeRadius">Zip Code</label>
+            <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code" class="form-control">
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-primary push-lower">
+        </div>
+        </form>
+    </div>
+</div>
+
+
 
 <h1>Results</h1>
 
