@@ -34,7 +34,7 @@ public class CommentController {
     @GetMapping("/comments")
     public String commentPageGet(Model model)
     {
-        model.addAttribute("comment", commentDao.findById(1));
+        model.addAttribute("comment", new Comment());
         return "users/test";
     }
 
@@ -59,18 +59,18 @@ public class CommentController {
 
 //        comment.setComment(comment.getComment());
         comment.setUser(userDao.findById(1)); // id is found from the logged in user's session
-        userDao.findById(1).getRaces();
+//        userDao.findById(1).getRaces();
         /// for loop getRaces
         ///if exist, that means bookmark exist
 
-        raceDao.findRaceByRaceId(1).getUsers().get(0).getId();
-        comment.setRace(raceDao.findRaceByRaceId(1234)); // race id should be found from the race itself (maybe hidden input?)
+//        raceDao.findRaceByRaceId(1).getUsers().get(0).getId();
+        comment.setRace(raceDao.findById(2)); // race id should be found from the race itself (maybe hidden input?)
 
         User updateUser = userDao.findById(1);
-        updateUser.setRaces(new ArrayList<>(List.of(raceDao.findRaceByRaceId(1234))));
+        updateUser.setRaces(new ArrayList<>(List.of(raceDao.findById(2))));
 //        updateUser.setComments(new ArrayList<>(List.of(comment)));
 
-        Race updateRace = raceDao.findRaceByRaceId(1234);
+        Race updateRace = raceDao.findById(2);
 //        updateRace.setComments(new ArrayList<>(List.of(comment)));
         updateRace.setUsers(new ArrayList<>(List.of(userDao.findById(1))));
 
