@@ -67,10 +67,10 @@ public class CommentController {
         comment.setRace(raceDao.findById(2)); // race id should be found from the race itself (maybe hidden input?)
 
         User updateUser = userDao.findById(1);
-        updateUser.setRaces(new ArrayList<>(List.of(raceDao.findById(2))));
+        updateUser.setRaces(new ArrayList<>(List.of(raceDao.findById(1))));
 //        updateUser.setComments(new ArrayList<>(List.of(comment)));
 
-        Race updateRace = raceDao.findById(2);
+        Race updateRace = raceDao.findById(1);
 //        updateRace.setComments(new ArrayList<>(List.of(comment)));
         updateRace.setUsers(new ArrayList<>(List.of(userDao.findById(1))));
 
@@ -81,7 +81,7 @@ public class CommentController {
 
         userDao.save(updateUser);
         raceDao.save(updateRace);
-        commentDao.save(comment);
+//        commentDao.save(comment);
 
         ////// DONE TESTING //////
 
