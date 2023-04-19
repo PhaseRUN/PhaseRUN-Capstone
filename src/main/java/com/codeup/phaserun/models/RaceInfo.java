@@ -14,12 +14,17 @@ public class RaceInfo {
 
     private String raceURL;
 
-
     private Date yellowDate;
 
     private Date greenDate;
 
     private Date raceDate;
+
+    private String zipcode;
+
+    private String city;
+
+    private String state;
 
     public RaceInfo() {
     }
@@ -87,6 +92,46 @@ public class RaceInfo {
 
     public void setRaceDate(Date raceDate) {
         this.raceDate = raceDate;
+    }
+
+    public Date getYellowDate() {
+        return yellowDate;
+    }
+
+    public void setYellowDate(Date yellowDate) {
+        this.yellowDate = yellowDate;
+    }
+
+    public Date getGreenDate() {
+        return greenDate;
+    }
+
+    public void setGreenDate(Date greenDate) {
+        this.greenDate = greenDate;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public static String redYellowGreen(Date compareDate, Date yellowBeginDate, Date yellowEndDate)

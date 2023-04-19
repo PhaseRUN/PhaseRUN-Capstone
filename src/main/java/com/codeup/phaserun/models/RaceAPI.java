@@ -64,10 +64,8 @@ public class RaceAPI {
         //Displays the api result to the console
 //        displayHTTPResponse(response);
 
-        //Sets the information acquired from the Races API call
-        List<RaceInfo> races = setRacesInfoFromAPI(response, startDate);
-
-        return races;
+        //Sets the information acquired from the Races API call and returns it
+        return setRacesInfoFromAPI(response, startDate);
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
@@ -143,11 +141,12 @@ public class RaceAPI {
         return races;
     }
 
-    public static HttpResponse<JsonNode> getRaceInfoFromAPI(){
+    public static RaceInfo getRaceInfoFromAPI(int userRaceId){
+
         //API call gets races information with given filters
         Unirest.setTimeouts(0, 0);
         HttpResponse<JsonNode> response = null;
-        String raceId = "12494";
+        String raceId = String.valueOf(userRaceId);
         try {
             response = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json&event", raceId))
                     .header("api_key", apiKey)
@@ -156,7 +155,83 @@ public class RaceAPI {
             throw new RuntimeException(e);
         }
 
-        return response;
+        displayHTTPResponse(response);
+
+        return setRaceInfoFromAPI();
+    }
+
+    private static RaceInfo setRaceInfoFromAPI(){
+        RaceInfo race = new RaceInfo();
+//TODO: commented out code needs to be change to
+//        //converts from a response to an object
+//        JSONObject myObj = response.getBody().getObject();
+//        //set results to the inner level "races" of myObj
+//        JSONArray results = myObj.getJSONArray("races");
+//
+//        for(int i = 0; i < results.length(); i++)
+//        {
+//            RaceInfo raceInfo = new RaceInfo();
+//            // GETTING OBJECT INFORMATION
+//            JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
+//
+//            //Set Yellow Start date
+//            raceInfo.setYellowStartDate(startDate);
+//
+//            //Convert to calendar and add 2 weeks to start date
+//            Calendar calendar = Calendar.getInstance();
+//            calendar.setTime(startDate);
+//            System.out.println(calendar.getTime() + "before math");
+//            calendar.add(Calendar.DATE, 14);
+//            System.out.println(calendar.getTime() + "after math");
+//
+//            //Convert back to date
+//            Date greenDate = calendar.getTime();
+//            System.out.println(greenDate);
+//
+//            raceInfo.setGreenStartDate(greenDate);
+//
+//            // SETTING THE RACE ID FROM THE API
+//            raceInfo.setRaceId(jsonObject.getInt("race_id"));
+//
+//            // SETTING THE RACE NAME FROM THE API
+//            raceInfo.setName(jsonObject.getString("name"));
+//
+//            // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API
+//            // SETTING IT IF IS AVAILABLE
+//            if(jsonObject.isNull("description"))
+//            {
+//                raceInfo.setDescription("Description not provided");
+//            }
+//            else
+//            {
+//                raceInfo.setDescription(jsonObject.getString("description"));
+//            }
+//
+//            // SETTING THE DATE FROM THE API
+//            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+//            Date formattedDate = formatter.parse(jsonObject.getString("next_date"));
+//            raceInfo.setRaceDate(formattedDate);
+//
+//            // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
+//            raceInfo.setRaceURL(jsonObject.getString("url"));
+//
+//            // CHECKING IF THERE IS A LOGO URL
+//            // SETTING IT FROM API IF IT DOES EXIST
+//            if(jsonObject.isNull("logo_url"))
+//            {
+//                raceInfo.setLogoUrl("logo not provided");
+//            }
+//            else
+//            {
+//                raceInfo.setLogoUrl(jsonObject.getString("logo_url"));
+//            }
+//
+//            races.add(raceInfo);
+//
+//        }
+
+
+        return race;
     }
 
     //sets a single race from the API and returns it
@@ -189,7 +264,7 @@ public class RaceAPI {
 //    }
 
     //Displays a response in JSON format to the console
-    private static void displayHTTPResponse(HttpResponse<JsonNode> response){
+    public static void displayHTTPResponse(HttpResponse<JsonNode> response){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(response.getBody().toString());
@@ -456,6 +531,6 @@ public class RaceAPI {
 
     //For testing purposes
     public static void main(String[] args) {
-        displayHTTPResponse(getRaceInfoFromAPI());
+
     }
 }
