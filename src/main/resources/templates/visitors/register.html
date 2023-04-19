@@ -13,30 +13,24 @@
     <h1 class="heading title-text">Register</h1>
 </div>
 
-<div class="container">
-<form class="row form-input general-text" th:action="@{/register}" method="POST" th:Object="${user}" id="fitness-form">
+<div class="container form-box opacity-90">
+<form class="row form-input general-text form" th:action="@{/register}" method="POST" th:Object="${user}" id="fitness-form">
     <div class="row row-cols-lg-2">
         <div class="col-lg-6">
-            <div class="padding">
+            <div class="form-container">
                 <label class="visually-hidden" for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}"/>
-            </div>
-            <div class="padding">
+                <input type="text" class="form-control input" id="username" placeholder="Username" th:field="*{username}"/>
+
                 <label class="visually-hidden" for="email">Email</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}">
-            </div>
-            </div>
-            <div class="padding">
+                <input type="email" class="form-control input" id="email" placeholder="Email" th:field="*{email}">
+
                 <label class="visually-hidden" for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}"/>
-            </div>
-            <div class="padding">
-                <label class="visually-hidden" for="date-of-birth">DOB:</label>
-                <input class="form-control" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy" />
-            </div>
-            <div class="padding">
-                <label for="running-exp">Running Experience:</label>
+                <input type="password" class="form-control input" id="password" placeholder="Password" th:field="*{password}"/>
+
+                <label class="visually-hidden" for="date-of-birth">DOB</label>
+                <input class="form-control input" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy" />
+                <div>
+                <label for="running-exp" class="subtitle">Running Experience</label>
                  <select id="running-exp" th:field="*{runningExp}">
                     <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
                             th:value="${runningExp}"
@@ -44,9 +38,10 @@
                             th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
                     </option>
                 </select>
-            </div>
-            <div class="padding">
-                <label for="activity-level">Activity Level:</label>
+
+                </div>
+                <div></div>
+                <label for="activity-level" class="subtitle">Activity Level</label>
                   <select id="activity-level" th:field="*{activityLvl}">
                       <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
                               th:value="${activityLvl}"
@@ -54,21 +49,16 @@
                               th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
                       </option>
                   </select>
-            </div>
-            <div class="padding">
-                 <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
+                </div>
+                 <label class="fit-zipcode input" for="fit-zipcode">Zip Code</label>
                 <input type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="Zip Code" th:field="*{zipcode}" />
-            </div>
-            <div class="padding">
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="col-lg-7">
-                <img class="register-img" src="/images/pexels-cottonbro-woman-run.jpg" alt="runner">
+            <div class="form-section">
+                <p>Have an account? <a href="/login">Log in</a></p>
+                <img src="/images/pexels-cottonbro-woman-run.jpg" alt="register" class="register-img overflow-x-visible">
             </div>
         </div>
-    </div>
     </form>
 </div>
 

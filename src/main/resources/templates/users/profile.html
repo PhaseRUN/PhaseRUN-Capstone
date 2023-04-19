@@ -31,11 +31,6 @@
                     <h1 class="title-text">Bookmarks</h1>
                     <div class="row">
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center">
-<!--                            <div class="cards">-->
-<!--                                <figure class="card">-->
-<!--                                    <figcaption class="card_title">Race Title</figcaption>-->
-<!--                                </figure>-->
-<!--                            </div>-->
                             <div class="card race-card" style="width: 18rem;">
                                 <div class="img-set race-border">
                                 <img src="..." class="card-img-top" alt="...">
@@ -56,6 +51,7 @@
         </div>
     </div>
 </div>
+
 <!-- Profile Edit Modal -->
 
 <div class="modal fade opacity-100" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
@@ -104,7 +100,7 @@
     <div class="modal-dialog" role="form">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editFitnessModalLabel">Edit Profile</h5>
+                <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>
             </div>
             <div class="modal-body">
                 <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">

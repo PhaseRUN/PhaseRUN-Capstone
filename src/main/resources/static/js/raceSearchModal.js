@@ -51,7 +51,7 @@ raceCards.forEach(raceCard => {
     });
 
     signupButton.addEventListener('click', () => {
-        // Handle bookmark button click event here
+        // Handle signup button click event here
         // ...
     });
 
