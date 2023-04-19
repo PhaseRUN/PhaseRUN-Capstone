@@ -7,6 +7,7 @@ import com.codeup.phaserun.models.User;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +52,7 @@ public class RaceSearchController {
     }
 
     @PostMapping("/races/bookmark")
-    public String bookmarkRace(@RequestParam("raceId") int raceId) {
+    public String bookmarkRace(@RequestParam("raceId") int raceId, HttpServletResponse response) {
         User user = userDao.findById(1);
         Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
 
@@ -66,6 +67,5 @@ public class RaceSearchController {
 
         return "redirect:/profile";
     }
-
 
 }
