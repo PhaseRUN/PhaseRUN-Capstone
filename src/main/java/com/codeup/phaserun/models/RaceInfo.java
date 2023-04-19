@@ -14,6 +14,7 @@ public class RaceInfo {
 
     private String raceURL;
 
+
     private Date yellowDate;
 
     private Date greenDate;
@@ -23,15 +24,7 @@ public class RaceInfo {
     public RaceInfo() {
     }
 
-//    public RaceInfo(String name, String description, String date, String logoUrl, int raceId, String raceURL, Date startDate) {
-//        this.name = name;
-//        this.description = description;
-//        this.date = date;
-//        this.logoUrl = logoUrl;
-//        this.raceId = raceId;
-//        this.raceURL = raceURL;
-//        this.startDate = startDate;
-//    }
+
 
     public RaceInfo(String name, String description, String logoUrl, int raceId, String raceURL, Date yellowDate, Date greenDate, Date raceDate) {
         this.name = name;
