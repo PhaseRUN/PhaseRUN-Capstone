@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.*;
 import org.jsoup.Jsoup;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class RaceSearchController {
 
-    private final RaceRepository raceRepository;
-    private final UserRepository userRepository;
+    private final RaceRepository raceDao;
+    private final UserRepository userDao;
 
-    public RaceSearchController(RaceRepository raceRepository, UserRepository userRepository) {
-        this.raceRepository = raceRepository;
-        this.userRepository = userRepository;
+    public RaceSearchController(RaceRepository raceDao, UserRepository userDao) {
+        this.raceDao = raceDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/race/search")
@@ -50,20 +50,22 @@ public class RaceSearchController {
         return "users/raceSearch";
     }
 
-//    @PostMapping("/bookmark")
-//    public String bookmarkRace(@RequestParam("raceId") Long raceId, @RequestParam("userId") Long userId) {
-//
-//        Optional<Race> raceOptional = raceRepository.findById(raceId);
-//        User user = userRepository.findById(1);
-//
-//        if (raceOptional.isPresent()) {
-//            Race race = raceOptional.get();
-//            user.getBookmarkedRaces().add(race);
-//            userRepository.save(user);
-//        }
-//
-//        return "users/raceSearch";
-//    }
+    @PostMapping("/races/bookmark")
+    public String bookmarkRace(@RequestParam("raceId") int raceId) {
+        User user = userDao.findById(1);
+        Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
+
+        raceDao.save(race);
+        System.out.println(race);
+
+        List<Race> races = new ArrayList<>(user.getRaces());
+        races.add(raceDao.findById(1));
+        user.setRaces(races);
+
+        userDao.save(user);
+
+        return "redirect:/profile";
+    }
 
 
 }
