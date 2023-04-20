@@ -28,6 +28,11 @@ public class RaceSearchController {
         this.userDao = userDao;
     }
 
+    @GetMapping("/race/search")
+    public String returnRaceSearchPage() {
+        return "users/raceSearch";
+    }
+
     @PostMapping("/race/search")
     public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
                                                   @RequestParam (name = "search-radius") String searchR,

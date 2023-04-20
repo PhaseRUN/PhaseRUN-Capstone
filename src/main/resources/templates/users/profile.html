@@ -154,11 +154,13 @@
                 </div>
                 <!-- add more comments here -->
             </div>
-            <textarea id="commentBox" placeholder="Add Comment" class="comment-box"></textarea>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-tertiary btn-close" data-dismiss="modal">Close</button>
-            <button id="submitCommentBtn">Submit</button>
+            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                <textarea id="commentBox" placeholder="Add Comment" class="comment-box" th:field="*{body}"></textarea>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-tertiary btn-close" data-dismiss="modal">Close</button>
+                    <button id="submitCommentBtn">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
