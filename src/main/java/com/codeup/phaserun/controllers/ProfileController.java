@@ -17,10 +17,17 @@ import java.util.List;
 public class ProfileController {
 
     private final UserRepository userDao;
-    private final RaceRepository raceDao;
-    public ProfileController(UserRepository userDao, RaceRepository raceDao) {
+
+    public ProfileController(UserRepository userDao) {
         this.userDao = userDao;
-        this.raceDao = raceDao;
+    }
+
+    @GetMapping("/profile")
+    public String returnProfilePage(Model model) {
+        User userFromDb = userDao.findById(1);
+        model.addAttribute("user", userFromDb);
+        return "users/profile";
+
     }
 
     @GetMapping("/profile/{id}/edit")
@@ -69,6 +76,11 @@ public class ProfileController {
         model.addAttribute("user", userFromDb);
         return "users/profile";
     }
-
+@GetMapping("/profile/")
+    public String returnProfilePage(@PathVariable int id, Model model) {
+        User userFromDb = userDao.findById(id);
+        model.addAttribute("user", userFromDb);
+        return "users/profile";
+    }
 
 }

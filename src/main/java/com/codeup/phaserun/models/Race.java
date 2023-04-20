@@ -24,10 +24,14 @@ public class Race {
     }
 
 
-    public Race(String raceId, List<User> users, List<Comment> comments) {
+
+    public Race(String raceId, List<User> users) {
         this.raceId = raceId;
         this.users = users;
-        this.comments = comments;
+    }
+
+    public Race(String raceId) {
+        this.raceId = raceId;
     }
 
     public int getId() {
@@ -62,11 +66,11 @@ public class Race {
         this.comments = comments;
     }
 
-    @Override
-    public String toString() {
-        return "Race{" +
-                "raceId='" + raceId + '\'' +
-                ", users=" + users +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Race{" +
+//                "raceId='" + raceId + '\'' +
+//                ", users=" + users +
+//                '}';
+//    }
 }
