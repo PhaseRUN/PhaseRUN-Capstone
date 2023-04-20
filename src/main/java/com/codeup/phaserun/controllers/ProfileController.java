@@ -86,14 +86,23 @@ public class ProfileController {
 
         User user = userDao.findById(1); // id should be obtained from the user session
         List<Comment> userComments = new ArrayList<>(user.getComments());
-        userComments.add(commentDao.findById(1));
+        userComments.add(commentDao.findById(comment.getId()));
         user.setComments(userComments);
 
-        Race race = raceDao.findById(1); // the id for the race in the database
+        userDao.save(user);
 
-        System.out.println(commentDao.findById(1));
+        Race race = raceDao.findById(1); // the id for the race in the database should be obtained from the commenting form
+        List<Comment> raceComments = new ArrayList<>(race.getComments());
+        raceComments.add(commentDao.findById(comment.getId()));
+        race.setComments(raceComments);
+
+        raceDao.save(race);
+
+        System.out.println(commentDao.findAll());
         System.out.println();
-        System.out.println(userDao.findById(1).getComments());
+        System.out.println(user);
+        System.out.println();
+        System.out.println(race);
 
         return "redirect:/profile";
     }
