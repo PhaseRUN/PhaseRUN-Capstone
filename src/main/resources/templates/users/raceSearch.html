@@ -8,77 +8,88 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+
 <div class="under-nav">
     <h1 class="title-text">Race Search</h1>
 </div>
-<div class="container">
-    <div class="row">
-        <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
-            <div class="col-md-3">
-                <label for="race-distance">Race Distance:</label>
-                <select name="race-distance" id="race-distance" class="form-control">
-                    <option value="5k" selected>5k</option>
-                    <option value="10k">10k</option>
-                    <option value="half">13.1 Half-Marathon</option>
-                    <option value="full">26.2 Marathon</option>
-                </select>
-             </div>
-        <div class="col-md-2">
-            <label for="search-radius">Search Radius:</label>
-            <select name="search-radius" id="search-radius" class="form-control">
-                <option value="5" selected>5 Miles</option>
-                <option value="10">10 Miles</option>
-                <option value="15">15 Miles</option>
-                <option value="25">25 Miles</option>
-                <option value="50">50 Miles</option>
-                <option value="100">100 miles</option>
-                <option value="500">500 miles</option>
-            </select>
+<div class="container opacity-95">
+    <div class="row search-row">
+        <div class="col-md-12">
+            <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="race-distance"class="sub-title-text">Race Distance:</label>
+                        <select name="race-distance" id="race-distance" class="form-control">
+                            <option value="5k" selected>5k</option>
+                            <option value="10k">10k</option>
+                            <option value="half">13.1 Half-Marathon</option>
+                            <option value="full">26.2 Marathon</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="search-radius" class="sub-title-text">Search Radius:</label>
+                        <select name="search-radius" id="search-radius" class="form-control">
+                            <option value="5" selected>5 Miles</option>
+                            <option value="10">10 Miles</option>
+                            <option value="15">15 Miles</option>
+                            <option value="25">25 Miles</option>
+                            <option value="50">50 Miles</option>
+                            <option value="100">100 miles</option>
+                            <option value="500">500 miles</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="flex-0 margin-lr-10 sub-title-text">Search From:</label>
+                        <label class="sr-only" for="zipcodeRadius">Zip Code</label>
+                        <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code" class="form-control">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="col-md-3">
-            <label class="flex-0 margin-lr-10">from</label>
-            <label class="sr-only" for="zipcodeRadius">Zip Code</label>
-            <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code" class="form-control">
-        </div>
-        <div class="col-md-2">
-            <input type="submit" value="Search" class="btn btn-primary push-lower">
-        </div>
-        </form>
     </div>
 </div>
 
+<div class="container results-container opacity-95">
+    <h1 class="title-text">Results</h1>
+    <div class="row race-cards">
+        <div th:each="Race : ${races}" class="col-sm-12 col-lg-6 col-xl-4 mb-4">
+            <div class="card race-card opacity-95">
+                <img th:src="${Race.logoUrl}" alt="race-image" class="card-img-top">
+                <div class="card-body">
 
+                    <!-- Trigger/Open The Modal -->
+                    <a href="#" class="raceCard" th:text="${Race.name}"></a>
 
+                    <h1>Results</h1>
+                    <!-- The Modal  -->
+                    <div class="myModal">
 
-<h1>Results</h1>
-
-<div th:each="Race : ${races}" class="race-cards">
-    <img th:src="${Race.logoUrl}" alt="race-image" class="logo-img">
-    <div class="card-info">
-        <!-- Trigger/Open The Modal -->
-        <a class="raceCard" th:text="${Race.name}"></a>
-
-        <!-- The Modal  -->
-        <div class="myModal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p class="card-description" th:text="${Race.description}"></p>
-                <form th:method="post" th:action="@{/bookmark}">
-                    <input type="hidden" name="raceId" th:value="${Race.raceId}">
-                    <button class="bookmark-btn" style="display:none" type="submit">Bookmark this race!</button>
-                </form>
-                <a th:href="${Race.raceURL}" target="_blank" class="signup-btn" style="display:none">Sign-up</a>
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p class="card-description" th:text="${Race.description}"></p>
+                            <form th:method="post" th:action="@{/bookmark}">
+                                <input type="hidden" name="raceId" th:value="${Race.raceId}">
+                                <button class="bookmark-btn" type="submit">Bookmark this race!</button>
+                            </form>
+                            <a th:href="${Race.raceURL}" target="_blank" class="signup-btn">Sign-up</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<footer  th:replace="partials/footer :: footer"></footer>
+
+    <footer  th:replace="partials/footer :: footer"></footer>
 
 <script type="text/javascript" th:src="@{/js/raceSearchModal.js}">
 </script>
+
 
 </body>
 </html>

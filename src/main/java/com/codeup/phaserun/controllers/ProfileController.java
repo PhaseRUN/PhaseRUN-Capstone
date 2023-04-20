@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 @Controller
 public class ProfileController {
 
     private final UserRepository userDao;
-    private final RaceRepository raceDao;
-    public ProfileController(UserRepository userDao, RaceRepository raceDao) {
+
+    public ProfileController(UserRepository userDao) {
         this.userDao = userDao;
-        this.raceDao = raceDao;
     }
 
     @GetMapping("/profile")
@@ -40,13 +40,26 @@ public class ProfileController {
     public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model) {
         System.out.println(userUpdates);
         User userToUpdate = userDao.findById(userUpdates.getId());
-        userToUpdate.setZipcode(userUpdates.getZipcode());
+        if (userUpdates.getZipcode() != 0) {
+            userToUpdate.setZipcode(userUpdates.getZipcode());
+        }
+        if (userUpdates.getRunningExp() != null) {
+            userToUpdate.setRunningExp(userUpdates.getRunningExp());
+        }
+        if (userUpdates.getActivityLvl() != null) {
+            userToUpdate.setActivityLvl(userUpdates.getActivityLvl());
+        }
         System.out.println(userToUpdate);
         userDao.save(userToUpdate);
         User userFromDb = userDao.findById(id);
         model.addAttribute("user", userFromDb);
         return "users/profile";
     }
-
+@GetMapping("/profile/")
+    public String returnProfilePage(@PathVariable int id, Model model) {
+        User userFromDb = userDao.findById(id);
+        model.addAttribute("user", userFromDb);
+        return "users/profile";
+    }
 
 }
