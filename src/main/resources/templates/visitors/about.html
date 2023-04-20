@@ -7,8 +7,46 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
+<div class="under-nav ">
+    <h1 class="title-text">Meet the Team</h1>
+</div>
 
-<h1 class="under-nav title-text">About</h1>
+
+<div class="container bodyAbout">
+    <div class="column">
+        <div class="row"> <!--Card 1-->
+            <div class="cardAbout left">
+                <div class="headshot leftAlign"></div>
+                <div class="bio"></div>
+            </div>
+        </div>
+        <div class="row"> <!--Card 2-->
+            <div class="cardAbout right">
+                <div class="headshot rightAlign"></div>
+                <div class="bio"></div>
+            </div>
+        </div>
+        <div class="row"> <!--Card 3-->
+            <div class="cardAbout left">
+                <div class="headshot leftAlign"></div>
+                <div class="bio"></div>
+            </div>
+        </div>
+        <div class="row"> <!--Card 4-->
+            <div class="cardAbout right">
+                <div class="headshot rightAlign"></div>
+                <div class="bio"></div>
+            </div>
+        </div>
+        <div class="row"> <!--Card 5-->
+            <div class="cardAbout left">
+                <div class="headshot leftAlign"></div>
+                <div class="bio"></div>
+            </div>
+        </div>
+    </div>
+</div> <!--End of Container-->
+
 
 <footer  th:replace="partials/footer :: footer"></footer>
 </body>

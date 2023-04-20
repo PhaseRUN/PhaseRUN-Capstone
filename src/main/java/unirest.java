@@ -468,11 +468,6 @@ public class unirest
             System.out.println("Green");
         }
 
-
-        RaceInfo.redYellowGreen(compareDate, d1, d2);
-
-
-
     }
 
 }

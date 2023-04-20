@@ -14,6 +14,7 @@ public class RaceInfo {
 
     private String raceURL;
 
+
     private Date yellowDate;
 
     private Date greenDate;
@@ -28,7 +29,6 @@ public class RaceInfo {
 
     public RaceInfo() {
     }
-
 
     public String getName() {
         return name;
@@ -92,22 +92,7 @@ public class RaceInfo {
 
     public void setRaceDate(Date raceDate) {
         this.raceDate = raceDate;
-    }
 
-    public Date getYellowDate() {
-        return yellowDate;
-    }
-
-    public void setYellowDate(Date yellowDate) {
-        this.yellowDate = yellowDate;
-    }
-
-    public Date getGreenDate() {
-        return greenDate;
-    }
-
-    public void setGreenDate(Date greenDate) {
-        this.greenDate = greenDate;
     }
 
     public String getZipcode() {
@@ -154,5 +139,6 @@ public class RaceInfo {
 
         return "probably didnt work ";
     }
+
 }
 

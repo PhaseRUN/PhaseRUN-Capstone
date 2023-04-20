@@ -4,19 +4,29 @@ import com.codeup.phaserun.models.Race;
 import com.codeup.phaserun.models.RaceAPI;
 import com.codeup.phaserun.models.RaceInfo;
 import com.codeup.phaserun.models.User;
+import com.codeup.phaserun.repositories.RaceRepository;
+import com.codeup.phaserun.repositories.UserRepository;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.jsoup.Jsoup;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class RaceSearchController {
+
+    private final RaceRepository raceDao;
+    private final UserRepository userDao;
+
+    public RaceSearchController(RaceRepository raceDao, UserRepository userDao) {
+        this.raceDao = raceDao;
+        this.userDao = userDao;
+    }
 
     @GetMapping("/race/search")
     public String returnRaceSearchPage() {
@@ -27,10 +37,12 @@ public class RaceSearchController {
     public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
                                                   @RequestParam (name = "search-radius") String searchR,
                                                   @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
-        System.out.printf("%s %s %s \n",distance, searchR, zipcode);
+        // ...
         List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
         for ( RaceInfo race : races) {
-            System.out.println(race.getDescription());
+            String descriptionHtml = race.getDescription();
+            String descriptionText = Jsoup.parse(descriptionHtml).text();
+            race.setDescription(descriptionText);
             System.out.println();
             System.out.println(race.getYellowStartDate() + "this is the yellow date");
             System.out.println(race.getRaceDate() + "this is the race date");
@@ -38,9 +50,26 @@ public class RaceSearchController {
             //TODO: store in object or return what the date color should be
             System.out.println(RaceInfo.redYellowGreen(race.getRaceDate(), race.getYellowStartDate(), race.getGreenStartDate())); // RETURNS A STRING OF RED, YELLOW, OR GREEN
         }
-        System.out.println("Search Controller Post");
+
         model.addAttribute("races", races);
         return "users/raceSearch";
+    }
+
+    @PostMapping("/races/bookmark")
+    public String bookmarkRace(@RequestParam("raceId") int raceId, HttpServletResponse response) {
+        User user = userDao.findById(1);
+        Race race = new Race(raceId, new ArrayList<>(List.of(user)));
+
+        raceDao.save(race);
+        System.out.println(race);
+
+        List<Race> races = new ArrayList<>(user.getRaces());
+        races.add(raceDao.findById(race.getId()));
+        user.setRaces(races);
+
+        userDao.save(user);
+
+        return "redirect:/profile";
     }
 
 }

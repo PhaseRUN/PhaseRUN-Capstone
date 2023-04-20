@@ -61,6 +61,7 @@ public class RaceAPI {
             throw new RuntimeException(e);
         }
 
+
         //Displays the api result to the console
 //        displayHTTPResponse(response);
 
@@ -90,13 +91,10 @@ public class RaceAPI {
             //Convert to calendar and add 2 weeks to start date
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(startDate);
-            System.out.println(calendar.getTime() + "before math");
             calendar.add(Calendar.DATE, 14);
-            System.out.println(calendar.getTime() + "after math");
 
             //Convert back to date
             Date greenDate = calendar.getTime();
-            System.out.println(greenDate);
 
             raceInfo.setGreenStartDate(greenDate);
 
@@ -476,6 +474,5 @@ public class RaceAPI {
 
     //For testing purposes
     public static void main(String[] args) {
-
     }
 }

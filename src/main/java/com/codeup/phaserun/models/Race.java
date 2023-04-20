@@ -24,13 +24,14 @@ public class Race {
     public Race() {
     }
 
-
-    public Race(int raceId, List<User> users, List<Comment> comments) {
+    public Race(int raceId, List<User> users) {
         this.raceId = raceId;
         this.users = users;
-        this.comments = comments;
     }
 
+    public Race(int raceId) {
+        this.raceId = raceId;
+    }
     public long getId() {
         return id;
     }
@@ -63,11 +64,4 @@ public class Race {
         this.comments = comments;
     }
 
-    @Override
-    public String toString() {
-        return "Race{" +
-                "raceId='" + raceId + '\'' +
-                ", users=" + users +
-                '}';
-    }
 }

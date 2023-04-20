@@ -1,27 +1,64 @@
+// Get all the race cards
+const raceCards = document.querySelectorAll('.race-cards');
 
-let modal = document.getElementsByClassName("myModal")[0];
+// Loop through each race card
+raceCards.forEach(raceCard => {
+    // Get the modal element for the current race card
+    const modal = raceCard.querySelector('.myModal');
 
-let raceCard = document.getElementsByClassName("raceCard");
+    // Get the close button for the current race card modal
+    const closeButton = modal.querySelector('.close');
 
-let span = document.getElementsByClassName("close");
+    // Get the anchor tag that triggers the modal
+    const raceCardLink = raceCard.querySelector('.raceCard');
 
-// Loop through the HTMLCollection and attach a click event listener to each element
-for (let i = 0; i < raceCard.length; i++) {
-    raceCard[i].addEventListener("click", function() {
-        modal.style.display = "block";
+    // Get the bookmark button for the current race card modal
+    const bookmarkButton = modal.querySelector('.bookmark-btn');
+
+    // Get the signup button for the current race card modal
+    const signupButton = modal.querySelector('.signup-btn');
+
+    // Add a click event listener to the race card link
+    raceCardLink.addEventListener('click', event => {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Show the modal when the link is clicked
+        modal.style.display = 'block';
+
+        // Show the bookmark button when the modal is opened
+        bookmarkButton.style.display = 'block';
+
+        // Show the signup button when the modal is opened
+        signupButton.style.display = 'block';
     });
-}
 
-// When the user clicks on <span> (x), close the modal
-for (let i = 0; i < span.length; i++) {
-    span[i].addEventListener("click", function() {
-        modal.style.display = "none";
+    // Add a click event listener to the close button
+    closeButton.addEventListener('click', () => {
+        // Hide the bookmark button when the modal is closed
+        modal.style.display = 'none';
+
+        // Hide the bookmark button when the modal is opened
+        bookmarkButton.style.display = 'none';
+
+        // Hide the signup button when the modal is opened
+        signupButton.style.display = 'none';
     });
-}
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
+    // Add a click event listener to the bookmark button
+    bookmarkButton.addEventListener('click', () => {
+        // Handle bookmark button click event here
+        // ...
+    });
+
+    signupButton.addEventListener('click', () => {
+        // Handle signup button click event here
+        // ...
+    });
+
+    // Hide the modal and bookmark button when the page loads
+    modal.style.display = 'none';
+    bookmarkButton.style.display = 'none';
+    signupButton.style.display = 'none';
+});
+
+
