@@ -53,7 +53,7 @@ public class RaceSearchController {
     @PostMapping("/races/bookmark")
     public String bookmarkRace(@RequestParam("raceId") int raceId, HttpServletResponse response) {
         User user = userDao.findById(1);
-        Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
+        Race race = new Race(raceId, new ArrayList<>(List.of(user)));
 
         raceDao.save(race);
         System.out.println(race);
