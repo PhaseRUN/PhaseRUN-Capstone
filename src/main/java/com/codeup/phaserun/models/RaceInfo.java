@@ -73,5 +73,21 @@ public class RaceInfo {
     public void setRaceURL(String raceURL) {
         this.raceURL = raceURL;
     }
+
+//    Temporary "toString" method for profile bookmark rendering tests. Delete when no longer necessary. - Rob (20 April)
+
+//    @Override
+//    public String toString() {
+//        return "RaceInfo{" +
+//                "name='" + name + '\'' +
+//                ", description='" + description + '\'' +
+//                ", date='" + date + '\'' +
+//                ", logoUrl='" + logoUrl + '\'' +
+//                ", raceId=" + raceId +
+//                ", raceURL='" + raceURL + '\'' +
+//                '}';
+//    }
+
+//    End of temporary "toString"
 }
 
