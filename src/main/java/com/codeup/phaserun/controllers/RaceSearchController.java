@@ -64,7 +64,7 @@ public class RaceSearchController {
         System.out.println(race);
 
         List<Race> races = new ArrayList<>(user.getRaces());
-        races.add(raceDao.findById(1));
+        races.add(raceDao.findById(race.getId()));
         user.setRaces(races);
 
         userDao.save(user);

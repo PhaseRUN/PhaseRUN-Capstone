@@ -67,7 +67,7 @@ public class ProfileController {
 
         User userFromDb = userDao.findById(id);
         model.addAttribute("user", userFromDb);
-
+        model.addAttribute("comment", new Comment());
         return "users/profile";
 
     }
@@ -89,6 +89,7 @@ public class ProfileController {
         userDao.save(userToUpdate);
         User userFromDb = userDao.findById(id);
         model.addAttribute("user", userFromDb);
+
         return "users/profile";
     }
 @GetMapping("/profile/")

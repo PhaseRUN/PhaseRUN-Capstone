@@ -14,7 +14,6 @@ public class RaceInfo {
 
     private String raceURL;
 
-
     private Date yellowDate;
 
     private Date greenDate;
