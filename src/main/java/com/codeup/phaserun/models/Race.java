@@ -32,6 +32,7 @@ public class Race {
     public Race(int raceId) {
         this.raceId = raceId;
     }
+
     public long getId() {
         return id;
     }
@@ -64,4 +65,11 @@ public class Race {
         this.comments = comments;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Race{" +
+//                "raceId='" + raceId + '\'' +
+//                ", users=" + users +
+//                '}';
+//    }
 }

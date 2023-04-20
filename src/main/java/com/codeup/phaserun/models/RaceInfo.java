@@ -30,6 +30,19 @@ public class RaceInfo {
     public RaceInfo() {
     }
 
+
+
+    public RaceInfo(String name, String description, String logoUrl, int raceId, String raceURL, Date yellowDate, Date greenDate, Date raceDate) {
+        this.name = name;
+        this.description = description;
+        this.logoUrl = logoUrl;
+        this.raceId = raceId;
+        this.raceURL = raceURL;
+        this.yellowDate = yellowDate;
+        this.greenDate = greenDate;
+        this.raceDate = raceDate;
+    }
+
     public String getName() {
         return name;
     }
@@ -95,50 +108,38 @@ public class RaceInfo {
 
     }
 
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public static String redYellowGreen(Date compareDate, Date yellowBeginDate, Date yellowEndDate)
     {
         if(compareDate.compareTo(yellowBeginDate) > 0 && compareDate.compareTo(yellowEndDate) < 0)//if the date we're comparing is in between the two dates
         {
-            System.out.println("Yellow");
             return "Yellow";
         }
         else if(compareDate.compareTo(yellowBeginDate) < 0)//if the date we're comparing is before the yellow range start date
         {
-            System.out.println("Red");
             return "Red";
         }
         else if(compareDate.compareTo(yellowEndDate) > 0)//if the date we're comparing is after the yellow range end date
         {
-            System.out.println("Green");
             return "Green";
         }
 
         return "probably didnt work ";
     }
 
+//    Temporary "toString" method for profile bookmark rendering tests. Delete when no longer necessary. - Rob (20 April)
+
+//    @Override
+//    public String toString() {
+//        return "RaceInfo{" +
+//                "name='" + name + '\'' +
+//                ", description='" + description + '\'' +
+//                ", date='" + date + '\'' +
+//                ", logoUrl='" + logoUrl + '\'' +
+//                ", raceId=" + raceId +
+//                ", raceURL='" + raceURL + '\'' +
+//                '}';
+//    }
+
+//    End of temporary "toString"
 }
 

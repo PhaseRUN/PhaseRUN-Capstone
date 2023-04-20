@@ -19,7 +19,6 @@ import java.util.List;
 
 import java.text.ParseException;
 
-
 @Controller
 public class ProfileController {
 
@@ -57,32 +56,32 @@ public class ProfileController {
         return "/users/profile";
     }
 
-//    @GetMapping("/profile/{id}/edit")
-//    public String returnEditPage(@PathVariable int id, Model model) {
-//
-//// Temporary list of races for bookmark editing on profile page - Rob (20 April)
-//
-//        List<RaceInfo> races;
-//        try {
-//            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//        for (RaceInfo race : races) {
-//            String descriptionHtml = race.getDescription();
-//            String descriptionText = Jsoup.parse(descriptionHtml).text();
-//            race.setDescription(descriptionText);
-//        }
-//        model.addAttribute("races", races);
-//
-//// End of temporary list
-//
-//        User userFromDb = userDao.findById(id);
-//        model.addAttribute("user", userFromDb);
-//
-//        return "users/profile";
-//
-//    }
+    @GetMapping("/profile/{id}/edit")
+    public String returnEditPage(@PathVariable int id, Model model) {
+
+// Temporary list of races for bookmark editing on profile page - Rob (20 April)
+
+        List<RaceInfo> races;
+        try {
+            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        for (RaceInfo race : races) {
+            String descriptionHtml = race.getDescription();
+            String descriptionText = Jsoup.parse(descriptionHtml).text();
+            race.setDescription(descriptionText);
+        }
+        model.addAttribute("races", races);
+
+// End of temporary list
+
+        User userFromDb = userDao.findById(id);
+        model.addAttribute("user", userFromDb);
+
+        return "users/profile";
+
+    }
 
     @PostMapping("/profile/{id}/edit")
     public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model) {
