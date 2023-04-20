@@ -36,8 +36,8 @@
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
                             <div class="card race-card" style="width: 18rem;" >
                                 <div class="card-body">
-                                    <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Race Image">
-<!--                                    <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>-->
+                                    <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
+                                    <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>
                                     <p class="card-text general-text" th:text="${race.date}">Date: </p>
                                 </div>
                                 <div class="card-body general-text">
