@@ -51,6 +51,11 @@ public class ProfileController {
         model.addAttribute("user", userFromDb);
         return "users/profile";
     }
-
+@GetMapping("/profile/")
+    public String returnProfilePage(@PathVariable int id, Model model) {
+        User userFromDb = userDao.findById(id);
+        model.addAttribute("user", userFromDb);
+        return "users/profile";
+    }
 
 }
