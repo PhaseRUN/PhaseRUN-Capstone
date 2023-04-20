@@ -21,6 +21,12 @@ public class RaceInfo {
 
     private Date raceDate;
 
+    private String zipcode;
+
+    private String city;
+
+    private String state;
+
     public RaceInfo() {
     }
 
