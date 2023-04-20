@@ -80,6 +80,7 @@ public class RaceAPI {
         for(int i = 0; i < results.length(); i++)
         {
             RaceInfo raceInfo = new RaceInfo();
+
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
 
@@ -141,7 +142,7 @@ public class RaceAPI {
         return races;
     }
 
-    public static RaceInfo getRaceInfoFromAPI(int userRaceId){
+    public static RaceInfo getRaceInfoFromAPI(int userRaceId, RaceInfo raceInfo){
 
         //API call gets races information with given filters
         Unirest.setTimeouts(0, 0);
@@ -157,111 +158,55 @@ public class RaceAPI {
 
         displayHTTPResponse(response);
 
-        return setRaceInfoFromAPI();
+        JSONObject jsonObject = response.getBody().getObject().getJSONObject("race");
+
+        return setRaceInfoFromAPI(jsonObject, raceInfo);
     }
 
-    private static RaceInfo setRaceInfoFromAPI(){
-        RaceInfo race = new RaceInfo();
-//TODO: commented out code needs to be change to
-//        //converts from a response to an object
-//        JSONObject myObj = response.getBody().getObject();
-//        //set results to the inner level "races" of myObj
-//        JSONArray results = myObj.getJSONArray("races");
-//
-//        for(int i = 0; i < results.length(); i++)
-//        {
-//            RaceInfo raceInfo = new RaceInfo();
-//            // GETTING OBJECT INFORMATION
-//            JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
-//
-//            //Set Yellow Start date
-//            raceInfo.setYellowStartDate(startDate);
-//
-//            //Convert to calendar and add 2 weeks to start date
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.setTime(startDate);
-//            System.out.println(calendar.getTime() + "before math");
-//            calendar.add(Calendar.DATE, 14);
-//            System.out.println(calendar.getTime() + "after math");
-//
-//            //Convert back to date
-//            Date greenDate = calendar.getTime();
-//            System.out.println(greenDate);
-//
-//            raceInfo.setGreenStartDate(greenDate);
-//
-//            // SETTING THE RACE ID FROM THE API
-//            raceInfo.setRaceId(jsonObject.getInt("race_id"));
-//
-//            // SETTING THE RACE NAME FROM THE API
-//            raceInfo.setName(jsonObject.getString("name"));
-//
-//            // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API
-//            // SETTING IT IF IS AVAILABLE
-//            if(jsonObject.isNull("description"))
-//            {
-//                raceInfo.setDescription("Description not provided");
-//            }
-//            else
-//            {
-//                raceInfo.setDescription(jsonObject.getString("description"));
-//            }
-//
-//            // SETTING THE DATE FROM THE API
-//            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-//            Date formattedDate = formatter.parse(jsonObject.getString("next_date"));
-//            raceInfo.setRaceDate(formattedDate);
-//
-//            // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
-//            raceInfo.setRaceURL(jsonObject.getString("url"));
-//
-//            // CHECKING IF THERE IS A LOGO URL
-//            // SETTING IT FROM API IF IT DOES EXIST
-//            if(jsonObject.isNull("logo_url"))
-//            {
-//                raceInfo.setLogoUrl("logo not provided");
-//            }
-//            else
-//            {
-//                raceInfo.setLogoUrl(jsonObject.getString("logo_url"));
-//            }
-//
-//            races.add(raceInfo);
-//
-//        }
+    private static RaceInfo setRaceInfoFromAPI(JSONObject jsonObject, RaceInfo raceInfo){
 
+        // SETTING THE RACE ID FROM THE API
+        raceInfo.setRaceId(jsonObject.getInt("race_id"));
 
-        return race;
+        // SETTING THE RACE NAME FROM THE API
+        raceInfo.setName(jsonObject.getString("name"));
+
+        // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API and SETTING IT IF IS AVAILABLE
+        if(jsonObject.isNull("description"))
+        {
+            raceInfo.setDescription("Description not provided");
+        }
+        else
+        {
+            raceInfo.setDescription(jsonObject.getString("description"));
+        }
+
+        // SETTING THE DATE FROM THE API
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date formattedDate = null;
+        try {
+            formattedDate = formatter.parse(jsonObject.getString("next_date"));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        raceInfo.setRaceDate(formattedDate);
+
+        // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
+        raceInfo.setRaceURL(jsonObject.getString("url"));
+
+        // CHECKING IF THERE IS A LOGO URL
+        // SETTING IT FROM API IF IT DOES EXIST
+        if(jsonObject.isNull("logo_url"))
+        {
+            raceInfo.setLogoUrl("logo not provided");
+        }
+        else
+        {
+            raceInfo.setLogoUrl(jsonObject.getString("logo_url"));
+        }
+
+        return raceInfo;
     }
-
-    //sets a single race from the API and returns it
-//    public static void setRaceInfoFromAPI(Race race) throws UnirestException {
-//
-//        String raceId = race.getRaceId();
-//        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
-//                .asJson();
-//
-//        JSONObject raceObj = raceSpecificResponse.getBody().getObject();
-//
-//        //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
-//        race.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
-//
-//        // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
-//        JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
-//        double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
-//        double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
-//        double finalRaceCost = raceFee + processingFee;
-//
-//        race.setCostInDollars(finalRaceCost);
-//
-//        //displays race api result to console
-//        displayHTTPResponse(raceSpecificResponse);
-//        System.out.println();
-//
-//        //displays object to console
-//        System.out.println(race);
-//        System.out.println();
-//    }
 
     //Displays a response in JSON format to the console
     public static void displayHTTPResponse(HttpResponse<JsonNode> response){
