@@ -10,11 +10,12 @@ public class Race {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(nullable = false, length = 128)
-    private String raceId;
+    private long id;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "comment")
+    @Column(nullable = false, length = 128)
+    private int raceId;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "body")
     private List<Comment> comments;
 
     @ManyToMany(mappedBy = "races")
@@ -25,28 +26,28 @@ public class Race {
 
 
 
-    public Race(String raceId, List<User> users) {
+    public Race(int raceId, List<User> users) {
         this.raceId = raceId;
         this.users = users;
     }
 
-    public Race(String raceId) {
+    public Race(int raceId) {
         this.raceId = raceId;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getRaceId() {
+    public int getRaceId() {
         return raceId;
     }
 
-    public void setRaceId(String raceId) {
+    public void setRaceId(int raceId) {
         this.raceId = raceId;
     }
 

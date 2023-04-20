@@ -66,13 +66,13 @@ public class RaceAPI {
 //        displayHTTPResponse(response);
 
         //Sets the information acquired from the Races API call
-        List<RaceInfo> races = setRacesInfoFromAPI(response);
+        List<RaceInfo> races = setRacesInfoFromAPI(response, startDate);
 
         return races;
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
-    public static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
+    private static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response, Date startDate) throws ParseException {
         List<RaceInfo> races = new ArrayList<>();
 
         //converts from a response to an object
@@ -85,6 +85,19 @@ public class RaceAPI {
             RaceInfo raceInfo = new RaceInfo();
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
+
+            //Set Yellow Start date
+            raceInfo.setYellowStartDate(startDate);
+
+            //Convert to calendar and add 2 weeks to start date
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+            calendar.add(Calendar.DATE, 14);
+
+            //Convert back to date
+            Date greenDate = calendar.getTime();
+
+            raceInfo.setGreenStartDate(greenDate);
 
             // SETTING THE RACE ID FROM THE API
             raceInfo.setRaceId(jsonObject.getInt("race_id"));
@@ -104,7 +117,9 @@ public class RaceAPI {
             }
 
             // SETTING THE DATE FROM THE API
-            raceInfo.setDate(jsonObject.getString("next_date"));
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+            Date formattedDate = formatter.parse(jsonObject.getString("next_date"));
+            raceInfo.setRaceDate(formattedDate);
 
             // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
             raceInfo.setRaceURL(jsonObject.getString("url"));
@@ -156,7 +171,7 @@ public class RaceAPI {
 //    }
 
     //Displays a response in JSON format to the console
-    public static void displayHTTPResponse(HttpResponse<JsonNode> response){
+    private static void displayHTTPResponse(HttpResponse<JsonNode> response){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(response.getBody().toString());
@@ -166,7 +181,7 @@ public class RaceAPI {
 
     //Calculates the fitness score based on the user's activity level, running experience, and age
     //Return the fitness score
-    public static int fitnessValueCalculation(){
+    private static int fitnessValueCalculation(){
         int fitnessScore = 0;
 
         /* Need the below statement to switch out with the hardcoded user once security is implemented
@@ -238,7 +253,7 @@ public class RaceAPI {
     }
 
     //Calculates the start date based on how much the user needs to train
-    public static Date getStartDateCalculation(String distance){
+    private static Date getStartDateCalculation(String distance){
         SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
 
         Calendar today = new GregorianCalendar();
@@ -273,7 +288,7 @@ public class RaceAPI {
                 {
                     today.add(Calendar.DATE, (7 * 3)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 3 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
                     raceStartDate = today.getTime();
-                    System.out.println("You need 3-6 weeks to train");
+                    System.out.println("You need 3-5 weeks to train");
                 }
                 else if (fitnessScore >= 14 && fitnessScore <= 19)
                 {
@@ -320,7 +335,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A HALF MARATHON
-            case "HALF-MARATHON" ->
+            case "HALF" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -355,7 +370,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A MARATHON
-            case "MARATHON" ->
+            case "FULL" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -394,7 +409,7 @@ public class RaceAPI {
     }
 
     //Converts the string distance to a numeric equivalent
-    public static double convertDistanceToDouble(String raceDistance){
+    private static double convertDistanceToDouble(String raceDistance){
 
         double distanceInKm = 0;
 

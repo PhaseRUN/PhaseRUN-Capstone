@@ -39,12 +39,16 @@ public class RaceSearchController {
                                                   @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         // ...
         List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
-
-        // iterate over the races and extract plain text from the HTML descriptions
-        for (RaceInfo race : races) {
+        for ( RaceInfo race : races) {
             String descriptionHtml = race.getDescription();
             String descriptionText = Jsoup.parse(descriptionHtml).text();
             race.setDescription(descriptionText);
+            System.out.println();
+            System.out.println(race.getYellowStartDate() + "this is the yellow date");
+            System.out.println(race.getRaceDate() + "this is the race date");
+            System.out.println(race.getGreenStartDate() + "This is the green date");
+            //TODO: store in object or return what the date color should be
+            System.out.println(RaceInfo.redYellowGreen(race.getRaceDate(), race.getYellowStartDate(), race.getGreenStartDate())); // RETURNS A STRING OF RED, YELLOW, OR GREEN
         }
 
         model.addAttribute("races", races);
@@ -54,7 +58,7 @@ public class RaceSearchController {
     @PostMapping("/races/bookmark")
     public String bookmarkRace(@RequestParam("raceId") int raceId, HttpServletResponse response) {
         User user = userDao.findById(1);
-        Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
+        Race race = new Race(raceId, new ArrayList<>(List.of(user)));
 
         raceDao.save(race);
         System.out.println(race);
