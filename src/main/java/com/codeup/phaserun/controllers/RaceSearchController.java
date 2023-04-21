@@ -67,7 +67,7 @@ public class RaceSearchController {
         User userId = (User) authentication.getPrincipal();
         System.out.println(userId.getId());
         User user = userDao.findById(userId.getId());
-        Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
+        Race race = new Race(raceId, new ArrayList<>(List.of(user)));
 
         raceDao.save(race);
         System.out.println(mapper.writeValueAsString(race));
