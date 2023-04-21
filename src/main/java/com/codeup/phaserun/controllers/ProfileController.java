@@ -35,6 +35,8 @@ public class ProfileController {
         this.commentDao = commentDao;
     }
 
+
+
     //version works with user session
 //    @GetMapping("/profile")
 //    public String returnProfilePage(Model model, Authentication authentication) {
