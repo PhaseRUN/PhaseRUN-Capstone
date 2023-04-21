@@ -51,15 +51,11 @@
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="form">
                                         <div class="modal-content">
                                             <span class="close">&times;</span>
-                                            <div class="comment-section">
+                                            <div class="comment-section" th:each="comment : ${comments}">
                                                 <div class="comment">
-                                                    <p>Comment 1</p>
-                                                </div>
-                                                <div class="comment">
-                                                    <p>Comment 2</p>
-                                                </div>
-                                                <div class="comment">
-                                                    <p>Comment 3</p>
+                                                    <p>
+                                                        <span th:if="${comment.getRaceId() == race.getRaceId()}"><span th:text="comment"></span></span>
+                                                    </p>
                                                 </div>
                                                 <!-- add more comments here -->
                                             </div>
