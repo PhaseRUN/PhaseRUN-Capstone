@@ -71,8 +71,8 @@ public class ProfileController {
     }
 
     @PostMapping("/profile/{id}/edit")
-    public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model) {
-        User userToUpdate = userDao.findById(userUpdates.getId());
+    public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model, Authentication authentication) {
+        User userToUpdate = userDao.findByUsername(authentication.getName());
         if (userUpdates.getZipcode() != 0) {
             userToUpdate.setZipcode(userUpdates.getZipcode());
         }
