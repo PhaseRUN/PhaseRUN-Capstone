@@ -34,15 +34,62 @@ public class ProfileController {
         this.raceDao = raceDao;
         this.commentDao = commentDao;
     }
+
+    //version works with user session
+//    @GetMapping("/profile")
+//    public String returnProfilePage(Model model, Authentication authentication) {
+//        User userFromDb = userDao.findByUsername(authentication.getName());
+//        model.addAttribute("user", userFromDb);
+//        System.out.println(userFromDb);
+//        return "users/profile";
+//
+//    }
+
+//version breaks
     @GetMapping("/profile")
-    public String returnProfilePage(Model model, Authentication authentication) {
-        User userFromDb = userDao.findByUsername(authentication.getName());
-        model.addAttribute("user", userFromDb);
-        System.out.println(userFromDb);
-        return "users/profile";
+    public String returnProfilePage(Model model, Authentication authentication) throws ParseException {
+        //TODO: replace user with user session and populated races
+        User user = userDao.findByUsername(authentication.getName());
+        List<Race> races = user.getRaces();
+//        List<Comment> comments = commentDao.findAll();
+        List<Race> dbRaces = raceDao.findAll();
 
+
+        System.out.println(races.get(0).getRaceId());
+
+        List<RaceInfo> racesInfo = new ArrayList<>();
+        for (Race race : user.getRaces()){
+            System.out.println("API for this race id: " + race.getRaceId());
+            RaceInfo raceInfo = new RaceInfo();
+            System.out.println(race.getId());
+            raceInfo.setDbId(race.getId());
+            racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
+
+        }
+
+        for (RaceInfo race : racesInfo)
+        {
+            race.setDescription(Jsoup.parse(race.getDescription()).text());
+            System.out.println(race.getRaceId());
+//            for(Comment comment : commentDao.findByRaceId(race.getRaceId()))
+//            {
+//                System.out.println(comment.getBody());
+//            }
+        }
+
+
+
+        System.out.println(racesInfo.get(0).getName());
+//        System.out.println(racesInfo.get(1).getName());
+        model.addAttribute("races", racesInfo);
+
+//        model.addAttribute("comments", comments);
+
+        model.addAttribute("user", user);
+//        model.addAttribute("comment", new Comment());
+
+        return "/users/profile";
     }
-
 
     @PostMapping("/profile")
     public String updateUser(@ModelAttribute User userUpdates, Model model, Authentication authentication) {
@@ -60,18 +107,20 @@ public class ProfileController {
         userDao.save(userToUpdate);
         User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
+
         return "users/profile";
     }
 
     @PostMapping("/profile/comment")
-    public String addAComment(@ModelAttribute Comment comment)
+    public String addAComment(@ModelAttribute Comment comment, Authentication authentication)
     {
-        comment.setUser(userDao.findById(1));
+        comment.setUser(userDao.findByUsername(authentication.getName()));
+     //TODO: NEED TO CHANGE THE RACE FROM HARD CODE TO USER CONNECTED RACE
         comment.setRace(raceDao.findById(1));
 
         commentDao.save(comment);
 
-        User user = userDao.findById(1); // id should be obtained from the user session
+        User user = userDao.findByUsername(authentication.getName()); // id should be obtained from the user session
         List<Comment> userComments = new ArrayList<>(user.getComments());
         userComments.add(commentDao.findById(comment.getId()));
         user.setComments(userComments);
