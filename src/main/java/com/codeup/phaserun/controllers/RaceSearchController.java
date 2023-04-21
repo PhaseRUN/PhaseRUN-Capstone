@@ -6,8 +6,13 @@ import com.codeup.phaserun.models.RaceInfo;
 import com.codeup.phaserun.models.User;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,9 +39,9 @@ public class RaceSearchController {
     }
 
     @PostMapping("/race/search")
-    public String returnRaceSearchPageWithResults(@RequestParam (name = "race-distance") String distance,
-                                                  @RequestParam (name = "search-radius") String searchR,
-                                                  @RequestParam (name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
+    public String returnRaceSearchPageWithResults(@RequestParam(name = "race-distance") String distance,
+                                                  @RequestParam(name = "search-radius") String searchR,
+                                                  @RequestParam(name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         // ...
         List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
 
@@ -51,21 +56,44 @@ public class RaceSearchController {
         return "users/raceSearch";
     }
 
+
     @PostMapping("/races/bookmark")
-    public String bookmarkRace(@RequestParam("raceId") int raceId, HttpServletResponse response) {
-        User user = userDao.findById(1);
+    public String bookmarkRace(@RequestParam("raceId") int raceId, Authentication authentication, HttpServletResponse response) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        User userId = (User) authentication.getPrincipal();
+        System.out.println(userId.getId());
+        User user = userDao.findById(userId.getId());
         Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
-
+//
         raceDao.save(race);
-        System.out.println(race);
-
+        System.out.println(mapper.writeValueAsString(race));
+//
         List<Race> races = new ArrayList<>(user.getRaces());
-        races.add(raceDao.findById(1));
+        System.out.println(mapper.writeValueAsString(races));
+        races.add(race);
         user.setRaces(races);
-
+        System.out.println(mapper.writeValueAsString(user.getRaces()));
         userDao.save(user);
-
         return "redirect:/profile";
     }
+
+//
+
+//    @PostMapping("/races/bookmark")
+//    public String bookmarkRace(@RequestParam("raceId") int raceId, HttpServletResponse response) {
+//        User user = userDao.findById(1);
+//        Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
+//
+//        raceDao.save(race);
+//        System.out.println(race);
+//
+//        List<Race> races = new ArrayList<>(user.getRaces());
+//        races.add(raceDao.findById(1));
+//        user.setRaces(races);
+//
+//        userDao.save(user);
+//
+//        return "redirect:/profile";
+//    }
 
 }

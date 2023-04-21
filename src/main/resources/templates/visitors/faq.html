@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 <div class="under-nav">
     <h1 class="title-text">FAQ</h1>
 </div>

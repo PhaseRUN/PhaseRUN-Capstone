@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface RaceRepository extends JpaRepository<Race, Long> {
     Race findById(int id);
-
+    boolean existsByRaceId(String raceId);
+    Race findByRaceId(String raceId);
 }
 
 

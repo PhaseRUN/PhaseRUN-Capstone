@@ -1,5 +1,6 @@
 package com.codeup.phaserun.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -24,6 +25,7 @@ public class User {
     private String username;
     @Column(nullable = false, length = 300)
     private String email;
+    @JsonIgnore
     @Column(nullable = false, length = 128)
     private String password;
     @Enumerated(EnumType.ORDINAL)
@@ -76,6 +78,17 @@ public class User {
         this.activityLvl = activityLvl;
         this.zipcode = zipcode;
         this.birthDate = birthDate;
+    }
+
+    public User(User copy) {
+        id = copy.id;
+        username = copy.username;
+        email = copy.email;
+        password = copy.password;
+        runningExp = copy.runningExp;
+        activityLvl = copy.activityLvl;
+        zipcode = copy.zipcode;
+        birthDate = copy.birthDate;
     }
 
     public User() {

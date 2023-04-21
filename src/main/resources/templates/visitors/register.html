@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 
 <div class="under-nav">
     <h1 class="heading title-text">Register</h1>
@@ -47,17 +47,17 @@
             </div>
             <div class="padding">
                 <label for="activity-level">Activity Level:</label>
-                  <select id="activity-level" th:field="*{activityLvl}">
-                      <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
-                              th:value="${activityLvl}"
-                              th:text="${activityLvl}"
-                              th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
-                      </option>
-                  </select>
+                    <select id="activity-level" th:field="*{activityLvl}">
+                        <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
+                        th:value="${activityLvl}"
+                        th:text="${activityLvl}"
+                        th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum).NONE}">
+                        </option>
+                    </select>
             </div>
             <div class="padding">
-                 <label class="fit-zipcode" for="fit-zipcode">Zip Code</label>
-                <input type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="Zip Code" th:field="*{zipcode}" />
+                 <label class="fit-zipcode" for="fit-zipcode">ZIP Code</label>
+                 <input type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="ZIP Code" th:field="*{zipcode}" />
             </div>
             <div class="padding">
                 <button type="submit" class="btn btn-primary">Sign Up</button>

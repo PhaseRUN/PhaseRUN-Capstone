@@ -3,6 +3,7 @@ package com.codeup.phaserun.controllers;
 import com.codeup.phaserun.models.User;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +18,11 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
-    public String returnProfilePage(Model model) {
-        User userFromDb = userDao.findById(1);
+    public String returnProfilePage(Model model, Authentication authentication) {
+        User userFromDb = userDao.findByUsername(authentication.getName());
         model.addAttribute("user", userFromDb);
+        System.out.println(userFromDb);
         return "users/profile";
-
     }
 
     @GetMapping("/profile/{id}/edit")
