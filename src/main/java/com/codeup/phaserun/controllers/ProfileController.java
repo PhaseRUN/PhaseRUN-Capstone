@@ -36,19 +36,40 @@ public class ProfileController {
     public String returnProfilePage(Model model) {
         //TODO: replace user with user session and populated races
         User user = userDao.findById(1);
-        List<Race> races = raceDao.findAll();;
+        List<Race> races = user.getRaces();
+        List<Comment> comments = commentDao.findAll();
+        List<Race> dbRaces = raceDao.findAll();
+
 
         System.out.println(races.get(0).getRaceId());
 
-        List<RaceInfo> racesInfo = new ArrayList<RaceInfo>();
+        List<RaceInfo> racesInfo = new ArrayList<>();
         for (Race race : user.getRaces()){
             System.out.println("API for this race id: " + race.getRaceId());
             RaceInfo raceInfo = new RaceInfo();
+            System.out.println(race.getId());
+            raceInfo.setDbId(race.getId());
             racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
+
         }
+
+        for (RaceInfo race : racesInfo)
+        {
+            race.setDescription(Jsoup.parse(race.getDescription()).text());
+            System.out.println(race.getRaceId());
+            for(Comment comment : commentDao.findByRaceId(race.getRaceId()))
+            {
+                System.out.println(comment.getBody());
+            }
+        }
+
+
+
         System.out.println(racesInfo.get(0).getName());
-        System.out.println(racesInfo.get(1).getName());
+//        System.out.println(racesInfo.get(1).getName());
         model.addAttribute("races", racesInfo);
+
+        model.addAttribute("comments", comments);
 
         model.addAttribute("user", user);
         model.addAttribute("comment", new Comment());
@@ -81,34 +102,6 @@ public class ProfileController {
 //        model.addAttribute("comments", dbRaces);
 //        return "users/profile";
 //    }
-
-
-    @GetMapping("/profile/{id}/edit")
-    public String returnEditPage(@PathVariable int id, Model model) {
-
-// Temporary list of races for bookmark editing on profile page - Rob (20 April)
-
-//        List<RaceInfo> races;
-//        try {
-//            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//        for (RaceInfo race : races) {
-//            String descriptionHtml = race.getDescription();
-//            String descriptionText = Jsoup.parse(descriptionHtml).text();
-//            race.setDescription(descriptionText);
-//        }
-//        model.addAttribute("races", races);
-
-// End of temporary list
-
-        User userFromDb = userDao.findById(id);
-        model.addAttribute("user", userFromDb);
-        model.addAttribute("comment", new Comment());
-        return "users/profile";
-
-    }
 
     @PostMapping("/profile/{id}/edit")
     public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model) {

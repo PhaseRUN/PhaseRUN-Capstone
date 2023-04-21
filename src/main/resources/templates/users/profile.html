@@ -51,8 +51,8 @@
                                             <span class="close">&times;</span>
                                             <div class="comment-section" th:each="comment : ${comments}">
                                                 <div class="comment">
-                                                    <p>
-                                                        <span th:if="${comment.getRaceId() == race.getRaceId()}"><span th:text="comment"></span></span>
+                                                    <p th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                                        <span th:text="${comment.getBody()}"></span>
                                                     </p>
                                                 </div>
                                                 <!-- add more comments here -->
@@ -64,6 +64,19 @@
                                                     <button id="submitCommentBtn">Submit</button>
                                                 </div>
                                             </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+<!--                                 Info Modal -->
+                                <div class="modal fade opacity-100" id="infoModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <h1 class="modal-title" id="infoModalLabel"><span th:text="${race.description}"></span></h1>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-tertiary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
                                         </div>
                                     </div>
                                 </div>
