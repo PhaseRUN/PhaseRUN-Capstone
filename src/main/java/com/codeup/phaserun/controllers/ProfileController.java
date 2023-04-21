@@ -1,11 +1,9 @@
 package com.codeup.phaserun.controllers;
 
-
-import com.codeup.phaserun.models.*;
-
-import com.codeup.phaserun.repositories.CommentRespository;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
+import com.codeup.phaserun.models.*;
+import com.codeup.phaserun.repositories.CommentRespository;
 import org.jsoup.Jsoup;
 
 import org.springframework.stereotype.Controller;
@@ -20,7 +18,6 @@ import java.util.List;
 
 
 import java.text.ParseException;
-import java.util.List;
 
 @Controller
 public class ProfileController {
@@ -35,33 +32,55 @@ public class ProfileController {
         this.raceDao = raceDao;
         this.commentDao = commentDao;
     }
-
     @GetMapping("/profile")
     public String returnProfilePage(Model model) {
-        User userFromDb = userDao.findById(1);
+        //TODO: replace user with user session and populated races
+        User user = userDao.findById(1);
+        List<Race> races = raceDao.findAll();;
 
-        List<Race> dbRaces = raceDao.findAll();
+        System.out.println(races.get(0).getRaceId());
 
-        List<RaceInfo> races;
-        try {
-            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+        List<RaceInfo> racesInfo = new ArrayList<RaceInfo>();
+        for (Race race : user.getRaces()){
+            System.out.println("API for this race id: " + race.getRaceId());
+            RaceInfo raceInfo = new RaceInfo();
+            racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
         }
-        for (RaceInfo race : races) {
-            String descriptionHtml = race.getDescription();
-            String descriptionText = Jsoup.parse(descriptionHtml).text();
-            race.setDescription(descriptionText);
-        }
+        System.out.println(racesInfo.get(0).getName());
+        System.out.println(racesInfo.get(1).getName());
+        model.addAttribute("races", racesInfo);
 
-        model.addAttribute("races", races);
-
-        model.addAttribute("user", userFromDb);
+        model.addAttribute("user", user);
         model.addAttribute("comment", new Comment());
 
-        model.addAttribute("comments", dbRaces);
-        return "users/profile";
+        return "/users/profile";
     }
+
+//    @GetMapping("/profile/{id}/edit")
+//    public String returnEditPage(@PathVariable int id, Model model) {
+//
+//// Temporary list of races for bookmark editing on profile page - Rob (20 April)
+//
+//        List<RaceInfo> races;
+//        try {
+//            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//        for (RaceInfo race : races) {
+//            String descriptionHtml = race.getDescription();
+//            String descriptionText = Jsoup.parse(race.getDescription()).text();
+//            race.setDescription(Jsoup.parse(race.getDescription()).text());
+//        }
+//
+//        model.addAttribute("races", races);
+//
+//        model.addAttribute("user", userFromDb);
+//        model.addAttribute("comment", new Comment());
+//
+//        model.addAttribute("comments", dbRaces);
+//        return "users/profile";
+//    }
 
 
     @GetMapping("/profile/{id}/edit")
@@ -111,13 +130,6 @@ public class ProfileController {
 
         return "users/profile";
     }
-@GetMapping("/profile/")
-    public String returnProfilePage(@PathVariable int id, Model model) {
-        User userFromDb = userDao.findById(id);
-        model.addAttribute("user", userFromDb);
-        model.addAttribute("comment", new Comment());
-        return "users/profile";
-    }
 
     @PostMapping("/profile/comment")
     public String addAComment(@ModelAttribute Comment comment)
@@ -149,5 +161,4 @@ public class ProfileController {
 
         return "redirect:/profile";
     }
-
 }

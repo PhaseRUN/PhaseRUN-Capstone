@@ -65,10 +65,8 @@ public class RaceAPI {
         //Displays the api result to the console
 //        displayHTTPResponse(response);
 
-        //Sets the information acquired from the Races API call
-        List<RaceInfo> races = setRacesInfoFromAPI(response, startDate);
-
-        return races;
+        //Sets the information acquired from the Races API call and returns it
+        return setRacesInfoFromAPI(response, startDate);
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
@@ -83,6 +81,7 @@ public class RaceAPI {
         for(int i = 0; i < results.length(); i++)
         {
             RaceInfo raceInfo = new RaceInfo();
+
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
 
@@ -141,37 +140,74 @@ public class RaceAPI {
         return races;
     }
 
-    //sets a single race from the API and returns it
-//    public static void setRaceInfoFromAPI(Race race) throws UnirestException {
-//
-//        String raceId = race.getRaceId();
-//        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
-//                .asJson();
-//
-//        JSONObject raceObj = raceSpecificResponse.getBody().getObject();
-//
-//        //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
-//        race.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
-//
-//        // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
-//        JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
-//        double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
-//        double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
-//        double finalRaceCost = raceFee + processingFee;
-//
-//        race.setCostInDollars(finalRaceCost);
-//
-//        //displays race api result to console
-//        displayHTTPResponse(raceSpecificResponse);
-//        System.out.println();
-//
-//        //displays object to console
-//        System.out.println(race);
-//        System.out.println();
-//    }
+    public static RaceInfo getRaceInfoFromAPI(int userRaceId, RaceInfo raceInfo){
+
+        //API call gets races information with given filters
+        Unirest.setTimeouts(0, 0);
+        HttpResponse<JsonNode> response = null;
+        String raceId = String.valueOf(userRaceId);
+        try {
+            response = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json&event", raceId))
+                    .header("api_key", apiKey)
+                    .asJson();
+        } catch (UnirestException e) {
+            throw new RuntimeException(e);
+        }
+
+        displayHTTPResponse(response);
+
+        JSONObject jsonObject = response.getBody().getObject().getJSONObject("race");
+
+        return setRaceInfoFromAPI(jsonObject, raceInfo);
+    }
+
+    private static RaceInfo setRaceInfoFromAPI(JSONObject jsonObject, RaceInfo raceInfo){
+
+        // SETTING THE RACE ID FROM THE API
+        raceInfo.setRaceId(jsonObject.getInt("race_id"));
+
+        // SETTING THE RACE NAME FROM THE API
+        raceInfo.setName(jsonObject.getString("name"));
+
+        // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API and SETTING IT IF IS AVAILABLE
+        if(jsonObject.isNull("description"))
+        {
+            raceInfo.setDescription("Description not provided");
+        }
+        else
+        {
+            raceInfo.setDescription(jsonObject.getString("description"));
+        }
+
+        // SETTING THE DATE FROM THE API
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date formattedDate = null;
+        try {
+            formattedDate = formatter.parse(jsonObject.getString("next_date"));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        raceInfo.setRaceDate(formattedDate);
+
+        // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
+        raceInfo.setRaceURL(jsonObject.getString("url"));
+
+        // CHECKING IF THERE IS A LOGO URL
+        // SETTING IT FROM API IF IT DOES EXIST
+        if(jsonObject.isNull("logo_url"))
+        {
+            raceInfo.setLogoUrl("logo not provided");
+        }
+        else
+        {
+            raceInfo.setLogoUrl(jsonObject.getString("logo_url"));
+        }
+
+        return raceInfo;
+    }
 
     //Displays a response in JSON format to the console
-    private static void displayHTTPResponse(HttpResponse<JsonNode> response){
+    public static void displayHTTPResponse(HttpResponse<JsonNode> response){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(response.getBody().toString());
@@ -437,8 +473,6 @@ public class RaceAPI {
     }
 
     //For testing purposes
-    public static void main(String[] args) throws ParseException {
-//        System.out.println(fitnessValueCalculation());
-//        System.out.println(getRacesFromAPI("100","78240","10K").get(0).getDescription());
+    public static void main(String[] args) {
     }
 }

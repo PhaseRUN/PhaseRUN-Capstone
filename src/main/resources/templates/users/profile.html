@@ -30,9 +30,7 @@
                 <div class="card-body text-center">
                     <h1 class="title-text">Bookmarks</h1>
                     <div class="row">
-
 <!--                        Working Card - Rob -->
-
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
                             <div class="card race-card" style="width: 18rem;" >
                                 <div class="card-body">
@@ -66,20 +64,6 @@
                                                     <button id="submitCommentBtn">Submit</button>
                                                 </div>
                                             </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Info Modal -->
-
-                                <div class="modal fade opacity-100" id="infoModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <h1 class="modal-title" id="infoModalLabel"><span th:text="${race.description}"></span></h1>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-tertiary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
                                         </div>
                                     </div>
                                 </div>
@@ -169,8 +153,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
-
-
             </div>
         </div>
     </div>

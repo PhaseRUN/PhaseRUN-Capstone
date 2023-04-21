@@ -24,8 +24,6 @@ public class Race {
     public Race() {
     }
 
-
-
     public Race(int raceId, List<User> users) {
         this.raceId = raceId;
         this.users = users;
