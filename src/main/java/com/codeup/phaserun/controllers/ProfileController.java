@@ -48,7 +48,7 @@ public class ProfileController {
         }
         System.out.println(racesInfo.get(0).getName());
         System.out.println(racesInfo.get(1).getName());
-        model.addAttribute("userRaces", racesInfo);
+        model.addAttribute("races", racesInfo);
 
         model.addAttribute("user", user);
         model.addAttribute("comment", new Comment());
@@ -69,8 +69,8 @@ public class ProfileController {
         }
         for (RaceInfo race : races) {
             String descriptionHtml = race.getDescription();
-            String descriptionText = Jsoup.parse(descriptionHtml).text();
-            race.setDescription(descriptionText);
+            String descriptionText = Jsoup.parse(race.getDescription()).text();
+            race.setDescription(Jsoup.parse(race.getDescription()).text());
         }
         model.addAttribute("races", races);
 
@@ -78,7 +78,7 @@ public class ProfileController {
 
         User userFromDb = userDao.findById(id);
         model.addAttribute("user", userFromDb);
-
+        model.addAttribute("comment", new Comment());
         return "users/profile";
 
     }
