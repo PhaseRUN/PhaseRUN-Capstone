@@ -52,7 +52,7 @@ public class SecurityConfiguration {
             .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/profile", "/race/search", "/races/bookmark"
+                        "/profile", "/race/search", "/races/bookmark", "/profile/comment"
                 )
                 .authenticated()
         ;

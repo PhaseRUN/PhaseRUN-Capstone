@@ -82,23 +82,4 @@ public class RaceSearchController {
         return "redirect:/profile";
     }
 
-//
-
-//    @PostMapping("/races/bookmark")
-//    public String bookmarkRace(@RequestParam("raceId") int raceId, HttpServletResponse response) {
-//        User user = userDao.findById(1);
-//        Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
-//
-//        raceDao.save(race);
-//        System.out.println(race);
-//
-//        List<Race> races = new ArrayList<>(user.getRaces());
-//        races.add(raceDao.findById(1));
-//        user.setRaces(races);
-//
-//        userDao.save(user);
-//
-//        return "redirect:/profile";
-//    }
-
 }

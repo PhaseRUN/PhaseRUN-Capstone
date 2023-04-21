@@ -43,35 +43,9 @@ public class ProfileController {
 
     }
 
-    @GetMapping("/profile/{id}/edit")
-    public String returnEditPage(@PathVariable int id, Model model) {
 
-// Temporary list of races for bookmark editing on profile page - Rob (20 April)
-
-        List<RaceInfo> races;
-        try {
-            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        for (RaceInfo race : races) {
-            String descriptionHtml = race.getDescription();
-            String descriptionText = Jsoup.parse(descriptionHtml).text();
-            race.setDescription(descriptionText);
-        }
-        model.addAttribute("races", races);
-
-// End of temporary list
-
-        User userFromDb = userDao.findById(id);
-        model.addAttribute("user", userFromDb);
-
-        return "users/profile";
-
-    }
-
-    @PostMapping("/profile/{id}/edit")
-    public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model, Authentication authentication) {
+    @PostMapping("/profile")
+    public String updateUser(@ModelAttribute User userUpdates, Model model, Authentication authentication) {
         User userToUpdate = userDao.findByUsername(authentication.getName());
         if (userUpdates.getZipcode() != 0) {
             userToUpdate.setZipcode(userUpdates.getZipcode());
@@ -84,7 +58,7 @@ public class ProfileController {
         }
 //        System.out.println(userToUpdate);
         userDao.save(userToUpdate);
-        User userFromDb = userDao.findById(id);
+        User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
         return "users/profile";
     }

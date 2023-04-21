@@ -1,34 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head
         th:replace="~{partials/head :: head}">
 
     <title>Profile</title>
 
 </head>
-
 <body>
+<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 
-    <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
-    <div class="container d-flex justify-content-center align-items-center under-nav opacity-90">
-        <div class="card">
-            <div class="row gx-1">
-                <div class="col-sm-12 col-lg-4">
-                    <img src="/images/profile-female.jpg" alt="prof-1" class="card-img-top profile-pic">
+<div class="container d-flex justify-content-center align-items-center under-nav opacity-90">
+    <div class="card">
+        <div class="row gx-1">
+            <div class="col-sm-12 col-lg-4">
+                <img src="/images/profile-female.jpg" alt="prof-1" class="card-img-top profile-pic">
+            </div>
+            <div class="col-sm-12 col-lg-8 gx-1">
+                <div class="card-body text-center sub-title-text">
+                    <h2 class="card-title">
+                        <span th:text="${user.getUsername()}"></span>
+                    </h2>
+                    <h3 class="card-title">
+                        <span th:text="${user.getZipcode()}"></span>
+                    </h3>
+                    <div class="general-text d-flex align-content-center justify-content-center">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
+                    </div>
                 </div>
                 <div class="card-body text-center">
                     <h1 class="title-text">Bookmarks</h1>
                     <div class="row">
 
-<!--                        Working Card - Rob -->
+                        <!--                        Working Card - Rob -->
 
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
                             <div class="card race-card" style="width: 18rem;" >
                                 <div class="card-body">
                                     <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Race Image">
-<!--                                    <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>-->
+                                    <!--                                    <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>-->
                                     <p class="card-text general-text" th:text="${race.date}">Date: </p>
                                 </div>
                                 <div class="card-body general-text">
@@ -86,6 +96,7 @@
             </div>
         </div>
     </div>
+</div>
 
 <!-- Profile Edit Modal -->
 
@@ -96,7 +107,7 @@
                 <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
+                <form th:action="@{/profile}" th:method="post" th:object="${user}">
                     <div class="container-prof">
                         <div class="header-prof">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
@@ -129,9 +140,7 @@
 </div>
 
 
-
-    <!-- Fitness Edit Modal-->
-
+<!-- Fitness Edit Modal-->
 
 <div class="modal fade opacity-100" id="editFitnessModal" tabindex="-1" role="dialog" aria-labelledby="editFitnessModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="form">
@@ -140,7 +149,9 @@
                 <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
+
+
+                <form th:action="@{/profile}" th:method="post" th:object="${user}">
                     <div class="form-group">
                         <label for="activity-level">Activity Level:</label>
                         <select id="activity-level" th:field="*{activityLvl}">
@@ -163,6 +174,8 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
+
+
             </div>
         </div>
     </div>
