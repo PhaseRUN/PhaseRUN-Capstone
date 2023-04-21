@@ -8,8 +8,9 @@ import java.util.List;
 
 @Repository
 public interface RaceRepository extends JpaRepository<Race, Long> {
-    Race findById(long id);
-    Race findRaceByRaceId(int race_id);
+    Race findById(int id);
+    boolean existsByRaceId(String raceId);
+    Race findByRaceId(String raceId);
 }
 
 
