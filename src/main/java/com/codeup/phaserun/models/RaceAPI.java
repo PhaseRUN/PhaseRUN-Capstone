@@ -65,14 +65,12 @@ public class RaceAPI {
         //Displays the api result to the console
 //        displayHTTPResponse(response);
 
-        //Sets the information acquired from the Races API call
-        List<RaceInfo> races = setRacesInfoFromAPI(response);
-
-        return races;
+        //Sets the information acquired from the Races API call and returns it
+        return setRacesInfoFromAPI(response, startDate);
     }
 
     //Sets the race information acquired from the Races API and returns a list of races
-    public static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response) throws ParseException {
+    private static List<RaceInfo> setRacesInfoFromAPI(HttpResponse<JsonNode> response, Date startDate) throws ParseException {
         List<RaceInfo> races = new ArrayList<>();
 
         //converts from a response to an object
@@ -83,8 +81,22 @@ public class RaceAPI {
         for(int i = 0; i < results.length(); i++)
         {
             RaceInfo raceInfo = new RaceInfo();
+
             // GETTING OBJECT INFORMATION
             JSONObject jsonObject = results.getJSONObject(i).getJSONObject("race");
+
+            //Set Yellow Start date
+            raceInfo.setYellowStartDate(startDate);
+
+            //Convert to calendar and add 2 weeks to start date
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+            calendar.add(Calendar.DATE, 14);
+
+            //Convert back to date
+            Date greenDate = calendar.getTime();
+
+            raceInfo.setGreenStartDate(greenDate);
 
             // SETTING THE RACE ID FROM THE API
             raceInfo.setRaceId(jsonObject.getInt("race_id"));
@@ -104,7 +116,9 @@ public class RaceAPI {
             }
 
             // SETTING THE DATE FROM THE API
-            raceInfo.setDate(jsonObject.getString("next_date"));
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+            Date formattedDate = formatter.parse(jsonObject.getString("next_date"));
+            raceInfo.setRaceDate(formattedDate);
 
             // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
             raceInfo.setRaceURL(jsonObject.getString("url"));
@@ -126,34 +140,71 @@ public class RaceAPI {
         return races;
     }
 
-    //sets a single race from the API and returns it
-//    public static void setRaceInfoFromAPI(Race race) throws UnirestException {
-//
-//        String raceId = race.getRaceId();
-//        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json", raceId))
-//                .asJson();
-//
-//        JSONObject raceObj = raceSpecificResponse.getBody().getObject();
-//
-//        //GETTING THE DISTANCE (FOR THE CARD DISPLAY) FROM THE API
-//        race.setDistanceInKm(raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getString("distance"));
-//
-//        // GETTING THE PRICE(S) (FOR THE CARD DISPLAY) FROM THE API
-//        JSONObject getToPrice = raceObj.getJSONObject("race").getJSONArray("events").getJSONObject(0).getJSONArray("registration_periods").getJSONObject(0);
-//        double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
-//        double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
-//        double finalRaceCost = raceFee + processingFee;
-//
-//        race.setCostInDollars(finalRaceCost);
-//
-//        //displays race api result to console
-//        displayHTTPResponse(raceSpecificResponse);
-//        System.out.println();
-//
-//        //displays object to console
-//        System.out.println(race);
-//        System.out.println();
-//    }
+    public static RaceInfo getRaceInfoFromAPI(int userRaceId, RaceInfo raceInfo){
+
+        //API call gets races information with given filters
+        Unirest.setTimeouts(0, 0);
+        HttpResponse<JsonNode> response = null;
+        String raceId = String.valueOf(userRaceId);
+        try {
+            response = Unirest.get(String.format("https://runsignup.com/rest/race/%s?format=json&event", raceId))
+                    .header("api_key", apiKey)
+                    .asJson();
+        } catch (UnirestException e) {
+            throw new RuntimeException(e);
+        }
+
+        displayHTTPResponse(response);
+
+        JSONObject jsonObject = response.getBody().getObject().getJSONObject("race");
+
+        return setRaceInfoFromAPI(jsonObject, raceInfo);
+    }
+
+    private static RaceInfo setRaceInfoFromAPI(JSONObject jsonObject, RaceInfo raceInfo){
+
+        // SETTING THE RACE ID FROM THE API
+        raceInfo.setRaceId(jsonObject.getInt("race_id"));
+
+        // SETTING THE RACE NAME FROM THE API
+        raceInfo.setName(jsonObject.getString("name"));
+
+        // LOGIC TO CHECK IF A DESCRIPTION WAS PROVIDED FOR THE API and SETTING IT IF IS AVAILABLE
+        if(jsonObject.isNull("description"))
+        {
+            raceInfo.setDescription("Description not provided");
+        }
+        else
+        {
+            raceInfo.setDescription(jsonObject.getString("description"));
+        }
+
+        // SETTING THE DATE FROM THE API
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date formattedDate = null;
+        try {
+            formattedDate = formatter.parse(jsonObject.getString("next_date"));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        raceInfo.setRaceDate(formattedDate);
+
+        // SETTING URL FOR THE ACTUAL RACE SITE FROM THE API
+        raceInfo.setRaceURL(jsonObject.getString("url"));
+
+        // CHECKING IF THERE IS A LOGO URL
+        // SETTING IT FROM API IF IT DOES EXIST
+        if(jsonObject.isNull("logo_url"))
+        {
+            raceInfo.setLogoUrl("logo not provided");
+        }
+        else
+        {
+            raceInfo.setLogoUrl(jsonObject.getString("logo_url"));
+        }
+
+        return raceInfo;
+    }
 
     //Displays a response in JSON format to the console
     public static void displayHTTPResponse(HttpResponse<JsonNode> response){
@@ -166,7 +217,7 @@ public class RaceAPI {
 
     //Calculates the fitness score based on the user's activity level, running experience, and age
     //Return the fitness score
-    public static int fitnessValueCalculation(){
+    private static int fitnessValueCalculation(){
         int fitnessScore = 0;
 
         /* Need the below statement to switch out with the hardcoded user once security is implemented
@@ -238,7 +289,7 @@ public class RaceAPI {
     }
 
     //Calculates the start date based on how much the user needs to train
-    public static Date getStartDateCalculation(String distance){
+    private static Date getStartDateCalculation(String distance){
         SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
 
         Calendar today = new GregorianCalendar();
@@ -273,7 +324,7 @@ public class RaceAPI {
                 {
                     today.add(Calendar.DATE, (7 * 3)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 3 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
                     raceStartDate = today.getTime();
-                    System.out.println("You need 3-6 weeks to train");
+                    System.out.println("You need 3-5 weeks to train");
                 }
                 else if (fitnessScore >= 14 && fitnessScore <= 19)
                 {
@@ -320,7 +371,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A HALF MARATHON
-            case "HALF-MARATHON" ->
+            case "HALF" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -355,7 +406,7 @@ public class RaceAPI {
             }
 
             // CHECKING FOR A MARATHON
-            case "MARATHON" ->
+            case "FULL" ->
             {
                 if (fitnessScore >= 65 && fitnessScore <= 81)
                 {
@@ -394,7 +445,7 @@ public class RaceAPI {
     }
 
     //Converts the string distance to a numeric equivalent
-    public static double convertDistanceToDouble(String raceDistance){
+    private static double convertDistanceToDouble(String raceDistance){
 
         double distanceInKm = 0;
 
@@ -422,8 +473,6 @@ public class RaceAPI {
     }
 
     //For testing purposes
-    public static void main(String[] args) throws ParseException {
-//        System.out.println(fitnessValueCalculation());
-//        System.out.println(getRacesFromAPI("100","78240","10K").get(0).getDescription());
+    public static void main(String[] args) {
     }
 }

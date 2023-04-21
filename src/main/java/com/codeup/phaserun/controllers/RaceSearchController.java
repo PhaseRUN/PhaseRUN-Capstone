@@ -10,13 +10,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import org.jsoup.Jsoup;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.jsoup.Jsoup;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -44,12 +44,16 @@ public class RaceSearchController {
                                                   @RequestParam(name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         // ...
         List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
-
-        // iterate over the races and extract plain text from the HTML descriptions
-        for (RaceInfo race : races) {
+        for ( RaceInfo race : races) {
             String descriptionHtml = race.getDescription();
             String descriptionText = Jsoup.parse(descriptionHtml).text();
             race.setDescription(descriptionText);
+            System.out.println();
+            System.out.println(race.getYellowStartDate() + "this is the yellow date");
+            System.out.println(race.getRaceDate() + "this is the race date");
+            System.out.println(race.getGreenStartDate() + "This is the green date");
+            //TODO: store in object or return what the date color should be
+            System.out.println(RaceInfo.redYellowGreen(race.getRaceDate(), race.getYellowStartDate(), race.getGreenStartDate())); // RETURNS A STRING OF RED, YELLOW, OR GREEN
         }
 
         model.addAttribute("races", races);
@@ -64,13 +68,14 @@ public class RaceSearchController {
         System.out.println(userId.getId());
         User user = userDao.findById(userId.getId());
         Race race = new Race(Integer.toString(raceId), new ArrayList<>(List.of(user)));
-//
+
         raceDao.save(race);
         System.out.println(mapper.writeValueAsString(race));
-//
+
         List<Race> races = new ArrayList<>(user.getRaces());
         System.out.println(mapper.writeValueAsString(races));
         races.add(race);
+
         user.setRaces(races);
         System.out.println(mapper.writeValueAsString(user.getRaces()));
         userDao.save(user);

@@ -1,4 +1,9 @@
 import com.codeup.phaserun.models.Race;
+import com.codeup.phaserun.models.RaceInfo;
+import com.codeup.phaserun.models.User;
+import com.codeup.phaserun.repositories.CommentRespository;
+import com.codeup.phaserun.repositories.RaceRepository;
+import com.codeup.phaserun.repositories.UserRepository;
 import com.mashape.unirest.http.Unirest;
 
 import java.net.URLEncoder;
@@ -16,6 +21,7 @@ import com.google.gson.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.thymeleaf.processor.comment.ICommentProcessor;
 
 public class unirest
 {
@@ -27,6 +33,19 @@ public class unirest
 //    //Get Response
 //    InputStream is = connection.getInputStream();
 //    System.out.println(connection.getContentType());
+
+
+    private static UserRepository userDao;
+    private static RaceRepository raceDao;
+    private static CommentRespository commentDao;
+
+
+    public unirest(UserRepository userDao, RaceRepository raceDao, CommentRespository commentDao)
+    {
+        unirest.userDao = userDao;
+        unirest.raceDao = raceDao;
+        unirest.commentDao = commentDao;
+    }
 
     public static void main(String[] args) throws Exception
     {
@@ -390,26 +409,65 @@ public class unirest
 
 
 
-        // GETTING THE SEPARATE EVENTS FROM A SINGLE RACE FROM THE API
-        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get("https://runsignup.com/rest/race/84148?format=json")
-                .asJson();
+//        // GETTING THE SEPARATE EVENTS FROM A SINGLE RACE FROM THE API
+//        HttpResponse<JsonNode> raceSpecificResponse = Unirest.get("https://runsignup.com/rest/race/84148?format=json")
+//                .asJson();
+//
+//        JSONObject raceObj = raceSpecificResponse.getBody().getObject().getJSONObject("race");
+//
+//
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        JsonParser jp = new JsonParser();
+//        JsonElement je = jp.parse(raceSpecificResponse.getBody().toString());
+//        String prettyJsonString = gson.toJson(je);
+//        System.out.println(prettyJsonString);
 
-        JSONObject raceObj = raceSpecificResponse.getBody().getObject().getJSONObject("race");
-
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonParser jp = new JsonParser();
-        JsonElement je = jp.parse(raceSpecificResponse.getBody().toString());
-        String prettyJsonString = gson.toJson(je);
-        System.out.println(prettyJsonString);
-
-        JSONArray raceEvents = raceObj.getJSONArray("events");
-
-
-//        for(int i = 0; i< raceEvents; i++)
+//        JSONArray raceEvents = raceObj.getJSONArray("events");
+//
+//
+//        double totalFee = 0;
+//
+//
+//        for(int i = 0; i < raceEvents.length(); i++)
 //        {
-//            System.out.println(.getJSONObject());
+//            System.out.println();
+//            System.out.println(raceEvents.getJSONObject(i).getString("distance"));
+//
+//            JSONObject getToPrice = raceEvents.getJSONObject(i).getJSONArray("registration_periods").getJSONObject(0);
+//            double raceFee = Double.parseDouble(getToPrice.getString("race_fee").substring(1));
+//            double processingFee = Double.parseDouble(getToPrice.getString("processing_fee").substring(1));
+//            double finalRaceCost = raceFee + processingFee;
+//            System.out.println("$" + finalRaceCost);
+//
+////            System.out.println("Race fee: " + raceEvents.getJSONObject(i).getJSONArray("registration_periods").getJSONObject(0).getString("race_fee"));
+////            System.out.println("Processing fee: " + raceEvents.getJSONObject(i).getJSONArray("registration_periods").getJSONObject(0).getString("processing_fee"));
+//            System.out.println();
 //        }
 
+        //////////// GREEN YELLOW RED CALCULATION /////////////////
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date d1 = formatter.parse("07/11/2023");
+        Date d2 = formatter.parse("07/31/2023");
+        Date compareDate = formatter.parse("08/01/2023");
+
+        System.out.println("The date 1 is: " + formatter.format(d1));
+        System.out.println("The date 2 is: " + formatter.format(d2));
+        System.out.println("The date to compare is: " + formatter.format(compareDate));
+
+        if(compareDate.compareTo(d1) > 0 && compareDate.compareTo(d2) < 0)//if the date we're comparing is in between the two dates
+        {
+            System.out.println("Yellow");
+        }
+        else if(compareDate.compareTo(d1) < 0)//if the date we're comparing is before the first (earliest) date
+        {
+            System.out.println("Red");
+        }
+        else if(compareDate.compareTo(d2) > 0)//if the date we're comparing is after the second (latest) date (2 weeks after first date)
+        {
+            System.out.println("Green");
+        }
+
     }
+
 }

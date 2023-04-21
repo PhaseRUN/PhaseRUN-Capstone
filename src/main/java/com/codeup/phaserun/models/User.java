@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class User {
-
     public enum RunningExpEnum {
         NONE, BEGINNER, RECREATIONAL, INTERMEDIATE, EXPERT
     }
@@ -20,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(nullable = false, length = 128)
     private String username;
     @Column(nullable = false, length = 300)
@@ -45,10 +44,10 @@ public class User {
     )
     private List<Race> races;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "comment")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "body")
     private List<Comment> comments;
 
-    public User(int id, String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, Date birthDate, List<Race> races) {
+    public User(long id, String username, String email, String password, RunningExpEnum runningExp, ActivityLvlEnum activityLvl, int zipcode, Date birthDate, List<Race> races) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -94,11 +93,11 @@ public class User {
     public User() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -165,6 +164,14 @@ public class User {
 
     public void setRaces(List<Race> races) {
         this.races = races;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override
