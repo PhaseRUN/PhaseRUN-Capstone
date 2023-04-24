@@ -40,10 +40,10 @@
                             <option value="500">500 miles</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-3" th:object="${user}">
                         <label class="flex-0 margin-lr-10 sub-title-text">Search From:</label>
                         <label class="sr-only" for="zipcodeRadius">Zip Code</label>
-                        <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" placeholder="Zip Code" class="form-control">
+                        <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" value="" th:field="*{zipcode}" placeholder="Zip Code" class="form-control">
                     </div>
                     <div class="form-group col-md-3">
                         <button type="submit" class="btn btn-primary">Search</button>

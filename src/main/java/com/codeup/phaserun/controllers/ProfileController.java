@@ -78,7 +78,7 @@ public class ProfileController {
 //        System.out.println(races.get(0).getRaceId());
 //
 //        List<RaceInfo> racesInfo = new ArrayList<>();
-//        for (Race race : user.getRaces()){
+//        for (Race race : userFromDb.getRaces()){
 //            System.out.println("API for this race id: " + race.getRaceId());
 //            RaceInfo raceInfo = new RaceInfo();
 //            System.out.println(race.getId());
@@ -107,7 +107,7 @@ public class ProfileController {
 //        model.addAttribute("comments", comments);
 //        System.out.println(comments);
 //
-//        model.addAttribute("user", user);
+        model.addAttribute("user", userFromDb);
 //        model.addAttribute("comment", new Comment());
         return "users/profile";
 

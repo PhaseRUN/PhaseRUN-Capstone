@@ -34,7 +34,9 @@ public class RaceSearchController {
     }
 
     @GetMapping("/race/search")
-    public String returnRaceSearchPage() {
+    public String returnRaceSearchPage(Model model, Authentication authentication) {
+        User userFromDb = userDao.findByUsername(authentication.getName());
+        model.addAttribute("user", userFromDb);
         return "users/raceSearch";
     }
 
