@@ -1,39 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
 
 <head th:replace="partials/head :: head">
-  <title>Login</title>
+    <title>Login</title>
 </head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 
-  <div class="general-text under-nav" th:if="${param.error}">
-    Invalid Username and Password.
-  </div>
-  <div class="general-text" th:if="${param.logout}">
-    You have been logged out.
-  </div>
-  <div class="container under-nav">
+<div class="general-text under-nav" th:if="${param.error}">
+Invalid Username and Password.
+</div>
+<div class="general-text" th:if="${param.logout}">
+You have been logged out.
+</div>
+<div class="container under-nav">
     <div class="row row-cols-lg-2">
-      <form class="sub-title-text" th:action="@{/login}" method="post">
-       <div class="col-lg-6">
-           <div>
-            <label for="username">Username</label>
-            <input id="username" name="username" type="text" />
-           </div>
-            <div>
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" />
+        <form class="sub-title-text" th:action="@{/login}" th:method="post">
+            <div class="col-lg-6">
+                <div>
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" />
+                </div>
+                <div>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" />
+                </div>
+                <div  class="padding">
+                <input type="submit" value="Log In" />
+                </div>
             </div>
-            <div  class="padding">
-            <input type="submit" value="Log In" />
-            </div>
+        </form>
+        <div class="col-lg-6">
+        <img src="/images/pexels-bench.jpg" class="side-image" alt="bench"/>
         </div>
-      </form>
-      <div class="col-lg-6">
-          <img src="/images/pexels-bench.jpg" class="side-image" alt="bench"/>
-      </div>
-  </div>
+    </div>
 </div>
 
 <footer th:replace="partials/footer :: footer"></footer>

@@ -2,6 +2,8 @@ package com.codeup.phaserun.controllers;
 
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
+
+import org.springframework.security.core.Authentication;
 import com.codeup.phaserun.models.*;
 import com.codeup.phaserun.repositories.CommentRespository;
 import org.jsoup.Jsoup;
@@ -32,61 +34,30 @@ public class ProfileController {
         this.raceDao = raceDao;
         this.commentDao = commentDao;
     }
+
     @GetMapping("/profile")
-    public String returnProfilePage(Model model) {
-        //TODO: replace user with user session and populated races
-        User user = userDao.findById(1);
+    public String returnProfilePage(Model model, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
         List<Race> races = raceDao.findAll();;
 
-        System.out.println(races.get(0).getRaceId());
-
-        List<RaceInfo> racesInfo = new ArrayList<RaceInfo>();
+        System.out.println(user.getEmail());
+        List<RaceInfo> racesInfo = new ArrayList<>();
         for (Race race : user.getRaces()){
             System.out.println("API for this race id: " + race.getRaceId());
             RaceInfo raceInfo = new RaceInfo();
             racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
         }
-        System.out.println(racesInfo.get(0).getName());
-        System.out.println(racesInfo.get(1).getName());
-        model.addAttribute("races", racesInfo);
 
+        model.addAttribute("races", racesInfo);
         model.addAttribute("user", user);
         model.addAttribute("comment", new Comment());
 
         return "/users/profile";
     }
 
-    @GetMapping("/profile/{id}/edit")
-    public String returnEditPage(@PathVariable int id, Model model) {
-
-// Temporary list of races for bookmark editing on profile page - Rob (20 April)
-
-        List<RaceInfo> races;
-        try {
-            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        for (RaceInfo race : races) {
-            String descriptionHtml = race.getDescription();
-            String descriptionText = Jsoup.parse(race.getDescription()).text();
-            race.setDescription(Jsoup.parse(race.getDescription()).text());
-        }
-        model.addAttribute("races", races);
-
-// End of temporary list
-
-        User userFromDb = userDao.findById(id);
-        model.addAttribute("user", userFromDb);
-        model.addAttribute("comment", new Comment());
-        return "users/profile";
-
-    }
-
-    @PostMapping("/profile/{id}/edit")
-    public String updateUser(@ModelAttribute User userUpdates, @PathVariable int id, Model model) {
-//        System.out.println(userUpdates);
-        User userToUpdate = userDao.findById(userUpdates.getId());
+    @PostMapping("/profile")
+    public String updateUser(@ModelAttribute User userUpdates, Model model, Authentication authentication) {
+        User userToUpdate = userDao.findByUsername(authentication.getName());
         if (userUpdates.getZipcode() != 0) {
             userToUpdate.setZipcode(userUpdates.getZipcode());
         }
@@ -96,9 +67,9 @@ public class ProfileController {
         if (userUpdates.getActivityLvl() != null) {
             userToUpdate.setActivityLvl(userUpdates.getActivityLvl());
         }
-//        System.out.println(userToUpdate);
+
         userDao.save(userToUpdate);
-        User userFromDb = userDao.findById(id);
+        User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
         return "users/profile";
     }
