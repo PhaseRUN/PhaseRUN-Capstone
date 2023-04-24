@@ -34,15 +34,26 @@ public class ProfileController {
         this.raceDao = raceDao;
         this.commentDao = commentDao;
     }
+
     @GetMapping("/profile")
     public String returnProfilePage(Model model, Authentication authentication) {
-        User userFromDb = userDao.findByUsername(authentication.getName());
-        model.addAttribute("user", userFromDb);
-        System.out.println(userFromDb);
-        return "users/profile";
+        User user = userDao.findByUsername(authentication.getName());
+        List<Race> races = raceDao.findAll();;
 
+        System.out.println(user.getEmail());
+        List<RaceInfo> racesInfo = new ArrayList<>();
+        for (Race race : user.getRaces()){
+            System.out.println("API for this race id: " + race.getRaceId());
+            RaceInfo raceInfo = new RaceInfo();
+            racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
+        }
+
+        model.addAttribute("races", racesInfo);
+        model.addAttribute("user", user);
+        model.addAttribute("comment", new Comment());
+
+        return "/users/profile";
     }
-
 
     @PostMapping("/profile")
     public String updateUser(@ModelAttribute User userUpdates, Model model, Authentication authentication) {
@@ -56,7 +67,7 @@ public class ProfileController {
         if (userUpdates.getActivityLvl() != null) {
             userToUpdate.setActivityLvl(userUpdates.getActivityLvl());
         }
-//        System.out.println(userToUpdate);
+
         userDao.save(userToUpdate);
         User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
