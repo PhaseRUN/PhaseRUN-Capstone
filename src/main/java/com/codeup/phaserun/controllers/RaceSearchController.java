@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -41,7 +42,14 @@ public class RaceSearchController {
     @PostMapping("/race/search")
     public String returnRaceSearchPageWithResults(@RequestParam(name = "race-distance") String distance,
                                                   @RequestParam(name = "search-radius") String searchR,
-                                                  @RequestParam(name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
+                                                  @RequestParam(name = "zipcodeRadius") String zipcode, Model model,
+                                                  Authentication authentication) throws UnirestException, ParseException {
+        User user = userDao.findById(((User) authentication.getPrincipal()).getId());
+        ArrayList<String> userRaceIds = new ArrayList<>();
+        for (Race race : user.getRaces()) {
+            userRaceIds.add(String.valueOf(race.getRaceId()));
+        }
+
         // ...
         List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
         for ( RaceInfo race : races) {
@@ -56,6 +64,8 @@ public class RaceSearchController {
             System.out.println(RaceInfo.redYellowGreen(race.getRaceDate(), race.getYellowStartDate(), race.getGreenStartDate())); // RETURNS A STRING OF RED, YELLOW, OR GREEN
         }
 
+        System.out.println(Arrays.toString(userRaceIds.toArray()));
+        model.addAttribute("userRaceIds", userRaceIds.toArray());
         model.addAttribute("races", races);
         return "users/raceSearch";
     }
