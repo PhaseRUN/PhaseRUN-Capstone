@@ -1,5 +1,6 @@
 package com.codeup.phaserun.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Race {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "body")
     private List<Comment> comments;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "races")
     private List<User> users;
 
