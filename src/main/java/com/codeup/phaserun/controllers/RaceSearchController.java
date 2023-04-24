@@ -36,7 +36,7 @@ public class RaceSearchController {
     @GetMapping("/race/search")
     public String returnRaceSearchPage(Model model, Authentication authentication) {
         User userFromDb = userDao.findByUsername(authentication.getName());
-        model.addAttribute("user", userFromDb);
+        model.addAttribute("zipcode", userFromDb.getZipcode());
         return "users/raceSearch";
     }
 
@@ -45,15 +45,19 @@ public class RaceSearchController {
                                                   @RequestParam(name = "search-radius") String searchR,
                                                   @RequestParam(name = "zipcodeRadius") String zipcode, Model model) throws UnirestException, ParseException {
         // ...
+        System.out.println(distance);
+        System.out.println(searchR);
+        System.out.println(zipcode);
+
         List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
         for ( RaceInfo race : races) {
             String descriptionHtml = race.getDescription();
             String descriptionText = Jsoup.parse(descriptionHtml).text();
             race.setDescription(descriptionText);
-            System.out.println();
-            System.out.println(race.getYellowStartDate() + "this is the yellow date");
-            System.out.println(race.getRaceDate() + "this is the race date");
-            System.out.println(race.getGreenStartDate() + "This is the green date");
+//            System.out.println();
+//            System.out.println(race.getYellowStartDate() + "this is the yellow date");
+//            System.out.println(race.getRaceDate() + "this is the race date");
+//            System.out.println(race.getGreenStartDate() + "This is the green date");
             //TODO: store in object or return what the date color should be
             System.out.println(RaceInfo.redYellowGreen(race.getRaceDate(), race.getYellowStartDate(), race.getGreenStartDate())); // RETURNS A STRING OF RED, YELLOW, OR GREEN
         }

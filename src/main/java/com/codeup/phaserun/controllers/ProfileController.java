@@ -81,7 +81,6 @@ public class ProfileController {
         return "/users/profile";
     }
 
->>>>>>> main
     @PostMapping("/profile")
     public String updateUser(@ModelAttribute User userUpdates, Model model, Authentication authentication) {
         User userToUpdate = userDao.findByUsername(authentication.getName());
