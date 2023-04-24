@@ -52,6 +52,8 @@
                                             <div class="comment-section" th:each="comment : ${comments}">
                                                 <div class="comment">
                                                     <p th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                                        <span th:text="${comment.getRace().getRaceId()}"></span>
+                                                        <span th:text="${race.getRaceId()}"></span>
                                                         <span th:text="${comment.getBody()}"></span>
                                                     </p>
                                                 </div>
