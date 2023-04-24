@@ -1,11 +1,51 @@
+/*Profile Container*/
+
 .profile-pic{
-    width: 50px;
-    height: 75px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+}
+.photo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
 }
 
+.bg-image {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 360px;
+    width: 360px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+}
+.card-body {
+    margin-top: 2em;
+}
+
+.btn {
+    flex: 1;
+    margin: 0 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+    .profile-pic{
+        width: 340px;
+        height: 340px;
+    }
+
+    .bg-image {
+        height: 380px;
+        width: 380px;
+    }
+}
+
+/*Bookmark Container*/
 .race-card{
     padding: 1em;
     margin: 1em;
@@ -16,67 +56,26 @@
     margin: 15px 15px 15px 15px;
 }
 
-
-/* Modal Styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black with opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Comments Modal */
-
-.modal-comments {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.9); /* Black with opacity */
-}
 .comment-section {
-    height: 200px;
-    overflow: scroll;
+    display: none;
+    margin-top: 10px;
 }
 
-.comment {
-    margin-bottom: 1em;
+.show-comments .comment-section {
+    display: block;
+}
+.info-section {
+    display: none;
+    margin-top: 10px;
 }
 
-/* Photo Upload */
+.show-info .info-section {
+    display: block;
+}
+
+
+/*Photo Upload*/
+
 .container-prof {
     height: 300px;
     width: 300px;
@@ -144,24 +143,10 @@
     display: none;
 }
 
+/*Bookmarks*/
+
 .cards {
     perspective: 500px;
-}
-
-.card {
-    width: 200px;
-    height: 250px;
-    background: #16161d;
-    border: 2px solid #555555;
-    border-radius: 4px;
-    position: relative;
-    transform-style: preserve-3d;
-    will-change: transform;
-    transition: transform .5s;
-}
-
-.card:hover {
-    transform: translateZ(10px) rotateX(20deg) rotateY(20deg);
 }
 
 .card_title {
@@ -169,8 +154,8 @@
     position: absolute;
     top: 50%;
     right: 20px;
-    transform: translateY(-50%);
-    transition: transform .5s;
+    /*transform: translateY(-50%);*/
+    /*transition: transform .5s;*/
     font: 700 1.5rem monospace;
     text-shadow: -1px -1px 0 #000,
     1px -1px 0 #000,
@@ -178,6 +163,6 @@
     1px 1px 0 #000;
 }
 
-.card:hover .card_title {
-    transform: translateZ(50px);
+.card{
+    margin-bottom: 1em;
 }

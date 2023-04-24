@@ -1,0 +1,37 @@
+/* Navbar */
+
+.form-group {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.form-control {
+    width: auto;
+    display: inline-block;
+}
+
+.navbar {
+    background-color: #000000;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    box-shadow: whitesmoke;
+}
+
+.navbar-toggler{
+    border: black 2px;
+    background-color: lightskyblue;
+}
+
+.nav-group{
+    font-family: Cardo, serif;
+    font-size: 1em;
+    padding-top: 12px;
+
+}
+
+.logo{
+    height: 75px;
+    width: 100PX;
+    margin-right: 10px;
+}

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="partials/head :: head">
+<head th:replace="~{partials/head :: head}">
 
     <title>Home</title>
-    <link rel="stylesheet" href="../../static/css/homeStyle.css">
+
 </head>
+<link rel="stylesheet" href="/css/homeStyle.css">
 <body>
 
 <nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
