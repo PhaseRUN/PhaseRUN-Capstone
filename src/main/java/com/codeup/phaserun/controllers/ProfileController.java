@@ -68,8 +68,10 @@ public class ProfileController {
 //        System.out.println(racesInfo.get(0).getName());
 //        System.out.println(racesInfo.get(1).getName());
         model.addAttribute("races", racesInfo);
+        System.out.println(racesInfo);
 
         model.addAttribute("comments", comments);
+        System.out.println(comments);
 
         model.addAttribute("user", user);
         model.addAttribute("comment", new Comment());
