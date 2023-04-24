@@ -63,57 +63,25 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String returnProfilePage(Model model, Authentication authentication) {
-        User userFromDb = userDao.findByUsername(authentication.getName());
-        model.addAttribute("user", userFromDb);
-        System.out.println(userFromDb);
+        User user = userDao.findByUsername(authentication.getName());
+        List<Race> races = raceDao.findAll();;
 
+        System.out.println(user.getEmail());
+        List<RaceInfo> racesInfo = new ArrayList<>();
+        for (Race race : user.getRaces()){
+            System.out.println("API for this race id: " + race.getRaceId());
+            RaceInfo raceInfo = new RaceInfo();
+            racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
+        }
 
-//        //TODO: replace user with user session and populated races
-//        User user = userDao.findById(1);
-//        List<Race> races = user.getRaces();
-//        List<Comment> comments = commentDao.findAll();
-//        List<Race> dbRaces = raceDao.findAll();
-//
-//
-//        System.out.println(races.get(0).getRaceId());
-//
-//        List<RaceInfo> racesInfo = new ArrayList<>();
-//        for (Race race : userFromDb.getRaces()){
-//            System.out.println("API for this race id: " + race.getRaceId());
-//            RaceInfo raceInfo = new RaceInfo();
-//            System.out.println(race.getId());
-//            raceInfo.setDbId(race.getId());
-//            racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
-//
-//        }
-//
-//        for (RaceInfo race : racesInfo)
-//        {
-//            race.setDescription(Jsoup.parse(race.getDescription()).text());
-//            System.out.println(race.getRaceId());
-//            for(Comment comment : commentDao.findByRaceId(race.getRaceId()))
-//            {
-//                System.out.println(comment.getBody());
-//            }
-//        }
-//
-//
-//
-////        System.out.println(racesInfo.get(0).getName());
-////        System.out.println(racesInfo.get(1).getName());
-//        model.addAttribute("races", racesInfo);
-//        System.out.println(racesInfo);
-//
-//        model.addAttribute("comments", comments);
-//        System.out.println(comments);
-//
-        model.addAttribute("user", userFromDb);
-//        model.addAttribute("comment", new Comment());
-        return "users/profile";
+        model.addAttribute("races", racesInfo);
+        model.addAttribute("user", user);
+        model.addAttribute("comment", new Comment());
 
+        return "/users/profile";
     }
 
-
+>>>>>>> main
     @PostMapping("/profile")
     public String updateUser(@ModelAttribute User userUpdates, Model model, Authentication authentication) {
         User userToUpdate = userDao.findByUsername(authentication.getName());
@@ -126,7 +94,7 @@ public class ProfileController {
         if (userUpdates.getActivityLvl() != null) {
             userToUpdate.setActivityLvl(userUpdates.getActivityLvl());
         }
-//        System.out.println(userToUpdate);
+
         userDao.save(userToUpdate);
         User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
