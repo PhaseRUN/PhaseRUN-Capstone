@@ -7,11 +7,11 @@
 
 <nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 <div class="under-nav">
-    <h1 class="title-text">FAQ</h1>
+    <h1 class="title-text pageTitle">FAQ</h1>
 </div>
 
 <div class="container">
-    <div class="row row-cols-lg-2">
+    <div class="row row-cols-lg-2 opacityForText">
         <div class="col-lg-6">
             <h2 class="sub-title-text">How often should I run?</h2>
             <p class="general-text">The frequency of your runs will depend on your fitness level, goals, and schedule. Generally, it's recommended to run at least three times a week, but some runners prefer to run every day. It's important to listen to your body and avoid overtraining, so make sure to build in rest days as needed.</p>

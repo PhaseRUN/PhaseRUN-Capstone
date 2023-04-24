@@ -104,6 +104,12 @@
     padding-top: 1em;
 }
 
+.opacityForText{
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 25px;
+}
+
 /* Body */
 
 body{
@@ -124,4 +130,14 @@ input{
     padding: 1em;
 }
 
+/*Page Headers*/
+.pageTitle{
+    font-size: 5em;
+    color: white;
+}
 
+/*input field headers*/
+.inputHeaderField{
+    color: white;
+    font-size: 2em;
+}

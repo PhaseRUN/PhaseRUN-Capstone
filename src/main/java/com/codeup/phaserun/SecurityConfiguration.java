@@ -52,8 +52,8 @@ public class SecurityConfiguration {
             .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/profile", "/race/search", "/races/bookmark", "/profile/comment"
-                )
+                        "/race/search", "/races/bookmark", "/profile/comment", "/profile"
+                        )
                 .authenticated()
         ;
         return http.build();
