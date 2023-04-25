@@ -35,6 +35,32 @@ public class ProfileController {
         this.commentDao = commentDao;
     }
 
+//    @GetMapping("/profile/{id}/edit")
+//    public String returnEditPage(@PathVariable int id, Model model) {
+//
+//// Temporary list of races for bookmark editing on profile page - Rob (20 April)
+//
+//        List<RaceInfo> races;
+//        try {
+//            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//        for (RaceInfo race : races) {
+//            String descriptionHtml = race.getDescription();
+//            String descriptionText = Jsoup.parse(race.getDescription()).text();
+//            race.setDescription(Jsoup.parse(race.getDescription()).text());
+//        }
+//
+//        model.addAttribute("races", races);
+//
+//        model.addAttribute("user", userFromDb);
+//        model.addAttribute("comment", new Comment());
+//
+//        model.addAttribute("comments", dbRaces);
+//        return "users/profile";
+//    }
+
     @GetMapping("/profile")
     public String returnProfilePage(Model model, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
@@ -71,6 +97,7 @@ public class ProfileController {
         userDao.save(userToUpdate);
         User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
+
         return "users/profile";
     }
 
