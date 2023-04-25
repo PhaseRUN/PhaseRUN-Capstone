@@ -52,8 +52,6 @@
                                     <a href="#" class="btn btn-primary toggle-comment comment-btn">Comment</a>
                                     <div class="comment-section">
                                         <div class="container">
-                                            <form action="">
-                                            </form>
                                             <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
                                                 <label for="newComment" name="newComment">Add your comment below-</label>
                                                 <textarea id="newComment" th:field="*{body}"></textarea>
