@@ -73,6 +73,7 @@ public class RaceSearchController {
         System.out.println(Arrays.toString(userRaceIds.toArray()));
         model.addAttribute("userRaceIds", userRaceIds.toArray());
         model.addAttribute("races", races);
+        model.addAttribute("zipcode", user.getZipcode());
         return "users/raceSearch";
     }
 
