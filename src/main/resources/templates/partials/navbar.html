@@ -18,6 +18,9 @@
                 <li th:unless="${isAuthenticated}" class="nav-item nav-group">
                     <a class="nav-link" th:href="@{/profile}">Login</a>
                 </li>
+                <li th:unless="${isAuthenticated}"  class="nav-item nav-group">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
                 <li th:if="${isAuthenticated}" class="nav-item nav-group">
                     <a class="nav-link" th:href="@{/profile}">Profile</a>
                 </li>
@@ -37,8 +40,6 @@
                 </li>
             </ul>
         </div>
-    </div>
 </nav>
-
 
 </html>
