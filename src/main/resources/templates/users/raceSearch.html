@@ -18,6 +18,7 @@
     <div class="row search-row">
         <div class="col-md-12">
             <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
+<!--                <span th:text="${#lists.size(races)}"/>-->
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="race-distance"class="sub-title-text inputHeaderField">Race Distance:</label>
@@ -55,14 +56,8 @@
 </div>
 
 <div class="container results-container opacity-95">
-    <h1 class="title-text" th:if="${races == null}">Submit a Search</h1>
-<!--    <h1 class="title-text" th:unless="${races.length() == 0}">No Races Fit The Criteria</h1>-->
-<!--    <h1 th:text="${#lists.size(races)}">test</h1>-->
-    <!--    <div th:if="*{userMessage!=null and #strings.length(userMessage)>0}">-->
-<!--        <label th:text = "*{userMessage}"/>-->
-<!--    </div>-->
-<!--    <span th:if="${teacher.gender == 'F'}">Female</span>-->
-<!--    <span th:unless="${teacher.gender == 'F'}">Male</span>-->
+    <h1 class="inputHeaderField" th:if="${races == null}">Submit a Search</h1>
+    <h1 class="inputHeaderField" th:if="${#lists.isEmpty(races) and races != null}">No Races Fit The Criteria</h1>
     <div class="row race-cards">
         <div th:each="Race : ${races}" class="col-sm-12 col-lg-6 col-xl-4 mb-4">
             <div class="card race-card opacity-95">

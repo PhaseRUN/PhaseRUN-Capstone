@@ -37,6 +37,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String returnProfilePage(Model model, Authentication authentication) {
+        System.out.println("i am here in profile");
         User user = userDao.findByUsername(authentication.getName());
         List<Race> races = raceDao.findAll();;
 
