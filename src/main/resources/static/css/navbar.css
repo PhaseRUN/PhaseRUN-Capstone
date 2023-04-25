@@ -11,10 +11,9 @@
 }
 
 .navbar {
-    background-color: #000000;
+    background-color: #273556 !important;
     padding-left: 1em;
     padding-right: 1em;
-    padding-top: 0.5em;
     box-shadow: whitesmoke;
 }
 
