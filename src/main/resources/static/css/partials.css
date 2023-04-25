@@ -104,7 +104,6 @@
     text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
-    padding-top: 1em;
 }
 
 .opacityForText{
@@ -117,6 +116,8 @@
 
 body{
     background-image: url("/images/background-unsplash.jpg");
+    background-color: #e3e2e2;
+    background-blend-mode: multiply;
     background-size: cover;
     background-repeat: no-repeat;
     padding: 1em 1em 10em;
@@ -135,7 +136,7 @@ input{
 
 /*Page Headers*/
 .pageTitle{
-    font-size: 5em;
+    font-size: 4em;
     color: white;
 }
 
