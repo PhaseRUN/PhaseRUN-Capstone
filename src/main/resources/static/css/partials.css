@@ -1,0 +1,51 @@
+/* All Pages - Top Container */
+
+.under-nav{
+    padding-top: 6em;
+}
+
+/* Text Settings*/
+
+.sub-title-text{
+    font-family: Cardo, serif;
+    font-size: 26px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.general-text{
+    font-family: Cardo, serif;
+    font-size: 20px;
+}
+
+.centered-text{
+    align-content: center;
+    text-align: left;
+}
+
+.title-text{
+    font-family: Cardo, serif;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 1em;
+}
+
+.opacityForText{
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 25px;
+}
+
+/* Body */
+
+body{
+    background-image: url("/images/background-unsplash.jpg");
+    background-color: #e3e2e2;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 1em 1em 10em;
+}
