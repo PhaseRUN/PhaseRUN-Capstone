@@ -52,10 +52,20 @@
                                     <a href="#" class="btn btn-primary toggle-comment comment-btn">Comment</a>
                                     <div class="comment-section">
                                         <div class="container">
-                                            <label for="newComment" name="newComment">Add your comment below-</label>
-                                            <textarea id="newComment"></textarea>
-                                            <button id="addComments">Add Comment</button>
-                                            <div id="allComments"></div>
+                                            <form action="">
+                                            </form>
+                                            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                                                <label for="newComment" name="newComment">Add your comment below-</label>
+                                                <textarea id="newComment" th:field="*{body}"></textarea>
+                                                <button id="addComments">Add Comment</button>
+                                                <input type="hidden" name="raceId" id="raceId" th:value="${race.getRaceId()}">
+                                                <div id="allComments"></div>
+<!--                                                <textarea id="commentBox" placeholder="Add Comment" class="comment-box" th:field="*{body}"></textarea>-->
+<!--                                                <div class="modal-footer">-->
+<!--                                                    <button type="button" class="btn btn-tertiary btn-close" data-dismiss="modal">Close</button>-->
+<!--                                                    <button id="submitCommentBtn">Submit</button>-->
+<!--                                                </div>-->
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
