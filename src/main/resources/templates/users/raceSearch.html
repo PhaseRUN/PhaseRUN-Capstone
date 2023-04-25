@@ -12,15 +12,16 @@
 
 
 <div class="under-nav">
-    <h1 class="title-text">Race Search</h1>
+    <h1 class="title-text pageTitle">Race Search</h1>
 </div>
 <div class="container opacity-95">
     <div class="row search-row">
         <div class="col-md-12">
             <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
+<!--                <span th:text="${#lists.size(races)}"/>-->
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <label for="race-distance"class="sub-title-text">Race Distance:</label>
+                        <label for="race-distance"class="sub-title-text inputHeaderField">Race Distance:</label>
                         <select name="race-distance" id="race-distance" class="form-control">
                             <option value="5k" selected>5k</option>
                             <option value="10k">10k</option>
@@ -29,7 +30,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="search-radius" class="sub-title-text">Search Radius:</label>
+                        <label for="search-radius" class="sub-title-text inputHeaderField">Search Radius:</label>
                         <select name="search-radius" id="search-radius" class="form-control">
                             <option value="5" selected>5 Miles</option>
                             <option value="10">10 Miles</option>
@@ -41,7 +42,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-3">
-                        <label class="flex-0 margin-lr-10 sub-title-text">Search From:</label>
+                        <label class="flex-0 margin-lr-10 sub-title-text inputHeaderField">Search From:</label>
                         <label class="sr-only" for="zipcodeRadius">Zip Code</label>
                         <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" th:value="${zipcode}" placeholder="Zip Code" class="form-control">
                     </div>
@@ -54,10 +55,9 @@
     </div>
 </div>
 
-
-<h1>Results</h1>
 <div class="container results-container opacity-95">
-    <h1 class="title-text">Results</h1>
+    <h1 class="inputHeaderField" th:if="${races == null}">Submit a Search</h1>
+    <h1 class="inputHeaderField" th:if="${#lists.isEmpty(races) and races != null}">No Races Fit The Criteria</h1>
     <div class="row race-cards">
         <div th:each="Race : ${races}" class="col-sm-12 col-lg-6 col-xl-4 mb-4">
             <div class="card race-card opacity-95">

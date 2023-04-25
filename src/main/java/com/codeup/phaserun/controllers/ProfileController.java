@@ -5,30 +5,25 @@ import com.codeup.phaserun.repositories.UserRepository;
 
 import org.springframework.security.core.Authentication;
 import com.codeup.phaserun.models.*;
-import com.codeup.phaserun.repositories.CommentRespository;
-import org.jsoup.Jsoup;
+import com.codeup.phaserun.repositories.CommentRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-import java.text.ParseException;
 
 @Controller
 public class ProfileController {
 
     private final UserRepository userDao;
     private final RaceRepository raceDao;
-    private final CommentRespository commentDao;
+    private final CommentRepository commentDao;
 
-    public ProfileController(UserRepository userDao, RaceRepository raceDao, CommentRespository commentDao)
+    public ProfileController(UserRepository userDao, RaceRepository raceDao, CommentRepository commentDao)
     {
         this.userDao = userDao;
         this.raceDao = raceDao;
@@ -63,6 +58,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String returnProfilePage(Model model, Authentication authentication) {
+        System.out.println("i am here in profile");
         User user = userDao.findByUsername(authentication.getName());
         List<Race> races = raceDao.findAll();;
 
