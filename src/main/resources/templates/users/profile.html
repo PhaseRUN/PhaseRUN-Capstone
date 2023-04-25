@@ -37,14 +37,14 @@
                 <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">
                     <h1 class="title-text">Bookmarks</h1>
                     <div class="row">
-                        <!--                        Working Card - Rob -->
+                        <!-- Working Card - Rob -->
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
-                            <div class="card race-card" style="width: 18rem;" >
+                            <div class="card race-card" style="width: 18rem;">
                                 <div class="card-body">
                                     <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
                                     <div>
-                                    <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>
-<!--                                    <p class="card-text general-text" th:text="${race.date}">Date: </p>-->
+                                        <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>
+                                        <!-- <p class="card-text general-text" th:text="${race.date}">Date: </p> -->
                                     </div>
                                 </div>
                                 <div class="card-body general-text">
@@ -57,15 +57,7 @@
                                             <button id="addComments">Add Comment</button>
                                             <div id="allComments"></div>
                                         </div>
-                                        <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
-                                            <textarea id="commentBox" placeholder="Add Comment" class="comment-box" th:field="*{body}"></textarea>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-tertiary btn-close" data-dismiss="modal">Close</button>
-                                                <button id="submitCommentBtn">Submit</button>
-                                            </div>
-                                        </form>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -74,9 +66,9 @@
             </div>
         </div>
     </div>
- <!-- End of Container -->
+</div>
 
-
+<!-- End of Container -->
 
 <!-- Profile Edit Modal -->
 

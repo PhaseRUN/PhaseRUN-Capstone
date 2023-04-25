@@ -1,11 +1,12 @@
 .side-image{
-    width: 600px;
+    width: 500px;
     height: auto;
 }
 
 .card {
-    width: 190px;
-    height: 360px;
+    opacity: 90;
+    width: 264px;
+    height: 365px;
     background: #F4F6FB;
     border: 1px solid white;
     box-shadow: 10px 10px 64px 0px rgba(180, 180, 207, 0.75);
