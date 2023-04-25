@@ -19,18 +19,28 @@
 
 .navbar-toggler{
     border: black 2px;
-    background-color: lightskyblue;
+    background-color: rgb(28 217 203);
 }
 
 .nav-group{
     font-family: Cardo, serif;
     font-size: 1em;
-    padding-top: 12px;
+}
 
+.nav-link {
+    color: rgb(255, 255, 255) !important;
 }
 
 .logo{
-    height: 50px;
-    width: auto;
-    margin-right: 10px;
+    height: 65px;
+    width: 105px;
+    margin-top: 7px;
+}
+
+.btn-primary{
+    background-color: cornflowerblue;
+    border: none;
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 1em;
+    margin-right: 3em;
 }
