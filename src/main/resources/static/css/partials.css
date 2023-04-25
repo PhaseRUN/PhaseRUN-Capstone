@@ -117,6 +117,8 @@
 
 body{
     background-image: url("/images/background-unsplash.jpg");
+    background-color: #e3e2e2;
+    background-blend-mode: multiply;
     background-size: cover;
     background-repeat: no-repeat;
     padding: 1em 1em 10em;
