@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class RaceInfo {
 
+    private long dbId;
+
     private String name;
 
     private String description;
@@ -13,7 +15,6 @@ public class RaceInfo {
     private int raceId;
 
     private String raceURL;
-
 
     private Date yellowDate;
 
@@ -108,6 +109,14 @@ public class RaceInfo {
 
     }
 
+    public long getDbId() {
+        return dbId;
+    }
+
+    public void setDbId(long dbId) {
+        this.dbId = dbId;
+    }
+
     public static String redYellowGreen(Date compareDate, Date yellowBeginDate, Date yellowEndDate)
     {
         if(compareDate.compareTo(yellowBeginDate) > 0 && compareDate.compareTo(yellowEndDate) < 0)//if the date we're comparing is in between the two dates
@@ -126,19 +135,27 @@ public class RaceInfo {
         return "probably didnt work ";
     }
 
+
 //    Temporary "toString" method for profile bookmark rendering tests. Delete when no longer necessary. - Rob (20 April)
 
 //    @Override
 //    public String toString() {
 //        return "RaceInfo{" +
-//                "name='" + name + '\'' +
+//                "dbId=" + dbId +
+//                ", name='" + name + '\'' +
 //                ", description='" + description + '\'' +
-//                ", date='" + date + '\'' +
 //                ", logoUrl='" + logoUrl + '\'' +
 //                ", raceId=" + raceId +
 //                ", raceURL='" + raceURL + '\'' +
+//                ", yellowDate=" + yellowDate +
+//                ", greenDate=" + greenDate +
+//                ", raceDate=" + raceDate +
+//                ", zipcode='" + zipcode + '\'' +
+//                ", city='" + city + '\'' +
+//                ", state='" + state + '\'' +
 //                '}';
 //    }
+
 
 //    End of temporary "toString"
 }

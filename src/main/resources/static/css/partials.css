@@ -8,6 +8,7 @@
     right: -1px;
     z-index: 100;
 }
+
 .footer-position{
     opacity: .75;
     position: fixed;
@@ -18,6 +19,7 @@
     right: 0;
     margin-bottom: -1em;
 }
+
 .footer-style{
     font-family: 'Roboto Black', sans-serif;
     font-size: 1em;
@@ -36,29 +38,30 @@
 }
 
 .navbar {
-    background-color: #000000;
+    background-color: #273556 !important;
     padding-left: 1em;
     padding-right: 1em;
-    padding-top: 0.5em;
     box-shadow: whitesmoke;
 }
 
 .navbar-toggler{
     border: black 2px;
-    background-color: lightskyblue;
+    background-color: rgb(28 217 203);
 }
 
 .nav-group{
     font-family: Cardo, serif;
     font-size: 1em;
-    padding-top: 12px;
+}
 
+.nav-link {
+    color: rgb(255, 255, 255) !important;
 }
 
 .logo{
-    height: 75px;
-    width: 100px;
-    margin-right: 10px;
+    height: 65px;
+    width: 105px;
+    margin-top: 7px;
 }
 
 .btn-primary{
@@ -104,6 +107,12 @@
     padding-top: 1em;
 }
 
+.opacityForText{
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 25px;
+}
+
 /* Body */
 
 body{
@@ -124,4 +133,14 @@ input{
     padding: 1em;
 }
 
+/*Page Headers*/
+.pageTitle{
+    font-size: 5em;
+    color: white;
+}
 
+/*input field headers*/
+.inputHeaderField {
+    color: white;
+    font-size: 2em;
+}

@@ -21,8 +21,8 @@
     box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
     position: relative;
     z-index: 10;
-    /*height: 225px;*/
-    /*width: 225px;*/
+    height: 225px;
+    width: 225px;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 991px) {
@@ -118,6 +118,7 @@
 /*}*/
 
 @media only screen and (min-width: 992px) {
+
     .cardAbout {
         display: flex;
         flex-direction: row;
@@ -148,6 +149,9 @@
         background-color: #3b5998;
         left: -65px;
         top: -65px;
+        /*-webkit-shape-outside: circle(50%);*/
+        shape-outside: circle(50%);
+        float: left;
     }
 
     .rightAlign {

@@ -154,7 +154,7 @@ public class RaceAPI {
             throw new RuntimeException(e);
         }
 
-        displayHTTPResponse(response);
+//        displayHTTPResponse(response);
 
         JSONObject jsonObject = response.getBody().getObject().getJSONObject("race");
 
