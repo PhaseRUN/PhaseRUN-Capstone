@@ -56,7 +56,7 @@
                                                 <label for="newComment" name="newComment">Add your comment below-</label>
                                                 <textarea id="newComment" th:field="*{body}"></textarea>
                                                 <button id="addComments">Add Comment</button>
-                                                <input type="hidden" name="raceId" id="raceId" th:value="${race.raceId}">
+                                                <input type="hidden" name="raceId" id="raceId" th:value="${race.dbId}">
                                                 <div id="allComments"></div>
 <!--                                                <textarea id="commentBox" placeholder="Add Comment" class="comment-box" th:field="*{body}"></textarea>-->
 <!--                                                <div class="modal-footer">-->
