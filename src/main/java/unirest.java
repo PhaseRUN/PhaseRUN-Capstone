@@ -1,27 +1,11 @@
-import com.codeup.phaserun.models.Race;
-import com.codeup.phaserun.models.RaceInfo;
-import com.codeup.phaserun.models.User;
-import com.codeup.phaserun.repositories.CommentRespository;
+import com.codeup.phaserun.repositories.CommentRepository;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
-import com.mashape.unirest.http.Unirest;
 
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.SimpleFormatter;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.thymeleaf.processor.comment.ICommentProcessor;
 
 public class unirest
 {
@@ -37,10 +21,10 @@ public class unirest
 
     private static UserRepository userDao;
     private static RaceRepository raceDao;
-    private static CommentRespository commentDao;
+    private static CommentRepository commentDao;
 
 
-    public unirest(UserRepository userDao, RaceRepository raceDao, CommentRespository commentDao)
+    public unirest(UserRepository userDao, RaceRepository raceDao, CommentRepository commentDao)
     {
         unirest.userDao = userDao;
         unirest.raceDao = raceDao;
