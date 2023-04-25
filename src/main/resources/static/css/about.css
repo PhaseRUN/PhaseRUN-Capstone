@@ -16,13 +16,23 @@
 }
 
 .headshot {
+    object-fit: contain;
     border: 1px solid #000;
-    border-radius: 50%;
+    border-radius: 20%;
     box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
     position: relative;
     z-index: 10;
     height: 225px;
-    width: 225px;
+    width: 181px;
+}
+
+.bioHeader {
+    font-size: 35px;
+    color: #000000;
+    position: relative;
+    z-index: 15;
+    padding-top: 60px;
+    padding-left: 95px;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 991px) {
@@ -51,14 +61,16 @@
         position: relative;
         z-index: 10;
         height: 175px;
-        width: 175px;
+        width: 125px;
     }
 
     .bio{
+        font-size: 20px;
         border: 1px solid #000;
         border-radius: 50px;
         box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
         position: absolute;
+        padding-top: 50px;
         height: 15em;
         width: 100%;
     }
@@ -141,6 +153,9 @@
         border-radius: 50px;
         box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
         position: absolute;
+        padding-top: 180px;
+        padding-left: 25px;
+        padding-right: 15px;
         height: 20em;
         width: 100%;
     }
