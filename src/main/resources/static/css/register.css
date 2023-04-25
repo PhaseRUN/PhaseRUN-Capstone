@@ -55,6 +55,8 @@
 .form-section {
     padding: 16px;
     font-size: .85rem;
+    display: flex;
+    justify-content: center;
     background-color: #e0ecfb;
     box-shadow: rgb(0 0 0 / 8%) 0 -1px;
 }
