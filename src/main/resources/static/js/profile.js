@@ -5,12 +5,7 @@ $('#editProfileModal').click(function () {
 $('#editFitnessModal').click(function (){
     $('#editFitnessModal').modal('show');
 });
-// $('#commentModal').click(function (){
-//     $('#commentModal').modal('show');
-// });
-// $('#infoModal').click(function (){
-//     $('#infoModal').modal('show');
-// });
+
 $('.comment-btn').click(function() {
     $(this).parent().find('.comment-section').toggle();
 });
