@@ -96,12 +96,6 @@ public class ProfileController {
         comment.setUser(user);
         comment.setRace(race);
 
-
-        User user = userDao.findByUsername(authentication.getName()); // id should be obtained from the user session
-        Race race = raceDao.findByRaceId(request.getParameter("raceId"));// the id for the race in the database should be obtained from the commenting form
-
-        comment.setUser(user);
-        comment.setRace(race);
 //        comment.setBody(comment.getBody());
 
         System.out.println(comment.getBody());
