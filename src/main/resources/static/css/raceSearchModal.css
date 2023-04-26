@@ -28,6 +28,7 @@ body {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    overflow: auto;
 }
 
 /* The Close Button */
@@ -67,4 +68,27 @@ body {
 .bookmark-btn:hover,
 .signup-btn:hover {
     background-color: #3e8e41;
+}
+
+.card-description {
+    overflow: auto;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 16rem;
+}
+
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+
+.info-section {
+    display: none;
+    margin-top: 10px;
+    overflow-y: auto;
+    max-height: 200px;
 }
