@@ -11,20 +11,18 @@
 
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
-
-
     <!--Jumbotron-->
-        <div class="jumbotron jumbotron-fluid jumbotron-background under-nav">
-            <img class="logo-home"  align="center" src="/images/logo-home.png" alt="boom">
-<!--            <h1 class="display-4 logo-title" align="center">PhaseRUN</h1>-->
-            <p class="lead" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
-            <h1 class="register-link lead" align="center"><a th:href="@{/register}">REGISTER</a></h1>
-        </div>
+<!--        <div class="jumbotron jumbotron-fluid jumbotron-background under-nav">-->
+<!--            <img class="logo-home"  align="center" src="/images/logo-home.png" alt="boom">-->
+<!--&lt;!&ndash;            <h1 class="display-4 logo-title" align="center">PhaseRUN</h1>&ndash;&gt;-->
+<!--            <p class="lead" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>-->
+<!--            <h1 class="register-link lead" align="center"><a th:href="@{/register}">REGISTER</a></h1>-->
+<!--        </div>-->
 
     <!--Main Display-->
 
-    <div class="container under-nav under-jumbo">
-        <div class="row row-cols-lg-2 under-jumbo">
+    <div class="container">
+        <div class="row row-cols-lg-2 under-nav">
             <div class="col-lg-6">
                 <img class="img-set" src="/images/pexels-andrea-piacquadio-3764537.jpg" alt="intimidate">
             </div>

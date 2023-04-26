@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2em;
+    /*padding-top: 2em;*/
 }
 
 .bg-image {
@@ -17,10 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 280px;
-    width: 280px;
     border-radius: 50%;
-    overflow: hidden;
     box-shadow: 0 2px 2px rgba(0,0,0,0.3);
 }
 .card-body {
@@ -35,24 +32,14 @@
 
 @media screen and (min-width: 768px) {
     .profile-pic{
-        width: 260px;
-        height: 260px;
+        width: 200px;
+        height: 200px;
     }
 
     .bg-image {
-        height: 300px;
-        width: 300px;
+        height: 230px;
+        width: 230px;
     }
-}
-
-/*Bookmark Container*/
-.race-card{
-    margin: 1em;
-}
-
-.race-border{
-    border: 1px solid #888888;
-    margin: 8px;
 }
 
 .comment-section {
@@ -60,18 +47,10 @@
     margin-top: 10px;
 }
 
-.show-comments .comment-section {
-    display: block;
-}
 .info-section {
     display: none;
     margin-top: 10px;
 }
-
-.show-info .info-section {
-    display: block;
-}
-
 
 /*Photo Upload*/
 
@@ -144,30 +123,10 @@
 
 /*Bookmarks*/
 
-.cards {
-    /*perspective: 500px;*/
-}
-
-.card_title {
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    /*transform: translateY(-50%);*/
-    /*transition: transform .5s;*/
-    font: 700 1.5rem monospace;
-    text-shadow: -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
 /* Comment Box */
 
 .detailBox {
-    /*width:320px;*/
     border:1px solid #bbb;
-    /*margin:50px;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -184,22 +143,10 @@
     display:inline-block;
 }
 
-.commentBox {
-    padding:10px;
-    border-top:1px dotted #bbb;
-}
-.commentBox .form-group:first-child, .actionBox .form-group:first-child {
-    width:80%;
-}
-.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-    width:18%;
-}
 .actionBox .form-group * {
     width:100%;
 }
-.taskDescription {
-    margin-top:10px;
-}
+
 .commentList {
     padding:0;
     list-style:none;
@@ -234,30 +181,16 @@
     padding:10px;
 }
 
-.race-card{
-    margin: 1em;
-}
-
-.race-border{
-    border: 1px solid #888888;
-    margin: 8px;
-}
-
 .comment-section {
     display: none;
     margin-top: 10px;
 }
 
-.show-comments .comment-section {
-    display: block;
-}
+/*Info Box*/
+
 .info-section {
     display: none;
     margin-top: 10px;
     overflow-y: auto;
     max-height: 300px;
-}
-
-.show-info .info-section {
-    display: block;
 }

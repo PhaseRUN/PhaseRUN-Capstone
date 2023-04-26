@@ -7,9 +7,10 @@
 }
 
 .card {
+
     opacity: 90;
-    width: 246px;
-    height: 290px;
+    width: 260px;
+    height: 365px;
     background: #F4F6FB;
     border: 1px solid white;
     box-shadow: 10px 10px 64px 0px rgba(180, 180, 207, 0.75);
@@ -40,9 +41,10 @@
 
 .field {
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
-.input {
+input {
     border-radius: 5px;
     background-color: #e9e9f7;
     padding: 5px;
@@ -51,11 +53,11 @@
     border: 1px solid #dadaf7
 }
 
-.input:focus-visible {
+input:focus-visible {
     outline: 1px solid #aeaed6;
 }
 
-.input::placeholder {
+input::placeholder {
     color: #bcbcdf;
 }
 

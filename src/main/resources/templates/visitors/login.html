@@ -18,7 +18,7 @@ Invalid Username and Password.
 You have been logged out.
 </div>
 <div class="container under-nav">
-    <div class="row row-cols-lg-2 offset-1">
+    <div class="justify-content-center">
         <form class="form card" th:action="@{/login}" th:method="post">
             <div class="card_header">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -27,21 +27,18 @@ You have been logged out.
                 </svg>
                 <h1 class="form_heading">Sign in</h1>
             </div>
-            <div>
-                <label for="username">Username</label>
-                <input id="username" name="username" type="text" />
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" />
-            </div>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" class="rounded"/>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" class="rounded"/>
             <div class="field">
-                <button type="submit" class="button">Login</button>
+                <button type="submit" class="button rounded">Login</button>
+                <div>
+                <button class="button rounded" th:href="@{/register}">REGISTER</button>
+                </div>
             </div>
         </form>
-        <div class="col-lg-6 offset-1">
-            <img src="/images/pexels-bench.jpg" class="side-image" alt="bench"/>
-        </div>
+
     </div>
 </div>
 
