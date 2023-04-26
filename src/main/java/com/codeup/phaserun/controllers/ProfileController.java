@@ -3,18 +3,19 @@ package com.codeup.phaserun.controllers;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.Authentication;
 import com.codeup.phaserun.models.*;
 import com.codeup.phaserun.repositories.CommentRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class ProfileController {
@@ -30,42 +31,16 @@ public class ProfileController {
         this.commentDao = commentDao;
     }
 
-//    @GetMapping("/profile/{id}/edit")
-//    public String returnEditPage(@PathVariable int id, Model model) {
-//
-//// Temporary list of races for bookmark editing on profile page - Rob (20 April)
-//
-//        List<RaceInfo> races;
-//        try {
-//            races = RaceAPI.getRacesFromAPI("500", "78245", "10K");
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//        for (RaceInfo race : races) {
-//            String descriptionHtml = race.getDescription();
-//            String descriptionText = Jsoup.parse(race.getDescription()).text();
-//            race.setDescription(Jsoup.parse(race.getDescription()).text());
-//        }
-//
-//        model.addAttribute("races", races);
-//
-//        model.addAttribute("user", userFromDb);
-//        model.addAttribute("comment", new Comment());
-//
-//        model.addAttribute("comments", dbRaces);
-//        return "users/profile";
-//    }
-
     @GetMapping("/profile")
     public String returnProfilePage(Model model, Authentication authentication) {
-        System.out.println("i am here in profile");
+//        System.out.println("i am here in profile");
         User user = userDao.findByUsername(authentication.getName());
         List<Race> races = raceDao.findAll();;
 
-        System.out.println(user.getEmail());
+//        System.out.println(user.getEmail());
         List<RaceInfo> racesInfo = new ArrayList<>();
         for (Race race : user.getRaces()){
-            System.out.println("API for this race id: " + race.getRaceId());
+//            System.out.println("API for this race id: " + race.getRaceId());
             RaceInfo raceInfo = new RaceInfo();
             racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
         }
@@ -98,33 +73,56 @@ public class ProfileController {
     }
 
     @PostMapping("/profile/comment")
-    public String addAComment(@ModelAttribute Comment comment)
+    public String addAComment(@ModelAttribute Comment comment, Authentication authentication, HttpServletRequest request)
     {
-        comment.setUser(userDao.findById(1));
-        comment.setRace(raceDao.findById(1));
+
+
+        User user = userDao.findByUsername(authentication.getName()); // id should be obtained from the user session
+        Race race = raceDao.findByRaceId(request.getParameter("raceId"));// the id for the race in the database should be obtained from the commenting form
+
+        comment.setUser(user);
+        comment.setRace(race);
+//        comment.setBody(comment.getBody());
+
+        System.out.println(comment.getBody());
 
         commentDao.save(comment);
 
-        User user = userDao.findById(1); // id should be obtained from the user session
         List<Comment> userComments = new ArrayList<>(user.getComments());
         userComments.add(commentDao.findById(comment.getId()));
         user.setComments(userComments);
 
         userDao.save(user);
 
-        Race race = raceDao.findById(1); // the id for the race in the database should be obtained from the commenting form
         List<Comment> raceComments = new ArrayList<>(race.getComments());
         raceComments.add(commentDao.findById(comment.getId()));
         race.setComments(raceComments);
 
         raceDao.save(race);
 
-        System.out.println(commentDao.findAll());
-        System.out.println();
-        System.out.println(user);
-        System.out.println();
-        System.out.println(race);
+//        System.out.println(commentDao.findAll());
+//        System.out.println();
+//        System.out.println(user);
+//        System.out.println();
+//        System.out.println(race);
 
         return "redirect:/profile";
     }
+
+    @PostMapping("/delete-race/{race_id}")
+    public String deleteRace(@PathVariable String race_id, Authentication authentication) {
+
+        Race race = raceDao.findByRaceId(race_id);
+        User user = userDao.findById(((User) authentication.getPrincipal()).getId());
+
+        List<Race> usersRaces = user.getRaces();
+        usersRaces.remove(race);
+
+        user.setRaces(usersRaces);
+        userDao.save(user);
+
+        return "redirect:/profile";
+
+    }
+
 }

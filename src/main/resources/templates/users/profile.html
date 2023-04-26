@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head
         th:replace="~{partials/head :: head}">
 
     <title>Profile</title>
 
 </head>
+
+<link rel="stylesheet" href="/css/profile.css">
+
+
 <body>
 <nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 
-<div class="container d-flex justify-content-center align-items-center under-nav opacity-90">
-    <div class="card">
+<div class="container profile-container">
+    <div class="profile-card card opacity-85">
         <div class="row gx-1">
-            <div class="col-sm-12 col-lg-4">
-                <img src="/images/profile-female.jpg" alt="prof-1" class="card-img-top profile-pic">
-            </div>
-            <div class="col-sm-12 col-lg-8 gx-1">
+            <div class="col-sm-12 col-lg-3 photo-container">
+                <div class="bg-image" style="background-image: url('/images/prof-back.jpg');">
+                    <img src="/images/profile-female.jpg" alt="prof-pic" class="profile-pic">
+                </div>
                 <div class="card-body text-center sub-title-text">
                     <h2 class="card-title">
                         <span th:text="${user.getUsername()}"></span>
@@ -28,60 +33,94 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
                     </div>
                 </div>
-                <div class="card-body text-center">
+            </div>
+
+            <!--      Attempting a nested container      -->
+
+
+
+            <!--    End of Nested Container   -->
+
+            <div class="col-sm-12 col-lg-8 gx-1">
+                <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">
                     <h1 class="title-text">Bookmarks</h1>
                     <div class="row">
-                        <!--                        Working Card - Rob -->
-
+                        <!-- Working Card - Rob -->
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
-                            <div class="card race-card" style="width: 18rem;" >
+                            <div class="card race-card" style="width: 18rem;">
                                 <div class="card-body">
-                                    <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Race Image">
-<!--                                    <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>-->
-                                    <p class="card-text general-text" th:text="${race.raceDate}">Date: </p>
-
-                                </div>
-                                <div class="card-body general-text">
-                                    <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#infoModal">Info</button>
-                                    <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
-                                </div>
-
-                                <!-- Comment Modal -->
-
-                                <div class="modal fade opacity-100" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="form">
-                                        <div class="modal-content">
-                                            <span class="close">&times;</span>
-                                            <div class="comment-section" th:each="comment : ${comments}">
-                                                <div class="comment">
-                                                    <p th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
-                                                        <span th:text="${comment.getRace().getRaceId()}"></span>
-                                                        <span th:text="${race.getRaceId()}"></span>
-                                                        <span th:text="${comment.getBody()}"></span>
-                                                    </p>
-                                                </div>
-                                                <!-- add more comments here -->
-                                            </div>
-                                            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
-                                                <textarea id="commentBox" placeholder="Add Comment" class="comment-box" th:field="*{body}"></textarea>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-tertiary btn-close" data-dismiss="modal">Close</button>
-                                                    <button id="submitCommentBtn">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                    <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
+                                    <div>
+                                        <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>
+                                        <!-- <p class="card-text general-text" th:text="${race.date}">Date: </p> -->
                                     </div>
                                 </div>
-
-<!--                                 Info Modal -->
-                                <div class="modal fade opacity-100" id="infoModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <h1 class="modal-title" id="infoModalLabel"><span th:text="${race.description}"></span></h1>
+                                <div class="card-body general-text">
+                                    <a href="#" class="btn btn-primary toggle-info info-btn">Info</a>
+                                    <a href="#" class="btn btn-primary toggle-comment comment-btn">Comment</a>
+                                    <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/} + ${race.raceId}" th:method="post">
+                                        <div class="btn btn-primary toggle-comment comment-btn">
+                                            <button type="submit">Remove race</button>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-tertiary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
+                                    </form>
+                                    <div class="comment-section">
+                                        <div class="container">
+                                            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                                                <label th:for="'newComment' + ${race.raceId}" name="newComment">Add your comment below-</label>
+                                                <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
+                                                <button id="addComments">Add Comment</button>
+                                                <input type="hidden" name="raceId" id="raceId" th:value="${race.raceId}">
+                                                <div id="allComments"></div>
+                                            </form>
+
+                                            <!--                                        <div class="detailBox">-->
+                                            <!--                                            <div class="titleBox">-->
+                                            <!--                                                <label>Comment Box</label>-->
+                                            <!--                                                <button type="button" class="close" aria-hidden="true">&times;</button>-->
+                                            <!--                                            </div>-->
+                                            <!--                                            <div class="commentBox">-->
+
+                                            <!--                                                <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
+                                            <!--                                            </div>-->
+                                            <!--                                            <div class="actionBox">-->
+                                            <!--                                                <ul class="commentList">-->
+                                            <!--                                                    <li>-->
+                                            <!--                                                        <div class="commenterImage">-->
+                                            <!--                                                            <img src="http://placekitten.com/50/50" />-->
+                                            <!--                                                        </div>-->
+                                            <!--                                                        <div class="commentText">-->
+                                            <!--                                                            <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>-->
+
+                                            <!--                                                        </div>-->
+                                            <!--                                                    </li>-->
+                                            <!--                                                    <li>-->
+                                            <!--                                                        <div class="commenterImage">-->
+                                            <!--                                                            <img src="http://placekitten.com/45/45" />-->
+                                            <!--                                                        </div>-->
+                                            <!--                                                        <div class="commentText">-->
+                                            <!--                                                            <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>-->
+
+                                            <!--                                                        </div>-->
+                                            <!--                                                    </li>-->
+                                            <!--                                                    <li>-->
+                                            <!--                                                        <div class="commenterImage">-->
+                                            <!--                                                            <img src="http://placekitten.com/40/40" />-->
+                                            <!--                                                        </div>-->
+                                            <!--                                                        <div class="commentText">-->
+                                            <!--                                                            <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>-->
+
+                                            <!--                                                        </div>-->
+                                            <!--                                                    </li>-->
+                                            <!--                                                </ul>-->
+                                            <!--                                                <form class="form-inline" role="form">-->
+                                            <!--                                                    <div class="form-group">-->
+                                            <!--                                                        <input class="form-control" type="text" placeholder="Your comments" />-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                    <div class="form-group">-->
+                                            <!--                                                        <button class="btn btn-default">Add</button>-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                </form>-->
+                                            <!--                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -93,6 +132,8 @@
         </div>
     </div>
 </div>
+
+<!-- End of Container -->
 
 <!-- Profile Edit Modal -->
 
@@ -145,9 +186,7 @@
                 <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>
             </div>
             <div class="modal-body">
-
-
-                <form th:action="@{/profile}" th:method="post" th:object="${user}">
+                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
                     <div class="form-group">
                         <label for="activity-level">Activity Level:</label>
                         <select id="activity-level" th:field="*{activityLvl}">
@@ -175,24 +214,7 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $('#editProfileModal').click(function () {
-            $('#editProfileModal').modal('show');
-        });
-
-        $('#editFitnessModal').click(function (){
-            $('#editFitnessModal').modal('show');
-        });
-        // $('#commentModal').click(function (){
-        //     $('#commentModal').modal('show');
-        // });
-        // $('#infoModal').click(function (){
-        //     $('#infoModal').modal('show');
-        // });
-    });
-
-</script>
+<script src="/js/profile.js"></script>
 
 <footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
