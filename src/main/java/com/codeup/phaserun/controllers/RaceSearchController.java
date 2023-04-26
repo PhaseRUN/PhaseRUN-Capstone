@@ -84,7 +84,23 @@ public class RaceSearchController {
         User userId = (User) authentication.getPrincipal();
         System.out.println(userId.getId());
         User user = userDao.findById(userId.getId());
-        Race race = new Race(raceId, new ArrayList<>(List.of(user)));
+
+        Race race;
+        if(raceDao.existsByRaceId(String.valueOf(raceId)))
+        {
+             race = raceDao.findByRaceId(String.valueOf(raceId));
+             if(userDao.existsByRaces(race)){
+                 return "redirect:/profile";
+             }
+             List<User> userRaceList = race.getUsers();
+             userRaceList.add(user);
+             race.setUsers(userRaceList);
+        }
+        else {
+
+             race = new Race(raceId, new ArrayList<>(List.of(user)));
+        }
+
 
         raceDao.save(race);
         System.out.println(mapper.writeValueAsString(race));
