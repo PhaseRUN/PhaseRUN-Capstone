@@ -61,6 +61,7 @@ public class ProfileController {
 //        return "users/profile";
 //    }
 
+
     @GetMapping("/profile")
     public String returnProfilePage(Model model, Authentication authentication) {
         System.out.println("i am here in profile");
@@ -74,6 +75,12 @@ public class ProfileController {
             RaceInfo raceInfo = new RaceInfo();
             racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
         }
+
+            for (RaceInfo race : racesInfo) {
+                String descriptionHtml = race.getDescription();
+                String descriptionText = Jsoup.parse(race.getDescription()).text();
+                race.setDescription(Jsoup.parse(race.getDescription()).text());
+            }
 
         model.addAttribute("races", racesInfo);
         model.addAttribute("user", user);

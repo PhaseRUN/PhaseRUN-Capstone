@@ -23,14 +23,3 @@ const commentContainer = document.getElementById('allComments');
 document.getElementById('addComments').addEventListener('click', function (ev) {
     addComment(ev);
 });
-
-
-
-const infoButtons = document.querySelectorAll('.toggle-info');
-infoButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const cardBody = button.closest('.card-body');
-        const infoSection = cardBody.querySelector('.info-section');
-        infoSection.classList.toggle('d-none');
-    });
-});

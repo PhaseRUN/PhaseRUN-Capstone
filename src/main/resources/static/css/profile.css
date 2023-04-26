@@ -145,7 +145,7 @@
 /*Bookmarks*/
 
 .cards {
-    perspective: 500px;
+    /*perspective: 500px;*/
 }
 
 .card_title {
@@ -162,10 +162,6 @@
     1px 1px 0 #000;
 }
 
-.card{
-    margin-bottom: 1em;
-}
-
 /* Comment Box */
 
 .detailBox {
@@ -176,8 +172,8 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-
 }
+
 .titleBox {
     background-color:#fdfdfd;
     padding:10px;
@@ -207,7 +203,7 @@
 .commentList {
     padding:0;
     list-style:none;
-    max-height:200px;
+    max-height:300px;
     overflow:auto;
 }
 .commentList li {
@@ -236,4 +232,32 @@
 .actionBox {
     border-top:1px dotted #bbb;
     padding:10px;
+}
+
+.race-card{
+    margin: 1em;
+}
+
+.race-border{
+    border: 1px solid #888888;
+    margin: 8px;
+}
+
+.comment-section {
+    display: none;
+    margin-top: 10px;
+}
+
+.show-comments .comment-section {
+    display: block;
+}
+.info-section {
+    display: none;
+    margin-top: 10px;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.show-info .info-section {
+    display: block;
 }
