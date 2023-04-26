@@ -255,7 +255,7 @@
     display: none;
     margin-top: 10px;
     overflow-y: auto;
-    max-height: 200px;
+    max-height: 300px;
 }
 
 .show-info .info-section {
