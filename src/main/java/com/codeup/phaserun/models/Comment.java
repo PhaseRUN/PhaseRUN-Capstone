@@ -77,13 +77,13 @@ public class Comment {
         this.race = race;
     }
 
-    @Override
-    public String toString() {
-        return "Body{" +
-                "id=" + id +
-                ", body='" + body + '\'' +
-                ", user=" + user +
-                ", race=" + race +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Body{" +
+//                "id=" + id +
+//                ", body='" + body + '\'' +
+//                ", user=" + user +
+//                ", race=" + race +
+//                '}';
+//    }
 }

@@ -11,23 +11,10 @@ import java.util.List;
 
 @Repository
 public interface RaceRepository extends JpaRepository<Race, Long> {
-    Race findById(int id);
-
+    Race findById(long id);
     boolean existsByRaceId(String raceId);
 
     Race findByRaceId(String raceId);
-
-
-
-    //delete controller
-//    @Query(value = "select * from races WHERE race_id = :race_id", nativeQuery = true)
-//    Race findRace(String race_id);
-//
-//    @Modifying
-//    @Query(value = "DELETE FROM users_races WHERE user_id = :userId AND race_id = :raceId", nativeQuery = true)
-//    void removeRaceFromUserBookmarks(Long userId, Long raceId);
-
-
 }
 
 

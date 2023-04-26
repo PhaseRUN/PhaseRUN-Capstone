@@ -3,8 +3,8 @@ package com.codeup.phaserun.controllers;
 import com.codeup.phaserun.repositories.RaceRepository;
 import com.codeup.phaserun.repositories.UserRepository;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.Authentication;
 import com.codeup.phaserun.models.*;
 import com.codeup.phaserun.repositories.CommentRepository;
@@ -73,21 +73,27 @@ public class ProfileController {
     }
 
     @PostMapping("/profile/comment")
-    public String addAComment(@ModelAttribute Comment comment)
+    public String addAComment(@ModelAttribute Comment comment, Authentication authentication, HttpServletRequest request)
     {
-        comment.setUser(userDao.findById(1));
-        comment.setRace(raceDao.findById(1));
+
+
+        User user = userDao.findByUsername(authentication.getName()); // id should be obtained from the user session
+        Race race = raceDao.findByRaceId(request.getParameter("raceId"));// the id for the race in the database should be obtained from the commenting form
+
+        comment.setUser(user);
+        comment.setRace(race);
+//        comment.setBody(comment.getBody());
+
+        System.out.println(comment.getBody());
 
         commentDao.save(comment);
 
-        User user = userDao.findById(1); // id should be obtained from the user session
         List<Comment> userComments = new ArrayList<>(user.getComments());
         userComments.add(commentDao.findById(comment.getId()));
         user.setComments(userComments);
 
         userDao.save(user);
 
-        Race race = raceDao.findById(1); // the id for the race in the database should be obtained from the commenting form
         List<Comment> raceComments = new ArrayList<>(race.getComments());
         raceComments.add(commentDao.findById(comment.getId()));
         race.setComments(raceComments);

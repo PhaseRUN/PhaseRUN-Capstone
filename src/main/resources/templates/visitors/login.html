@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="partials/head :: head">
+<head th:replace="~{partials/head :: head}">
+
     <title>Login</title>
+
 </head>
+<link rel="stylesheet" href="/css/login.css">
 <body>
 <nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 
@@ -15,24 +18,29 @@ Invalid Username and Password.
 You have been logged out.
 </div>
 <div class="container under-nav">
-    <div class="row row-cols-lg-2">
-        <form class="sub-title-text" th:action="@{/login}" th:method="post">
-            <div class="col-lg-6">
-                <div>
-                <label class="inputHeaderField" for="username">Username</label>
+    <div class="row row-cols-lg-2 offset-1">
+        <form class="form card" th:action="@{/login}" th:method="post">
+            <div class="card_header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="currentColor" d="M4 15h2v5h12V4H6v5H4V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6zm6-4V8l5 4-5 4v-3H2v-2h8z"></path>
+                </svg>
+                <h1 class="form_heading">Sign in</h1>
+            </div>
+            <div>
+                <label for="username">Username</label>
                 <input id="username" name="username" type="text" />
-                </div>
-                <div>
-                <label class="inputHeaderField" for="password">Password</label>
+            </div>
+            <div>
+                <label for="password">Password</label>
                 <input id="password" name="password" type="password" />
-                </div>
-                <div  class="padding">
-                <input type="submit" value="Log In" />
-                </div>
+            </div>
+            <div class="field">
+                <button type="submit" class="button">Login</button>
             </div>
         </form>
-        <div class="col-lg-6">
-        <img src="/images/pexels-bench.jpg" class="side-image" alt="bench"/>
+        <div class="col-lg-6 offset-1">
+            <img src="/images/pexels-bench.jpg" class="side-image" alt="bench"/>
         </div>
     </div>
 </div>
