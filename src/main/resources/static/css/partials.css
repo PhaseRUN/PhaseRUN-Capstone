@@ -42,7 +42,7 @@
 /* Body */
 
 body{
-    background-image: url("/images/background-unsplash.jpg");
+    background-image: url("src/main/resources/static/images/background-unsplash.jpg");
     background-color: #e3e2e2;
     background-blend-mode: multiply;
     background-size: cover;
