@@ -45,7 +45,6 @@
                                     <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
                                     <div>
                                         <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>
-<!--                                         <p class="card-text general-text" th:text="${race.date}">Date: </p>-->
                                     </div>
                                 </div>
                                 <div class="card-body general-text">
@@ -65,41 +64,26 @@
                                             </div>
                                             <div class="actionBox">
                                                 <ul class="commentList">
-                                                    <li>
-                                                        <div class="commenterImage">
-                                                            <img src="http://placekitten.com/50/50" />
-                                                        </div>
-                                                        <div class="commentText">
-                                                            <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+                                                    <li th:each="comment : ${comments}">
+                                                        <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                                            <div class="commenterImage">
+                                                                <img src="http://placekitten.com/50/50" />
+                                                            </div>
+                                                            <div class="commentText">
+                                                                <p class="">
+                                                                    <span th:text="${comment.getBody()}"></span>
+                                                                    <span class="date sub-text">on March 5th, 2014</span>
+                                                                </p>
 
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="commenterImage">
-                                                            <img src="http://placekitten.com/45/45" />
-                                                        </div>
-                                                        <div class="commentText">
-                                                            <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="commenterImage">
-                                                            <img src="http://placekitten.com/40/40" />
-                                                        </div>
-                                                        <div class="commentText">
-                                                            <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
+                                                            </div>
                                                         </div>
                                                     </li>
                                                 </ul>
-                                                <form class="form-inline" role="form">
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" placeholder="Your comments" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button class="btn btn-default">Add</button>
-                                                    </div>
+                                                <form class="form-inline" role="form"  th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                                                    <input class="form-control" type="text" th:id="'newComment' + ${race.raceId}" th:field="*{body}"></input>
+                                                    <button class="btn btn-default" id="addComments">Add Comment</button>
+                                                    <input class="form-control" type="hidden" name="raceId" id="raceId" th:value="${race.raceId}">
+                                                    <div id="allComments"></div>
                                                 </form>
                                             </div>
                                         </div>
