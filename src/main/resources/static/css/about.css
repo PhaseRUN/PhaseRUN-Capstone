@@ -26,13 +26,18 @@
     width: 181px;
 }
 
+.headshot.kenneth
+{
+    object-fit: cover;
+}
+
 .bioHeader {
-    font-size: 35px;
+    font-size: 40px;
     color: #000000;
     position: relative;
     z-index: 15;
-    padding-top: 60px;
-    padding-left: 95px;
+    padding-top: 1em;
+    padding-left: 85px;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 991px) {
@@ -69,6 +74,13 @@
         width: 120px;
     }
 
+    .headshot.kenneth
+    {
+        object-fit: cover;
+        height: 150px;
+        width: 120px;
+    }
+
     .bio{
         font-size: 25px;
         border: 1px solid #000;
@@ -76,7 +88,7 @@
         box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
         position: absolute;
         /*padding-top: 50px;*/
-        padding: 6em 1.5em;
+        padding: 4em 1.5em;
         height: 15em;
         width: 100%;
     }
@@ -137,6 +149,10 @@
 
 @media only screen and (min-width: 992px) {
 
+    .row
+    {
+        margin-bottom: 5em;
+    }
     .cardAbout {
         display: flex;
         flex-direction: row;
@@ -160,10 +176,11 @@
         border-radius: 50px;
         box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
         position: absolute;
-        padding-top: 180px;
-        padding-left: 25px;
-        padding-right: 15px;
-        height: 15em;
+        /*padding-top: 180px;*/
+        /*padding-left: 25px;*/
+        /*padding-right: 15px;*/
+        padding: 7.5em 1.5em;
+        height: 17em;
         width: 100%;
     }
 
