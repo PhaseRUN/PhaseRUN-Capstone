@@ -37,6 +37,13 @@
     margin-top: 7px;
 }
 
+.logo-home {
+    height: 184px;
+    width: 250px;
+    display: block;
+    margin: auto;
+}
+
 .btn-primary{
     background-color: cornflowerblue;
     border: none;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head
         th:replace="~{partials/head :: head}">
 
@@ -8,7 +9,6 @@
 </head>
 
 <link rel="stylesheet" href="/css/profile.css">
-
 
 <body>
 <nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>

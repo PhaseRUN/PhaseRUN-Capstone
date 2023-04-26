@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head th:replace="~{partials/head :: head}">
 
@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="/css/homeStyle.css">
 <body>
 
-<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
+<nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
 
 
     <!--Jumbotron-->
         <div class="jumbotron jumbotron-fluid jumbotron-background under-nav">
-            <p align="center"><img class="logo" src="/images/logo-color.png" alt="PhaseRUN"></p>
+            <img class="logo-home"  align="center" src="/images/logo-home.png" alt="boom">
+<!--            <h1 class="display-4 logo-title" align="center">PhaseRUN</h1>-->
             <p class="lead" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
             <h1 class="register-link lead" align="center"><a th:href="@{/register}">REGISTER</a></h1>
         </div>

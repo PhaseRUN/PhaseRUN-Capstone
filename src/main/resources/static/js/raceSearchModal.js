@@ -59,6 +59,11 @@ raceCards.forEach(raceCard => {
     modal.style.display = 'none';
     bookmarkButton.style.display = 'none';
     signupButton.style.display = 'none';
+
+    $('.info-btn').click(function() {
+        $(this).parent().find('.info-section').toggle();
+    });
+
 });
 
 
