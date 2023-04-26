@@ -5,22 +5,14 @@ import com.codeup.phaserun.repositories.UserRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import org.jsoup.Jsoup;
 import org.springframework.security.core.Authentication;
 import com.codeup.phaserun.models.*;
 import com.codeup.phaserun.repositories.CommentRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -43,7 +35,7 @@ public class ProfileController {
     public String returnProfilePage(Model model, Authentication authentication) {
 //        System.out.println("i am here in profile");
         User user = userDao.findByUsername(authentication.getName());
-        List<Race> races = raceDao.findAll();;
+        List<Race> races = raceDao.findAll();
 
 //        System.out.println(user.getEmail());
         List<RaceInfo> racesInfo = new ArrayList<>();
@@ -53,16 +45,12 @@ public class ProfileController {
             racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
         }
 
-            for (RaceInfo race : racesInfo) {
-                String descriptionHtml = race.getDescription();
-                String descriptionText = Jsoup.parse(race.getDescription()).text();
-                race.setDescription(Jsoup.parse(race.getDescription()).text());
-            }
+        List<Comment> comments = commentDao.findAll();
 
         model.addAttribute("races", racesInfo);
         model.addAttribute("user", user);
         model.addAttribute("comment", new Comment());
-        model.addAttribute("comments", commentDao.findAll());
+        model.addAttribute("comments", comments);
 
         return "/users/profile";
     }
@@ -90,26 +78,25 @@ public class ProfileController {
     @PostMapping("/profile/comment")
     public String addAComment(@ModelAttribute Comment comment, Authentication authentication, HttpServletRequest request)
     {
-        User user = userDao.findById(((User) authentication.getPrincipal()).getId());
-        Race race = (raceDao.findByRaceId(request.getParameter("raceId")));
+
+
+        User user = userDao.findByUsername(authentication.getName()); // id should be obtained from the user session
+        Race race = raceDao.findByRaceId(request.getParameter("raceId"));// the id for the race in the database should be obtained from the commenting form
 
         comment.setUser(user);
         comment.setRace(race);
-
 //        comment.setBody(comment.getBody());
 
         System.out.println(comment.getBody());
 
         commentDao.save(comment);
 
-//        User user = userDao.findById(1); // id should be obtained from the user session
         List<Comment> userComments = new ArrayList<>(user.getComments());
         userComments.add(commentDao.findById(comment.getId()));
         user.setComments(userComments);
 
         userDao.save(user);
 
-//        Race race = raceDao.findById(1); // the id for the race in the database should be obtained from the commenting form
         List<Comment> raceComments = new ArrayList<>(race.getComments());
         raceComments.add(commentDao.findById(comment.getId()));
         race.setComments(raceComments);
