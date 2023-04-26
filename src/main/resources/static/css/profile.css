@@ -1,10 +1,9 @@
 
 
 .profile-pic{
-    width: 320px;
-    height: 320px;
     border-radius: 50%;
 }
+
 .photo-container{
     display: flex;
     flex-direction: column;
@@ -18,42 +17,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 360px;
-    width: 360px;
+    height: 280px;
+    width: 280px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 2px 2px rgba(0,0,0,0.3);
 }
 .card-body {
     margin-top: 2em;
+    border-radius: 5px;
 }
 
 .btn {
     flex: 1;
-    margin: 0 0.5em;
+    margin: .5em;
 }
 
 @media screen and (min-width: 768px) {
     .profile-pic{
-        width: 340px;
-        height: 340px;
+        width: 260px;
+        height: 260px;
     }
 
     .bg-image {
-        height: 380px;
-        width: 380px;
+        height: 300px;
+        width: 300px;
     }
 }
 
 /*Bookmark Container*/
 .race-card{
-    padding: 1em;
     margin: 1em;
 }
 
 .race-border{
     border: 1px solid #888888;
-    margin: 15px 15px 15px 15px;
+    margin: 8px;
 }
 
 .comment-section {
@@ -170,9 +169,14 @@
 /* Comment Box */
 
 .detailBox {
-    width:320px;
+    /*width:320px;*/
     border:1px solid #bbb;
-    margin:50px;
+    /*margin:50px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
 }
 .titleBox {
     background-color:#fdfdfd;

@@ -16,52 +16,51 @@
 <div class="container profile-container">
     <div class="profile-card card opacity-85">
         <div class="row gx-1">
-            <div class="col-sm-12 col-lg-3 photo-container">
+            <div class="col-sm-12 col-lg-3 photo-container under-nav">
                 <div class="bg-image" style="background-image: url('/images/prof-back.jpg');">
                     <img src="/images/profile-female.jpg" alt="prof-pic" class="profile-pic">
                 </div>
                 <div class="card-body text-center sub-title-text">
+                    <div class="general-text d-flex-inline align-content-center justify-content-center">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
+                    </div>
                     <h2 class="card-title">
                         <span th:text="${user.getUsername()}"></span>
                     </h2>
                     <h3 class="card-title">
                         <span th:text="${user.getZipcode()}"></span>
                     </h3>
-                    <div class="general-text d-flex align-content-center justify-content-center">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
-                    </div>
                 </div>
             </div>
 
-<!--      Attempting a nested container      -->
-
-
-
-<!--    End of Nested Container   -->
-
-            <div class="col-sm-12 col-lg-8 gx-1">
-                <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">
+            <div class="col-sm-12 col-lg-9 gx-1">
+                <div class="card-body text-center card-container" style="max-height: 600px; overflow: auto;">
                     <h1 class="title-text">Bookmarks</h1>
                     <div class="row">
                         <!-- Working Card - Rob -->
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
-                            <div class="card race-card" style="width: 18rem;">
+                            <div class="card race-card" style="width: 26rem;">
                                 <div class="card-body">
                                     <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
                                     <div>
                                         <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>
-                                        <!-- <p class="card-text general-text" th:text="${race.date}">Date: </p> -->
+<!--                                         <p class="card-text general-text" th:text="${race.date}">Date: </p>-->
                                     </div>
                                 </div>
                                 <div class="card-body general-text">
                                     <a href="#" class="btn btn-primary toggle-info info-btn">Info</a>
                                     <a href="#" class="btn btn-primary toggle-comment comment-btn">Comment</a>
+                                    <div class="info-section commentList" style="display: none;">
+<!--                                        <p class="card-text general-text" th:text="${race.date}">Date: </p>-->
+<!--                                        <p class="card-text general-text" th:text="${race.location}">Location: </p>-->
+<!--                                        <p class="card-text general-text" th:text="${race.distance}">Distance: </p>-->
+                                        <p class="card-text general-text" th:text="${race.description}">Description: </p>
+                                    </div>
                                     <div class="comment-section">
                                         <div class="detailBox">
                                             <div class="titleBox">
                                                 <label>Comment Box</label>
-                                                <button type="button" class="close" aria-hidden="true">&times;</button>
                                             </div>
                                             <div class="commentBox">
 
