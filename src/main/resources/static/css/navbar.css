@@ -1,0 +1,46 @@
+/* Navbar */
+
+.form-group {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.form-control {
+    width: auto;
+    display: inline-block;
+}
+
+.navbar {
+    background-color: #273556 !important;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-shadow: whitesmoke;
+}
+
+.navbar-toggler{
+    border: black 2px;
+    background-color: rgb(28 217 203);
+}
+
+.nav-group{
+    font-family: Cardo, serif;
+    font-size: 1em;
+}
+
+.nav-link {
+    color: rgb(255, 255, 255) !important;
+}
+
+.logo{
+    height: 65px;
+    width: 105px;
+    margin-top: 7px;
+}
+
+.btn-primary{
+    background-color: cornflowerblue;
+    border: none;
+    font-family: 'Roboto Black', sans-serif;
+    font-size: 1em;
+    margin-right: 3em;
+}
