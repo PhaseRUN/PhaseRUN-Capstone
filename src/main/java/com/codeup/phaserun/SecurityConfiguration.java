@@ -47,7 +47,7 @@ public class SecurityConfiguration {
             .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/race/search", "/races/bookmark", "/profile/comment", "/profile"
+                        "/delete-race/**","/race/search", "/races/bookmark", "/profile/comment", "/profile"
                         )
                 .authenticated()
                 /* Pages that can be viewed without having to log in */

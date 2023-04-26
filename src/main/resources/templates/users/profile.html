@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
+<nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
 <div class="container d-flex justify-content-center align-items-center under-nav opacity-90">
     <div class="card">
@@ -45,6 +45,11 @@
                                     <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#infoModal">Info</button>
                                     <button type="button" class="btn btn-tertiary card-modal-btn" data-bs-toggle="modal" data-bs-target="#commentModal">Comment</button>
                                 </div>
+                                <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/} + ${race.raceId}" th:method="post">
+                                    <div class="flex justify-evenly">
+                                        <button type="submit">Delete Race</button>
+                                    </div>
+                                </form>
 
                                 <!-- Comment Modal -->
 
@@ -193,6 +198,9 @@
     });
 
 </script>
+<script type="text/javascript" th:src="@{/js/deleteBookmark.js}">
+</script>
+
 
 <footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
