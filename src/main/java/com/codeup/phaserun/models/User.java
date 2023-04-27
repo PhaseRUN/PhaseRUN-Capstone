@@ -36,6 +36,9 @@ public class User {
     @Column(nullable = false)
     private Date birthDate;
 
+    @Column(nullable = true, length = 255)
+    private String profilePic;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_races",
@@ -91,6 +94,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 
     public long getId() {

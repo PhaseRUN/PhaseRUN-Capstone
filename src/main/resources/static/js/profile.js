@@ -80,3 +80,41 @@ $('#editFitnessModal').click(function (){
 // function setOnLocalStorage () {
 //     localStorage.setItem('template', document.getElementById('allComments').innerHTML);
 // }
+
+
+const profilePicElm = document.querySelector('.profile-pic');
+const client = filestack.init('AthR8AktzR6e4xfLVdfX6z');
+
+profilePicElm.addEventListener('click', function () {
+    console.log('clicked');
+    client.picker({
+        onUploadDone: (res) => {
+            console.log(res);
+            postProfilePicData(res);
+        },
+    }).open();
+});
+
+
+function postProfilePicData(res){
+    const profilePicURL = res.filesUploaded[0].url
+    const userIdElement = document.getElementById('userId');
+    const userId = userIdElement.getAttribute("data-user-Id");
+    console.log(userId);
+
+    fetch("/api/upload-picture", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "profilePicURL": profilePicURL,
+            "userId": userId
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("success");
+        })
+        .catch(error => console.log(error))
+}
