@@ -5,175 +5,175 @@
     <title>Profile</title>
 </head>
 <link rel="stylesheet" th:href="@{/css/profile.css}">
-<body>
-<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
+<!--<body>-->
+<!--<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>-->
 
-<div class="container profile-container">
-    <div class="profile-card card opacity-85">
-        <div class="row gx-1">
-<!--            <div class="col-sm-12 col-lg-3 photo-container">-->
-<!--                <div class="bg-image" style="background-image: url('/images/prof-back.jpg');">-->
-<!--                    <img src="/images/profile-female.jpg" alt="prof-pic" class="profile-pic">-->
-<!--                </div>-->
-<!--                <div class="card-body text-center sub-title-text">-->
-<!--                    <h2 class="card-title">-->
-<!--                        <span th:text="${user.getUsername()}"></span>-->
-<!--                    </h2>-->
-<!--                    <h3 class="card-title">-->
-<!--                        <span th:text="${user.getZipcode()}"></span>-->
-<!--                    </h3>-->
-<!--&lt;!&ndash;                    Modal buttons&ndash;&gt;-->
-<!--                    <div class="general-text d-flex align-content-center justify-content-center">-->
-<!--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>-->
-<!--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+<!--<div class="container profile-container">-->
+<!--    <div class="profile-card card opacity-85">-->
+<!--        <div class="row gx-1">-->
+<!--&lt;!&ndash;            <div class="col-sm-12 col-lg-3 photo-container">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="bg-image" style="background-image: url('/images/prof-back.jpg');">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="/images/profile-female.jpg" alt="prof-pic" class="profile-pic">&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body text-center sub-title-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h2 class="card-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${user.getUsername()}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </h2>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h3 class="card-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span th:text="${user.getZipcode()}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </h3>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    Modal buttons&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="general-text d-flex align-content-center justify-content-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
 
-<!--Profile bookmark card start-->
-<!--            <div class="col-sm-12 col-lg-8 gx-1">-->
-<!--                <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">-->
-<!--                    <h1 class="title-text">Bookmarks</h1>-->
-<!--                    <div class="row">-->
-<!--                        &lt;!&ndash; Working Card - Rob &ndash;&gt;-->
-<!--                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">-->
-<!--                            <div class="card race-card" style="width: 18rem;">-->
-<!--                                <div class="card-body">-->
-<!--                                    <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />-->
-<!--                                    <div>-->
-<!--                                        <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>-->
-<!--                                        &lt;!&ndash; <p class="card-text general-text" th:text="${race.date}">Date: </p> &ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="card-body general-text">-->
-<!--&lt;!&ndash;                                    <a href="#" class="btn btn-primary toggle-info info-btn">Info</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    Working Comments with drop down menu start&ndash;&gt;-->
-<!--                                    <div class="dropdown">-->
-<!--                                        <button class="btn btn-secondary dropdown-toggle btn-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                                            Comments-->
-<!--                                        </button>-->
-<!--                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
-<!--                                            <ul class="commentList">-->
-<!--                                                <li th:each="comment : ${comments}">-->
-<!--                                                    <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">-->
-<!--                                                        <div class="commentText">-->
-<!--                                                            <p>-->
-<!--                                                                <span th:text="${comment.getBody()}"></span>-->
-<!--                                                            </p>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">-->
-<!--                                                <label th:for="'newComment' + ${race.raceId}" name="newComment">Add your comment below-</label>-->
-<!--                                                <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>-->
-<!--                                                <input type="hidden" name="raceId" th:value="${race.raceId}">-->
-<!--                                                <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>-->
-<!--                                                <div id="allComments"></div>-->
-<!--                                            </form>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--&lt;!&ndash;                                    End of Working Comments&ndash;&gt;-->
-<!--&lt;!&ndash;                                    delete race button&ndash;&gt;-->
-<!--                                    <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/} + ${race.raceId}" th:method="post">-->
-<!--                                        <div class="btn btn-primary toggle-comment comment-btn">-->
-<!--                                            <button type="submit">Remove race</button>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            Profile bookmark card end-->
-        </div>
-    </div>
-</div>
-
-<!-- End of Container -->
-
-<!--&lt;!&ndash; Profile Edit Modal &ndash;&gt;-->
-
-<!--<div class="modal fade opacity-100" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog" role="form">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <form th:action="@{/profile}" th:method="post" th:object="${user}">-->
-<!--                    <div class="container-prof">-->
-<!--                        <div class="header-prof">-->
-<!--                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">-->
-<!--                                <path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> <p>Browse File to upload!</p>-->
-<!--                        </div>-->
-<!--                        <label for="file" class="footer-prof">-->
-<!--                            <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path><path d="M18.153 6h-.009v5.342H23.5v-.002z"></path></g></svg>-->
-<!--                            <p>Not selected file</p>-->
-<!--                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" stroke-width="2"></path> <path d="M19.5 5H4.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" stroke-width="2"></path> </g></svg>-->
-<!--                        </label>-->
-<!--                        <input id="file" type="file">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="fit-zipcode">Zip Code</label>-->
-<!--                        <input type="number" pattern="[0-9]" class="form-control" id="fit-zipcode" name="zip-code" th:field="*{zipcode}">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="password">Password:</label>-->
-<!--                        <input type="password" class="form-control" id="password" name="password">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="confirmPassword">Confirm Password:</label>-->
-<!--                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">-->
-<!--                    </div>-->
-<!--                    <button type="submit" class="btn btn-primary">Save Changes</button>-->
-<!--                </form>-->
-<!--            </div>-->
+<!--&lt;!&ndash;Profile bookmark card start&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-sm-12 col-lg-8 gx-1">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h1 class="title-text">Bookmarks</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash; Working Card - Rob &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="card race-card" style="width: 18rem;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        &lt;!&ndash; <p class="card-text general-text" th:text="${race.date}">Date: </p> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="card-body general-text">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    <a href="#" class="btn btn-primary toggle-info info-btn">Info</a>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    Working Comments with drop down menu start&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <button class="btn btn-secondary dropdown-toggle btn-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            Comments&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <ul class="commentList">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <li th:each="comment : ${comments}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <div class="commentText">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                <span th:text="${comment.getBody()}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <label th:for="'newComment' + ${race.raceId}" name="newComment">Add your comment below-</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input type="hidden" name="raceId" th:value="${race.raceId}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div id="allComments"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    End of Working Comments&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                    delete race button&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/} + ${race.raceId}" th:method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="btn btn-primary toggle-comment comment-btn">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <button type="submit">Remove race</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            Profile bookmark card end&ndash;&gt;-->
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
 
+<!--&lt;!&ndash; End of Container &ndash;&gt;-->
 
-<!--&lt;!&ndash; Fitness Edit Modal&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash; Profile Edit Modal &ndash;&gt;&ndash;&gt;-->
 
-<!--<div class="modal fade opacity-100" id="editFitnessModal" tabindex="-1" role="dialog" aria-labelledby="editFitnessModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog" role="form">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <form th:action="@{/profile" th:method="post" th:object="${user}">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="activity-level">Activity Level:</label>-->
-<!--                        <select id="activity-level" th:field="*{activityLvl}">-->
-<!--                            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"-->
-<!--                                    th:value="${activityLvl}"-->
-<!--                                    th:text="${activityLvl}"-->
-<!--                                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum)}">-->
-<!--                            </option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="running-exp">Running Experience:</label>-->
-<!--                        <select id="running-exp" th:field="*{runningExp}">-->
-<!--                            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"-->
-<!--                                    th:value="${runningExp}"-->
-<!--                                    th:text="${runningExp}"-->
-<!--                                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum)}">-->
-<!--                            </option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                    <button type="submit" class="btn btn-primary">Save Changes</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<!--&lt;!&ndash;<div class="modal fade opacity-100" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="modal-dialog" role="form">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="modal-content">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-header">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                <form th:action="@{/profile}" th:method="post" th:object="${user}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="container-prof">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="header-prof">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> <p>Browse File to upload!</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="file" class="footer-prof">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path><path d="M18.153 6h-.009v5.342H23.5v-.002z"></path></g></svg>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p>Not selected file</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" stroke-width="2"></path> <path d="M19.5 5H4.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" stroke-width="2"></path> </g></svg>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input id="file" type="file">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="fit-zipcode">Zip Code</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="number" pattern="[0-9]" class="form-control" id="fit-zipcode" name="zip-code" th:field="*{zipcode}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="password">Password:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="password" class="form-control" id="password" name="password">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="confirmPassword">Confirm Password:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button type="submit" class="btn btn-primary">Save Changes</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-<!--<script src="/js/profile.js"></script>-->
 
-<footer th:replace="~{partials/footer :: footer}"></footer>
-</body>
+<!--&lt;!&ndash;&lt;!&ndash; Fitness Edit Modal&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div class="modal fade opacity-100" id="editFitnessModal" tabindex="-1" role="dialog" aria-labelledby="editFitnessModalLabel" aria-hidden="true">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="modal-dialog" role="form">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="modal-content">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-header">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                <form th:action="@{/profile" th:method="post" th:object="${user}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="activity-level">Activity Level:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <select id="activity-level" th:field="*{activityLvl}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:value="${activityLvl}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:text="${activityLvl}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum)}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="running-exp">Running Experience:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <select id="running-exp" th:field="*{runningExp}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:value="${runningExp}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:text="${runningExp}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum)}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button type="submit" class="btn btn-primary">Save Changes</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<script src="/js/profile.js"></script>&ndash;&gt;-->
+
+<!--<footer th:replace="~{partials/footer :: footer}"></footer>-->
+<!--</body>-->
 </html>
