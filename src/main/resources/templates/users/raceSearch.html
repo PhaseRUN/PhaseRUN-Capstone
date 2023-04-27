@@ -57,7 +57,7 @@
 </div>
 
 <div class="results-container container opacity-95 d-flex justify-content-center">
-    <h1 class="row d-flex inputHeaderField" th:if="${races == null}">Submit a Search</h1>
+<!--    <h1 class="row d-flex inputHeaderField" th:if="${races == null}">Submit a Search</h1>-->
     <h1 class="row d-flex inputHeaderField" th:if="${#lists.isEmpty(races) and races != null}">No Races Fit The Criteria</h1>
     <h1 class="row d-flex inputHeaderField" th:if="${races != null}">You have this many weeks to train</h1>
 </div>
