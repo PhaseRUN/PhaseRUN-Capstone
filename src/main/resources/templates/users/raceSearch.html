@@ -58,31 +58,14 @@
 <div class="results-container container opacity-95 d-flex justify-content-center">
     <h1 class="row d-flex inputHeaderField" th:if="${races == null}">Submit a Search</h1>
     <h1 class="row d-flex inputHeaderField" th:if="${#lists.isEmpty(races) and races != null}">No Races Fit The Criteria</h1>
-    <div class="row race-cards">
-        <div th:each="Race : ${races}" class="col-sm-12 col-lg-6 col-xl-4 mb-4">
-            <div class="card race-card opacity-95">
-                <div>
-                    <form th:method="post" th:action="@{/races/bookmark}">
-                        <input type="hidden" name="raceId" th:value="${Race.raceId}">
-                        <button class="bookmark-flg btn btn-link" type="submit" th:if="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
-                                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
-                            </svg>
-                        </button>
-                        <button class="bookmark-flg btn btn-link" type="submit" th:unless="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-                <img th:src="${Race.logoUrl}" alt="race-image" class="card-img-top">
-                <div class="card-body">
+    <h1 class="row d-flex inputHeaderField" th:if="${races != null}">You have this many weeks to train</h1>
+</div>
 
-    <!-- Working Card - Rob -->
+<!-- Working Card - Rob -->
+<div class="row race-cards">
     <div class="row">
         <div class="col-sm-12 col-lg-12 container-fluid">
-            <div class="card-body text-center card-container container-fluid">
+            <div class="card-container container-fluid">
                 <div class="row grid gap-3 container-fluid">
                     <div class="col-sm-12 col-lg-3 d-flex justify-content-center" th:each="Race : ${races}">
                         <div class="card race-card" style="width: 26rem;">
@@ -108,18 +91,16 @@
                                 </div>
                             </div>
                             <div class="card-body general-text">
-                                <div class="dropdown-center">
+                                <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Information
                                     </button>
                                     <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" th:text="${Race.description}"></a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" th:text="${Race.description}" ></a>
+                                        </li>
                                     </ul>
                                 </div>
-<!--                                <a href="#" class="btn btn-primary toggle-info info-btn">Info</a>-->
-<!--                                <div class="info-section commentList" style="display: none;">-->
-<!--                                    <p class="card-text general-text" th:text="${Race.description}">Description: </p>-->
-<!--                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -127,57 +108,9 @@
             </div>
         </div>
     </div>
-
-<!--    <div class="row race-cards">-->
-<!--        <div th:each="Race : ${races}" class="col-sm-12 col-lg-6 col-xl-4 mb-4">-->
-<!--            <div class="card race-card opacity-95" style="width: 18rem; height: 36rem">-->
-<!--                <div>-->
-<!--                    <form th:method="post" th:action="@{/races/bookmark}">-->
-<!--                        <input type="hidden" name="raceId" th:value="${Race.raceId}">-->
-<!--                        <button class="bookmark-flg btn btn-link" type="submit" th:if="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">-->
-<!--                                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>-->
-<!--                            </svg>-->
-<!--                        </button>-->
-<!--                        <button class="bookmark-flg btn btn-link" type="submit" th:unless="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">-->
-<!--                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>-->
-<!--                            </svg>-->
-<!--                        </button>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--                <img th:src="${Race.logoUrl}" alt="race-image" class="card-img-top">-->
-<!--                <div class="card-body">-->
-
-<!--                    &lt;!&ndash; Trigger/Open The Modal &ndash;&gt;-->
-<!--                    <a href="#" class="raceCard" th:text="${Race.name}"></a>-->
-
-<!--                    &lt;!&ndash; The Modal  &ndash;&gt;-->
-<!--                    <div class="myModal">-->
-
-<!--                        &lt;!&ndash; Modal content &ndash;&gt;-->
-<!--                        <div class="modal-content">-->
-<!--                            <span class="close">&times;</span>-->
-<!--                            <p class="card-description" th:text="${Race.description}"></p>-->
-<!--                            <form th:method="post" th:action="@{/races/bookmark}">-->
-<!--                                <input type="hidden" name="raceId" th:value="${Race.raceId}">-->
-<!--                                <button class="bookmark-btn" type="submit">Bookmark this race!</button>-->
-<!--                            </form>-->
-<!--                            <a th:href="${Race.raceURL}" target="_blank" class="signup-btn">Sign-up</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>
 
-
     <footer  th:replace="partials/footer :: footer"></footer>
-
-<script type="text/javascript" th:src="@{/js/raceSearchModal.js}">
-</script>
-
 
 </body>
 </html>
