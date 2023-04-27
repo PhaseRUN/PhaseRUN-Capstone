@@ -6,7 +6,7 @@
     <title>Home</title>
 
 </head>
-<link rel="stylesheet" href="/css/homeStyle.css">
+<link rel="stylesheet" th:href="@{/css/homeStyle.css}">
 <body>
 
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>

@@ -6,7 +6,8 @@
 
 
 </head>
-<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" th:href="@{/css/register.css}">
+
 <body>
 <nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 
