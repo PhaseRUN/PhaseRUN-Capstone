@@ -26,16 +26,36 @@
     width: 181px;
 }
 
+.headshot.kenneth
+{
+    object-fit: cover;
+}
+
 .bioHeader {
-    font-size: 35px;
+    font-size: 50px;
     color: #000000;
     position: relative;
     z-index: 15;
-    padding-top: 60px;
-    padding-left: 95px;
+    padding-top: .5em;
+    padding-left: 25px;
+}
+
+.bioHeader.kenneth
+{
+    padding-left: 85px;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 991px) {
+
+    .row
+    {
+        margin-bottom: 5em;
+    }
+
+    .bioHeader
+    {
+        font-size: 40px;
+    }
 
     .cardAbout {
         display: flex;
@@ -44,7 +64,7 @@
         height: 275px;
         max-width: 100%;
         min-width: 700px;
-        margin: 1em;
+        margin: 4em 0;
         padding: 1em;
         box-shadow: none;
         border: none;
@@ -56,12 +76,19 @@
 
     .headshot {
         border: 1px solid #000;
-        border-radius: 50%;
+        border-radius: 20%;
         box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
         position: relative;
         z-index: 10;
-        height: 175px;
-        width: 125px;
+        height: 150px;
+        width: 120px;
+    }
+
+    .headshot.kenneth
+    {
+        object-fit: cover;
+        height: 150px;
+        width: 120px;
     }
 
     .bio{
@@ -70,7 +97,8 @@
         border-radius: 50px;
         box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
         position: absolute;
-        padding-top: 50px;
+        /*padding-top: 50px;*/
+        padding: 4em 1.5em;
         height: 15em;
         width: 100%;
     }
@@ -131,6 +159,10 @@
 
 @media only screen and (min-width: 992px) {
 
+    .row
+    {
+        margin-bottom: 5em;
+    }
     .cardAbout {
         display: flex;
         flex-direction: row;
@@ -154,10 +186,11 @@
         border-radius: 50px;
         box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
         position: absolute;
-        padding-top: 180px;
-        padding-left: 25px;
-        padding-right: 15px;
-        height: 15em;
+        /*padding-top: 180px;*/
+        /*padding-left: 25px;*/
+        /*padding-right: 15px;*/
+        padding: 7.5em 1.5em;
+        height: 17em;
         width: 100%;
     }
 

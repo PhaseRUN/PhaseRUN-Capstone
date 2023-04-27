@@ -152,7 +152,7 @@
                 <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>
             </div>
             <div class="modal-body">
-                <form th:action="@{/profile/{id}/edit(id=${user.getId()})}" th:method="post" th:object="${user}">
+                <form th:action="@{/profile}" th:method="post" th:object="${user}">
                     <div class="form-group">
                         <label for="activity-level">Activity Level:</label>
                         <select id="activity-level" th:field="*{activityLvl}">
