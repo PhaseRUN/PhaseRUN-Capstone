@@ -42,7 +42,8 @@
     height: 184px;
     width: 250px;
     display: block;
-    margin: 0 40vw 0 35vw;
+    margin: auto;
+    padding-right: .5em;
 }
 
 .btn-primary{
