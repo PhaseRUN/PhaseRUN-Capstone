@@ -1,72 +1,4 @@
-/*Profile Container*/
-
-.profile-pic{
-    border-radius: 50%;
-}
-
-.photo-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*padding-top: 2em;*/
-}
-
-.bg-image {
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.3);
-}
-.card-body {
-    margin-top: 2em;
-    border-radius: 5px;
-}
-
-.btn {
-    flex: 1;
-    margin: .5em;
-}
-
-@media screen and (min-width: 768px) {
-    .profile-pic{
-        width: 200px;
-        height: 200px;
-    }
-
-    .bg-image {
-        height: 230px;
-        width: 230px;
-    }
-}
-
-.comment-section {
-    display: none;
-    margin-top: 10px;
-}
-
-.info-section {
-    display: none;
-    margin-top: 10px;
-}
-
-/*Photo Upload*/
-
-.container-prof {
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
-    box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    gap: 5px;
-    background-color: rgba(0, 110, 255, 0.041);
-}
+/*!*Photo Upload*!*/
 
 .header-prof {
     flex: 1;
@@ -121,36 +53,12 @@
     display: none;
 }
 
-/*Bookmarks*/
-
-/* Comment Box */
-
-.detailBox {
-    border:1px solid #bbb;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.titleBox {
-    background-color:#fdfdfd;
-    padding:10px;
-}
-.titleBox label{
-    color:#444;
-    margin:0;
-    display:inline-block;
-}
-
-.actionBox .form-group * {
-    width:100%;
-}
+/*!* Comment Box *!*/
 
 .commentList {
     padding:0;
     list-style:none;
-    max-height:300px;
+    max-height:400px;
     overflow:auto;
 }
 .commentList li {
@@ -159,26 +67,9 @@
 .commentList li > div {
     display:table-cell;
 }
-.commenterImage {
-    width:30px;
-    margin-right:5px;
-    height:100%;
-    float:left;
-}
-.commenterImage img {
-    width:100%;
-    border-radius:50%;
-}
+
 .commentText p {
     margin:0;
-}
-.sub-text {
-    color:#aaa;
-    font-size:11px;
-}
-.actionBox {
-    border-top:1px dotted #bbb;
-    padding:10px;
 }
 
 .comment-section {
@@ -186,7 +77,16 @@
     margin-top: 10px;
 }
 
-/*Info Box*/
+.comment-styling{
+    border: 3px ridge #273556;
+    border-radius: 5px;
+    padding: 5px;
+    /*margin: 5px;*/
+    background-color: #f2f2f2;
+    box-shadow: whitesmoke;
+}
+
+/*!*Info Box*!*/
 
 .info-section {
     display: none;
@@ -195,6 +95,8 @@
     max-height: 300px;
 }
 
+/*!*Remove Button*!*/
+
 .remove-btn{
     background-color: #ff0000;
     color: #fff;
@@ -202,4 +104,19 @@
     border-radius: 5px;
     cursor: pointer;
     padding: 5px;
+}
+
+:root {
+    --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+}
+
+.race-card {
+    background: #273556 !important;
+    border: 1px solid #dd2476;
+    color: rgba(250, 250, 250, 0.8);
+    margin-bottom: 2rem;
+}
+
+.races-container{
+    padding-top: 1em;
 }
