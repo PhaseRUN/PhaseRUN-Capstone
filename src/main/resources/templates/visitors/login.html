@@ -7,16 +7,15 @@
     <title>Login</title>
 
 </head>
-<link rel="stylesheet" th:href="@{/css/login.css}">
-
+<link rel="stylesheet" href="/css/login.css">
 <body>
 <nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
 
 <div class="general-text under-nav" th:if="${param.error}">
-Invalid Username and Password.
+    Invalid Username and Password.
 </div>
 <div class="general-text" th:if="${param.logout}">
-You have been logged out.
+    You have been logged out.
 </div>
 <div class="container under-nav">
     <div class="justify-content-center">
@@ -35,7 +34,7 @@ You have been logged out.
             <div class="field">
                 <button type="submit" class="button rounded">Login</button>
                 <div>
-                <button class="button rounded" th:href="@{/register}">REGISTER</button>
+                    <button class="button rounded" th:href="@{/register}">REGISTER</button>
                 </div>
             </div>
         </form>
