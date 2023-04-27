@@ -30,6 +30,7 @@
 header {
     animation: 1s ease-out 0s 1 slide-in;
     padding-top: 100px;
+    padding-right: 5em;
 }
 
 .jumbotron-background::after{
