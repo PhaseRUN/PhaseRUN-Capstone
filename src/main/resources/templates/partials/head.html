@@ -4,6 +4,10 @@
 <head th:fragment="head">
     <meta charset="UTF-8">
 
+    <!-- CSRF -->
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/partials.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">

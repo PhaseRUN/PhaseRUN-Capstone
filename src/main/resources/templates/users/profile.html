@@ -13,7 +13,7 @@
         <div class="row gx-1">
             <div class="col-sm-12 col-lg-3 photo-container">
                 <div class="bg-image" style="background-image: url('/images/prof-back.jpg');">
-                    <img src="/images/profile-female.jpg" alt="prof-pic" class="profile-pic">
+                    <img th:src="${user.getProfilePic()}" alt="prof-pic" class="profile-pic">
                 </div>
                 <div class="card-body text-center sub-title-text">
                     <h2 class="card-title">

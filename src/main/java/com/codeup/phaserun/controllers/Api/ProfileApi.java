@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class profileApi {
+public class ProfileApi {
 
     private final UserRepository userDao;
 
-    public profileApi(UserRepository userDao) {
+    public ProfileApi(UserRepository userDao) {
         this.userDao = userDao;
     }
 
     @PostMapping("/upload-picture")
     public ExampleData uploadProfilePicture(@RequestBody ExampleData requestData){
+        System.out.println("Inside exampledata");
         Long userId = requestData.userId;
         System.out.println(userId);
         System.out.println(userId);

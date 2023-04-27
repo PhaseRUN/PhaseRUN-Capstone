@@ -88,7 +88,7 @@ const client = filestack.init('AthR8AktzR6e4xfLVdfX6z');
 profilePicElm.addEventListener('click', function () {
     console.log('clicked');
     client.picker({
-        onUploadDone: (res) => {
+        onFileUploadFinished: (res) => {
             console.log(res);
             postProfilePicData(res);
         },
@@ -97,22 +97,30 @@ profilePicElm.addEventListener('click', function () {
 
 
 function postProfilePicData(res){
-    const profilePicURL = res.filesUploaded[0].url
+    const csrfToken = document.querySelector('meta[name="_csrf"]').content;
+    // const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+    const profilePicURL = res.url
     const userIdElement = document.getElementById('userId');
     const userId = userIdElement.getAttribute("data-user-Id");
     console.log(userId);
+    const jsonObject = {
+        profilePicURL: profilePicURL,
+        userId: userId
+    };
+    console.log(jsonObject);
 
     fetch("/api/upload-picture", {
-        method: "POST",
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
         },
-        body: JSON.stringify({
-            "profilePicURL": profilePicURL,
-            "userId": userId
-        })
+        body: JSON.stringify(jsonObject)
     })
-        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+            return response.json()
+        })
         .then(data => {
             console.log("success");
         })
