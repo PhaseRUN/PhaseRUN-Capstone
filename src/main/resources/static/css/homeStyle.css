@@ -30,6 +30,7 @@
 header {
     animation: 1s ease-out 0s 1 slide-in;
     padding-top: 100px;
+    padding-right: 5em;
 }
 
 .jumbotron-background::after{
@@ -63,3 +64,43 @@ header {
 .intimidate-setting{
     padding-left: 5em;
 }
+
+.home-text
+{
+    font-size: 1.5em;
+    color: white;
+}
+
+.home-sub-text
+{
+    font-size: 2em;
+    color: white;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 991px) /* small */
+{
+    .right-sq
+    {
+        border-radius: 0 0 15px 15px; /* top-left top-right bottom-right bottom-left */
+    }
+
+    .left-sq
+    {
+        border-radius: 15px 15px 0 0; /* top-left top-right bottom-right bottom-left */
+    }
+}
+
+@media only screen and (min-width: 992px) /* big */
+{
+    .right-sq
+    {
+        border-radius: 0 15px 15px 0; /* top-left top-right bottom-right bottom-left */
+    }
+
+    .left-sq
+    {
+        border-radius: 15px 0 0 15px; /* top-left top-right bottom-right bottom-left */
+    }
+
+}
+
