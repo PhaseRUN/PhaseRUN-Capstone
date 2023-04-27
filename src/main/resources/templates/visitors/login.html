@@ -46,7 +46,7 @@
 <!--    </div>-->
 <!--</div>-->
 <div class="container under-nav">
-    <div class="justify-content-center">
+    <div class="row justify-content-center">
         <form class="form card" th:action="@{/login}" th:method="post">
             <div class="card_header">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -59,8 +59,10 @@
             <input id="username" name="username" type="text" class="rounded"/>
             <label for="password">Password</label>
             <input id="password" name="password" type="password" class="rounded"/>
-            <div class="field">
-                <button type="submit" class="button rounded">Login</button>
+            <div class="field row justify-content-center">
+                <div class="col-4">
+                    <button type="submit" class="button rounded">Login</button>
+                </div>
             </div>
         </form>
     </div>
