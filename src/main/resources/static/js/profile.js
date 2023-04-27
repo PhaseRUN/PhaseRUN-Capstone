@@ -1,10 +1,10 @@
-$('#editProfileModal').click(function () {
-    $('#editProfileModal').modal('show');
-});
-
-$('#editFitnessModal').click(function (){
-    $('#editFitnessModal').modal('show');
-});
+// $('#editProfileModal').click(function () {
+//     $('#editProfileModal').modal('show');
+// });
+//
+// $('#editFitnessModal').click(function (){
+//     $('#editFitnessModal').modal('show');
+// });
 // $('#commentModal').click(function (){
 //     $('#commentModal').modal('show');
 // });

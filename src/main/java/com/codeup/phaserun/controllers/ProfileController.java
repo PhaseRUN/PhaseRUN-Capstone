@@ -48,9 +48,12 @@ public class ProfileController {
         List<Comment> comments = commentDao.findAll();
 
         model.addAttribute("races", racesInfo);
+        System.out.println(racesInfo.get(0).getName() + "raceInfo");
         model.addAttribute("user", user);
+        System.out.println(user.getUsername() + " user " + user.getZipcode());
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", comments);
+        System.out.println(comments.get(0).getBody() + " comments");
 
         return "/users/profile";
     }

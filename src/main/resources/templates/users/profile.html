@@ -28,19 +28,15 @@
                     <h3 class="card-title">
                         <span th:text="${user.getZipcode()}"></span>
                     </h3>
-                    <div class="general-text d-flex align-content-center justify-content-center">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
-                    </div>
+<!--                    Modal buttons-->
+<!--                    <div class="general-text d-flex align-content-center justify-content-center">-->
+<!--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>-->
+<!--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>-->
+<!--                    </div>-->
                 </div>
             </div>
 
-            <!--      Attempting a nested container      -->
-
-
-
-            <!--    End of Nested Container   -->
-
+<!--Profile bookmark card start-->
             <div class="col-sm-12 col-lg-8 gx-1">
                 <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">
                     <h1 class="title-text">Bookmarks</h1>
@@ -84,6 +80,7 @@
                                         </div>
                                     </div>
 <!--                                    End of Working Comments-->
+<!--                                    delete race button-->
                                     <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/} + ${race.raceId}" th:method="post">
                                         <div class="btn btn-primary toggle-comment comment-btn">
                                             <button type="submit">Remove race</button>
@@ -95,92 +92,93 @@
                     </div>
                 </div>
             </div>
+<!--            Profile bookmark card end-->
         </div>
     </div>
 </div>
 
 <!-- End of Container -->
 
-<!-- Profile Edit Modal -->
+<!--&lt;!&ndash; Profile Edit Modal &ndash;&gt;-->
 
-<div class="modal fade opacity-100" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="form">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/profile}" th:method="post" th:object="${user}">
-                    <div class="container-prof">
-                        <div class="header-prof">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-                                <path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> <p>Browse File to upload!</p>
-                        </div>
-                        <label for="file" class="footer-prof">
-                            <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path><path d="M18.153 6h-.009v5.342H23.5v-.002z"></path></g></svg>
-                            <p>Not selected file</p>
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" stroke-width="2"></path> <path d="M19.5 5H4.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" stroke-width="2"></path> </g></svg>
-                        </label>
-                        <input id="file" type="file">
-                    </div>
-                    <div class="form-group">
-                        <label for="fit-zipcode">Zip Code</label>
-                        <input type="number" pattern="[0-9]" class="form-control" id="fit-zipcode" name="zip-code" th:field="*{zipcode}">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password:</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="modal fade opacity-100" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="form">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:action="@{/profile}" th:method="post" th:object="${user}">-->
+<!--                    <div class="container-prof">-->
+<!--                        <div class="header-prof">-->
+<!--                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">-->
+<!--                                <path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> <p>Browse File to upload!</p>-->
+<!--                        </div>-->
+<!--                        <label for="file" class="footer-prof">-->
+<!--                            <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path><path d="M18.153 6h-.009v5.342H23.5v-.002z"></path></g></svg>-->
+<!--                            <p>Not selected file</p>-->
+<!--                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" stroke-width="2"></path> <path d="M19.5 5H4.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" stroke-width="2"></path> </g></svg>-->
+<!--                        </label>-->
+<!--                        <input id="file" type="file">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="fit-zipcode">Zip Code</label>-->
+<!--                        <input type="number" pattern="[0-9]" class="form-control" id="fit-zipcode" name="zip-code" th:field="*{zipcode}">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="password">Password:</label>-->
+<!--                        <input type="password" class="form-control" id="password" name="password">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="confirmPassword">Confirm Password:</label>-->
+<!--                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-primary">Save Changes</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
-<!-- Fitness Edit Modal-->
+<!--&lt;!&ndash; Fitness Edit Modal&ndash;&gt;-->
 
-<div class="modal fade opacity-100" id="editFitnessModal" tabindex="-1" role="dialog" aria-labelledby="editFitnessModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="form">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/profile" th:method="post" th:object="${user}">
-                    <div class="form-group">
-                        <label for="activity-level">Activity Level:</label>
-                        <select id="activity-level" th:field="*{activityLvl}">
-                            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
-                                    th:value="${activityLvl}"
-                                    th:text="${activityLvl}"
-                                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum)}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="running-exp">Running Experience:</label>
-                        <select id="running-exp" th:field="*{runningExp}">
-                            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
-                                    th:value="${runningExp}"
-                                    th:text="${runningExp}"
-                                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum)}">
-                            </option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="modal fade opacity-100" id="editFitnessModal" tabindex="-1" role="dialog" aria-labelledby="editFitnessModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="form">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="editFitnessModalLabel">Edit Fitness</h5>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:action="@{/profile" th:method="post" th:object="${user}">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="activity-level">Activity Level:</label>-->
+<!--                        <select id="activity-level" th:field="*{activityLvl}">-->
+<!--                            <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"-->
+<!--                                    th:value="${activityLvl}"-->
+<!--                                    th:text="${activityLvl}"-->
+<!--                                    th:selected="${T(com.codeup.phaserun.models.User.ActivityLvlEnum)}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="running-exp">Running Experience:</label>-->
+<!--                        <select id="running-exp" th:field="*{runningExp}">-->
+<!--                            <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"-->
+<!--                                    th:value="${runningExp}"-->
+<!--                                    th:text="${runningExp}"-->
+<!--                                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum)}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-primary">Save Changes</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<script src="/js/profile.js"></script>
+<!--<script src="/js/profile.js"></script>-->
 
 <footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
