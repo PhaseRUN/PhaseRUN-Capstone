@@ -32,7 +32,9 @@
 <!--Profile bookmark card start-->
             <div class="col-sm-12 col-lg-8 gx-1">
                 <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">
-                    <h1 class="title-text">Bookmarks</h1>
+                    <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
+                    <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span><a th:href="@{/race/search}">HERE</a></h1>
+<!--                    <h1 class="title-text">Bookmarks</h1>-->
                     <div class="row">
                         <!-- Working Card - Rob -->
                         <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
