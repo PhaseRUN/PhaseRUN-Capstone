@@ -444,6 +444,162 @@ public class RaceAPI {
         return raceStartDate;
     }
 
+    public static String getNumberOfWeeks(String distance){
+        SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
+
+        Calendar today = new GregorianCalendar();
+        today.setTime(new Date());
+        Date raceStartDate = null;
+        String numberOfWeeks = "";
+
+        int fitnessScore = fitnessValueCalculation();
+
+        switch (distance.toUpperCase()) {
+            // CHECKING FOR A 5K RACE
+            case "5K" ->
+            {
+                if (fitnessScore >= 65 && fitnessScore <= 81)
+                {
+                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "8-10";
+                }
+                else if (fitnessScore >= 50 && fitnessScore <= 64)
+                {
+                    today.add(Calendar.DATE, (7 * 6)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 6 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "6-8";
+                }
+                else if (fitnessScore >= 35 && fitnessScore <= 49)
+                {
+                    today.add(Calendar.DATE, (7 * 4)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 4 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "4-6";
+                }
+                else if (fitnessScore >= 20 && fitnessScore <= 34)
+                {
+                    today.add(Calendar.DATE, (7 * 3)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 3 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "3-5";
+                }
+                else if (fitnessScore >= 14 && fitnessScore <= 19)
+                {
+                    today.add(Calendar.DATE, (7 * 2)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 2 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "2-4";
+                }
+            }
+
+            // CHECKING FOR A 10K RACE
+            case "10K" ->
+            {
+                if (fitnessScore >= 65 && fitnessScore <= 81)
+                {
+                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "12-14";
+                }
+                else if (fitnessScore >= 50 && fitnessScore <= 64)
+                {
+                    today.add(Calendar.DATE, (7 * 10)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 10 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "10-12";
+                }
+                else if (fitnessScore >= 35 && fitnessScore <= 49)
+                {
+                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "8-10";
+                }
+                else if (fitnessScore >= 20 && fitnessScore <= 34)
+                {
+                    today.add(Calendar.DATE, (7 * 6)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 6 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "6-8";
+                }
+                else if (fitnessScore >= 14 && fitnessScore <= 19)
+                {
+                    today.add(Calendar.DATE, (7 * 4)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 4 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "4-6";
+                }
+
+            }
+
+            // CHECKING FOR A HALF MARATHON
+            case "HALF" ->
+            {
+                if (fitnessScore >= 65 && fitnessScore <= 81)
+                {
+                    today.add(Calendar.DATE, (7 * 16)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 16 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "16-18";
+                }
+                else if (fitnessScore >= 50 && fitnessScore <= 64)
+                {
+                    today.add(Calendar.DATE, (7 * 14)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 14 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "14-16";
+                }
+                else if (fitnessScore >= 35 && fitnessScore <= 49)
+                {
+                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "12-14";
+                }
+                else if (fitnessScore >= 20 && fitnessScore <= 34)
+                {
+                    today.add(Calendar.DATE, (7 * 10)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 10 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "10-12";
+                }
+                else if (fitnessScore >= 14 && fitnessScore <= 19) {
+
+                    today.add(Calendar.DATE, (7 * 8)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 8 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "8-10";
+                }
+            }
+
+            // CHECKING FOR A MARATHON
+            case "FULL" ->
+            {
+                if (fitnessScore >= 65 && fitnessScore <= 81)
+                {
+                    today.add(Calendar.DATE, (7 * 20)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 20 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "20-22";
+                }
+                else if (fitnessScore >= 50 && fitnessScore <= 64)
+                {
+                    today.add(Calendar.DATE, (7 * 18)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 18 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "18-20";
+                }
+                else if (fitnessScore >= 35 && fitnessScore <= 49)
+                {
+                    today.add(Calendar.DATE, (7 * 16)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 16 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "16-18";
+                }
+                else if (fitnessScore >= 20 && fitnessScore <= 34)
+                {
+                    today.add(Calendar.DATE, (7 * 14)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 14 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "14-16";
+                }
+                else if (fitnessScore >= 14 && fitnessScore <= 19)
+                {
+                    today.add(Calendar.DATE, (7 * 12)); // 7 IS THE NUMBER OF DAYS IN A WEEK, 12 IS THE MINIMUM NUMBER OF WEEKS REQUIRED
+                    raceStartDate = today.getTime();
+                    numberOfWeeks = "12-14";
+                }
+            }
+        }
+
+        return numberOfWeeks;
+    }
+
     //Converts the string distance to a numeric equivalent
     private static double convertDistanceToDouble(String raceDistance){
 

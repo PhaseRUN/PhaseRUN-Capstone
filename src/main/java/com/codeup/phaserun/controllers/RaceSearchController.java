@@ -74,6 +74,7 @@ public class RaceSearchController {
         model.addAttribute("userRaceIds", userRaceIds.toArray());
         model.addAttribute("races", races);
         model.addAttribute("zipcode", user.getZipcode());
+        model.addAttribute("numOfWeeks", RaceAPI.getNumberOfWeeks(distance));
         return "users/raceSearch";
     }
 
