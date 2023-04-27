@@ -32,11 +32,16 @@
 }
 
 .bioHeader {
-    font-size: 40px;
+    font-size: 50px;
     color: #000000;
     position: relative;
     z-index: 15;
-    padding-top: 1em;
+    padding-top: .5em;
+    padding-left: 25px;
+}
+
+.bioHeader.kenneth
+{
     padding-left: 85px;
 }
 
@@ -45,6 +50,11 @@
     .row
     {
         margin-bottom: 5em;
+    }
+
+    .bioHeader
+    {
+        font-size: 40px;
     }
 
     .cardAbout {
