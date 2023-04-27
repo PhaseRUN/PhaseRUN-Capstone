@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="partials/head :: head">
+<head th:replace="~{partials/head :: head}">
     <title>About</title>
 </head>
-<link rel="stylesheet" href="/css/about.css">
+<link rel="stylesheet" th:href="@{/css/about.css}">
 <body>
 
-<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
+<nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 <div class="under-nav ">
     <h1 class="title-text pageTitle">Meet the Team</h1>
 </div>
@@ -31,9 +31,9 @@
         </div>
         <div class="row"> <!--Card 3-->
             <div class="cardAbout left">
-                <img class="headshot leftAlign" src="/images/Robert_Codeup.jpg" alt="">
-                <div class="bioHeader">Robert "Rob" Arroyos</div>
-                <div class="bio opacityForText">Originally from Uvalde, Texas, Robert moved to San Antonio, Texas after 20 years of active-duty service to pursue a career in software.  He completed the Codeup Full Stack Development six-month program and is excited about a new career in technology.</div>
+                <img class="headshot leftAlign" src="/images/alexia-bio.jpg" alt="">
+                <div class="bioHeader">Alexia Briones Ornelas</div>
+                <div class="bio opacityForText">Immigrant from Monterrey, Mexico pursuing a career in technology. Her interest in becoming a game developer lead her to complete Codeup's Full-Stack Web Development program. In her free time she likes to play video games.</div>
             </div>
         </div>
         <div class="row"> <!--Card 4-->
@@ -45,15 +45,15 @@
         </div>
         <div class="row"> <!--Card 5-->
             <div class="cardAbout left">
-                <img class="headshot leftAlign" src="/images/ken-about.jpeg" alt="">
-                <div class="bioHeader">Kenneth Hayles</div>
-                <div class="bio opacityForText">After serving in the United States Marine Corps, Kenneth's passion for learning led him to pursue a new career in web development. He completed the rigorous Codeup Full Stack Development program, where he gained skills in a multitude of programming languages. When he's not coding, he enjoys skateboarding,running, and spending time with his friends</div>
+                <img class="headshot kenneth leftAlign" src="/images/ken-about.jpeg" alt="">
+                <div class="bioHeader kenneth">Kenneth Hayles</div>
+                <div class="bio opacityForText">After serving in the United States Marine Corps, Kenneth's passion for learning led him to pursue a new career in web development. He completed the rigorous Codeup Full Stack Development program, where he gained skills in a multitude of programming languages. When he's not coding, he enjoys skateboarding, running, and spending time with his family.</div>
             </div>
         </div>
     </div>
 </div> <!--End of Container-->
 
 
-<footer  th:replace="partials/footer :: footer"></footer>
+<footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
 </html>

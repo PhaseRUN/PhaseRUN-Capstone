@@ -35,7 +35,7 @@ public class ProfileController {
     public String returnProfilePage(Model model, Authentication authentication) {
 //        System.out.println("i am here in profile");
         User user = userDao.findByUsername(authentication.getName());
-        List<Race> races = raceDao.findAll();;
+        List<Race> races = raceDao.findAll();
 
 //        System.out.println(user.getEmail());
         List<RaceInfo> racesInfo = new ArrayList<>();
@@ -45,11 +45,14 @@ public class ProfileController {
             racesInfo.add(RaceAPI.getRaceInfoFromAPI(race.getRaceId(), raceInfo));
         }
 
+        List<Comment> comments = commentDao.findAll();
+
         model.addAttribute("races", racesInfo);
         model.addAttribute("user", user);
         model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", comments);
 
-        return "/users/profile";
+        return "users/profile";
     }
 
     @PostMapping("/profile")
@@ -69,7 +72,7 @@ public class ProfileController {
         User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
 
-        return "users/profile";
+        return "redirect:/profile";
     }
 
     @PostMapping("/profile/comment")
