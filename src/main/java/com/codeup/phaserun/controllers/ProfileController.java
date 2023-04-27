@@ -85,12 +85,6 @@ public class ProfileController {
 
         comment.setUser(user);
         comment.setRace(race);
-//        comment.setBody(comment.getBody());
-
-        System.out.println(comment.getUser().getUsername() + "user");
-        System.out.println(comment.getRace().getRaceId() + " race");
-        System.out.println(comment.getBody() + "this is th comment");
-        System.out.println("something to push");
 
         commentDao.save(comment);
 
