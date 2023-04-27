@@ -11,13 +11,13 @@ $('#editFitnessModal').click(function (){
 // $('#infoModal').click(function (){
 //     $('#infoModal').modal('show');
 // });
-$('.comment-btn').click(function() {
-    $(this).parent().find('.comment-section').toggle();
-});
-
-$('.info-btn').click(function() {
-    $(this).parent().find('.info-section').toggle();
-});
+// $('.comment-btn').click(function() {
+//     $(this).parent().find('.comment-section').toggle();
+// });
+//
+// $('.info-btn').click(function() {
+//     $(this).parent().find('.info-section').toggle();
+// });
 
 // const commentContainer = document.getElementById('allComments');
 // document.getElementsByClassName('addComments').addEventListener('click', function (ev) {
@@ -46,9 +46,9 @@ $('.info-btn').click(function() {
 //     commentContainer.appendChild(wrapDiv);
 // }
 
-function hasClass(elem, className) {
-    return elem.className.split(' ').indexOf(className) > -1;
-}
+// function hasClass(elem, className) {
+//     return elem.className.split(' ').indexOf(className) > -1;
+// }
 // document.getElementById('allComments').addEventListener('click', function (e) {
 //     if (hasClass(e.target, 'reply')) {
 //         const parentDiv = e.target.parentElement;
@@ -77,6 +77,6 @@ function hasClass(elem, className) {
 //     }
 // });
 
-function setOnLocalStorage () {
-    localStorage.setItem('template', document.getElementById('allComments').innerHTML);
-}
+// function setOnLocalStorage () {
+//     localStorage.setItem('template', document.getElementById('allComments').innerHTML);
+// }
