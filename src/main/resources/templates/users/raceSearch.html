@@ -4,7 +4,7 @@
 
 <head th:replace="partials/head :: head">
     <title>Race Search</title>
-<!--    <link rel="stylesheet" th:href="@{/css/raceSearchModal.css}">-->
+    <link rel="stylesheet" th:href="@{/css/raceSearchModal.css}">
 
 </head>
 <body>
@@ -15,93 +15,93 @@
 <div class="under-nav">
     <h1 class="title-text pageTitle">Race Search</h1>
 </div>
-<div class="container-fluid opacity-95">
+<div class="container-fluid opacity-95" style="display:flex; justify-content:center;">
     <div class="row search-row">
-<!--        <div class="col-md-12">-->
-            <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
-<!--                <span th:text="${#lists.size(races)}"/>-->
-                <div class="form-row d-flex justify-content-center">
-                    <div class="form-group col-3">
-                        <label for="race-distance"class="">Race Distance:</label>
-                        <select name="race-distance" id="race-distance" class="form-control">
-                            <option value="5k" selected>5k</option>
-                            <option value="10k">10k</option>
-                            <option value="half">13.1 Half-Marathon</option>
-                            <option value="full">26.2 Marathon</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-3">
-                        <label for="search-radius" class=" ">Search Radius:</label>
-                        <select name="search-radius" id="search-radius" class="form-control">
-                            <option value="5" selected>5 Miles</option>
-                            <option value="10">10 Miles</option>
-                            <option value="15">15 Miles</option>
-                            <option value="25">25 Miles</option>
-                            <option value="50">50 Miles</option>
-                            <option value="100">100 miles</option>
-                            <option value="500">500 miles</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-3">
-                        <label class="">Search From:</label>
-<!--                        <label class="sr-only" for="zipcodeRadius">Zip Code</label>-->
-                        <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" th:value="${zipcode}" placeholder="Zip Code" class="form-control">
-                    </div>
-                    <div class="form-groupd-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
+        <form th:action="@{/race/search}" th:method="POST" th:Object="${races}">
+            <div class="form-row d-flex justify-content-center align-items-end">
+                <div class="form-group col-3 pe-1">
+                    <label for="race-distance" class="inputHeaderField">Race Distance:</label>
+                    <select name="race-distance" id="race-distance" class="form-control">
+                        <option value="5k" selected>5k</option>
+                        <option value="10k">10k</option>
+                        <option value="half">13.1 Half-Marathon</option>
+                        <option value="full">26.2 Marathon</option>
+                    </select>
                 </div>
-            </form>
-<!--        </div>-->
+                <div class="form-group col-3 pe-1">
+                    <label for="search-radius" class="inputHeaderField">Search Radius:</label>
+                    <select name="search-radius" id="search-radius" class="form-control">
+                        <option value="5" selected>5 Miles</option>
+                        <option value="10">10 Miles</option>
+                        <option value="15">15 Miles</option>
+                        <option value="25">25 Miles</option>
+                        <option value="50">50 Miles</option>
+                        <option value="100">100 miles</option>
+                        <option value="500">500 miles</option>
+                    </select>
+                </div>
+                <div class="form-group col-3 pe-1">
+                    <label class="inputHeaderField">Search From:</label>
+                    <input type="number" pattern="[0-9]" id="zipcodeRadius" name="zipcodeRadius" th:value="${zipcode}" placeholder="Zip Code" class="form-control">
+                </div>
+            </div>
+            <div class="form-row d-flex justify-content-center">
+                <div class="form-group col-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary m-0">Search</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
-<div class="results-container container opacity-95 d-flex justify-content-center">
-    <h1 class="row d-flex inputHeaderField" th:if="${races == null}">Submit a Search</h1>
-    <h1 class="row d-flex inputHeaderField" th:if="${#lists.isEmpty(races) and races != null}">No Races Fit The Criteria</h1>
-    <h1 class="row d-flex inputHeaderField" th:if="${races != null}">You have this many weeks to train</h1>
+
+<br>
+
+<div class="results-container container opacity-95 d-flex justify-content-center" style="padding-bottom: 1em;">
+    <h1 class="row d-flex inputHeaderField-race" th:if="${races != null}">Race Search Results</h1>
+    <h1 class="row d-flex inputHeaderField-racecard" th:if="${#lists.isEmpty(races) and races != null}">No Races Fit The Criteria</h1>
 </div>
 
 <!-- Working Card - Rob -->
-<div class="row race-cards">
-    <div class="row">
-        <div class="col-sm-12 col-lg-12 container-fluid">
-            <div class="card-container container-fluid">
-                <div class="row grid gap-3 container-fluid">
-                    <div class="col-sm-12 col-lg-3 d-flex justify-content-center" th:each="Race : ${races}">
-                        <div class="card race-card" style="width: 26rem;">
-                            <div class="card-body">
-                                <div class="row">
-                                    <form class="d-flex justify-content-end" th:method="post" th:action="@{/races/bookmark}">
-                                        <input type="hidden" name="raceId" th:value="${Race.raceId}">
-                                        <button class="bookmark-flg btn btn-link" type="submit" th:if="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
-                                                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
-                                            </svg>
-                                        </button>
-                                        <button class="bookmark-flg btn btn-link" type="submit" th:unless="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                            </svg>
-                                        </button>
-                                    </form>
-                                </div>
-                                <img th:src="${Race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
-                                <div>
-                                    <h5 class="card-title sub-title-text" th:text="${Race.name}"></h5>
-                                </div>
-                            </div>
-                            <div class="card-body general-text">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Information
+<br>
+<h1 class="row d-flex inputHeaderField justify-content-center" th:if="${races != null}">You have this many weeks to train</h1>
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-9">
+        <div class="card-container">
+            <div class="row grid" style="display:flex; justify-content:center;">
+                <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center" th:each="Race : ${races}">
+                    <div class="card race-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <form class="d-flex justify-content-end" th:method="post" th:action="@{/races/bookmark}">
+                                    <input type="hidden" name="raceId" th:value="${Race.raceId}">
+                                    <button class="bookmark-flg btn btn-link" type="submit" th:if="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                                        </svg>
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="#" th:text="${Race.description}" ></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    <button class="bookmark-flg btn btn-link" type="submit" th:unless="${#arrays.contains(userRaceIds, #strings.toString(Race.raceId))}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                            <img th:src="${Race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
+                            <div>
+                                <h5 class="card-title sub-title-text" th:text="${Race.name}"></h5>
+                            </div>
+                        </div>
+                        <div class="card-body general-text">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Information
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" th:text="${Race.description}" ></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
