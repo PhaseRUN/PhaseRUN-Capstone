@@ -68,7 +68,7 @@
             <div class="row grid" style="display:flex;justify-content: center;">
                 <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center pb-2" style="height: 37rem;width: 22rem;" th:each="Race : ${races}">
                     <div class="card race-card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <div class="row">
                                 <form class="d-flex justify-content-end" th:method="post" th:action="@{/races/bookmark}">
                                     <input type="hidden" name="raceId" th:value="${Race.raceId}">
@@ -84,7 +84,7 @@
                                     </button>
                                 </form>
                             </div>
-                            <img th:src="${Race.logoUrl}" width="305" height="250" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
+                            <img th:src="${Race.logoUrl}" width="295" height="250" alt="Image Not Found" style="display:block; margin:auto;" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
                             <div>
                                 <h5 class="card-title sub-title-text" th:text="${Race.name}"></h5>
                             </div>
