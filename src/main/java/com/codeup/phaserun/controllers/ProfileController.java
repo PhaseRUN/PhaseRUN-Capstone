@@ -72,7 +72,7 @@ public class ProfileController {
         User userFromDb = userDao.findById(userToUpdate.getId());
         model.addAttribute("user", userFromDb);
 
-        return "users/profile";
+        return "redirect:/profile";
     }
 
     @PostMapping("/profile/comment")

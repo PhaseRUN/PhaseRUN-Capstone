@@ -71,6 +71,20 @@ input{
 /*input field headers*/
 .inputHeaderField {
     color: white;
-    font-size: 2em;
+    /*font-size: 1.4vw;*/
     font-family: Cardo, serif;
+    padding: 1px
+}
+.inputHeaderField-race{
+    color: white;
+    font-size: 2vw;
+    font-family: Cardo, serif;
+    padding: 1px
+}
+.inputHeaderField-racecard {
+    color: white;
+    font-size: 3vw;
+    font-family: Cardo, serif;
+    padding-bottom: 10px
+
 }
