@@ -51,11 +51,11 @@
                                     <div class="info-section" style="display: none;">
                                         <p class="card-text general-text" th:text="${race.description}">Description: </p>
                                     </div>
-                                    <a href="#" class="btn btn-primary toggle-comment comment-btn">Comment</a>
+<!--                                    <a href="#" class="btn btn-primary toggle-comment comment-btn">Comment</a>-->
 <!--                                    Working Comments with drop down menu start-->
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Dropdown button
+<!--                                    <div class="dropdown">-->
+                                        <button class="dropdown btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Comments
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <ul class="commentList">
@@ -77,26 +77,13 @@
                                                 <div id="allComments"></div>
                                             </form>
                                         </div>
-                                    </div>
+<!--                                    </div>-->
 <!--                                    End of Working Comments-->
-                                    <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/} + ${race.raceId}" th:method="post">
-                                        <div class="btn btn-primary toggle-comment comment-btn">
-                                            <button type="submit">Remove race</button>
+                                    <form th:action="@{/delete-race/} + ${race.raceId}" th:method="post">
+                                        <div>
+                                            <button type="submit" class="btn btn-primary remove-btn">Remove race</button>
                                         </div>
                                     </form>
-                                    <div class="comment-section">
-                                        <div class="container">
-<!--                                            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">-->
-<!--                                                <label th:for="'newComment' + ${race.raceId}" name="newComment">Add your comment below-</label>-->
-<!--                                                <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>-->
-<!--                                                <input type="hidden" name="raceId" id="raceId" th:value="${race.raceId}">-->
-<!--                                                <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>-->
-<!--                                                <div id="allComments"></div>-->
-<!--                                            </form>-->
-                                        </div>
-                                        <div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
