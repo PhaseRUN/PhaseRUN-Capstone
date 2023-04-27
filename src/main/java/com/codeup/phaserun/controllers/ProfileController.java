@@ -49,7 +49,6 @@ public class ProfileController {
 
         model.addAttribute("races", racesInfo);
         model.addAttribute("user", user);
-        System.out.println(user.getUsername() + " user " + user.getZipcode());
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", comments);
 
