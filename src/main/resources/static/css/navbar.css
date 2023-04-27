@@ -42,7 +42,7 @@
     height: 184px;
     width: 250px;
     display: block;
-    margin: auto;
+    margin: 0 40vw 0 35vw;
 }
 
 .btn-primary{
