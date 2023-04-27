@@ -123,6 +123,7 @@ function postProfilePicData(res){
         })
         .then(data => {
             console.log("success");
+            location.reload();
         })
         .catch(error => console.log(error))
 }
