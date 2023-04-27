@@ -57,7 +57,7 @@ public class RaceSearchController {
         System.out.println(searchR);
         System.out.println(zipcode);
 
-        List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance);
+        List<RaceInfo> races = RaceAPI.getRacesFromAPI(searchR, zipcode, distance, user);
         for ( RaceInfo race : races) {
             String descriptionHtml = race.getDescription();
             String descriptionText = Jsoup.parse(descriptionHtml).text();
@@ -74,7 +74,7 @@ public class RaceSearchController {
         model.addAttribute("userRaceIds", userRaceIds.toArray());
         model.addAttribute("races", races);
         model.addAttribute("zipcode", user.getZipcode());
-        model.addAttribute("numOfWeeks", RaceAPI.getNumberOfWeeks(distance));
+        model.addAttribute("numOfWeeks", RaceAPI.getNumberOfWeeks(distance, user));
         return "users/raceSearch";
     }
 

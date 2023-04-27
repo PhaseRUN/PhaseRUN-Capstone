@@ -13,6 +13,7 @@ import org.joda.time.Years;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -32,10 +33,10 @@ public class RaceAPI {
         this.activityLvlEnum = activityLvlEnum;
     }
     //Gets the Races information from the races API
-    public static List<RaceInfo> getRacesFromAPI(String radius, String zipcode, String distance) throws ParseException {
+    public static List<RaceInfo> getRacesFromAPI(String radius, String zipcode, String distance, User user) throws ParseException {
 
         //This function will calculate the start date based on the user's fitness score
-        Date startDate = getStartDateCalculation(distance);
+        Date startDate = getStartDateCalculation(distance, user);
 
         //Formats the date needed for the API
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -217,12 +218,12 @@ public class RaceAPI {
 
     //Calculates the fitness score based on the user's activity level, running experience, and age
     //Return the fitness score
-    private static int fitnessValueCalculation(){
+    private static int fitnessValueCalculation(User user){
         int fitnessScore = 0;
 
-        /* Need the below statement to switch out with the hardcoded user once security is implemented
-           User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-         */
+//        /* Need the below statement to switch out with the hardcoded user once security is implemented
+//           User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
 
         // SETTING THE DATE FROM THE API
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
@@ -233,7 +234,7 @@ public class RaceAPI {
             throw new RuntimeException(e);
         }
 
-        User user = new User("test","test@test.com","tester", User.RunningExpEnum.RECREATIONAL, User.ActivityLvlEnum.INTERMEDIATE,78223,formattedDate);
+//        User user = new User("test","test@test.com","tester", User.RunningExpEnum.RECREATIONAL, User.ActivityLvlEnum.INTERMEDIATE,78223,formattedDate);
 
         User.ActivityLvlEnum activityLvl = user.getActivityLvl();
         User.RunningExpEnum runningExp = user.getRunningExp();
@@ -289,14 +290,14 @@ public class RaceAPI {
     }
 
     //Calculates the start date based on how much the user needs to train
-    private static Date getStartDateCalculation(String distance){
+    private static Date getStartDateCalculation(String distance, User user){
         SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
 
         Calendar today = new GregorianCalendar();
         today.setTime(new Date());
         Date raceStartDate = null;
 
-        int fitnessScore = fitnessValueCalculation();
+        int fitnessScore = fitnessValueCalculation(user);
 
         switch (distance.toUpperCase()) {
             // CHECKING FOR A 5K RACE
@@ -444,7 +445,7 @@ public class RaceAPI {
         return raceStartDate;
     }
 
-    public static String getNumberOfWeeks(String distance){
+    public static String getNumberOfWeeks(String distance, User user){
         SimpleDateFormat printDate = new SimpleDateFormat("MM/dd/yyyy");
 
         Calendar today = new GregorianCalendar();
@@ -452,7 +453,7 @@ public class RaceAPI {
         Date raceStartDate = null;
         String numberOfWeeks = "";
 
-        int fitnessScore = fitnessValueCalculation();
+        int fitnessScore = fitnessValueCalculation(user);
 
         switch (distance.toUpperCase()) {
             // CHECKING FOR A 5K RACE
