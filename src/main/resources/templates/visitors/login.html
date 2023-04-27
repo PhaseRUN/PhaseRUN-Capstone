@@ -10,7 +10,7 @@
 <link rel="stylesheet" th:href="@{/css/login.css}">
 
 <body>
-<nav th:replace="partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})"></nav>
+<nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
 <div class="general-text under-nav" th:if="${param.error}">
 Invalid Username and Password.
@@ -46,6 +46,6 @@ You have been logged out.
     </div>
 </div>
 
-<footer th:replace="partials/footer :: footer"></footer>
+<footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
 </html>

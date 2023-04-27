@@ -52,7 +52,7 @@ public class ProfileController {
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", comments);
 
-        return "/users/profile";
+        return "users/profile";
     }
 
     @PostMapping("/profile")
