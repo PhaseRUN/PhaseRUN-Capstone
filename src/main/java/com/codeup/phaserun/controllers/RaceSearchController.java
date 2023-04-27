@@ -90,7 +90,7 @@ public class RaceSearchController {
         if(raceDao.existsByRaceId(String.valueOf(raceId)))
         {
              race = raceDao.findByRaceId(String.valueOf(raceId));
-             if(userDao.existsByRaces(race)){
+             if(userDao.existsByRaces(race) && user.getRaces().contains(race)){
                  return "redirect:/profile";
              }
              List<User> userRaceList = race.getUsers();
