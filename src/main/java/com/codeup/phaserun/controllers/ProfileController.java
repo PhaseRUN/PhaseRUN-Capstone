@@ -85,9 +85,6 @@ public class ProfileController {
 
         comment.setUser(user);
         comment.setRace(race);
-//        comment.setBody(comment.getBody());
-
-        System.out.println(comment.getBody());
 
         commentDao.save(comment);
 

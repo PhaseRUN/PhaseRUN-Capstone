@@ -19,9 +19,18 @@
 }
 
 @keyframes slide-in {
-    100% {
-        left: 0;
+    0% {
+        transform: translateX(-100%);
     }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+header {
+    animation: 1s ease-out 0s 1 slide-in;
+    padding-top: 100px;
+    padding-right: 5em;
 }
 
 .jumbotron-background::after{
@@ -38,7 +47,8 @@
 .img-set{
     width: 500px;
     height: auto;
-    padding: 1em 2em;
+    /*padding: 1em 2em;*/
+    border: 3px outset #d6d6d6;
     border-radius: 10px;
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
 }
@@ -54,3 +64,43 @@
 .intimidate-setting{
     padding-left: 5em;
 }
+
+.home-text
+{
+    font-size: 1.5em;
+    color: white;
+}
+
+.home-sub-text
+{
+    font-size: 2em;
+    color: white;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 991px) /* small */
+{
+    .right-sq
+    {
+        border-radius: 0 0 15px 15px; /* top-left top-right bottom-right bottom-left */
+    }
+
+    .left-sq
+    {
+        border-radius: 15px 15px 0 0; /* top-left top-right bottom-right bottom-left */
+    }
+}
+
+@media only screen and (min-width: 992px) /* big */
+{
+    .right-sq
+    {
+        border-radius: 0 15px 15px 0; /* top-left top-right bottom-right bottom-left */
+    }
+
+    .left-sq
+    {
+        border-radius: 15px 0 0 15px; /* top-left top-right bottom-right bottom-left */
+    }
+
+}
+
