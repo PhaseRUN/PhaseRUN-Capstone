@@ -19,9 +19,17 @@
 }
 
 @keyframes slide-in {
-    100% {
-        left: 0;
+    0% {
+        transform: translateX(-100%);
     }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+header {
+    animation: 1s ease-out 0s 1 slide-in;
+    padding-top: 100px;
 }
 
 .jumbotron-background::after{
@@ -38,7 +46,8 @@
 .img-set{
     width: 500px;
     height: auto;
-    padding: 1em 2em;
+    /*padding: 1em 2em;*/
+    border: 3px outset #d6d6d6;
     border-radius: 10px;
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
 }
