@@ -13,14 +13,14 @@
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
 <div class="general-text under-nav" th:if="${param.error}">
-Invalid Username and Password.
+    Invalid Username and Password.
 </div>
 <div class="general-text" th:if="${param.logout}">
-You have been logged out.
+    You have been logged out.
 </div>
 <div class="container under-nav">
-    <div class="row row-cols-lg-2 offset-1">
-        <form class="form card" th:action="@{/login}" th:method="post">
+    <div class="row justify-content-center">
+        <form class="form card mt-xl-5" th:action="@{/login}" th:method="post">
             <div class="card_header">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="none" d="M0 0h24v24H0z"></path>
@@ -28,21 +28,16 @@ You have been logged out.
                 </svg>
                 <h1 class="form_heading">Sign in</h1>
             </div>
-            <div>
-                <label for="username">Username</label>
-                <input id="username" name="username" type="text" />
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" />
-            </div>
-            <div class="field">
-                <button type="submit" class="button">Login</button>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" class="rounded"/>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" class="rounded"/>
+            <div class="field row justify-content-center">
+                <div class="col-4">
+                    <button type="submit" class="button rounded">Login</button>
+                </div>
             </div>
         </form>
-        <div class="col-lg-6 offset-1">
-            <img src="/images/pexels-bench.jpg" class="side-image" alt="bench"/>
-        </div>
     </div>
 </div>
 

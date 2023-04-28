@@ -45,8 +45,8 @@
                 </div>
             </div>
             <div class="form-row d-flex justify-content-center">
-                <div class="form-group col-3 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary m-0 mt-3">Search</button>
+                <div class="form-group col-3 d-flex justify-content-center pt-1">
+                    <button type="submit" class="btn btn-primary mt-3">Search</button>
                 </div>
             </div>
         </form>
@@ -55,7 +55,7 @@
 
 <br>
 
-<div class="results-container container opacity-95 d-flex justify-content-center" style="padding-bottom: 1em;">
+<div class="results-container container opacity-95 d-flex justify-content-center">
     <h1 class="row d-flex inputHeaderField-race" th:if="${not #lists.isEmpty(races) and races != null}">Race Search Results</h1>
     <h1 class="row d-flex inputHeaderField" th:if="${#lists.isEmpty(races) && races != null}">No Races Fit The Criteria</h1>
 </div>
@@ -65,10 +65,10 @@
 <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-9">
         <div class="card-container">
-            <div class="row grid" style="display:flex; justify-content:center;">
-                <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center" th:each="Race : ${races}">
+            <div class="row grid" style="display:flex;justify-content: center;">
+                <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center pb-2" style="height: 37rem;width: 22rem;" th:each="Race : ${races}">
                     <div class="card race-card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <div class="row">
                                 <form class="d-flex justify-content-end" th:method="post" th:action="@{/races/bookmark}">
                                     <input type="hidden" name="raceId" th:value="${Race.raceId}">
@@ -84,21 +84,19 @@
                                     </button>
                                 </form>
                             </div>
-                            <img th:src="${Race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
+                            <img th:src="${Race.logoUrl}" width="295" height="250" alt="Image Not Found" style="display:block; margin:auto;" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
                             <div>
                                 <h5 class="card-title sub-title-text" th:text="${Race.name}"></h5>
                             </div>
                         </div>
-                        <div class="card-body general-text">
-                            <div class="dropdown">
+                        <div class="card-body general-text d-flex justify-content-center align-items-end">
+                            <div class="dropdown-center">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Information
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#" th:text="${Race.description}" ></a>
-                                    </li>
-                                </ul>
+                                <div class="dropdown-menu">
+                                    <p class="dropdown-item text-wrap overflow-auto" style="width: 25rem; height: 15rem" th:text="${Race.description}"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
