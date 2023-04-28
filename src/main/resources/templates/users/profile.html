@@ -4,93 +4,121 @@
     <title>Profile</title>
 </head>
 <link rel="stylesheet" th:href="@{/css/profile.css}">
+
 <body>
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
-<div class="container profile-container">
-    <div class="profile-card card opacity-85">
-        <div class="row gx-1">
-            <div class="col-sm-12 col-lg-3 photo-container">
-                <div class="bg-image" style="background-image: url('/images/prof-back.jpg');">
-                    <img src="/images/profile-female.jpg" alt="prof-pic" class="profile-pic">
-                </div>
-                <div class="card-body text-center sub-title-text">
-                    <h2 class="card-title">
-                        <span th:text="${user.getUsername()}"></span>
-                    </h2>
-                    <h3 class="card-title">
-                        <span th:text="${user.getZipcode()}"></span>
-                    </h3>
-<!--                    Modal buttons-->
-                    <div class="general-text d-flex align-content-center justify-content-center">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
-                    </div>
-                </div>
-            </div>
-
-<!--Profile bookmark card start-->
-            <div class="col-sm-12 col-lg-8 gx-1">
-                <div class="card-body text-center card-container" style="max-height: 700px; overflow: auto;">
-                    <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
-                    <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span><a th:href="@{/race/search}">HERE</a></h1>
-<!--                    <h1 class="title-text">Bookmarks</h1>-->
-                    <div class="row">
-                        <!-- Working Card - Rob -->
-                        <div class="col-sm-12 col-lg-6 d-flex align-content-center justify-content-center" th:each="race : ${races}">
-                            <div class="card race-card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <img th:src="${race.logoUrl}" class="card-img-top img-fluid" alt="Image Not Found" onerror="this.onerror=null;this.src='/images/default_generated.jpg';" />
+<!--  Container  -->
+<section class="vh-100 opacity-85" style="background-color: #9de2ff">
+    <div class="container py-5">
+        <!-- START: ROW FOR PROFILE CARD -->
+        <div class="row d-flex h-100">
+            <div class="col col-md-9 col-lg-7 col-xl-5 ">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-4">
+                        <div class="d-flex text-black">
+                            <div class="flex-shrink-0">
+                                <img
+                                        src="/images/profile-female.jpg"
+                                        alt="Generic placeholder image"
+                                        class="img-fluid"
+                                        style="width: 180px; border-radius: 10px;"
+                                />
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1"><span th:text="${user.getUsername()}"></span></h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;"><span th:text="${user.getZipcode()}"></span></p>
+                                <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                                     style="background-color: #efefef;">
                                     <div>
-                                        <h5 class="card-title sub-title-text" th:text="${race.name}"></h5>
-                                        <!-- <p class="card-text general-text" th:text="${race.date}">Date: </p> -->
+                                        <p class="small text-muted mb-1">Activity Level</p>
+                                        <p class="mb-0"><span th:text="${user.getActivityLvl()}" ></span></p>
+                                    </div>
+                                    <div class="px-3">
+                                        <p class="small text-muted mb-1">Experience</p>
+                                        <p class="mb-0"><span th:text="${user.getRunningExp()}"></span></p>
                                     </div>
                                 </div>
-                                <div class="card-body general-text">
-<!--                                    <a href="#" class="btn btn-primary toggle-info info-btn">Info</a>-->
-<!--                                    Working Comments with drop down menu start-->
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle btn-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Comments
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <ul class="commentList">
-                                                <li th:each="comment : ${comments}">
-                                                    <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
-                                                        <div class="commentText">
-                                                            <p>
-                                                                <span th:text="${comment.getBody()}"></span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
-                                                <label th:for="'newComment' + ${race.raceId}" name="newComment">Add your comment below-</label>
-                                                <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
-                                                <input type="hidden" name="raceId" th:value="${race.raceId}">
-                                                <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
-                                                <div id="allComments"></div>
-                                            </form>
-                                        </div>
-                                    </div>
-<!--                                    End of Working Comments-->
-<!--                                    delete race button-->
-                                    <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/} + ${race.raceId}" th:method="post">
-                                        <div class="btn btn-primary toggle-comment comment-btn">
-                                            <button type="submit">Remove race</button>
-                                        </div>
-                                    </form>
+                                <div class="d-flex pt-1">
+                                    <button type="button" class="btn btn-outline-primary me-1 flex-grow-1" data-bs-toggle="modal" data-bs-target="#editProfileModal">Profile Edit</button>
+                                    <button type="button" class="btn btn-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 <!--            Profile bookmark card end-->
         </div>
+        <!-- END: ROW FOR PROFILE CARD -->
+        <!--   EVENT CARD ROW START     -->
+        <div class="row races-container">
+            <div class="col-md-4" th:each="race : ${races}">
+                <div class="card" style="height: 16rem">
+                    <div class="race-card">
+                        <div class="card-img-wrapper">
+                            <img
+                                    th:src="${race.logoUrl}"
+                                    class="card-img-top img-fluid"
+                                    alt="Image Not Found"
+                                    onerror="this.onerror=null;this.src='/images/default_generated.jpg';"
+                            />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${race.name}"></h5>
+                            <button class="toggle-info info-btn btn btn-primary flex-grow-1">Info</button>
+                            <div class="info-section" style="display: none;">
+                                <p class="card-text general-text" th:text="${race.description}">Description: </p>
+                            </div>
+                            <button
+                                    class="dropdown btn btn-outline-primary me-1 flex-grow-1"
+                                    type="button"
+                                    id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                            >
+                                Comment
+                            </button>
+                            <div class="dropdown-menu commentList comment-section">
+                                <ul class="commentList comment-styling">
+                                    <li class="general-text" th:each="comment : ${comments}">
+                                        <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                            <div class="commentText">
+                                                <p>
+                                                    <span th:text="${comment.getBody()}"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="comment-styling general-text">
+                                    <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                                        <label th:for="'newComment' + ${race.raceId}" name="newComment"></label>
+                                        <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
+                                        <input type="hidden" name="raceId" th:value="${race.raceId}">
+                                        <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
+                                        <div id="allComments"></div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}" th:method="post">
+                                <div class="btn btn-primary toggle-comment comment-btn">
+                                    <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                    </svg></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--   END EVENT CARD ROW    -->
     </div>
-</div>
+</section>
 
 <!-- End of Container -->
 
@@ -126,7 +154,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Fitness Edit Modal-->
 

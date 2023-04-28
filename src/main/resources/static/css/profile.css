@@ -1,94 +1,4 @@
-
-
-.profile-pic{
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-}
-.photo-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 2em;
-}
-
-.bg-image {
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 360px;
-    width: 360px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.3);
-}
-.card-body {
-    margin-top: 2em;
-}
-
-.btn {
-    flex: 1;
-    margin: 0 0.5em;
-}
-
-@media screen and (min-width: 768px) {
-    .profile-pic{
-        width: 340px;
-        height: 340px;
-    }
-
-    .bg-image {
-        height: 380px;
-        width: 380px;
-    }
-}
-
-/*Bookmark Container*/
-.race-card{
-    padding: 1em;
-    margin: 1em;
-}
-
-.race-border{
-    border: 1px solid #888888;
-    margin: 15px 15px 15px 15px;
-}
-
-.comment-section {
-    display: none;
-    margin-top: 10px;
-}
-
-.show-comments .comment-section {
-    display: block;
-}
-.info-section {
-    display: none;
-    margin-top: 10px;
-}
-
-.show-info .info-section {
-    display: block;
-}
-
-
-/*Photo Upload*/
-
-.container-prof {
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
-    box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    gap: 5px;
-    background-color: rgba(0, 110, 255, 0.041);
-}
+/*!*Photo Upload*!*/
 
 .header-prof {
     flex: 1;
@@ -143,67 +53,12 @@
     display: none;
 }
 
-/*Bookmarks*/
+/*!* Comment Box *!*/
 
-.cards {
-    perspective: 500px;
-}
-
-.card_title {
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    /*transform: translateY(-50%);*/
-    /*transition: transform .5s;*/
-    font: 700 1.5rem monospace;
-    text-shadow: -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
-.card{
-    margin-bottom: 1em;
-}
-
-/* Comment Box */
-
-.detailBox {
-    width:320px;
-    border:1px solid #bbb;
-    margin:50px;
-}
-.titleBox {
-    background-color:#fdfdfd;
-    padding:10px;
-}
-.titleBox label{
-    color:#444;
-    margin:0;
-    display:inline-block;
-}
-
-.commentBox {
-    padding:10px;
-    border-top:1px dotted #bbb;
-}
-.commentBox .form-group:first-child, .actionBox .form-group:first-child {
-    width:80%;
-}
-.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-    width:18%;
-}
-.actionBox .form-group * {
-    width:100%;
-}
-.taskDescription {
-    margin-top:10px;
-}
 .commentList {
     padding:0;
     list-style:none;
-    max-height:200px;
+    max-height:400px;
     overflow:auto;
 }
 .commentList li {
@@ -212,24 +67,72 @@
 .commentList li > div {
     display:table-cell;
 }
-.commenterImage {
-    width:30px;
-    margin-right:5px;
-    height:100%;
-    float:left;
-}
-.commenterImage img {
-    width:100%;
-    border-radius:50%;
-}
+
 .commentText p {
     margin:0;
 }
-.sub-text {
-    color:#aaa;
-    font-size:11px;
+
+.comment-section {
+    display: none;
+    margin-top: 10px;
 }
-.actionBox {
-    border-top:1px dotted #bbb;
-    padding:10px;
+
+.comment-styling{
+    border: 3px ridge #273556;
+    border-radius: 5px;
+    padding: 5px;
+    /*margin: 5px;*/
+    background-color: #f2f2f2;
+    box-shadow: whitesmoke;
+}
+
+/*!*Info Box*!*/
+
+.info-section {
+    display: none;
+    margin-top: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+/*!*Remove Button*!*/
+
+.remove-btn{
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+:root {
+    --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+}
+
+.race-card {
+    background: #273556 !important;
+    border: 1px solid #dd2476;
+    color: rgba(250, 250, 250, 0.8);
+    margin-bottom: 2rem;
+    border-radius: 10px;
+}
+
+.races-container{
+    padding-top: 10px;
+}
+
+.card-img-wrapper{
+    height: 16rem;
+    width: 100%;
+
+}
+
+.card-img-wrapper img{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    min-height: 100vh;
 }
