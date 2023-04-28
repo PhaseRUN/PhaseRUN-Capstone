@@ -62,16 +62,3 @@ button {
 button:hover {
     background-color: #5F5F9C;
 }
-
-@media only screen and (min-width: 0px) and (max-width: 991px) {
-    .card {
-        opacity: 90;
-        width: 450px;
-        height: 500px;
-        background: #F4F6FB;
-        border: 1px solid white;
-        box-shadow: 10px 10px 64px 0px rgba(180, 180, 207, 0.75);
-        -webkit-box-shadow: 10px 10px 64px 0px rgba(186, 186, 202, 0.75);
-        -moz-box-shadow: 10px 10px 64px 0px rgba(208, 208, 231, 0.75);
-    }
-}
