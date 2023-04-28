@@ -16,7 +16,8 @@ body {
 /* Text Settings*/
 
 .sub-title-text{
-    font-family: Cardo, serif;
+    /*font-family: Cardo, serif;*/
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 26px;
     text-align: center;
     margin-top: 1em;
@@ -24,7 +25,8 @@ body {
 }
 
 .general-text{
-    font-family: Cardo, serif;
+    /*font-family: Cardo, serif;*/
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 20px;
 }
 
@@ -34,7 +36,8 @@ body {
 }
 
 .title-text{
-    font-family: Cardo, serif;
+    /*font-family: Cardo, serif;*/
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 30px;
     text-align: center;
     margin-top: 1em;
@@ -97,8 +100,8 @@ input{
 }
 .inputHeaderField-racecard {
     color: white;
-    font-size: 37px;
-    font-family: Cardo, serif;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    font-size: 3vw;
+    /*font-family: Cardo, serif;*/
+    font-family: 'Red Hat Display', sans-serif;
+    padding-bottom: 10px
 }

@@ -1,7 +1,19 @@
 /*Jumbotron*/
 
+.register-home
+{
+    color: #f8b918;
+    text-decoration: none;
+}
+
+.register-home:hover
+{
+    color: #ffd781;
+}
+
 .register-link {
-    font-family: Cardo, serif;
+    /*font-family: Cardo, serif;*/
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 2em; /* Increase the font size */
     display: block;
     text-align: center;
@@ -27,10 +39,25 @@
     }
 }
 
+@keyframes slide-in-opposite {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 header {
     animation: 1s ease-out 0s 1 slide-in;
     padding-top: 100px;
     padding-right: 5em;
+}
+
+.sub-animation {
+    animation: 1s ease-out 0s 1 slide-in-opposite;
+    /*padding-top: 100px;*/
+    /*padding-right: 5em;*/
 }
 
 .jumbotron-background::after{
