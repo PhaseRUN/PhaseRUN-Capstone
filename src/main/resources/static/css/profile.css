@@ -157,6 +157,7 @@
     /*transform: translateY(-50%);*/
     /*transition: transform .5s;*/
     font: 700 1.5rem monospace;
+    font-family: 'Red Hat Display', sans-serif;
     text-shadow: -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
