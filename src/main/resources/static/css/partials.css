@@ -81,6 +81,12 @@ input{
     font-family: Cardo, serif;
     padding: 1px
 }
+.inputHeaderField-loginError {
+    color: #ffc300;
+    text-shadow: 0 0 1px black;
+    font-family: Cardo, serif;
+    font-size: xx-large;
+}
 .inputHeaderField-race{
     color: white;
     /*font-size: 2vw;*/
