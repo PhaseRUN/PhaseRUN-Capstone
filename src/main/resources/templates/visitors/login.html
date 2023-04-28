@@ -11,14 +11,18 @@
 <body>
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
-<div class="general-text under-nav" th:if="${param.error}">
-    Invalid Username and Password.
-</div>
+
+
 <div class="general-text" th:if="${param.logout}">
     You have been logged out.
 </div>
 <div class="container under-nav">
     <div class="row justify-content-center">
+        <div class="row">
+            <div class="under-nav inputHeaderField-loginError col text-center" th:if="${param.error}">
+                Invalid Username and Password
+            </div>
+        </div>
         <form class="form card mt-xl-5" th:action="@{/login}" th:method="post">
             <div class="card_header">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -32,7 +36,7 @@
             <label for="password">Password</label>
             <input id="password" name="password" type="password" class="rounded"/>
             <div class="field row justify-content-center">
-                <div class="col-4">
+                <div class="col-3 d-flex justify-content-center">
                     <button type="submit" class="button rounded">Login</button>
                 </div>
             </div>
