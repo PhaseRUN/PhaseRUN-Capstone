@@ -29,19 +29,19 @@
 
                     <label class="visually-hidden" for="date-of-birth">DOB</label>
                     <input class="form-control input" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy"/>
-                    <div class="act-sm">
-                    <label for="running-exp" class="subtitle-run">Running Experience</label>
-                         <select id="running-exp" class="run-exp"   th:field="*{runningExp}">
+                    <div class="act-sm row align-items-center justify-content-center px-4">
+                        <label for="running-exp" class="subtitle-run col-xl col-lg-10 text-center text-xl-start">Running Experience</label>
+                        <select id="running-exp" class="run-exp col-3 h-2" th:field="*{runningExp}">
                             <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
-                                th:value="${runningExp}"
-                                th:text="${runningExp}"
-                                th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
+                                    th:value="${runningExp}"
+                                    th:text="${runningExp}"
+                                    th:selected="${T(com.codeup.phaserun.models.User.RunningExpEnum).NONE}">
                             </option>
                         </select>
                     </div>
-                    <div class="act-sm">
-                    <label for="activity-level" class="subtitle-act">Activity Level</label>
-                        <select id="activity-level" class="act-lvl" th:field="*{activityLvl}">
+                    <div class="act-sm row align-items-center justify-content-center px-4">
+                        <label for="activity-level" class="subtitle-act col-xl col-lg-10 text-center text-xl-start">Activity Level</label>
+                        <select id="activity-level" class="act-lvl col-3 h-2" th:field="*{activityLvl}">
                             <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
                                     th:value="${activityLvl}"
                                     th:text="${activityLvl}"
@@ -49,14 +49,14 @@
                             </option>
                         </select>
                     </div>
-<!--                    Zip code Container-->
-                    <div class="row align-items-center justify-content-between pe-4 zip-sm">
-                        <label class="subtitle-zip col-3" for="fit-zipcode">Zip Code</label>
+                    <!--                    Zip code Container-->
+                    <div class="row align-items-center justify-content-center px-4 zip-sm">
+                        <label class="subtitle-zip col-xl col-lg-10 text-center text-xl-start" for="fit-zipcode">Zip Code</label>
                         <input class="col-3 zip" type="text" pattern="[0-9]" id="fit-zipcode" placeholder="Zip Code" th:field="*{zipcode}"/>
                     </div>
-<!--                    Form Submit Button Container-->
+                    <!--                    Form Submit Button Container-->
                     <div class="row btn-reg justify-content-center">
-                        <div class="col-3 my-3">
+                        <div class="col-5 my-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </div>
@@ -66,9 +66,9 @@
                 </div>
             </div>
             <div class="form-section col-lg-6">
-<!--                Right Column-->
+                <!--                Right Column-->
                 <div class="row">
-<!--                    Img Container-->
+                    <!--                    Img Container-->
                     <div class="col d-flex justify-content-center">
                         <img src="/images/pexels-cottonbro-woman-run.jpg" alt="register" class="register-img overflow-x-visible">
                     </div>
