@@ -1,3 +1,7 @@
+body{
+    min-height: 100vh;
+}
+
 /*!*Photo Upload*!*/
 
 .header-prof {
@@ -169,10 +173,6 @@
 
 /*  Event Cards  */
 
-body{
-    min-height: 100vh;
-}
-
 article {
     --img-scale: 1.001;
     --title-color: black;
@@ -223,8 +223,6 @@ article img {
 .article-body {
     background-color: #273556 !important;
     padding: 24px;
-    /*display: flex;*/
-    /*justify-content: space-between;*/
 }
 
 .article-body button:last-child {
@@ -280,8 +278,4 @@ article:has(:hover, :focus) {
     border-radius: 5px;
     cursor: pointer;
     padding: 5px;
-}
-
-.info-btn.active + .info-section.text-info {
-    color: whitesmoke;
 }
