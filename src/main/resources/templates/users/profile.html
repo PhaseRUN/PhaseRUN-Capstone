@@ -53,12 +53,14 @@
                     <div class="article-wrapper">
                         <figure class="row">
                             <div class="col-4">
-                            <img
-                                    th:src="${race.logoUrl}"
-                                    class="img-fluid"
-                                    alt="Image Not Found"
-                                    onerror="this.onerror=null;this.src='/images/default_generated.jpg';"
-                            />
+                                <a th:href="${race.raceURL}" target="_blank">
+                                    <img
+                                            th:src="${race.logoUrl}"
+                                            class="img-fluid"
+                                            alt="Image Not Found"
+                                            onerror="this.onerror=null;this.src='/images/default_generated.jpg';"
+                                    />
+                                </a>
                             </div>
                             <div class="title-placement col-8">
                                 <h2 th:text="${race.name}"></h2>
@@ -66,7 +68,7 @@
                         </figure>
                         <div class="article-body">
                             <button class="toggle-info info-btn btn btn-primary flex-grow-1">Info</button>
-                            <div class="info-section" style="display: none;">
+                            <div class="info-section text-info" style="display: none;">
                                 <p class="general-text" th:text="${race.description}">Description: </p>
                             </div>
                             <button

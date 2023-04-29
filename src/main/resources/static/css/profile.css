@@ -281,3 +281,7 @@ article:has(:hover, :focus) {
     cursor: pointer;
     padding: 5px;
 }
+
+.info-btn.active + .info-section.text-info {
+    color: whitesmoke;
+}

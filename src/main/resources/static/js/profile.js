@@ -11,8 +11,19 @@ $('.comment-btn').click(function() {
 });
 
 $('.info-btn').click(function() {
-    $(this).parent().find('.info-section').toggle();
+    const infoSection = $(this).parent().find('.info-section');
+    const isActive = $(this).hasClass('active');
+
+    infoSection.toggle();
+    $(this).toggleClass('active');
+
+    if (isActive) {
+        infoSection.removeClass('text-info');
+    } else {
+        infoSection.addClass('text-info');
+    }
 });
+
 
 function hasClass(elem, className) {
     return elem.className.split(' ').indexOf(className) > -1;
