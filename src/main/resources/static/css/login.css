@@ -1,15 +1,7 @@
-.side-image{
-    width: 350px;
-    height: auto;
-    padding: 1em 2em;
-    border-radius: 10px;
-    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
-}
-
 .card {
     opacity: 90;
-    width: 246px;
-    height: 290px;
+    width: 450px;
+    height: 300px;
     background: #F4F6FB;
     border: 1px solid white;
     box-shadow: 10px 10px 64px 0px rgba(180, 180, 207, 0.75);
@@ -27,7 +19,7 @@
 }
 
 .card svg {
-    color: #7878bd;
+    color: #7878BD;
     margin-bottom: 20px;
     margin-right: 5px;
 }
@@ -35,28 +27,30 @@
 .form_heading {
     padding-bottom: 20px;
     font-size: 21px;
-    color: #7878bd;
+    color: #7878BD;
 }
 
 .field {
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
-.input {
+input {
     border-radius: 5px;
-    background-color: #e9e9f7;
+    background-color: #E9E9F7;
     padding: 5px;
     width: 100%;
-    color: #7a7ab3;
-    border: 1px solid #dadaf7
+    color: #7A7AB3;
+    border: 1px solid #DADAF7
 }
 
-.input:focus-visible {
-    outline: 1px solid #aeaed6;
+input:focus-visible {
+    outline: 1px solid #AEAED6;
 }
 
-.input::placeholder {
-    color: #bcbcdf;
+input::placeholder {
+    color: #BCBCDF;
+
 }
 
 label {
@@ -67,7 +61,7 @@ label {
 }
 
 button {
-    background-color: #7878bd;
+    background-color: #7878BD;
     margin-top: 10px;
     font-size: 14px;
     padding: 7px 12px;
@@ -78,5 +72,5 @@ button {
 }
 
 button:hover {
-    background-color: #5f5f9c;
+    background-color: #5F5F9C;
 }
