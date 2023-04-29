@@ -57,14 +57,12 @@
 }
 
 .btn-primary{
-    /*background-color: cornflowerblue;*/
     border: none;
-    /*font-family: 'Roboto Black', sans-serif;*/
     font-family: 'Red Hat Display', sans-serif;
-    font-size: 1em;
-    margin-right: 3em;
+    font-size: 1.2em;
 }
 
 a:hover {
     background-color: #5f5f9c;
+
 }

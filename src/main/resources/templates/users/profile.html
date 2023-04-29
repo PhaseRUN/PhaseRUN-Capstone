@@ -19,7 +19,7 @@
                     <div class="card-body p-4">
                         <div class="d-flex text-black">
                             <div class="flex-shrink-0">
-                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/profile-female.jpg'}" alt="prof-pic" class="profile-pic img-fluid" style="width: 180px; border-radius: 10px;"/>
+                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/profile-female.jpg'}" alt="prof-pic" class="profile-pic img-fluid" style="width: 180px; height: 180px; border-radius: 10px;"/>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1"><span th:text="${user.getUsername()}"></span></h5>
@@ -36,8 +36,8 @@
                                     </div>
                                 </div>
                                 <div class="d-flex pt-1">
-                                    <button type="button" class="btn btn-outline-primary me-1 flex-grow-1" data-bs-toggle="modal" data-bs-target="#editProfileModal">Location Edit</button>
-                                    <button type="button" class="btn btn-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
+                                    <button type="button" class="btn btn-primary me-1 flex-grow-1" data-bs-toggle="modal" data-bs-target="#editProfileModal">Location Edit</button>
+                                    <button type="button" class="btn btn-outline-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
                                 </div>
                             </div>
                         </div>
@@ -48,42 +48,39 @@
                 <article th:each="race : ${races}">
                     <div class="article-wrapper">
                         <figure class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                     <img
-                                            th:src="${race.logoUrl}"
+                                            th:src="${race.logoUrl}" width="200px" height="220px"
                                             class="img-fluid"
                                             alt="Image Not Found"
                                             onerror="this.onerror=null;this.src='/images/default_generated.jpg';"
                                     />
                             </div>
-                            <div class="title-placement col-8">
-                                <h2 th:text="${race.name}"></h2>
+                            <div class="title-placement col-8 general-text">
+                                <div class="bookmark-text" th:text="${race.name}"></div>
                             </div>
                         </figure>
                         <div class="article-body">
                             <button
-                                    class="toggle-info info-btn btn btn-primary flex-grow-1">
-                                    <a th:href="${race.raceURL}" target="_blank">
-                                    Visit
+                                    class="toggle-info info-btn btn btn-primary">
+                                    <a th:href="${race.raceURL}" target="_blank" style="color:white">
+                                    Signup
                                     </a>
                             </button>
-                            <div class="info-section text-info" style="display: none;">
-                                <p class="general-text" th:text="${race.description}">Description: </p>
-                            </div>
                             <button
-                                    class="dropdown btn btn-outline-primary me-1 flex-grow-1 ms-auto"
+                                    class="dropdown btn btn-outline-primary"
                                     type="button"
                                     id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                             >
-                                Comment
+                                Race Comments
                             </button>
                             <form
                                     class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}" th:method="post"
                             >
                                 <div class="btn btn-primary btn-delete">
-                                    <button
+                                    <button class="btn-delete"
                                             type="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
