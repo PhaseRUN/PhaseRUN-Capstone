@@ -179,7 +179,7 @@ article {
     --link-icon-translate: -20px;
     --link-icon-opacity: 0;
     position: relative;
-    border-radius: 16px;
+    border-radius: 10px;
     box-shadow: none;
     background: #fff;
     transform-origin: center;
