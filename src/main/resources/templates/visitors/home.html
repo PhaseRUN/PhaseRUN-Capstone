@@ -11,7 +11,6 @@
 
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
-
 <header>
     <img class="logo-home"  align="center" src="/images/logo-color.png" alt="boom">
 </header>
@@ -19,7 +18,6 @@
     <p class="nav-group lead home-text" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
     <h1 class="nav-group lead home-sub-text" align="center"><span>Click </span><a class="register-home" th:href="@{/register}">REGISTER</a><span> and start your PhaseRun!</span></h1>
 </div>
-<!--        </div>-->
 
     <!--Main Display-->
 
@@ -46,15 +44,8 @@
                     Your first steps start <a style="text-decoration: none" th:href="@{/register}">HERE</a>!
                 </p>
             </div>
-<!--                <div class="col-lg-12 d-flex justify-content-center mt-4">-->
-<!--                    <img class="img-set" src="/images/pexels-boom.jpg" alt="start">-->
-<!--                </div>-->
-<!--                <div class="col-lg-12">-->
-<!--                    <h1 class="sub-title-text">YOUR FIRST STEPS START <a th:href="@{/register}">HERE</a></h1>-->
-<!--                </div>-->
         </div>
     </div>
 
-    <footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
 </html>

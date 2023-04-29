@@ -8,27 +8,33 @@
     -webkit-box-shadow: 10px 10px 64px 0px rgba(186, 186, 202, 0.75);
     -moz-box-shadow: 10px 10px 64px 0px rgba(208, 208, 231, 0.75);
 }
+
 .form {
     padding: 25px;
 }
+
 .card_header {
     display: flex;
     align-items: center;
 }
+
 .card svg {
     color: #7878BD;
     margin-bottom: 20px;
     margin-right: 5px;
 }
+
 .form_heading {
     padding-bottom: 20px;
     font-size: 21px;
     color: #7878BD;
 }
+
 .field {
     padding-bottom: 10px;
     padding-top: 10px;
 }
+
 input {
     border-radius: 5px;
     background-color: #E9E9F7;
@@ -37,18 +43,23 @@ input {
     color: #7A7AB3;
     border: 1px solid #DADAF7
 }
+
 input:focus-visible {
     outline: 1px solid #AEAED6;
 }
+
 input::placeholder {
     color: #BCBCDF;
+
 }
+
 label {
     color: #B2BAC8;
     font-size: 14px;
     display: block;
     padding-bottom: 4px;
 }
+
 button {
     background-color: #7878BD;
     margin-top: 10px;
@@ -59,6 +70,7 @@ button {
     color: white;
     border: none;
 }
+
 button:hover {
     background-color: #5F5F9C;
 }

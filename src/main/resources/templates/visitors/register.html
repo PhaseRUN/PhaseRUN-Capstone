@@ -16,7 +16,7 @@
 <div class="container form-box opacity-90 pt-0">
     <form class="row form-input general-text form justify-content-center align-items-center" th:action="@{/register}" method="POST" th:Object="${user}" id="fitness-form">
         <div class="row row-cols-lg-2 justify-content-center align-items-center ">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="form-container">
                     <label class="visually-hidden" for="username">Username</label>
                     <input type="text" class="form-control input" id="username" placeholder="Username" th:field="*{username}"/>
@@ -29,9 +29,9 @@
 
                     <label class="visually-hidden" for="date-of-birth">DOB</label>
                     <input class="form-control input" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy"/>
-                    <div>
-                    <label for="running-exp" class="subtitle">Running Experience</label>
-                         <select id="running-exp" th:field="*{runningExp}">
+                    <div class="act-sm">
+                    <label for="running-exp" class="subtitle-run">Running Experience</label>
+                         <select id="running-exp" class="run-exp"   th:field="*{runningExp}">
                             <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
                                 th:value="${runningExp}"
                                 th:text="${runningExp}"
@@ -39,9 +39,9 @@
                             </option>
                         </select>
                     </div>
-                    <div>
-                    <label for="activity-level" class="subtitle">Activity Level</label>
-                        <select id="activity-level" th:field="*{activityLvl}">
+                    <div class="act-sm">
+                    <label for="activity-level" class="subtitle-act">Activity Level</label>
+                        <select id="activity-level" class="act-lvl" th:field="*{activityLvl}">
                             <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
                                     th:value="${activityLvl}"
                                     th:text="${activityLvl}"
@@ -50,18 +50,18 @@
                         </select>
                     </div>
 <!--                    Zip code Container-->
-                    <div class="row align-items-center justify-content-center">
-                        <label class="subtitle col-3" for="fit-zipcode">Zip Code</label>
-                        <input class="col-8" type="number" pattern="[0-9]" id="fit-zipcode" value="" placeholder="Zip Code" th:field="*{zipcode}"/>
+                    <div class="row align-items-center justify-content-between pe-4 zip-sm">
+                        <label class="subtitle-zip col-3" for="fit-zipcode">Zip Code</label>
+                        <input class="col-3 zip" type="text" pattern="[0-9]" id="fit-zipcode" placeholder="Zip Code" th:field="*{zipcode}"/>
                     </div>
 <!--                    Form Submit Button Container-->
-                    <div class="row justify-content-center">
-                        <div class="col-3 mx-0 my-3">
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <div class="row btn-reg justify-content-center">
+                        <div class="col-3 my-3">
+                            <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </div>
                     <div class="col-lg-12 d-flex justify-content-center">
-                        <p>Have an account? <a href="/login">Log in</a></p>
+                        <p>Have an account? <a href="/login">Login!</a></p>
                     </div>
                 </div>
             </div>
@@ -77,6 +77,5 @@
         </div>
     </form>
 </div>
-<footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
 </html>

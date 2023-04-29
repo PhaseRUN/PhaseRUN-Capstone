@@ -1,6 +1,7 @@
 .register-img{
     width: 400px;
     height: auto;
+    border-radius: 7px;
 
 }
 
@@ -27,11 +28,41 @@
     font-size: 1.6rem;
 }
 
-.subtitle {
-    font-size: 1rem;
+.subtitle-zip {
+    font-size: 1em;
     color: #666;
+    width: 32%;
+    padding-left: 32px;
 }
 
+.subtitle-run {
+    font-size: 1em;
+    color: #666;
+    padding-right: 22px;
+}
+
+.subtitle-act {
+    font-size: 1em;
+    color: #666;
+    padding-right: 80px;
+}
+
+.run-exp {
+    width: 11em;
+    font-size: 20px;
+}
+
+.act-lvl {
+    width: 11em;
+    font-size: 20px;
+}
+
+.zip {
+    width: 11em;
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
 /*Inputs box*/
 .form-container {
     overflow: hidden;
@@ -48,13 +79,14 @@
     height: 40px;
     width: 100%;
     border-bottom: 1px solid #eee;
-    font-size: .9rem;
+    font-size: 1em;
     padding: 8px 15px;
 }
 
 .form-section {
     padding: 16px;
     font-size: .85rem;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     background-color: #e0ecfb;
@@ -88,3 +120,79 @@
 .form button:hover {
     background-color: #005ce6;
 }
+
+/*mobile view*/
+@media (max-width: 768px) {
+    /* Custom styles for screens that are `sm` or larger */
+    .col-sm-6 {
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: #fff;
+        margin: 1rem 0 .5rem;
+        width: 100%;
+    }
+
+    /*remove image*/
+    .form-section {
+        display: none;
+    }
+
+    .subtitle-zip {
+        font-size: 15px;
+        color: #666;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 5px 0;
+    }
+
+    .subtitle-run {
+        font-size: 15px;
+        color: #666;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 5px 0;
+        margin: 0;
+    }
+
+    .subtitle-act {
+        font-size: 15px;
+        color: #666;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 5px 0;
+        margin: 0!important
+    }
+
+   .run-exp {
+        width: 80%;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        margin-left: 30px;
+   }
+
+    .act-lvl {
+        width: 80%;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        margin-left: 30px;
+    }
+
+    .zip-sm {
+        margin: 0;
+        padding: 0!important;
+        width: 100%;
+        display: flex;
+        justify-content: center !important;
+    }
+
+    .btn-reg {
+        display: flex;
+        justify-content: center !important;
+    }
+}
+

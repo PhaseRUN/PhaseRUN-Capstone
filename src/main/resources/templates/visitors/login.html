@@ -7,8 +7,7 @@
     <title>Login</title>
 
 </head>
-<link rel="stylesheet" th:href="@{/css/login.css}">
-
+<link rel="stylesheet" href="/css/login.css">
 <body>
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
@@ -45,6 +44,5 @@
     </div>
 </div>
 
-<footer th:replace="~{partials/footer :: footer}"></footer>
 </body>
 </html>
