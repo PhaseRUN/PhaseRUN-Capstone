@@ -9,11 +9,11 @@
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
 <!--  Container  -->
-<section class="vh-100 opacity-85" style="background-color: #9de2ff">
-    <div class="container py-5 under-nav">
+<section class="vh-100 opacity-85">
+    <div class="container py-5">
         <!-- START: ROW FOR PROFILE CARD -->
-        <div class="row d-flex h-100">
-            <div class="col col-md-9 col-lg-7 col-xl-5 ">
+        <div class="row d-flex h-100 below-nav">
+            <div class="col col-md-12 col-lg-6 col-xl-5 ">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-4">
                         <div class="d-flex text-black">
@@ -48,52 +48,26 @@
                     </div>
                 </div>
             </div>
-
-<!--            Profile bookmark card end-->
-        </div>
-        <!-- END: ROW FOR PROFILE CARD -->
-        <!--   EVENT CARD ROW START     -->
-
-        <section class="articles">
-            <article>
-                <div class="col-md-4" th:each="race : ${races}">
-                <div class="article-wrapper">
-                    <figure>
-                        <img src="https://picsum.photos/id/1011/800/450" alt="" />
-                    </figure>
-                    <div class="article-body">
-                        <h2>This is some title</h2>
-                        <p>
-                            Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-                        </p>
-                        <a href="#" class="read-more">
-                            Read more <span class="sr-only">about this is some title</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <article>
-
-        <div class="row races-container">
-            <div class="col-md-4" th:each="race : ${races}">
-                <div class="card" style="height: 16rem">
-                    <div class="race-card">
-                        <div class="card-img-wrapper">
+            <section class="articles col-md-12 col-lg-6 col-xl-7">
+                <article th:each="race : ${races}">
+                    <div class="article-wrapper">
+                        <figure class="row">
+                            <div class="col-4">
                             <img
                                     th:src="${race.logoUrl}"
-                                    class="card-img-top img-fluid"
+                                    class="img-fluid"
                                     alt="Image Not Found"
                                     onerror="this.onerror=null;this.src='/images/default_generated.jpg';"
                             />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${race.name}"></h5>
+                            </div>
+                            <div class="title-placement col-8">
+                                <h2 th:text="${race.name}"></h2>
+                            </div>
+                        </figure>
+                        <div class="article-body">
                             <button class="toggle-info info-btn btn btn-primary flex-grow-1">Info</button>
                             <div class="info-section" style="display: none;">
-                                <p class="card-text general-text" th:text="${race.description}">Description: </p>
+                                <p class="general-text" th:text="${race.description}">Description: </p>
                             </div>
                             <button
                                     class="dropdown btn btn-outline-primary me-1 flex-grow-1"
@@ -122,25 +96,24 @@
                                         <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
                                         <input type="hidden" name="raceId" th:value="${race.raceId}">
                                         <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
-                                        <div id="allComments"></div>
+                                        <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}" th:method="post">
+                                            <div class="btn btn-primary toggle-comment comment-btn">
+                                                <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                                </svg></button>
+                                                <div id="allComments"></div>
+                                            </div>
+                                        </form>
                                     </form>
                                 </div>
                             </div>
-
-                            <form class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}" th:method="post">
-                                <div class="btn btn-primary toggle-comment comment-btn">
-                                    <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                                    </svg></button>
-                                </div>
-                            </form>
                         </div>
                     </div>
-                </div>
-            </div>
+                </article>
+            </section>
+            <!--   EVENT CARD ROW END     -->
         </div>
-        <!--   END EVENT CARD ROW    -->
     </div>
 </section>
 
