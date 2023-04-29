@@ -30,3 +30,9 @@
     color: #ffffff;
     text-decoration: none;
 }
+
+.title-scroll
+{
+    overflow: auto;
+    max-height: 8.8em;
+}
