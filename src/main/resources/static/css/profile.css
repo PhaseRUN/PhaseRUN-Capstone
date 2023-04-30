@@ -123,3 +123,8 @@ body{
     background-color: #007BFF;
     color: white;
 }
+
+/*remove bullets*/
+ul{
+    list-style-type: none;
+}
