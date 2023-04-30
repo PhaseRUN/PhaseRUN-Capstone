@@ -67,8 +67,7 @@
                                     Signup
                                     </a>
                             </button>
-                            <div class="dropup">
-
+                            <div class="drop-center dropup">
                                 <button
                                         class="btn btn-outline-primary"
                                         type="button"
@@ -79,7 +78,7 @@
                                     Race Comments
                                 </button>
 
-                                <div class="dropdown-menu commentList comment-section">
+                                <div class="dropdown-menu commentList comment-section overflow-auto" style="height: 8em">
                                     <ul class="commentList comment-styling">
                                         <li class="general-text" th:each="comment : ${comments}">
                                             <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
