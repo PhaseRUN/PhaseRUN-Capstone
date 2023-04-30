@@ -16,7 +16,6 @@ body {
 /* Text Settings*/
 
 .sub-title-text{
-    /*font-family: Cardo, serif;*/
     font-family: 'Red Hat Display', sans-serif;
     font-size: 26px;
     text-align: center;
@@ -25,7 +24,6 @@ body {
 }
 
 .general-text{
-    /*font-family: Cardo, serif;*/
     font-family: 'Red Hat Display', sans-serif;
     font-size: 20px;
 }
@@ -36,7 +34,6 @@ body {
 }
 
 .title-text{
-    /*font-family: Cardo, serif;*/
     font-family: 'Red Hat Display', sans-serif;
     font-size: 30px;
     text-align: center;
@@ -88,7 +85,6 @@ input{
 /*input field headers*/
 .inputHeaderField {
     color: white;
-    /*font-size: 1.4vw;*/
     font-family: Cardo, serif;
     padding: 1px
 }
@@ -100,7 +96,6 @@ input{
 }
 .inputHeaderField-race{
     color: white;
-    /*font-size: 2vw;*/
     font-family: Cardo, serif;
     padding: 1px
 }
