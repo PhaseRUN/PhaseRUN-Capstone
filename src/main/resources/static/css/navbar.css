@@ -59,10 +59,10 @@
 .btn-primary{
     border: none;
     font-family: 'Red Hat Display', sans-serif;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 a:hover {
     background-color: #156be5;
-
+    font-size: 1.2em;
 }

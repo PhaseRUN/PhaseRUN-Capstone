@@ -67,15 +67,42 @@
                                     Signup
                                     </a>
                             </button>
-                            <button
-                                    class="dropdown btn btn-outline-primary"
-                                    type="button"
-                                    id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                            >
-                                Race Comments
-                            </button>
+                            <div class="dropup">
+
+                                <button
+                                        class="btn btn-outline-primary"
+                                        type="button"
+                                        id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                >
+                                    Race Comments
+                                </button>
+
+                                <div class="dropdown-menu commentList comment-section">
+                                    <ul class="commentList comment-styling">
+                                        <li class="general-text" th:each="comment : ${comments}">
+                                            <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                                <div class="commentText">
+                                                    <p>
+                                                        <span th:text="${comment.getBody()}"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="comment-styling general-text">
+                                        <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                                            <label th:for="'newComment' + ${race.raceId}" name="newComment"></label>
+                                            <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
+                                            <input type="hidden" name="raceId" th:value="${race.raceId}">
+                                            <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
+                                            <div id="allComments"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                             <form
                                     class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}" th:method="post"
                             >
@@ -89,28 +116,7 @@
                                     </button>
                                 </div>
                             </form>
-                            <div class="dropdown-menu commentList comment-section">
-                                <ul class="commentList comment-styling">
-                                    <li class="general-text" th:each="comment : ${comments}">
-                                        <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
-                                            <div class="commentText">
-                                                <p>
-                                                    <span th:text="${comment.getBody()}"></span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="comment-styling general-text">
-                                    <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
-                                        <label th:for="'newComment' + ${race.raceId}" name="newComment"></label>
-                                        <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
-                                        <input type="hidden" name="raceId" th:value="${race.raceId}">
-                                        <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
-                                        <div id="allComments"></div>
-                                    </form>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </article>

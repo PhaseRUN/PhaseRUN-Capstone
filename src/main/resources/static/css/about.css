@@ -45,7 +45,102 @@
     padding-left: 85px;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 991px) {
+@media only screen and (min-width: 0px) and (max-width: 420px) {
+
+    .row
+    {
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-bottom: 8em;
+    }
+
+
+    .cardAbout {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        height: 275px;
+        max-width: 100vw;
+        min-width: 80vw;
+        margin: 4em 0;
+        padding: 1em;
+        box-shadow: none;
+        border: none;
+    }
+
+    .cardAbout.right {
+        justify-content: start;
+    }
+
+    .headshot {
+        border: 1px solid #000;
+        border-radius: 20%;
+        box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
+        position: relative;
+        z-index: 10;
+        height: 150px;
+        width: 120px;
+    }
+
+    .headshot.kenneth
+    {
+        object-fit: cover;
+        height: 150px;
+        width: 120px;
+    }
+
+    .bio{
+        font-size: 20px;
+        border: 1px solid #000;
+        border-radius: 50px;
+        box-shadow: 1px 6px 9px 0 rgba(35, 35, 35, 0.75);
+        position: absolute;
+        padding-top: 6.6em;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        /*padding: 4em 1.5em;*/
+        height: 22.7em;
+        width: 100%;
+    }
+
+    .bio.long-bio
+    {
+        padding-top: 5em;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+    }
+
+    .bioHeader {
+        font-size: 1.43em;
+        color: #000000;
+        position: relative;
+        z-index: 15;
+        padding-top: 1.2em;
+        padding-left: 0;
+        /*padding-right: ;*/
+    }
+
+    .bioHeader.kenneth
+    {
+        padding-left: 0;
+    }
+
+    .leftAlign {
+        background-color: #3b5998;
+        left: -25px;
+        top: -50px;
+    }
+
+    .rightAlign {
+        background-color: #55acee;
+        left: -65px;
+        top: -65px;
+    }
+}
+
+
+
+@media only screen and (min-width: 421px) and (max-width: 991px) {
 
     .row
     {
