@@ -243,15 +243,15 @@ article a:focus {
     outline: 1px dotted #28666e;
 }
 
-article a .icon {
-    min-width: 24px;
-    width: 24px;
-    height: 24px;
-    margin-left: 5px;
-    transform: translateX(var(--link-icon-translate));
-    opacity: var(--link-icon-opacity);
-    transition: all 0.3s;
-}
+/*article a .icon {*/
+/*    min-width: 24px;*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    margin-left: 5px;*/
+/*    transform: translateX(var(--link-icon-translate));*/
+/*    opacity: var(--link-icon-opacity);*/
+/*    transition: all 0.3s;*/
+/*}*/
 
 /* using the has() relational pseudo selector to update our custom properties */
 article:has(:hover, :focus) {
