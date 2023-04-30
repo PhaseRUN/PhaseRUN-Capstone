@@ -29,7 +29,7 @@
 
                     <label class="visually-hidden" for="date-of-birth">DOB</label>
                     <input class="form-control input" type="date" id="date-of-birth" name="date-of-birth" placeholder="DOB mm/dd/yyyy"/>
-                    <div class="act-sm row align-items-center justify-content-center px-4">
+                    <div class="act-sm row align-items-center justify-content-center px-4 pt-2">
                         <label for="running-exp" class="subtitle-run col-xl col-lg-10 text-center text-xl-start">Running Experience</label>
                         <select id="running-exp" class="run-exp col-3 h-2" th:field="*{runningExp}">
                             <option th:each="runningExp : ${T(com.codeup.phaserun.models.User.RunningExpEnum).values()}"
@@ -39,7 +39,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="act-sm row align-items-center justify-content-center px-4">
+                    <div class="act-sm row align-items-center justify-content-center px-4 py-2">
                         <label for="activity-level" class="subtitle-act col-xl col-lg-10 text-center text-xl-start">Activity Level</label>
                         <select id="activity-level" class="act-lvl col-3 h-2" th:field="*{activityLvl}">
                             <option th:each="activityLvl : ${T(com.codeup.phaserun.models.User.ActivityLvlEnum).values()}"
@@ -52,7 +52,7 @@
                     <!--                    Zip code Container-->
                     <div class="row align-items-center justify-content-center px-4 zip-sm">
                         <label class="subtitle-zip col-xl col-lg-10 text-center text-xl-start" for="fit-zipcode">Zip Code</label>
-                        <input class="col-3 zip" type="text" pattern="[0-9]" id="fit-zipcode" placeholder="Zip Code" th:field="*{zipcode}"/>
+                        <input class="col-3 zip" type="number" pattern="[0-9]" id="fit-zipcode" placeholder="Zip Code" th:field="*{zipcode}"/>
                     </div>
                     <!--                    Form Submit Button Container-->
                     <div class="row btn-reg justify-content-center">
