@@ -194,5 +194,13 @@
         display: flex;
         justify-content: center !important;
     }
+
+    .form-box {
+        max-width: 80vw;
+        background: #f1f7fe;
+        overflow: hidden;
+        border-radius: 16px;
+        color: #010101;
+    }
 }
 
