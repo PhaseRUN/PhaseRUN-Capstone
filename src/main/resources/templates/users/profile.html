@@ -94,7 +94,7 @@
                                                     <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
                                                         <!-- User profile picture and name -->
                                                         <div class="d-flex align-items-start mb-2">
-                                                            <img th:src="${comment.getUser().getProfilePic() != null ? user.getProfilePic() : '/images/small.jpg'}" alt="prof-pic" class="profile-pic img-fluid rounded-circle" style="width: 40px; height: 40px;"/>
+                                                            <img th:src="${comment.getUser().getProfilePic() != null ? comment.getUser().getProfilePic() : '/images/small.jpg'}" alt="prof-pic" class="profile-pic img-fluid rounded-circle" style="width: 40px; height: 40px;"/>
                                                             <div class="ms-2">
                                                                 <strong th:text="${comment.getUser().getUsername()}"></strong>
                                                             </div>
