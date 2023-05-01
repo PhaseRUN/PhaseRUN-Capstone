@@ -1,5 +1,5 @@
 # PhaseRun
-
+Project Link: [phaserun.online](https://phaserun.online/) 
 ## Description
 
 You ever want to run a marathon, but start to get nervous, thinking "Am I ready yet?". 
@@ -53,18 +53,18 @@ Profile: Here you can delete bookmarked races, edit zipcode, and add comments to
 ## Credits
 
 Developers:
-* Alexia Briones: https://github.com/lexibor
-* Chase Medford: https://github.com/ChaseLeeM
-* Joe Garcia: https://github.com/gijoe250
-* Kenneth Hayles: https://github.com/KMHayles
-* Robert Arroyos: https://github.com/robertarroyos
+* Alexia Briones: [https://github.com/lexibor](https://github.com/lexibor)
+* Chase Medford: [https://github.com/ChaseLeeM](https://github.com/ChaseLeeM)
+* Joe Garcia: [https://github.com/gijoe250](https://github.com/gijoe250)
+* Kenneth Hayles: [https://github.com/KMHayles](https://github.com/KMHayles)
+* Robert Arroyos: [https://github.com/robertarroyos](https://github.com/robertarroyos)
 
 Third-party assets:
-* Race Information API: https://runsignup.com
-* Image File Saving API: https://www.filestack.com
+* Race Information API: [https://runsignup.com](https://runsignup.com/API/DocOverview)
+* Image File Saving API: [https://www.filestack.com](https://www.filestack.com)
 
 Institution:
-* Thank you to our instructors at Codeup: https://codeup.com/
+* Thank you to our instructors at Codeup: [https://codeup.com/](https://codeup.com/)
 
 ## License
 
