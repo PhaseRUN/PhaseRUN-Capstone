@@ -71,7 +71,8 @@ body{
 
 .profile-card
 {
-    margin: auto;
+    margin: auto auto 1em;
+    height: 15em;
 }
 
 .pfp {
@@ -92,7 +93,7 @@ body{
 .articles {
     border-radius: 10px;
     padding-top: 15px;
-    margin: 1em 0;
+    margin: auto;
 }
 .article-wrapper {
     position: relative;
@@ -120,10 +121,7 @@ body{
     align-items: center;
     justify-content: space-evenly !important;
 }
-.comment-section {
-    display: none;
-    margin-top: 10px;
-}
+
 .comment-styling {
     border: 3px ridge #273556;
     border-radius: 5px;
@@ -142,6 +140,20 @@ body{
 .comment-btn.active {
     background-color: #007BFF;
     color: white;
+}
+.comment-section{
+    height: 50%;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+textarea{
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 5px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 5px;
 }
 
 /*remove bullets*/
