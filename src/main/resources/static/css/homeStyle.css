@@ -89,7 +89,11 @@ header {
 }
 
 .intimidate-setting{
-    padding-left: 5em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin: auto;
 }
 
 .home-text
