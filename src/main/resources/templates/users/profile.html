@@ -8,9 +8,9 @@
 <body>
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
-<header class="under-nav">
-    <img class="logo-home"  align="center" src="/images/logo-color.png" alt="boom">
-</header>
+<div class="under-nav">
+    <h1 class="title-text pageTitle">Profile</h1>
+</div>
 
 <!--  Container  -->
 <section class="vh-100 opacity-85" >
