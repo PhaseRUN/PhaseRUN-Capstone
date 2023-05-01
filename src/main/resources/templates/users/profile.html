@@ -45,12 +45,11 @@
                     </div>
                 </div>
             </div>
-
+<!-- Profile Card End -->
                 <section class="articles col-md-12 col-lg-12 col-xl-12" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">                <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
                 <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span>
                     <a class="noUnderline link" th:href="@{/race/search}">HERE</a>
                 </h1>
-
                 <article th:each="race : ${races}">
                     <div class="article-wrapper">
                         <figure class="row">
@@ -93,6 +92,14 @@
                                             <div class="commentList comment-section overflow-auto" id="commentsCollapse th:text='${race.raceId}' >">
                                                 <div th:each="comment : ${comments}">
                                                     <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                                        <!-- User profile picture and name -->
+                                                        <div class="d-flex align-items-start mb-2">
+                                                            <img th:src="${comment.getUser().getProfilePic()}" alt="Profile Picture" class="rounded-circle" style="width: 40px; height: 40px;">
+                                                            <div class="ms-2">
+                                                                <strong th:text="${comment.getUser().getUsername()}"></strong>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Comment text -->
                                                         <div class="commentText">
                                                             <p>
                                                                 <span th:text="${comment.getBody()}"></span>
@@ -111,12 +118,12 @@
                                                 </div>
                                             </div>
 
+
                                             <!-- End Comment Section -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <!-- END: Accordion -->
                             <!-- Delete Button -->
                             <form
