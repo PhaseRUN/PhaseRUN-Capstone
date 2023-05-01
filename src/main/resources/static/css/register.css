@@ -202,5 +202,9 @@
         border-radius: 16px;
         color: #010101;
     }
+    /*Should fix mobile display in chrome*/
+    input[type="date"] {
+        display: inline-flex
+    }
 }
 
