@@ -63,9 +63,15 @@ body{
     margin-bottom: 1em;
 }
 .profile-pic {
-    /*width: 180px;*/
-    /*height: 180px;*/
-    /*border-radius: 10px;*/
+    width: 165px;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.profile-card
+{
+    margin: auto;
 }
 
 .pfp {
@@ -86,6 +92,7 @@ body{
 .articles {
     border-radius: 10px;
     padding-top: 15px;
+    margin: 1em 0;
 }
 .article-wrapper {
     position: relative;
@@ -104,7 +111,7 @@ body{
 }
 .bookmark-text {
     font-family: 'Red Hat Display', sans-serif;
-    font-size: 1em;
+    font-size: 1.5em;
 }
 .article-body {
     background-color: #FFFFFF !important;
