@@ -140,7 +140,9 @@ body{
     background-color: #007BFF;
     color: white;
 }
-
+.comment-section{
+    height: 50%;
+}
 textarea{
     resize: none;
     border-radius: 5px;

@@ -90,7 +90,7 @@
                                     <div th:id="'commentsCollapse' + ${race.raceId}" class="accordion-collapse collapse" th:aria-labelledby="'heading' + ${race.raceId}" data-bs-parent="#commentsAccordion">
                                         <div class="accordion-body">
                                             <!-- Comment Section -->
-                                            <div class="commentList comment-section overflow-auto" id="commentsCollapse th:text='${race.raceId}' >" style="height: 8em">
+                                            <div class="commentList comment-section overflow-auto" id="commentsCollapse th:text='${race.raceId}' >">
                                                 <div th:each="comment : ${comments}">
                                                     <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
                                                         <div class="commentText">
