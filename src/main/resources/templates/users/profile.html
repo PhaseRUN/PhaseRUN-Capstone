@@ -17,25 +17,25 @@
     <span type="hidden" id="userId" th:attr="data-user-id=${user.getId()}"></span>
     <div class="container py-1">
         <!-- START: ROW FOR PROFILE CARD -->
-        <div class="row d-flex h-25">
-            <div class="col col-md-12 col-lg-6 col-xl-5" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;height: inherit;">
+        <div class="row d-flex h-100">
+            <div class="col col-md-10 col-lg-7 col-xl-7 profile-card" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;height: inherit;">
                 <div class="card" style="border-radius: 10px;">
                     <div class="card-body p-1">
                         <div class="d-flex text-black">
                             <div class="flex-shrink-0 pfp">
-                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/profile-female.jpg'}" alt="prof-pic" class="profile-pic img-fluid" style="width: 180px; height: 180px; border-radius: 10px;"/>
+                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/profile-female.jpg'}" alt="prof-pic" class="profile-pic img-fluid" />
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1"><span th:text="${user.getUsername()}"></span></h5>
                                 <p class="mb-2 pb-1" style="color: #2b2a2a;"><span th:text="${user.getZipcode()}"></span></p>
-                                <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                                <div class="d-flex justify-content-evenly rounded-3 p-2 mb-2"
                                      style="background-color: #efefef;">
                                     <div>
                                         <p class="small text-muted mb-1">Activity Level</p>
                                         <p class="mb-0"><span th:text="${user.getActivityLvl()}" ></span></p>
                                     </div>
                                     <div class="px-3">
-                                        <p class="small text-muted mb-1">Experience</p>
+                                        <p class="small text-muted mb-1">Running Experience</p>
                                         <p class="mb-0"><span th:text="${user.getRunningExp()}"></span></p>
                                     </div>
                                 </div>
@@ -48,11 +48,12 @@
                     </div>
                 </div>
             </div>
-            <section class="articles col-md-12 col-lg-6 col-xl-7" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">
-                <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
+
+                <section class="articles col-md-12 col-lg-12 col-xl-12" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">                <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
                 <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span>
                     <a class="noUnderline link" th:href="@{/race/search}">HERE</a>
                 </h1>
+
                 <article th:each="race : ${races}">
                     <div class="article-wrapper">
                         <figure class="row">
