@@ -121,10 +121,7 @@ body{
     align-items: center;
     justify-content: space-evenly !important;
 }
-.comment-section {
-    display: none;
-    margin-top: 10px;
-}
+
 .comment-styling {
     border: 3px ridge #273556;
     border-radius: 5px;
@@ -143,6 +140,18 @@ body{
 .comment-btn.active {
     background-color: #007BFF;
     color: white;
+}
+.comment-section{
+    height: 50%;
+}
+textarea{
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 5px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 5px;
 }
 
 /*remove bullets*/
