@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{partials/head :: head}">
-    <title>Profile</title>
+    <title></title>
 </head>
+
 <link rel="stylesheet" th:href="@{/css/profile.css}">
 
 <body>
@@ -23,7 +24,7 @@
                     <div class="card-body p-1">
                         <div class="d-flex text-black">
                             <div class="flex-shrink-0 pfp">
-                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/profile-female.jpg'}" alt="prof-pic" class="profile-pic img-fluid" />
+                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/small.jpg'}" alt="prof-pic" class="profile-pic img-fluid" />
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1"><span th:text="${user.getUsername()}"></span></h5>
@@ -48,12 +49,11 @@
                     </div>
                 </div>
             </div>
-
+<!-- Profile Card End -->
                 <section class="articles col-md-12 col-lg-12 col-xl-12" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">                <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
                 <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span>
                     <a class="noUnderline link" th:href="@{/race/search}">HERE</a>
                 </h1>
-
                 <article th:each="race : ${races}">
                     <div class="article-wrapper">
                         <figure class="row">
@@ -76,43 +76,64 @@
                                     Signup
                                     </a>
                             </button>
-                            <div class="drop-center dropup">
-                                <button
-                                        class="btn btn-outline-primary"
-                                        type="button"
-                                        id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                >
-                                    Race Comments
-                                </button>
-
-                                <div class="dropdown-menu commentList comment-section overflow-auto" style="height: 8em">
-                                    <ul class="commentList comment-styling">
-                                        <li class="general-text" th:each="comment : ${comments}">
-                                            <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
-                                                <div class="commentText">
-                                                    <p>
-                                                        <span th:text="${comment.getBody()}"></span>
-                                                    </p>
+                            <!-- START: Accordion -->
+                            <div class="accordion" id="commentsAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" th:id="'heading' + ${race.raceId}">
+                                        <button
+                                                class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                th:data-bs-target="'#commentsCollapse' + ${race.raceId}"
+                                                aria-expanded="false"
+                                                th:aria-controls="'commentsCollapse' + ${race.raceId}">
+                                            Race Comments
+                                        </button>
+                                    </h2>
+                                    <div th:id="'commentsCollapse' + ${race.raceId}" class="accordion-collapse collapse" th:aria-labelledby="'heading' + ${race.raceId}" data-bs-parent="#commentsAccordion">
+                                        <div class="accordion-body">
+                                            <!-- Comment Section -->
+                                            <div class="commentList comment-section overflow-auto" id="commentsCollapse th:text='${race.raceId}' >">
+                                                <div th:each="comment : ${comments}">
+                                                    <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                                        <!-- User profile picture and name -->
+                                                        <div class="d-flex align-items-start mb-2">
+                                                            <img th:src="${comment.getUser().getProfilePic()}" alt="Profile Picture" class="rounded-circle" style="width: 40px; height: 40px;">
+                                                            <div class="ms-2">
+                                                                <strong th:text="${comment.getUser().getUsername()}"></strong>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Comment text -->
+                                                        <div class="commentText">
+                                                            <p>
+                                                                <span th:text="${comment.getBody()}"></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-styling general-text">
+                                                    <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                                                        <label th:for="'newComment' + ${race.raceId}" name="newComment"></label>
+                                                        <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
+                                                        <input type="hidden" name="raceId" th:value="${race.raceId}">
+                                                        <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
+                                                        <div id="allComments"></div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                    <div class="comment-styling general-text">
-                                        <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
-                                            <label th:for="'newComment' + ${race.raceId}" name="newComment"></label>
-                                            <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
-                                            <input type="hidden" name="raceId" th:value="${race.raceId}">
-                                            <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
-                                            <div id="allComments"></div>
-                                        </form>
+
+
+                                            <!-- End Comment Section -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- END: Accordion -->
+                            <!-- Delete Button -->
                             <form
-                                    class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}" th:method="post"
+                                    class="btn btn-tertiary card-modal-btn"
+                                    th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}"
+                                    th:method="post"
                             >
                                 <div class="btn btn-primary btn-delete">
                                     <button class="btn-delete"
@@ -125,8 +146,10 @@
                                 </div>
                             </form>
 
+                            <!-- End Delete Button -->
+
                         </div>
-                    </div>
+                    </div> <!-- article-wrapper end -->
                 </article>
             </section>
             <!--   EVENT CARD ROW END     -->
