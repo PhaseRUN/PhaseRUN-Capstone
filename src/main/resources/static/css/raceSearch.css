@@ -36,3 +36,14 @@
     overflow: auto;
     max-height: 8.8em;
 }
+
+.criteria-text
+{
+    color: #f8b918;
+    text-decoration: none;
+}
+
+.criteria-text:hover
+{
+    color: #ffd781;
+}
