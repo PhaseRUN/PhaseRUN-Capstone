@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{partials/head :: head}">
-    <title>Profile</title>
+    <title></title>
 </head>
+
 <link rel="stylesheet" th:href="@{/css/profile.css}">
 
 <body>
@@ -19,7 +20,7 @@
                     <div class="card-body p-4">
                         <div class="d-flex text-black">
                             <div class="flex-shrink-0 pfp">
-                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/profile-female.jpg'}" alt="prof-pic" class="profile-pic img-fluid" />
+                                <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/small.jpg'}" alt="prof-pic" class="profile-pic img-fluid" />
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1"><span th:text="${user.getUsername()}"></span></h5>
@@ -72,43 +73,56 @@
                                     Signup
                                     </a>
                             </button>
-                            <div class="drop-center dropup">
-                                <button
-                                        class="btn btn-outline-primary"
-                                        type="button"
-                                        id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                >
-                                    Race Comments
-                                </button>
-
-                                <div class="dropdown-menu commentList comment-section overflow-auto" style="height: 8em">
-                                    <ul class="commentList comment-styling">
-                                        <li class="general-text" th:each="comment : ${comments}">
-                                            <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
-                                                <div class="commentText">
-                                                    <p>
-                                                        <span th:text="${comment.getBody()}"></span>
-                                                    </p>
+                            <!-- START: Accordion -->
+                            <div class="accordion" id="commentsAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" th:id="'heading' + ${race.raceId}">
+                                        <button
+                                                class="accordion-button collapsed"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                th:data-bs-target="'#commentsCollapse' + ${race.raceId}"
+                                                aria-expanded="false"
+                                                th:aria-controls="'commentsCollapse' + ${race.raceId}">
+                                            Race Comments
+                                        </button>
+                                    </h2>
+                                    <div th:id="'commentsCollapse' + ${race.raceId}" class="accordion-collapse collapse" th:aria-labelledby="'heading' + ${race.raceId}" data-bs-parent="#commentsAccordion">
+                                        <div class="accordion-body">
+                                            <!-- Comment Section -->
+                                            <div class="commentList comment-section overflow-auto" id="commentsCollapse th:text='${race.raceId}' >" style="height: 8em">
+                                                <div th:each="comment : ${comments}">
+                                                    <div th:if="${comment.getRace().getRaceId() == race.getRaceId()}">
+                                                        <div class="commentText">
+                                                            <p>
+                                                                <span th:text="${comment.getBody()}"></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-styling general-text">
+                                                    <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
+                                                        <label th:for="'newComment' + ${race.raceId}" name="newComment"></label>
+                                                        <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
+                                                        <input type="hidden" name="raceId" th:value="${race.raceId}">
+                                                        <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
+                                                        <div id="allComments"></div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
-                                    <div class="comment-styling general-text">
-                                        <form th:action="@{/profile/comment}" th:method="post" th:object="${comment}">
-                                            <label th:for="'newComment' + ${race.raceId}" name="newComment"></label>
-                                            <textarea th:id="'newComment' + ${race.raceId}" th:field="*{body}"></textarea>
-                                            <input type="hidden" name="raceId" th:value="${race.raceId}">
-                                            <button type="submit" class="commentButton" th:attr="data-raceID=${race.raceId}">Add Comment</button>
-                                            <div id="allComments"></div>
-                                        </form>
+
+                                            <!-- End Comment Section -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- END: Accordion -->
+                            <!-- Delete Button -->
                             <form
-                                    class="btn btn-tertiary card-modal-btn" th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}" th:method="post"
+                                    class="btn btn-tertiary card-modal-btn"
+                                    th:action="@{/delete-race/{race_id}(race_id=${race.raceId})}"
+                                    th:method="post"
                             >
                                 <div class="btn btn-primary btn-delete">
                                     <button class="btn-delete"
@@ -121,8 +135,10 @@
                                 </div>
                             </form>
 
+                            <!-- End Delete Button -->
+
                         </div>
-                    </div>
+                    </div> <!-- article-wrapper end -->
                 </article>
             </section>
             <!--   EVENT CARD ROW END     -->
