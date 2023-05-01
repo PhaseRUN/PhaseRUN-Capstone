@@ -1,5 +1,5 @@
 # PhaseRun
-Project Link: [phaserun.online](https://phaserun.online/) 
+Project Link: [phaserun.online](https://phaserun.online/)
 ## Description
 
 You ever want to run a marathon, but start to get nervous, thinking "Am I ready yet?". 
@@ -8,6 +8,7 @@ We built this project to help all types of runners locate those races that they 
 their running experience, activity level, age, and our special fitness calculation algorithm. 
 With this web app, we remove the headache of sifting through the available races and only show the what you have time to train for.
 
+Check out our live site here: [phaserun.online](https://phaserun.online/)
 ## Table of Contents
 
 - [Installation](#installation)
