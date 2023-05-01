@@ -22,7 +22,7 @@
                 <div class="card" style="border-radius: 10px;">
                     <div class="card-body p-1">
                         <div class="d-flex text-black">
-                            <div class="flex-shrink-0">
+                            <div class="flex-shrink-0 pfp">
                                 <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/profile-female.jpg'}" alt="prof-pic" class="profile-pic img-fluid" style="width: 180px; height: 180px; border-radius: 10px;"/>
                             </div>
                             <div class="flex-grow-1 ms-3">
@@ -50,7 +50,9 @@
             </div>
             <section class="articles col-md-12 col-lg-6 col-xl-7" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">
                 <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
-                <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span><a th:href="@{/race/search}">HERE</a></h1>
+                <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span>
+                    <a class="noUnderline link" th:href="@{/race/search}">HERE</a>
+                </h1>
                 <article th:each="race : ${races}">
                     <div class="article-wrapper">
                         <figure class="row">
