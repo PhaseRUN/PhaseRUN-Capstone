@@ -33,22 +33,31 @@ With this web app, we remove the headache of sifting through the available races
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+Register a User: The first recommended step is to create a new user
+   * The About, FAQ, Home, Login, and Register page are available without a profile
+   * The Race Search and Profile page need a registered user to access
+   * Go to the register page
+     * There are links available on the home page and on the navbar
+   * Fill in the respective user information and submit
+Race Search: Bookmark Races to track 
+   * Select a race distance, radius, and zipcode
+     * If no results appear, try some of the following
+       * increasing the radius
+       * changing the race distance
+       * Go to the profile page and increase the value of the Activity Level and/or Running Experience by clicking the "Fitness Edit button"
+Profile: Here you can delete bookmarked races, edit zipcode, and add comments to bookmarked races 
+   * The red trashcan button will delete a race
+   * The location edit will change the zipcode
+   * The Race comments will display current comments and allow the adding of more comments
 
 ## Credits
 
 Developers:
+* Alexia Briones: https://github.com/lexibor
+* Chase Medford: https://github.com/ChaseLeeM
 * Joe Garcia: https://github.com/gijoe250
 * Kenneth Hayles: https://github.com/KMHayles
 * Robert Arroyos: https://github.com/robertarroyos
-* Chase Medford: https://github.com/ChaseLeeM
-* Alexia Briones: https://github.com/lexibor
 
 Third-party assets:
 * Race Information API: https://runsignup.com
