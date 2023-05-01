@@ -16,22 +16,22 @@
             <!-- Nav Items -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 general-text">
                 <li th:unless="${isAuthenticated}" class="nav-item nav-group">
-                    <a class="nav-link" th:href="@{/profile}">Login</a>
+                    <a class="nav-link link" th:href="@{/profile}">Login</a>
                 </li>
                 <li th:unless="${isAuthenticated}"  class="nav-item nav-group">
-                    <a class="nav-link" th:href="@{/register}">Register</a>
+                    <a class="nav-link link" th:href="@{/register}">Register</a>
                 </li>
                 <li th:if="${isAuthenticated}" class="nav-item nav-group">
-                    <a class="nav-link" th:href="@{/profile}">Profile</a>
+                    <a class="nav-link link" th:href="@{/profile}">Profile</a>
                 </li>
                 <li th:if="${isAuthenticated}" class="nav-item nav-group">
-                    <a class="nav-link" th:href="@{/race/search}">Race Search</a>
+                    <a class="nav-link link" th:href="@{/race/search}">Race Search</a>
                 </li>
                 <li class="nav-item nav-group">
-                    <a class="nav-link" th:href="@{/faq}">FAQ</a>
+                    <a class="nav-link link" th:href="@{/faq}">FAQ</a>
                 </li>
                 <li class="nav-item nav-group">
-                    <a class="nav-link" th:href="@{/about}">About</a>
+                    <a class="nav-link link" th:href="@{/about}">About</a>
                 </li>
                 <li th:if="${isAuthenticated}">
                     <form th:action="@{/logout}" class="nav-item nav-group" th:method="post">

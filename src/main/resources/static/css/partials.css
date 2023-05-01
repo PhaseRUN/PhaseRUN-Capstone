@@ -23,14 +23,13 @@ body {
     margin-bottom: 1em;
 }
 
+.sub-title-text.home {
+    font-size: 36px;
+}
+
 .general-text{
     font-family: 'Red Hat Display', sans-serif;
     font-size: 20px;
-}
-
-.centered-text{
-    align-content: center;
-    text-align: left;
 }
 
 .title-text{
@@ -104,4 +103,9 @@ input{
     font-size: 3vw;
     font-family: 'Red Hat Display', sans-serif;
     padding-bottom: 10px
+}
+
+.signup
+{
+    text-decoration: none;
 }

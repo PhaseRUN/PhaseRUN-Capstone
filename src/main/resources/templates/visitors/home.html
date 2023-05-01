@@ -16,7 +16,7 @@
 </header>
 <div class="sub-animation">
     <p class="nav-group lead home-text" align="center">"LIFE'S GOALS START AT PHASE ONE"</p>
-    <h1 class="nav-group lead home-sub-text" align="center"><span>Click </span><a class="register-home" th:href="@{/register}">REGISTER</a><span> and start your PhaseRun!</span></h1>
+    <h1 class="nav-group lead home-sub-text" align="center"><span>Click </span><a class="register-home link" th:href="@{/register}">REGISTER</a><span> and start your PhaseRun!</span></h1>
 </div>
 
     <!--Main Display-->
@@ -27,27 +27,29 @@
                 <img class="img-set" src="/images/pexels-andrea-piacquadio-3764537.jpg" alt="intimidate">
             </div>
             <div class="col-lg-6 py-5 bg-info-subtle bg-opacity-70 right-sq">
-                <p class="sub-title-text">
+                <p class="sub-title-text home">
                     How does PhaseRUN work?
                 </p>
-                <div class="centered-text general-text intimidate-setting">
-                    <p>PhaseRun uses the inputs you provide:</p>
-                    <p><i class="fa-solid fa-cake-candles"></i>&nbsp;&nbsp;&nbsp;Age</p>
+                <div class="general-text intimidate-setting">
+                    <p>Using your supplied inputs:</p>
+                    <p><i class="fa-solid fa-cake-candles"></i>&nbsp;&nbsp;Age</p>
 
-                    <p><i class="fa-solid fa-person-running"></i>&nbsp;&nbsp;&nbsp;Running Experience</p>
+                    <p><i class="fa-solid fa-person-running"></i>&nbsp;&nbsp;Running Experience</p>
 
-                    <p><i class="fa-solid fa-heart-pulse"></i>&nbsp;&nbsp;&nbsp;Activity level</p>
+                    <p><i class="fa-solid fa-heart-pulse"></i>&nbsp;&nbsp;Activity level</p>
+                    <br>
+                    <p>Our custom algorithm:</p>
 
-                    <p><i class="fa-solid fa-calculator"></i>&nbsp;&nbsp;&nbsp;Compiles a fitness score
+                    <p><i class="fa-solid fa-calculator"></i>&nbsp;&nbsp;Compiles a fitness score</p>
 
-                    <p><i class="fa-sharp fa-solid fa-shuffle"></i>&nbsp;&nbsp;&nbsp;Our algorithm tailors a training timeline for your race!</p>
+                    <p><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;&nbsp;Tailors a training timeline</p>
                 </div>
+                <br>
                 <p class="sub-title-text">Head over to our <a style="text-decoration: none" th:href="@{/faq}">FAQ</a> for additional information!</p>
 
                 <p class="sub-title-text">
                     Your first steps start <a style="text-decoration: none" th:href="@{/register}">HERE</a>!
                 </p>
-
 
             </div>
         </div>
