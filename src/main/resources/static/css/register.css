@@ -202,18 +202,6 @@
         border-radius: 16px;
         color: #010101;
     }
-    /*start of date fix*/
-    .THIS input[type="date"]:before {
-        content: 'yourcontent' !important;
-    }
 
-    .THIS input[type="date"]:focus:before {
-        content: '' !important;
-    }
-
-    .THIS input[type="date"] {
-        display: flex;
-    }
-/*    end of date fix*/
 }
 
