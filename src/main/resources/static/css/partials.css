@@ -105,3 +105,8 @@ input{
     font-family: 'Red Hat Display', sans-serif;
     padding-bottom: 10px
 }
+
+.signup
+{
+    text-decoration: none;
+}
