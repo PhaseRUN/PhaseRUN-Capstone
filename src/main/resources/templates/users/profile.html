@@ -45,6 +45,8 @@
                 </div>
             </div>
             <section class="articles col-md-12 col-lg-6 col-xl-7" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">
+                <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
+                <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span><a th:href="@{/race/search}">HERE</a></h1>
                 <article th:each="race : ${races}">
                     <div class="article-wrapper">
                         <figure class="row">
