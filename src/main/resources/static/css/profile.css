@@ -142,6 +142,8 @@ body{
 }
 .comment-section{
     height: 50%;
+    max-height: 600px;
+    overflow-y: scroll;
 }
 textarea{
     resize: none;
