@@ -33,16 +33,16 @@
                                      style="background-color: #efefef;">
                                     <div>
                                         <p class="small text-muted mb-1">Activity Level</p>
-                                        <p class="mb-0"><span th:text="${user.getActivityLvl()}" ></span></p>
+                                        <p class="sub-text mb-0"><span th:text="${user.getActivityLvl()}" ></span></p>
                                     </div>
                                     <div class="px-3">
                                         <p class="small text-muted mb-1">Running Experience</p>
-                                        <p class="mb-0"><span th:text="${user.getRunningExp()}"></span></p>
+                                        <p class="sub-text mb-0"><span th:text="${user.getRunningExp()}"></span></p>
                                     </div>
                                 </div>
                                 <div class="d-flex pt-1">
-                                    <button type="button" class="btn btn-primary me-1 flex-grow-1" data-bs-toggle="modal" data-bs-target="#editProfileModal">Location Edit</button>
-                                    <button type="button" class="btn btn-outline-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
+                                    <button type="button" class="btn btn-primary me-1 flex-grow-1 sub-text" data-bs-toggle="modal" data-bs-target="#editProfileModal">Location Edit</button>
+                                    <button type="button" class="btn btn-outline-primary flex-grow-1 sub-text" data-bs-toggle="modal" data-bs-target="#editFitnessModal">Fitness Edit</button>
                                 </div>
                             </div>
                         </div>
