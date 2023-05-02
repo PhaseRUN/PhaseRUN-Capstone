@@ -60,7 +60,10 @@
 
 <div class="results-container container opacity-95 d-flex justify-content-center">
     <h1 class="row d-flex inputHeaderField-race" th:if="${not #lists.isEmpty(races) and races != null}">Race Search Results</h1>
-    <h1 class="row d-flex inputHeaderField" th:if="${#lists.isEmpty(races) && races != null}">No Races Fit The Criteria</h1>
+    <h1 class="row d-flex inputHeaderField" th:if="${#lists.isEmpty(races) && races != null}">
+        <span class="text-center">No Races Fit The Criteria</span>
+        <span class="text-center">Try adjusting the search radius or edit your <a class="link criteria-text" style="text-decoration: none" th:href="@{/profile}">PROFILE.</a></span>
+    </h1>
 </div>
 <!-- Working Card - Rob -->
 <br>

@@ -9,15 +9,19 @@
 <body>
 <nav th:replace="~{partials/navbar :: navbar(isAuthenticated=${#authentication.principal != 'anonymousUser'})}"></nav>
 
+<div class="under-nav">
+    <h1 class="title-text pageTitle">Profile</h1>
+</div>
+
 <!--  Container  -->
 <section class="vh-100 opacity-85" >
     <span type="hidden" id="userId" th:attr="data-user-id=${user.getId()}"></span>
-    <div class="container py-5">
+    <div class="container py-1">
         <!-- START: ROW FOR PROFILE CARD -->
-        <div class="row d-flex h-100 below-nav">
-            <div class="col col-md-10 col-lg-7 col-xl-7 profile-card" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;height: inherit;">
+        <div class="row d-flex h-100">
+            <div class="col col-md-9 col-lg-8 col-xl-8 profile-card" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;height: inherit;">
                 <div class="card" style="border-radius: 10px;">
-                    <div class="card-body p-4">
+                    <div class="card-body p-1">
                         <div class="d-flex text-black">
                             <div class="flex-shrink-0 pfp">
                                 <img th:src="${user.getProfilePic() != null ? user.getProfilePic() : '/images/small.jpg'}" alt="prof-pic" class="profile-pic img-fluid" />
@@ -45,8 +49,10 @@
                     </div>
                 </div>
             </div>
+
 <!-- Profile Card End -->
-                <section class="articles col-md-12 col-lg-12 col-xl-12" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">                <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
+                    <section class="articles col-md-12 col-lg-10 col-xl-10" style="background-color: #ffffff69;border-radius: 10px;padding-top: 15px;">
+                        <h1 class="title-text" th:if="${not #lists.isEmpty(races) and races != null}">Bookmarks</h1>
                 <h1 class="title-text" th:if="${#lists.isEmpty(races) && races != null}"><span>Add bookmarks </span>
                     <a class="noUnderline link" th:href="@{/race/search}">HERE</a>
                 </h1>
