@@ -51,7 +51,7 @@ public class RaceAPI {
         try {
             response = Unirest.get("https://runsignup.com/rest/races?format=json&event_type=running_race&distance_units=K")
                     .header("api_key", apiKey)
-                    .queryString("results_per_page", "9")
+                    .queryString("results_per_page", "18")
                     .queryString("start_date", strDate)
                     .queryString("min_distance", doubleDistance)
                     .queryString("max_distance", doubleDistance)
