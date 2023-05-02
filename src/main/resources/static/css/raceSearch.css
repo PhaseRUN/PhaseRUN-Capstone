@@ -36,3 +36,13 @@
     overflow: auto;
     max-height: 8.8em;
 }
+
+.attention{
+    color: #666;
+    background-color: whitesmoke;
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    opacity: 90%;
+}
